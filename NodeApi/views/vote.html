@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>vote</title>
+	<meta name="author" content="Sachintha" />
+	<!-- Date: 2013-05-21 -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			 $("#vote").click(function (){
+				$.ajax({
+				type: "POST",
+				url: "http://localhost:3000/post_percep",
+				data: {
+					userId : $("#userId").val() , 
+					vote: $("#vote").val() },
+				success: function(e){
+					console.log(e);
+					$("#result").html("<p>Your vote is: " +e.vote+ "</br> Your ID is: "+ e.id +"</p>");
+				}
+			});
+			})		
+		});
+		
+	</script>
+</head>
+<body>
+	 <div>  	
+    		 User ID: <input type= "text" id="userId" /><br />
+      	     <button id="vote" value="+1">Happy</button>    	
+    </div>
+	<div id= "result">
+		
+	</div>
+</body>
+</html>
+

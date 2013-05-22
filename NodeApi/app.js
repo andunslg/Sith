@@ -31,6 +31,7 @@ app.configure('development', function(){
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);
+app.post('/publishEventPerception', eventRoutes.publishEventPerception);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

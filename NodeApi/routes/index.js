@@ -14,6 +14,9 @@ exports.index = function(req, res) {
 	res.render('index.html');
 };
 
+exports.temp= function(req, res) {
+	res.render('../vividphoto/index.html');
+};
 exports.percep_event = function(req, res) {
 	res.render('vote.html');
 };
@@ -41,7 +44,7 @@ exports.post_percep = function(req, res) {
 exports.percep_event_graph_data = function(req, res){
 	stats.getGraphData(req,res);
 }
-exports.percep_event_graph = function(req, res) {
-	res.render('percep_event_graph.html');
+exports.getWebDashboard = function(req, res) {
+	res.render('webDashboard.html');
 };
 

@@ -4,6 +4,7 @@
  */
 
 // This method returns the nearest event list as a json object given the users gps location
+mongoAdapter = require("../mongoAdapter");
 exports.searchEventListByGps = function(req,res){	
 	// dataAdapter.getEventListByGps(req.body.gpsLocation);
 	res.writeHead(200, {'Content-Type': 'application/json'});	
@@ -37,8 +38,9 @@ exports.registerForEvent = function(req,res){
 
 exports.publishEventPerception = function(req,res){
 	//dataAdapter.publishEventPerception(userId,eventId,timestamp,perception_val)
+   	mongoAdapter.insertPerception(req.body.eventID , req.body.userID , req.body.perceptionValue);  	
 	res.writeHead(200, {'Content-Type': 'application/json'});
-  	var result = JSON.stringify({response: "true" });
+  	var result = JSON.stringify({response: true });
 	res.write(result);
 	res.end();
 }

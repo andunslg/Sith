@@ -7,8 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , eventRoutes = require('./routes/event');
-
+  , eventRoutes = require('./routes/event')
+  , analyticRoutes = require('./routes/analytics');;
+	
 var app = express();
 app.engine('html', require('hjs').renderFile);
 app.configure(function(){
@@ -27,7 +28,13 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-
+//routes for web pages
+app.get('/',routes.index);
+app.get('/webDashboard',routes.getWebDashboard);
+app.get('/temp',routes.temp);
+//routing for real time analytic data
+app.get('/stats',analyticRoutes.getRealTimePerceptData);
+//routing for event category
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);

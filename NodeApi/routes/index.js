@@ -18,7 +18,7 @@ exports.temp= function(req, res) {
 	res.render('../vividphoto/index.html');
 };
 exports.percep_event = function(req, res) {
-	res.render('vote.html');
+	res.render('percep_event.hjs');
 };
 /*
  * POST new vote via SMS

@@ -2,7 +2,7 @@
  * @author Sachintha
  */
 
-
+mongoAdapter = require('./mongoAdapter');
 exports.getGraphData = function(req,res){
 if (req.headers.accept && req.headers.accept == 'text/event-stream') {
 	if (req.url == '/stats') {
@@ -12,7 +12,9 @@ if (req.headers.accept && req.headers.accept == 'text/event-stream') {
 		res.end();
 	}
 	} else {
-		res.render('percep_event_graph.html');
+		console.log('header error');
+		sendSSE(req, res);
+		//res.render('webDashboard.html');
 	}
 }	
 
@@ -28,21 +30,37 @@ function sendSSE(req, res) {
 
 	 //Sends a SSE every 5 seconds on a single connection.
 	setInterval(function() {
-		constructSSE(res, id, (new Date()).getTime(),Math.random());
+		constructSSE(res, id, (new Date()).getTime(), Math.random());
 	}, 5000);
 
-	constructSSE(res, id, (new Date()).getTime(),Math.random());
+	constructSSE(res, id, (new Date()).getTime(), Math.random());
 }
 
 function constructSSE(res, id, time,data) {
+	var averagePerception;
+	calAveragePerception(function(avg){
+		this.averagePerception = avg;
+	});
 	res.write('event: graph\n');
 	res.write('data: {\n');
 	res.write('data: "id": "'+id+'",\n');
     res.write('data: "timeStamp": "'+time +'",\n');
-    res.write('data: "value": "'+data+'"\n');
+    res.write('data: "value": "'+ this.averagePerception +'"\n');
     res.write('data: }\n\n');
 }
-
+function calAveragePerception(fn){
+	mongoAdapter.getAllPerception(function(docs){
+		var count = docs.length;
+		var perception =0;
+		for(var i=0; i<count; i++){
+         perception += parseInt(docs[i].perceptionValue);
+        
+        }
+		var avg = perception/count;
+		//console.log(count);
+		fn(avg);
+	});
+}
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);
 	for(var key in req.headers) {

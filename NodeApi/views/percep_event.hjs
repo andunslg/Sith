@@ -18,38 +18,16 @@
 <body>
   <div>
     <header>
-      <h1>index</h1>
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-      /*
-       var socket = io.connect('http://localhost:3000');
-      	function sendHappy() {
-        	socket.emit('send', { message: '+1' });
-         
-		} 
-		function sendNutral() {
-        	socket.emit('send', { message: '0' });
-         
-		}
-		function sendAngry() {
-        	socket.emit('send', { message: '-1' });
-         
-		}
-		*/     
-      </script>
+      <h1>My Perception</h1>
     </header>
 
     <div>
-    <!--
-    <button onclick="sendHappy()">Happy</button>
-    <button onclick="sendNutral()">Nutral</button>
-    <button onclick="sendAngry()">Angry</button>
-     -->
-    	<form name="input" action="http://localhost:3000/post_percep" method="post">
-    		 User ID: <input type= "text" id="userId" name="userId" /><br />
-      		<button name = "vote" type = "submit" value = "+1">Happy</button>
-      		<button name = "vote" type = "submit" value = "0">Nutral</button>
-      		<button name = "vote" type = "submit" value = "-1">Angry</button>
+    	<form name="input" action="http://sachintha-sith.jit.su/publishEventPerception" method="post">
+    		 User ID: <input type= "text" id="userID" name="userID" /><br />
+    		 Event ID: <input type= "text" id="eventID" name="eventID" /><br />
+      		<button name = "perceptionValue" type = "submit" value = "+1">Happy</button>
+      		<button name = "perceptionValue" type = "submit" value = "0">Nutral</button>
+      		<button name = "perceptionValue" type = "submit" value = "-1">Angry</button>
     	</form>
     </div>
 	<div>

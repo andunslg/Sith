@@ -31,7 +31,7 @@ app.configure('development', function(){
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
-app.get('/temp',routes.temp);
+app.get('/myPerception',routes.percep_event);
 //routing for real time analytic data
 app.get('/stats',analyticRoutes.getRealTimePerceptData);
 //routing for event category

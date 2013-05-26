@@ -34,6 +34,7 @@ app.get('/webDashboard',routes.getWebDashboard);
 app.get('/myPerception',routes.percep_event);
 //routing for real time analytic data
 app.get('/stats',analyticRoutes.getRealTimePerceptData);
+app.get('/countPerceptions',analyticRoutes.countPerceptions);
 //routing for event category
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);

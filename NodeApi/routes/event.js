@@ -13,7 +13,7 @@ exports.searchEventListByGps = function(req,res){
 								]);
 	res.write(result);
 	res.end();
-}
+};
 
 // This method returns the nearest event list as a json object given the name
 exports.searchEventListByName = function(req,res){
@@ -25,7 +25,7 @@ exports.searchEventListByName = function(req,res){
 								});
 	res.write(result);
 	res.end();
-}
+};
 
 //user regiter for event
 exports.registerForEvent = function(req,res){	
@@ -34,7 +34,7 @@ exports.registerForEvent = function(req,res){
   	var result = JSON.stringify({response: "true" });
 	res.write(result);
 	res.end();
-}
+};
 
 exports.publishEventPerception = function(req,res){
 	//dataAdapter.publishEventPerception(userId,eventId,timestamp,perception_val)
@@ -43,5 +43,5 @@ exports.publishEventPerception = function(req,res){
   	var result = JSON.stringify({response: true });
 	res.write(result);
 	res.end();
-}
+};
 

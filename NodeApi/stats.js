@@ -1,5 +1,6 @@
 /**
  * @author Sachintha
+ * This file is for all statistical calculations returned by db
  */
 
 mongoAdapter = require('./mongoAdapter');
@@ -48,6 +49,8 @@ function constructSSE(res, id, time,data) {
     res.write('data: "value": "'+ this.averagePerception +'"\n');
     res.write('data: }\n\n');
 }
+
+//calculates average perception
 function calAveragePerception(fn){
 	mongoAdapter.getAllPerception(function(docs){
 		var count = docs.length;
@@ -61,6 +64,43 @@ function calAveragePerception(fn){
 		fn(avg);
 	});
 }
+
+//count perception values under each category
+exports.countPerceptions =function(fn){
+	mongoAdapter.getAllPerception(function(docs){
+		var count = docs.length;
+		var perceptions  = [0,0,0,0,0,0];
+		for(var i=0; i<count; i++){
+         switch(docs[i].perceptionValue)
+			{
+				case "-3":
+  				perceptions[0]++;
+  				break;
+				case "-2":
+  				perceptions[1]++;
+  				break;
+  				case "-1":
+  				perceptions[2]++;
+  				break;
+  				case "0":
+  				perceptions[3]++;
+  				break;
+  				case "+1":
+  				perceptions[4]++;
+  				break;
+  				case "+2":
+  				perceptions[5]++;
+  				break;
+				default:
+  				console.log('perception not found');
+			}
+        
+        }
+		//console.log(count);
+		fn(perceptions);
+	});
+}
+
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);
 	for(var key in req.headers) {
@@ -68,21 +108,3 @@ function debugHeaders(req) {
 	}
 	sys.puts('\n\n');
 }
-
-exports.sendUpdate = function(req,res){
-	res.writeHead(200, {
-		'Content-Type' : 'text/event-stream',
-		'Cache-Control' : 'no-cache',
-		'Connection' : 'keep-alive'
-	});
-	
-	constructUpdate(res);
-}
-
-function constructUpdate(res) {
-	res.write('event: update\n');
-	res.write('data: {\n');
-	res.write('data: "msg": "hello!",\n');
-    res.write('data: }\n\n');
-}
-

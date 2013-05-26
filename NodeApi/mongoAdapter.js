@@ -1,6 +1,8 @@
 /**
  * @author Sachintha
+ * This is the abstraction layer for mongodb. This contian all CRUD operations done to mongo db data
  */
+
 var MongoClient = require('mongodb').MongoClient, Server = require('mongodb').Server, database;
 var url = "mongodb://nodejitsu:818332f0d160e9026e3d99f63427bb04@alex.mongohq.com:10052/nodejitsudb3588429100";
 

@@ -23,7 +23,7 @@ $(function () {
 			  console.log("ID: "+data.id);
 			  console.log("date: "+data.timeStamp);
 			  console.log("value: "+data.value);
-			  xVal = data.timeStamp;
+			 // xVal = data.timeStamp;
 			  yVal = parseFloat(data.value);
 			}
     	
@@ -45,7 +45,7 @@ $(function () {
                         // set up the updating of the chart each second
                         var series = this.series[0];
                         setInterval(function() {
-                            var x = parseInt(xVal) , // current time
+                            var x = (new Date().getTime()) , // current time
                                 y = yVal;
                             series.addPoint([x, y], true, true);
                         }, 5000);

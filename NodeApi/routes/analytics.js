@@ -11,9 +11,7 @@ exports.getRealTimePerceptData = function(req,res){
 exports.countPerceptions = function(req,res){
 	stats.countPerceptions(function(perceptions){
 		//add perception counts to a json string
-		var reply = JSON.stringify({angry:perceptions[0],sad:perceptions[1],
-									boring:perceptions[2],nutral:perceptions[3],
-									happy:perceptions[4],excited:perceptions[5]});
+		var reply = JSON.stringify({data:[perceptions[0], perceptions[1], perceptions[2], perceptions[3], perceptions[4], perceptions[5]]});
 									
 		//create the response
 		res.writeHead(200, {

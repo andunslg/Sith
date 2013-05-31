@@ -32,9 +32,13 @@ app.configure('development', function(){
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
 app.get('/myPerception',routes.percep_event);
+app.get('/selfAnalyticDashboard',routes.getSelfAnalyticDashBoard);
+app.get('/webDashboard2',routes.getWebDashBoard2);
 //routing for real time analytic data
 app.get('/stats',analyticRoutes.getRealTimePerceptData);
-app.get('/countPerceptions',analyticRoutes.countPerceptions);
+//routing for perception count data
+app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
+app.get('/countPerceptions',analyticRoutes.sendPerceptionCount);
 //routing for event category
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);

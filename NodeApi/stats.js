@@ -34,20 +34,21 @@ function sendSSE(req, res) {
 		constructSSE(res, id, (new Date()).getTime(), Math.random());
 	}, 5000);
 
-	constructSSE(res, id, (new Date()).getTime(), Math.random());
+	//constructSSE(res, id, (new Date()).getTime(), Math.random());
 }
 
 function constructSSE(res, id, time,data) {
 	var averagePerception;
 	calAveragePerception(function(avg){
 		this.averagePerception = avg;
+		res.write('event: graph\n');
+		res.write('data: {\n');
+		res.write('data: "id": "'+id+'",\n');
+   		res.write('data: "timeStamp": "'+time +'",\n');
+    	res.write('data: "value": "'+ this.averagePerception +'"\n');
+    	res.write('data: }\n\n');
 	});
-	res.write('event: graph\n');
-	res.write('data: {\n');
-	res.write('data: "id": "'+id+'",\n');
-    res.write('data: "timeStamp": "'+time +'",\n');
-    res.write('data: "value": "'+ this.averagePerception +'"\n');
-    res.write('data: }\n\n');
+	
 }
 
 //calculates average perception

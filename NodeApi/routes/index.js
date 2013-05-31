@@ -48,3 +48,10 @@ exports.getWebDashboard = function(req, res) {
 	res.render('webDashboard.html');
 };
 
+exports.getSelfAnalyticDashBoard = function(req,res){
+	res.render('selfAnalyticDashBoard.html');
+}
+exports.getWebDashBoard2 = function(req,res){
+	res.render('webDashBoard2.html');
+}
+

@@ -69,7 +69,7 @@ $(function () {
             },{
                 name: 'Bored',
                 data: [18, 31, 54, 156, 339, 818, 1201],
-                color: '#3366FF'
+                color: '#0066FF'
             },{
                 name: 'Sleepy',
                 data: [163, 203, 276, 408, 547, 729, 628],

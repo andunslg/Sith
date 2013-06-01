@@ -34,13 +34,28 @@ exports.getPerceptionForUser = function(userID){
 }
 exports.getAllPerception = function(fn){
 	//var count=0;
-	database.collection("Sith", function(err,collection){
-		collection.find({}).toArray(function(err,docs){
-			if(err){throw err; return;}
-			fn(docs);
+	if(!database){
+		console.log(database);
+		MongoClient.connect(url, function(err, db) {
+			if(err)
+				throw err;
+			console.log("Connected to Database");
+			db.collection("Sith", function(err,collection){
+				collection.find({}).toArray(function(err,docs){
+				if(err){throw err; return;}
+				fn(docs);
 			
+				});
+			});	
 		});
-	});
-	//console.log(count);
-	//return count;
+	}else{
+		console.log(database);
+		database.collection("Sith", function(err,collection){
+			collection.find({}).toArray(function(err,docs){
+				if(err){throw err; return;}
+				fn(docs);
+			
+			});
+		});
+	}
 }

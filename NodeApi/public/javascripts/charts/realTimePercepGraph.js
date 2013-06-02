@@ -6,7 +6,7 @@ $(function () {
     	var messages = [];
     	var xVal;
    		var yVal=0;
-    	var source = new EventSource('/stats');
+    	var source = new EventSource('/getPeriodicAvgPerception');
 		source.onopen = function () {
  			console.log('open')
 		};	

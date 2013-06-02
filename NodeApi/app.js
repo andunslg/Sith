@@ -25,7 +25,7 @@ app.configure(function(){
 });
 
 app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
@@ -40,9 +40,9 @@ app.get('/myPerception',routes.percep_event);
 app.get('/selfAnalyticDashboard',routes.getSelfAnalyticDashBoard);
 app.get('/webDashboard2',routes.getWebDashBoard2);
 //routing for real time analytic data
-app.get('/stats',analyticRoutes.getRealTimePerceptData);
-//routing for perception count data
+app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
+//routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount);
 //routing for event category
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);

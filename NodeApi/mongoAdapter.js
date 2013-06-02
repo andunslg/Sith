@@ -49,7 +49,6 @@ exports.getAllPerception = function(fn){
 			});	
 		});
 	}else{
-		console.log(database);
 		database.collection("Sith", function(err,collection){
 			collection.find({}).toArray(function(err,docs){
 				if(err){throw err; return;}

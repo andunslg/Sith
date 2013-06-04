@@ -27,7 +27,7 @@
 </header>
 <section class="user">
 	<div class="profile-img">
-		<p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" /> Welcome To SITH</p>
+		<p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" /> Logged in as <%= session.getAttribute("user").toString() %></p>
 	</div>
 	<div class="buttons">
 		<button class="ico-font">&#9206;</button>
@@ -48,10 +48,10 @@
 </div>
 <nav>
 	<ul>
-		<li class="section">
+		<li>
             <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Perceptions</a>
         </li>
-         <li>
+         <li class="section">
             <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
         </li>
          <li>

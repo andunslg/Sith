@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ca78890-48ef-4052-a106-aa8d1e307f1e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sith/login/Authenticator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/servlet_api.xml" />
-      <change type="MOVED" beforePath="C:\Users\Prabhath\Documents\GitHub\Sith\SithWebApp\web\dashboard.html" afterPath="$PROJECT_DIR$/web/dashboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sith.iml" afterPath="$PROJECT_DIR$/Sith.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/dashboard.jsp" afterPath="$PROJECT_DIR$/web/dashboard.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/perceptions.jsp" afterPath="$PROJECT_DIR$/web/perceptions.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/profile.html" afterPath="$PROJECT_DIR$/web/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/questions.html" afterPath="$PROJECT_DIR$/web/questions.html" />
@@ -16,15 +12,16 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/index.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370236045080" ignored="false" />
     <file path="/index.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341057026" ignored="false" />
-    <file path="/questions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370257106005" ignored="false" />
-    <file path="/profile.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370257207368" ignored="false" />
+    <file path="/questions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343797355" ignored="false" />
+    <file path="/profile.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370344022423" ignored="false" />
     <file path="/perceptions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370254737368" ignored="false" />
     <file path="/*.regexp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370255319546" ignored="false" />
     <file path="/dashboard.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370256202736" ignored="false" />
-    <file path="/Dummy.txt" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341294022" ignored="false" />
+    <file path="/Dummy.txt" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343174640" ignored="false" />
     <file path="/signup.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341153386" ignored="false" />
-    <file path="/perceptions.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343039351" ignored="false" />
+    <file path="/perceptions.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343501929" ignored="false" />
     <file path="/Authenticator.java" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341960574" ignored="false" />
+    <file path="/dashboard.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343779958" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,7 @@
       <file leaf-file-name="perceptions.jsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/perceptions.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="147" column="26" selection-start="5812" selection-end="5812" vertical-scroll-proportion="10.076612">
+            <state line="15" column="26" selection-start="484" selection-end="484" vertical-scroll-proportion="-9.637096">
               <folding />
             </state>
           </provider>
@@ -124,7 +121,7 @@
       <file leaf-file-name="dashboard.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/dashboard.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="6" selection-start="679" selection-end="1273" vertical-scroll-proportion="0.0">
+            <state line="53" column="28" selection-start="2157" selection-end="2157" vertical-scroll-proportion="-9.576923">
               <folding />
             </state>
           </provider>
@@ -133,7 +130,7 @@
       <file leaf-file-name="questions.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/questions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="14" selection-start="616" selection-end="1363" vertical-scroll-proportion="0.0">
+            <state line="47" column="28" selection-start="1652" selection-end="1667" vertical-scroll-proportion="-7.1923075">
               <folding />
             </state>
           </provider>
@@ -142,7 +139,7 @@
       <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="6" selection-start="1907" selection-end="1907" vertical-scroll-proportion="0.0">
+            <state line="50" column="29" selection-start="1792" selection-end="1792" vertical-scroll-proportion="-7.5">
               <folding />
             </state>
           </provider>
@@ -186,13 +183,14 @@
       <list>
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/dashboard.html" />
-        <option value="$PROJECT_DIR$/web/questions.html" />
-        <option value="$PROJECT_DIR$/web/profile.html" />
         <option value="$PROJECT_DIR$/web/perceptions.html" />
         <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/web/signup.html" />
         <option value="$PROJECT_DIR$/src/sith/login/Authenticator.java" />
         <option value="$PROJECT_DIR$/web/perceptions.jsp" />
+        <option value="$PROJECT_DIR$/web/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/web/questions.html" />
+        <option value="$PROJECT_DIR$/web/profile.html" />
       </list>
     </option>
   </component>
@@ -734,9 +732,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
-        <item index="1" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
-        <item index="2" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
-        <item index="3" class="java.lang.String" itemvalue="Tomcat Server.perceptions.html" />
+        <item index="1" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
+        <item index="2" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
+        <item index="3" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
         <item index="4" class="java.lang.String" itemvalue="Tomcat Server.perceptions.html" />
       </list>
     </recent_temporary>
@@ -773,12 +771,16 @@
       <created>1370341307669</created>
       <updated>1370341307669</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated">
+      <created>1370343197633</created>
+      <updated>1370343197633</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -799,7 +801,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.5487013" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.5487013" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4512987" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -939,27 +941,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/dashboard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="6" selection-start="679" selection-end="1273" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="14" selection-start="616" selection-end="1363" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="6" selection-start="1907" selection-end="1907" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/klevermedia/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.4114391" />
@@ -968,6 +949,20 @@
     <entry file="file://$PROJECT_DIR$/web/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="27" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.045454547">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/questions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="28" selection-start="1652" selection-end="1667" vertical-scroll-proportion="-7.1923075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sith/login/Authenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="20" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -986,16 +981,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sith/login/Authenticator.java">
+    <entry file="file://$PROJECT_DIR$/web/dashboard.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
+        <state line="53" column="28" selection-start="2157" selection-end="2157" vertical-scroll-proportion="-9.576923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="29" selection-start="1792" selection-end="1792" vertical-scroll-proportion="-7.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/perceptions.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="26" selection-start="5812" selection-end="5812" vertical-scroll-proportion="10.076612">
+        <state line="15" column="26" selection-start="484" selection-end="484" vertical-scroll-proportion="-9.637096">
           <folding />
         </state>
       </provider>

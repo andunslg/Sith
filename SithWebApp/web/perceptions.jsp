@@ -7,13 +7,13 @@
     String password2=request.getParameter("password2");
 
     Authenticator authenticator=new Authenticator();
-    if(password2==null){
+    if(password2==null && user!=null){
         if(authenticator.authenticateUser(user,password)){
             session.setAttribute("user",user);
         }else{
 
         }
-    }else{
+    }else if(password2!=null){
         authenticator.addUser(user,password);
     }
 %>

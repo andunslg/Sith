@@ -11,6 +11,6 @@ exports.registerAnnonymousUser = function(req,res){
 	userManager.addAnnonymousUser(req,res);
 	
 };
-exports.LogIn = function(req,res){
-	
+exports.authenticateUser = function(req,res){
+	userManager.authenticateUser(req,res);
 };

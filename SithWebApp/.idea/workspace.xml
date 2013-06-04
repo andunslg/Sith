@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ca78890-48ef-4052-a106-aa8d1e307f1e" name="Default" comment="">
+    <list default="true" id="0ca78890-48ef-4052-a106-aa8d1e307f1e" name="Default" comment="Logout functionality">
+      <change type="DELETED" beforePath="C:\Users\Prabhath\Documents\GitHub\Sith\SithWebApp\web\index.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Prabhath\Documents\GitHub\Sith\SithWebApp\web\profile.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Prabhath\Documents\GitHub\Sith\SithWebApp\web\questions.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/dashboard.jsp" afterPath="$PROJECT_DIR$/web/dashboard.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/perceptions.jsp" afterPath="$PROJECT_DIR$/web/perceptions.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/profile.html" afterPath="$PROJECT_DIR$/web/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/questions.html" afterPath="$PROJECT_DIR$/web/questions.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Sith.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/index.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370236045080" ignored="false" />
-    <file path="/index.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341057026" ignored="false" />
-    <file path="/questions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343797355" ignored="false" />
-    <file path="/profile.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370344022423" ignored="false" />
+    <file path="/index.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370364246808" ignored="false" />
+    <file path="/index.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370345798522" ignored="false" />
+    <file path="/questions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370345910106" ignored="false" />
+    <file path="/profile.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370362204273" ignored="false" />
     <file path="/perceptions.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370254737368" ignored="false" />
     <file path="/*.regexp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370255319546" ignored="false" />
     <file path="/dashboard.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370256202736" ignored="false" />
-    <file path="/Dummy.txt" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343174640" ignored="false" />
+    <file path="/Dummy.txt" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370365204559" ignored="false" />
     <file path="/signup.html" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341153386" ignored="false" />
     <file path="/perceptions.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343501929" ignored="false" />
     <file path="/Authenticator.java" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370341960574" ignored="false" />
-    <file path="/dashboard.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370343779958" ignored="false" />
+    <file path="/dashboard.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370364574087" ignored="false" />
+    <file path="/profile.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370364933842" ignored="false" />
+    <file path="/questions.jsp" changelist="0ca78890-48ef-4052-a106-aa8d1e307f1e" time="1370364962780" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +39,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -73,6 +75,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -82,37 +85,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="perceptions.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/perceptions.jsp">
+      <file leaf-file-name="questions.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/questions.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="26" selection-start="484" selection-end="484" vertical-scroll-proportion="-9.637096">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Authenticator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sith/login/Authenticator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="20" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="32" selection-start="591" selection-end="591" vertical-scroll-proportion="-6.076923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="34" selection-start="715" selection-end="715" vertical-scroll-proportion="-8.961538">
+            <state line="35" column="72" selection-start="1439" selection-end="1439" vertical-scroll-proportion="-4.3076925">
               <folding />
             </state>
           </provider>
@@ -121,25 +97,25 @@
       <file leaf-file-name="dashboard.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/dashboard.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="28" selection-start="2157" selection-end="2157" vertical-scroll-proportion="-9.576923">
+            <state line="44" column="43" selection-start="1989" selection-end="2014" vertical-scroll-proportion="-5.076923">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="questions.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/questions.html">
+      <file leaf-file-name="perceptions.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/perceptions.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="28" selection-start="1652" selection-end="1667" vertical-scroll-proportion="-7.1923075">
+            <state line="164" column="72" selection-start="6611" selection-end="6611" vertical-scroll-proportion="-0.65384614">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/profile.html">
+      <file leaf-file-name="profile.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/profile.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="29" selection-start="1792" selection-end="1792" vertical-scroll-proportion="-7.5">
+            <state line="26" column="38" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.054597702">
               <folding />
             </state>
           </provider>
@@ -147,19 +123,19 @@
       </file>
       <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
           <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
             <state />
           </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state line="8" column="0" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
               <folding />
             </state>
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-            <state />
           </provider>
         </entry>
       </file>
@@ -181,16 +157,18 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/dashboard.html" />
         <option value="$PROJECT_DIR$/web/perceptions.html" />
-        <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/web/signup.html" />
         <option value="$PROJECT_DIR$/src/sith/login/Authenticator.java" />
-        <option value="$PROJECT_DIR$/web/perceptions.jsp" />
-        <option value="$PROJECT_DIR$/web/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/web/questions.html" />
         <option value="$PROJECT_DIR$/web/profile.html" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
+        <option value="$PROJECT_DIR$/web/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/web/perceptions.jsp" />
+        <option value="$PROJECT_DIR$/web/questions.jsp" />
+        <option value="$PROJECT_DIR$/web/profile.jsp" />
       </list>
     </option>
   </component>
@@ -233,7 +211,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -290,6 +267,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -318,45 +296,7 @@
       <recent name="C:\Users\Prabhath\IdeaProjects\Sith\web" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.index.html">
-    <configuration default="false" name="index.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 7.0">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/index.jsp" />
-      <deployment>
-        <artifact name="web:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings />
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="web:war exploded" />
-        </option>
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Tomcat Server.index.jsp">
     <configuration default="false" name="perceptions.html" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 7.0">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/perceptions.html" />
       <deployment>
@@ -447,6 +387,46 @@
         </artifact>
       </deployment>
       <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="web:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="false" name="index.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 7.0">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/index.jsp" />
+      <deployment>
+        <artifact name="web:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="index_jsp_SithWebApp" />
+      </server-settings>
       <predefined_log_file id="Tomcat" enabled="true" />
       <predefined_log_file id="Tomcat Catalina" enabled="true" />
       <predefined_log_file id="Tomcat Manager" enabled="false" />
@@ -724,18 +704,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0" />
-      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.index.jsp" />
-      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.perceptions.html" />
-      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
-      <item index="4" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.perceptions.html" />
+      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
+      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
+      <item index="4" class="java.lang.String" itemvalue="Tomcat Server.index.jsp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
+        <item index="0" class="java.lang.String" itemvalue="Tomcat Server.index.jsp" />
         <item index="1" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
-        <item index="2" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
-        <item index="3" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
-        <item index="4" class="java.lang.String" itemvalue="Tomcat Server.perceptions.html" />
+        <item index="2" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
+        <item index="3" class="java.lang.String" itemvalue="Tomcat Server.users.html" />
+        <item index="4" class="java.lang.String" itemvalue="Tomcat Server.index.html" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -775,24 +755,36 @@
       <created>1370343197633</created>
       <updated>1370343197633</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated">
+      <created>1370344151468</created>
+      <updated>1370344151468</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Logout functionality">
+      <created>1370365108395</created>
+      <updated>1370365108395</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Logout functionality">
+      <created>1370365191866</created>
+      <updated>1370365191866</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.13636364" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -801,13 +793,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.5487013" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4512987" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.67045456" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4512987" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -852,7 +844,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logout functionality" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -867,6 +859,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Updated" />
+    <MESSAGE value="Logout functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -890,14 +883,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/questions.html">
+    <entry file="file://$PROJECT_DIR$/web/questions.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="24" selection-start="616" selection-end="1363" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/profile.html">
+    <entry file="file://$PROJECT_DIR$/web/profile.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="6" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.0">
           <folding />
@@ -905,19 +898,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
       <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
         <state />
       </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="22" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://C:/Program Files/Apache Software Foundation/Apache Tomcat 7.0.27/conf/tomcat-users.xml">
@@ -926,19 +919,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
       <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/klevermedia/css/style.css">
@@ -953,51 +946,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="28" selection-start="1652" selection-end="1667" vertical-scroll-proportion="-7.1923075">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sith/login/Authenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="32" selection-start="591" selection-end="591" vertical-scroll-proportion="-6.076923">
+        <state line="18" column="20" selection-start="387" selection-end="387" vertical-scroll-proportion="0.9807692">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="34" selection-start="715" selection-end="715" vertical-scroll-proportion="-8.961538">
+        <state line="18" column="34" selection-start="715" selection-end="715" vertical-scroll-proportion="0.8146853">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="36" selection-start="135" selection-end="135" vertical-scroll-proportion="-2.6153846">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/dashboard.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="28" selection-start="2157" selection-end="2157" vertical-scroll-proportion="-9.576923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="29" selection-start="1792" selection-end="1792" vertical-scroll-proportion="-7.5">
+        <state line="44" column="43" selection-start="1989" selection-end="2014" vertical-scroll-proportion="-5.076923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/perceptions.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="484" selection-end="484" vertical-scroll-proportion="-9.637096">
+        <state line="164" column="72" selection-start="6611" selection-end="6611" vertical-scroll-proportion="-0.65384614">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/questions.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="72" selection-start="1439" selection-end="1439" vertical-scroll-proportion="-4.3076925">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/profile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="38" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.054597702">
           <folding />
         </state>
       </provider>

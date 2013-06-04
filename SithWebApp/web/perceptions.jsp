@@ -147,7 +147,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <%=session.getAttribute("user").toString() %></p>
+            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -162,7 +162,7 @@
             </ul>
 		</span>
             <span class="button">Help</span>
-            <span class="button blue"><a href="index.html">Logout</a></span>
+            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>
@@ -175,10 +175,10 @@
             <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
         </li>
          <li>
-            <a href="questions.html"><span class="icon">&#59160;</span>Questions</a>
+            <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
          <li>
-            <a href="profile.html"><span class="icon">&#128101;</span>Profile</a>
+            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>     
 	</ul>
 </nav>

@@ -8,8 +8,16 @@
 	<meta name="robots" content="" />
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="stylesheet" href="css/style.css" media="all" />
-	<!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
-	<!--[if lt IE 9]><link rel="stylesheet" href="css/lt-ie-9.css" media="all" /><![endif]-->
+	<script  type = "text/javascript" src ="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type = "text/javascript" src = "js/jquery.wysiwyg.js"></script>
+	<script type = "text/javascript" src = "js/custom.js"></script>
+	<script type = "text/javascript" src = "js/cycle.js"></script>
+	<script type = "text/javascript" src = "js/jquery.checkbox.min.js"></script>
+	<script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
+	<script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
+	<script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
+    <script type = "text/javascript" src = "js/charts/realTimePercepGraph2.js"></script>
+    <script type = "text/javascript" src = "js/charts/perceptionCountGraphs.js"> </script>
 </head>
 <body>
 <div class="testing">
@@ -72,10 +80,16 @@
 				<button class="left-btn">&#59229;</button><button class="right-btn">&#59230;</button>
 			</aside>
 		</header>
-		<div class="content cycle">
-			<div id="flot-example-2" class="graph-area"></div>
-			<div id="flot-example-1" class="graph-area"></div>
-		</div>
+		<div class="content">
+        			<div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+					<p>
+						Chart Type
+						<select id='chartType'>
+							<option value="bar">Bar Chart</option>
+							<option value="pie">Pie Chart</option>
+						</select>
+					</p>
+					<div id="CountChart" style="min-width: 400px; height: 400px;"></div>
 		</div>
 	</section>
 	
@@ -147,19 +161,6 @@
 		</section>
 	</div>
 </section>
-
-<script src="js/jquery-1.7.1.min.js"></script>
-<script src="js/jquery.wysiwyg.js"></script>
-<script src="js/custom.js"></script>
-<script src="js/cycle.js"></script>
-<script src="js/jquery.checkbox.min.js"></script>
-<script src="js/flot.js"></script>
-<script src="js/flot.resize.js"></script>
-<script src="js/flot-time.js"></script>
-<script src="js/flot-pie.js"></script>
-<script src="js/flot-graphs.js"></script>
-<script src="js/cycle.js"></script>
-<script src="js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 // Feature slider for graphs
 $('.cycle').cycle({

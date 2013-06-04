@@ -14,10 +14,10 @@
 			 $("#vote").click(function (){
 				$.ajax({
 				type: "POST",
-				url: "http://localhost:3000/post_percep",
+				url: "http://localhost:3000/publishEventPerception",
 				data: {
-					userId : $("#userId").val() , 
-					vote: $("#vote").val() },
+					userID : $("#userId").val() , 
+					perceptionValue: $("#vote").val() },
 				success: function(e){
 					console.log(e);
 					$("#result").html("<p>Your vote is: " +e.vote+ "</br> Your ID is: "+ e.id +"</p>");

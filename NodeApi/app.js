@@ -8,7 +8,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , eventRoutes = require('./routes/event')
-  , analyticRoutes = require('./routes/analytics');;
+  , analyticRoutes = require('./routes/analytics')
+  , userMgmtRoutes = require('./routes/userMgmt');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -39,6 +40,7 @@ app.get('/webDashboard',routes.getWebDashboard);
 app.get('/myPerception',routes.percep_event);
 app.get('/selfAnalyticDashboard',routes.getSelfAnalyticDashBoard);
 app.get('/webDashboard2',routes.getWebDashBoard2);
+app.get('/vote',routes.vote);
 //routing for real time analytic data
 app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
@@ -49,7 +51,8 @@ app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
-
+//routing for user registration
+app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

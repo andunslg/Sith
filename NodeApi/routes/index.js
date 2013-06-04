@@ -14,6 +14,9 @@ exports.index = function(req, res) {
 	res.render('index.html');
 };
 
+exports.vote = function(req, res) {
+	res.render('vote.html');
+};
 exports.temp= function(req, res) {
 	res.render('../vividphoto/index.html');
 };

@@ -1,60 +1,62 @@
 /**
  * @author Sachintha
- * This is the abstraction layer for mongodb. This contian all CRUD operations done to mongo db data
  */
+var Db = require('mongodb').Db;
+var Server = require('mongodb').Server;
+//var client = new Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false});
 
-var MongoClient = require('mongodb').MongoClient, Server = require('mongodb').Server, database;
-var url = "mongodb://nodejitsu:818332f0d160e9026e3d99f63427bb04@alex.mongohq.com:10052/nodejitsudb3588429100";
-
-MongoClient.connect(url, function(err, db) {
+//insert a document to the specified collection
+exports.insertDocument = function(collection,doc){
+	new Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
 	if(err)
 		throw err;
-	console.log("Connected to Database");
-	database = db;
-
-});
-
-exports.insertPerception = function(userID,eventID,perceptionVal) {
-	var time = (new Date()).getTime();
-	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: time };
-	database.collection("Sith", function(err, collection) {
-		collection.insert(doc, {safe : true}, function(err, records) {
-			if(err)
-				throw err;
-			console.log("Record added as " + records[0]._id)
-		});
+	else{
+		console.log("Connected to UoM server");
+		db.collection(collection, function(err, collection) {
+			collection.insert(doc, {safe : true}, function(err, records) {
+				if(err)
+					throw err;
+				console.log("Record added as " + records[0]._id);
+				db.close();
+			});
+		});	
+	}		
 	});
 }
-exports.getPerceptionForEvent = function(eventID){
-	//code for filter based on events
+//retireve the first object that matches the query
+exports.getSingleDocument = function(query,collection,fn){
+	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+	if(err)
+		throw err;
+	else{
+		console.log("Connected to UoM server");
+		db.collection(collection, function(err, collection) {
+			collection.findOne(query,function(err, doc) {
+				if(err)
+					throw err;
+					fn(doc);
+				db.close();
+			});
+		});	
+	}		
+	});
 }
 
-exports.getPerceptionForUser = function(userID){
-	//code for filter based on users
-}
-exports.getAllPerception = function(fn){
-	//var count=0;
-	if(!database){
-		console.log(database);
-		MongoClient.connect(url, function(err, db) {
-			if(err)
-				throw err;
-			console.log("Connected to Database");
-			db.collection("Sith", function(err,collection){
-				collection.find({}).toArray(function(err,docs){
-				if(err){throw err; return;}
-				fn(docs);
-			
-				});
-			});	
-		});
-	}else{
-		database.collection("Sith", function(err,collection){
-			collection.find({}).toArray(function(err,docs){
-				if(err){throw err; return;}
-				fn(docs);
-			
+//retireve multiple documents that matches the given query
+exports.getDocuments = function(query,collection,fn){
+	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+	if(err)
+		throw err;
+	else{
+		console.log("Connected to UoM server");
+		db.collection(collection, function(err, collection) {
+			collection.find(query).toArray(function(err, doc) {
+				if(err)
+					throw err;
+					fn(doc);
+				db.close();
 			});
-		});
-	}
+		});	
+	}		
+	});
 }

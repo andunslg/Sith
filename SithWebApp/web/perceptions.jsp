@@ -1,5 +1,23 @@
+<%@ page import="sith.login.Authenticator" %>
 <!DOCTYPE html>
 <html lang="">
+
+<% String user=request.getParameter("user");
+    String password=request.getParameter("password");
+    String password2=request.getParameter("password2");
+
+    Authenticator authenticator=new Authenticator();
+    if(password2==null && user!=null){
+        if(authenticator.authenticateUser(user,password)){
+            session.setAttribute("user",user);
+        }else{
+
+        }
+    }else if(password2!=null){
+        authenticator.addUser(user,password);
+    }
+%>
+
 <head>
     <meta charset="utf-8">
     <title>SITH Dashboard</title>
@@ -129,7 +147,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back Andun</p>
+            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <%=session.getAttribute("user").toString() %></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -151,10 +169,10 @@
 <nav>
     <ul>
 		<li class="section">
-            <a href="perceptions.html"><span class="icon" style="font-size: 40px">&#9787;</span>Perceptions</a>
+            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;</span>Perceptions</a>
         </li>
          <li>
-            <a href="dashboard.html"><span class="icon">&#128711;</span>Analytics</a>
+            <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
         </li>
          <li>
             <a href="questions.html"><span class="icon">&#59160;</span>Questions</a>

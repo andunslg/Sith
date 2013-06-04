@@ -3,11 +3,11 @@
  * This file is for all statistical calculations returned by db
  */
 
-mongoAdapter = require('./mongoAdapter');
+percepManager = require('./perceptionManager');
 
 //calculates average perception
 exports.calAveragePerception = function(fn){
-	mongoAdapter.getAllPerception(function(docs){
+	percepManager.getAllPerception(function(docs){
 		var count = docs.length;
 		var perception =0;
 		for(var i=0; i<count; i++){
@@ -22,7 +22,7 @@ exports.calAveragePerception = function(fn){
 
 //count perception values under each category
 exports.countPerceptions =function(fn){
-	mongoAdapter.getAllPerception(function(docs){
+	percepManager.getAllPerception(function(docs){
 		var count = docs.length;
 		var perceptions  = [0,0,0,0,0,0];
 		for(var i=0; i<count; i++){

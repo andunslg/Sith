@@ -51,8 +51,9 @@ app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
-//routing for user registration
+//routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
+app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

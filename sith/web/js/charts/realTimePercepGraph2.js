@@ -2,7 +2,7 @@
  * @author Sachintha
  */
 $(function () {
-		var source = new EventSource('http://localhost:3000/countPeriodicPerceptions');
+		var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions');
 		source.onopen = function () {
  			console.log('open')
 		};	

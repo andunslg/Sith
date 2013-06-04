@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 barChart = function () {
 	//load data from the server
-	$.get('http://localhost:3000/countPerceptions', function (e) {
+	$.get('http://192.248.8.246:3000/countPerceptions', function (e) {
 		var chart;
 		var perceptions;
 		//$.ajax({
@@ -77,7 +77,7 @@ barChart = function () {
 }
  
 pieChart = function () {
-	$.get('http://localhost:3000/countPerceptions', function (e){
+	$.get('http://192.248.8.246:3000/countPerceptions', function (e){
 		//var data = e.data;
 		//var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
 		

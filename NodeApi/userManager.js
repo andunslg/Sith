@@ -36,7 +36,6 @@ exports.authenticateUser = function(req,res){
 			res.write(JSON.stringify({result:true}));
 			res.end();
 		}else{
-			mongoAdapter2.insertDocument('SithUsers',document);
 			res.write(JSON.stringify({result:false}));
 			res.end();	
 		}

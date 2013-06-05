@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="">
 <% String state=request.getParameter("state");
-    boolean loginFailed=false;
-    if(state!=null){
-        session.removeAttribute("user");
-        if(state.equalsIgnoreCase("loginFailed")){
-            loginFailed=true;
-        }
+    boolean isReturn=false;
+    if(state!=null && state.equalsIgnoreCase("pdif")){
+        isReturn=true;
     }
 %>
 <head>
@@ -22,13 +19,14 @@
 <body class="login">
 	<section>
 		<h1><strong>SITH</strong> Dashboard</h1>
-        <%if(loginFailed){ %>
-        <p style="color: red">Incorrect username or password!</p>
+        <%if(isReturn){ %>
+        <p style="color: red">Passwords do not match.</p>
         <%} %>
 		<form method="POST" action="perceptions.jsp">
-			<input  name="user" type="text" value="Username" />
+			<input name="user" type="text" value="Email" />
 			<input name="password" value="Password" type="password" />
-			<input type="submit" class="blue" value="Login" style="color: floralwhite"/>
+            <input name="password2" value="Password" type="password" />
+			<input type="submit" class="blue"  value="Login" style="color: floralwhite"/>
 		</form>
         <p><a href="signup.jsp">Sign Up</a></p>
 		<p><a href="#">Forgot your password?</a></p>

@@ -14,10 +14,13 @@
             response.sendRedirect("index.jsp?state=loginFailed");
         }
     }else if(password2!=null){
-        if(authenticator.addUser(user,password)){
-            session.setAttribute("user",user);
+        if(password.equals(password2)){
+            if(authenticator.addUser(user,password)){
+                session.setAttribute("user",user);
+            }
+        }else{
+            response.sendRedirect("signup.jsp?state=pdif");
         }
-
     }
 %>
 

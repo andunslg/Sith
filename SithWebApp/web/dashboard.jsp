@@ -2,7 +2,7 @@
 <html lang="">
 <head>
 	<meta charset="utf-8">
-	<title>Retina Dashboard</title>
+	<title>Sith Dashboard</title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="robots" content="" />
@@ -63,18 +63,18 @@
 	</ul>
 </nav>
 <section class="alert">
-	<div class="green">	
-		<p>Hi Lee, you have <a href="#">3 new pages</a> and <a href="#">16 comments</a> to approve, better get going!</p>
-		<span class="close">&#10006;</span>
-	</div>
+    <div class="green">
+        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <%--<span class="close">&#10006;</span>--%>
+    </div>
 </section>
 <section class="content">
 	<section class="widget">
 		<header>
 			<span class="icon">&#128200;</span>
 			<hgroup>
-				<h1>Website Statistics</h1>
-				<h2>An insiders view</h2>
+				<h1>Event Statistics</h1>
+				<h2>Public view</h2>
 			</hgroup>
 			<aside>
 				<button class="left-btn">&#59229;</button><button class="right-btn">&#59230;</button>
@@ -93,73 +93,7 @@
 		</div>
 	</section>
 	
-	<div class="widget-container">
-		<section class="widget small">
-			<header>
-				<span class="icon">&#59168;</span>
-				<hgroup>
-					<h1>Latest comments</h1>
-					<h2>What they're saying</h2>
-				</hgroup>
-				<aside>
-					<span>
-						<a href="#">&#9881;</a>
-						<ul class="settings-dd">
-							<li><label>Option a</label><input type="checkbox" /></li>
-							<li><label>Option b</label><input type="checkbox" checked="checked" /></li>
-							<li><label>Option c</label><input type="checkbox" /></li>
-						</ul>
-					</span>
-				</aside>
-			</header>
-			<div class="content no-padding timeline">
-				<div class="tl-post comments">
-					<span class="icon">&#59168;</span>
-					<p>
-						<a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-						<span class="reply"><input type="text" value="Respond to comment..."/></span>
-					</p>
-				</div>
-				<div class="tl-post comments">
-					<span class="icon">&#59168;</span>
-					<p>
-						<a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-						<span class="reply"><input type="text" value="Respond to comment..."/></span>
-					</p>
-				</div>
-				<span class="show-more"><a	 href="#">More</a></span>
-			</div>
-		</section>
-		
-		<section class="widget 	small">
-			<header>
-				<span class="icon">&#128319;</span>
-				<hgroup>
-					<h1>Quick Post</h1>
-					<h2>Speed things up</h2>
-				</hgroup>
-				<aside>
-					<span>
-						<a href="#">&#9881;</a>
-						<ul class="settings-dd">
-							<li><label>Option a</label><input type="checkbox" /></li>
-							<li><label>Option b</label><input type="checkbox" checked="checked" /></li>
-							<li><label>Option c</label><input type="checkbox" /></li>
-						</ul>
-					</span>
-				</aside>
-			</header>
-			<div class="content">
-				<div class="field-wrap">
-					<input type="text" value="Title"/>
-				</div>
-				<div class="field-wrap">
-					<textarea id="quick_post" rows="5"></textarea>
-				</div>
-				<button type="submit" class="green">Post</button> <button type="submit" class="">Preview</button>
-			</div>
-		</section>
-	</div>
+
 </section>
 <script type="text/javascript">
 // Feature slider for graphs

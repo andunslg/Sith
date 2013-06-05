@@ -1,5 +1,10 @@
+<%@ page import="sith.login.SithAPI" %>
+<%@ page import="sith.model.Participant" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
+<% SithAPI sithAPI=new SithAPI(); %>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>
@@ -49,14 +54,14 @@
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
          <li  class="section">
-            <a href="profile.jsp" class="section"><span class="icon">&#128101;</span>Profile</a>
+            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>     
 	</ul>
 </nav>
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <p>Current event is <a href="#">Workshop1</a> , Click here to <a href="#">change</a> </p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
@@ -75,14 +80,21 @@
                 <thead>
                 <tr>
                     <th class="avatar">Name</th>
-                    <th>Date</th>
+                    <th>Feeling</th>
+                    <th>Time</th>
                 </tr>
                 </thead>
                 <tbody>
+                <% List<Participant> participantList=new ArrayList<Participant>();
+                    participantList=sithAPI.getParticipants("dkkdnk");
+                   for(Participant participant:participantList){
+                %>
                 <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td>12/03/2013</td>
+                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=participant.getName()%></td>
+                    <td><%=participant.getMode()%></td>
+                    <td><%=participant.getTime()%></td>
                 </tr>
+                <% } %>
                 </tbody>
             </table>
         </div>

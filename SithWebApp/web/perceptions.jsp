@@ -183,6 +183,14 @@
 	</ul>
 </nav>
 
+<section class="alert">
+    <div class="green">
+        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <%--<span class="close">&#10006;</span>--%>
+    </div>
+</section>
+
+
 <section class="content" height="1500">
     <section class="widget">
         <header>

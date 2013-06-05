@@ -1,5 +1,8 @@
+<%@ page import="sith.login.SithAPI" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="">
+<% SithAPI sithAPI=new SithAPI(); %>
 <head>
     <meta charset="utf-8">
     <title>Sith</title>
@@ -53,6 +56,14 @@
         </li>     
 	</ul>
 </nav>
+
+<section class="alert">
+    <div class="green">
+        <p>Current event is <a href="eventt.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <%--<span class="close">&#10006;</span>--%>
+    </div>
+</section>
+
 <section class="content">
 
     <form method="POST" action="perceptions.jsp">
@@ -67,131 +78,21 @@
                 <h1>Comments</h1>
                 <h2>What they're saying</h2>
             </hgroup>
-            <aside>
-				<span>
-					<a href="#">&#9881;</a>
-					<ul class="settings-dd">
-                        <li><label>Option a</label><input type="checkbox" /></li>
-                        <li><label>Option b</label><input type="checkbox" checked="checked" /></li>
-                        <li><label>Option c</label><input type="checkbox" /></li>
-                    </ul>
-				</span>
-            </aside>
         </header>
         <div class="content no-padding timeline">
             <div class="tl-post comments">
+                <%List<String> list=sithAPI.getComments("kdnka");
+                    String[] temp=null;
+                    for(String s:list){
+                        temp=s.split("::");
+                    %>
                 <span class="icon">&#59168;</span>
                 <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
+                    <strong><%=temp[0] %></strong><br />
+                    <%=temp[1] %>
                 </p>
+                <%}%>
             </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum..
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>How to design for retina display</strong><br />
-                    <a href="#">John Doe says:</a> Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <div class="tl-post comments">
-                <span class="icon">&#59168;</span>
-                <p>
-                    <strong>The best designs of 2012</strong><br />
-                    <a href="#">John Doe says:</a> Lorem ipsum dolor sit amet, consecteteur adipiscing elit sed diam nonummy.
-                    <span class="reply"><input type="text" value="Respond to comment..."/></span>
-                </p>
-            </div>
-            <span class="show-more"><a	 href="#">More</a></span>
         </div>
     </section>
 </section>

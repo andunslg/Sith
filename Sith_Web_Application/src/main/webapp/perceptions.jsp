@@ -59,26 +59,23 @@
         function onItemClick(event) {
             var perception = event.index;
 
-            postToAPI("user1",perception);// Here I have hardcorded user ID
+            postToAPI("123","aslg","Interested");// Here I have hardcorded user ID
             showPerception(perception);
         }
-        function postToAPI(userId,perception){
-            console.log('select_link clicked');
-            var perception_data = {};
-            perception_data.userId = userId;
-            perception_data.perception = perception;
-            console.log(perception_data);
+        function postToAPI(eventID,userID,perceptionValue){
 
             $.ajax({
+                url: 'http://192.248.8.246:3000/publishEventPerception',
+                data: 'eventID='+eventID+'&userID='+userID+'&perceptionValue='+perceptionValue,
                 type: 'POST',
-                data: JSON.stringify(perception_data),
-                contentType: 'application/json',
-                url: 'http://localhost:3000/endpoint',
-                success: function(data) {
-                    console.log('success');
-                    console.log(JSON.stringify(perception_data));
+                success: function (data) {
+                    console.log('Success: ')
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error: ' + error.message);
                 }
             });
+
         }
         function showPerception(perception){
             var edit_save = document.getElementById("selected_image");

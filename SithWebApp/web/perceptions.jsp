@@ -14,7 +14,10 @@
 
         }
     }else if(password2!=null){
-        authenticator.addUser(user,password);
+        if(authenticator.addUser(user,password)){
+            session.setAttribute("user",user);
+        }
+
     }
 %>
 
@@ -147,7 +150,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <%=session.getAttribute("user").toString() %></p>
+            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -161,8 +164,8 @@
                 </li>
             </ul>
 		</span>
-            <span class="button">Help</span>
-            <span class="button blue"><a href="index.html">Logout</a></span>
+            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
+            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>
@@ -175,13 +178,21 @@
             <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
         </li>
          <li>
-            <a href="questions.html"><span class="icon">&#59160;</span>Questions</a>
+            <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
          <li>
-            <a href="profile.html"><span class="icon">&#128101;</span>Profile</a>
+            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>     
 	</ul>
 </nav>
+
+<section class="alert">
+    <div class="green">
+        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <%--<span class="close">&#10006;</span>--%>
+    </div>
+</section>
+
 
 <section class="content" height="1500">
     <section class="widget">

@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="">
+<% String state=request.getParameter("state");
+    if(state!=null){
+       session.removeAttribute("user");
+    }
+%>
 <head>
 	<meta charset="utf-8">
 	<title>SITH Dashboard</title>
@@ -16,7 +21,7 @@
 		<form method="link" action="perceptions.jsp">
 			<input  name="user" type="text" value="Email" />
 			<input name="password" value="Password" type="password" />
-			<input type="submit" class="blue">Login</button>
+			<input type="submit" class="blue">Login</input>
 		</form>
         <p><a href="signup.html">Sign Up</a></p>
 		<p><a href="#">Forgot your password?</a></p>

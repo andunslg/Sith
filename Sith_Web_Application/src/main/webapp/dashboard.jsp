@@ -48,8 +48,12 @@
 </div>
 <nav>
 	<ul>
-		<li>
-            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Perceptions</a>
+        <li>
+            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Perception Analytics</a>
+            <ul class="submenu">
+                <li><a href="realTimeAnalytics.jsp"></span>Realtime</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime</a></li>
+            </ul>
         </li>
          <li class="section">
             <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>

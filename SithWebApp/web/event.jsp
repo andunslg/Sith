@@ -37,7 +37,7 @@
                 </li>
             </ul>
 		</span>
-            <span class="button">Help</span>
+            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
@@ -53,7 +53,7 @@
          <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
-         <li  class="section">
+         <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>     
 	</ul>

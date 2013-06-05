@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class SithAPI {
 
-    public static String LOGIN="";
-    public static String SIGNUP="";
+    public static String LOGIN="http://192.248.8.246:3000/authenticateUser";
+    public static String SIGNUP="http://192.248.8.246:3000/registerAnnonymousUser";
 
     public List<String> getComments(String eventID){
 

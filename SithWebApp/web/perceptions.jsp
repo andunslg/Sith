@@ -14,7 +14,10 @@
 
         }
     }else if(password2!=null){
-        authenticator.addUser(user,password);
+        if(authenticator.addUser(user,password)){
+            session.setAttribute("user",user);
+        }
+
     }
 %>
 
@@ -161,7 +164,7 @@
                 </li>
             </ul>
 		</span>
-            <span class="button">Help</span>
+            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>

@@ -35,7 +35,7 @@
                 </li>
             </ul>
 		</span>
-            <span class="button">Help</span>
+            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>

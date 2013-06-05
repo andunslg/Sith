@@ -27,7 +27,7 @@ public class HTTPUtil {
 
     public String doGet(String url) throws Exception{
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://www.vogella.com");
+        HttpGet request = new HttpGet(url);
         HttpResponse response = client.execute(request);
 
 // Get the response

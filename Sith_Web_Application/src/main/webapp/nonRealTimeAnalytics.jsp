@@ -49,14 +49,14 @@
 <nav>
     <ul>
         <li>
-            <a href="index.html"><span class="icon">&#128711;&thinsp;</span>Perception Analytics</a>
-            <ul class="submenu">
-                <li><a href="realTimeAnalytics.jsp">Realtime Analytics</a></li>
-                <li><a href="nonRealTimeAnalytics.jsp">Non Realtime Analytics</a></li>
-            </ul>
+            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
-        <li class="section">
+        <li>
             <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
+            <ul class="submenu">
+                <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+            </ul>
         </li>
         <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>

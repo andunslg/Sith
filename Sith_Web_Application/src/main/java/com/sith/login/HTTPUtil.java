@@ -29,7 +29,7 @@ public class HTTPUtil {
                 (new InputStreamReader(response.getEntity().getContent()));
 
         String line = "";
-        String s=null;
+        String s="";
         while ((line = rd.readLine()) != null) {
             s+=line;
         }
@@ -54,7 +54,7 @@ public class HTTPUtil {
         HttpResponse response = client.execute(post);
         BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
         String line = "";
-        String s=null;
+        String s="";
         while ((line = rd.readLine()) != null) {
             s+=line;
         }

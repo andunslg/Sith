@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="">
 
-<% String user=request.getParameter("user");
+<%  String user=request.getParameter("user");
     String password=request.getParameter("password");
     String password2=request.getParameter("password2");
 
@@ -11,7 +11,7 @@
         if(authenticator.authenticateUser(user,password)){
             session.setAttribute("user",user);
         }else{
-
+            response.sendRedirect("index.jsp?state=loginFailed");
         }
     }else if(password2!=null){
         if(authenticator.addUser(user,password)){

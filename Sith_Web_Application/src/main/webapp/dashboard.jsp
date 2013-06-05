@@ -16,7 +16,7 @@
 	<script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
 	<script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
 	<script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimePercepGraph2.js"></script>
+    <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
     <script type = "text/javascript" src = "js/charts/perceptionCountGraphs.js"> </script>
 </head>
 <body>

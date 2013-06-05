@@ -22,3 +22,23 @@ exports.getAllPerception = function(fn){
 		})
 				
 }
+//Map strings to perception values
+exports.mapPerception = function(perception){
+	switch(perception)
+			{
+				case "Interested":
+  				return "+2";
+  				break;
+				case "Happy":
+  				return "+1";
+  				break;
+  				case "Bored":
+  				return "-1";
+  				break;
+  				case "Sleepy":
+  				return "-2";
+  				break;
+				default:
+  				return "Not valid";
+			}
+}

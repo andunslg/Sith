@@ -38,7 +38,7 @@ exports.registerForEvent = function(req,res){
 
 exports.publishEventPerception = function(req,res){
 	//dataAdapter.publishEventPerception(userId,eventId,timestamp,perception_val)
-   	percepManager2.insertPerception(req.body.eventID , req.body.userID , req.body.perceptionValue);  	
+   	percepManager2.insertPerception(req.body.userID , req.body.eventID , percepManager2.mapPerception(req.body.perceptionValue));  	
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);

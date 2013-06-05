@@ -45,7 +45,8 @@ app.get('/vote',routes.vote);
 app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 //routing for perception count data
-app.get('/countPerceptions',analyticRoutes.sendPerceptionCount);
+app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
+app.get('/countTotalPerceptions',analyticRoutes.sendPeriodicTotalPerceptions);
 //routing for event category
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);

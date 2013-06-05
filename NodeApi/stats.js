@@ -28,23 +28,17 @@ exports.countPerceptions =function(fn){
 		for(var i=0; i<count; i++){
          switch(docs[i].perceptionValue)
 			{
-				case "-3":
+				case "+2":
   				perceptions[0]++;
   				break;
-				case "-2":
+  				case "+1":
   				perceptions[1]++;
   				break;
   				case "-1":
   				perceptions[2]++;
   				break;
-  				case "0":
+  				case "-2":
   				perceptions[3]++;
-  				break;
-  				case "+1":
-  				perceptions[4]++;
-  				break;
-  				case "+2":
-  				perceptions[5]++;
   				break;
 				default:
   				console.log('perception not found');
@@ -54,6 +48,13 @@ exports.countPerceptions =function(fn){
 		//console.log(count);
 		fn(perceptions);
 	});
+}
+
+//this counts the total perception count
+exports.countTotPerceptions = function(fn){
+	percepManager.getAllPerception(function(docs){
+		fn(docs.length);
+	});	
 }
 
 function debugHeaders(req) {

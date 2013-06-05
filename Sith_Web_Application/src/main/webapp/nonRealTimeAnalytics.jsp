@@ -16,7 +16,6 @@
     <script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
     <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
     <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimePercepGraph2.js"></script>
     <script type = "text/javascript" src = "js/charts/perceptionCountGraphs.js"> </script>
 </head>
 <body>
@@ -85,7 +84,6 @@
             </aside>
         </header>
         <div class="content">
-            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
             <p>
                 Chart Type
                 <select id='chartType'>

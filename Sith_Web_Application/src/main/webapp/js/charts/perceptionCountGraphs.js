@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 barChart = function () {
 	//load data from the server
-	$.get('http://localhost:3000/countPerceptions', function (e) {
+	$.get('http://192.248.8.246:3000/countPerceptions', function (e) {
 		var chart;
 		var perceptions;
 		//$.ajax({

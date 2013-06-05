@@ -6,7 +6,7 @@ $(function () {
     	var messages = [];
     	var xVal;
    		var yVal=0;
-    	var source = new EventSource('http://localhost:3000/countTotalPerceptions');
+    	var source = new EventSource('http://192.248.8.246:3000/countTotalPerceptions');
 		source.onopen = function () {
  			console.log('open')
 		};	

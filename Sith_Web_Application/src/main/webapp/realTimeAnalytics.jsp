@@ -16,7 +16,8 @@
     <script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
     <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
     <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimePercepGraph2.js"></script>
+    <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
+    <script type = "text/javascript" src = "js/charts/realTimeTotalPercepGraph.js"></script>
 </head>
 <body>
 <div class="testing">
@@ -51,7 +52,7 @@
             <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
-            <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
+            <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
@@ -84,7 +85,8 @@
             </aside>
         </header>
         <div class="content">
-            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div></br></br>
+            <div id="TotLiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </section>
 

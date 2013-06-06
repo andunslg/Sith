@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html lang="">
 <% SithAPI sithAPI=new SithAPI();
- if(session.getAttribute("user")==null){
-    response.sendRedirect("index.jsp");
-}
+    if(session.getAttribute("isLogged")!=null)  {
+        if( !(Boolean)session.getAttribute("isLogged")){
+            response.sendRedirect("index.jsp");
+        }
+    }
 %>
 <head>
     <meta charset="utf-8">

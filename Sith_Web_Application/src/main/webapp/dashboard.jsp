@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="">
-<%  if(session.getAttribute("user")==null){
-    response.sendRedirect("index.jsp");
+<%  if(session.getAttribute("isLogged")!=null)  {
+    if( !(Boolean)session.getAttribute("isLogged")){
+        response.sendRedirect("index.jsp");
+    }
 }
 %>
 <head>

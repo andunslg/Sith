@@ -3,9 +3,10 @@
 <% String state=request.getParameter("state");
     boolean loginFailed=false;
     if(state!=null){
-        session.removeAttribute("user");
+        session.setAttribute("isLogged",false);
         if(state.equalsIgnoreCase("loginFailed")){
             loginFailed=true;
+
         }
     }
 %>

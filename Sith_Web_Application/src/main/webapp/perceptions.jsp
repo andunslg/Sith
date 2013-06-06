@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="">
 
-<%  String user=request.getParameter("user");
+<%
+    System.out.println("loaded");
+
+    String user=request.getParameter("user");
     String password=request.getParameter("password");
     String password2=request.getParameter("password2");
 
@@ -10,6 +13,7 @@
     if(password2==null && user!=null){
         if(authenticator.authenticateUser(user,password)){
             session.setAttribute("user",user);
+            session.setAttribute("isLogged",true);
         }else{
             response.sendRedirect("index.jsp?state=loginFailed");
         }
@@ -17,14 +21,15 @@
         if(password.equals(password2)){
             if(authenticator.addUser(user,password)){
                 session.setAttribute("user",user);
+                session.setAttribute("isLogged",true);
             }
         }else{
             response.sendRedirect("signup.jsp?state=pdif");
         }
-    }
-
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("index.jsp");
+    }else if(session.getAttribute("isLogged")!=null)  {
+        if( !(Boolean)session.getAttribute("isLogged")){
+            response.sendRedirect("index.jsp");
+        }
     }
 %>
 

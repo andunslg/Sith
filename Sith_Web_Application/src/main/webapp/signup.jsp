@@ -22,14 +22,12 @@
         <%if(isReturn){ %>
         <p style="color: red">Passwords do not match.</p>
         <%} %>
-		<form method="POST" action="perceptions.jsp">
+		<form method="POST" action="init.jsp">
 			<input name="user" type="text" value="Email" />
 			<input name="password" value="Password" type="password" />
             <input name="password2" value="Password" type="password" />
 			<input type="submit" class="blue"  value="Login" style="color: floralwhite"/>
 		</form>
-        <p><a href="signup.jsp">Sign Up</a></p>
-		<p><a href="#">Forgot your password?</a></p>
 	</section>
 </body>
 </html>

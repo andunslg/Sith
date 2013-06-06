@@ -26,10 +26,10 @@
         <%if(loginFailed){ %>
         <p style="color: red">Incorrect username or password!</p>
         <%} %>
-		<form method="POST" action="perceptions.jsp">
-			<input  name="user" type="text" value="Username" />
-			<input name="password" value="Password" type="password" />
-			<input type="submit" class="blue" value="Login" style="color: floralwhite"/>
+		<form method="POST" action="init.jsp">
+			<input autocomplete="off" name="user" type="text" value="Username" />
+			<input autocomplete="off" name="password" value="Password" type="password" />
+			<input autocomplete="off" type="submit" class="blue" value="Login" style="color: floralwhite"/>
 		</form>
         <p><a href="signup.jsp">Sign Up</a></p>
 		<p><a href="#">Forgot your password?</a></p>

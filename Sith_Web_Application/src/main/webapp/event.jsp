@@ -4,7 +4,11 @@
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
-<% SithAPI sithAPI=new SithAPI(); %>
+<% SithAPI sithAPI=new SithAPI();
+if(session.getAttribute("user")==null){
+    response.sendRedirect("index.jsp");
+}
+%>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>

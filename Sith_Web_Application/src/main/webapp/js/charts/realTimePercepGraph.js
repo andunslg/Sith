@@ -3,7 +3,7 @@
  */
 $(function () {
 	$(document).ready(function(){
-		var source = new EventSource('http://localhost:3000/countPeriodicPerceptions');
+		var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions');
 		var t =  (new Date().getTime());
 		source.onopen = function () {
  			console.log('open')
@@ -15,18 +15,28 @@ $(function () {
 
 		//Event listners for page stats
 		source.addEventListener('graph', updateChart, false);
-    	
+    	var i=0;
+    	var oldVal;
    		function updateChart(event){
 			  var data = JSON.parse(event.data);
 			  //console.log(event.data);
 			  var chart1 = $('#LiveChart').highcharts();
 			  var chart2 = $('#TotLiveChart').highcharts();
+			  var newVal = data.values[4];
+			  if(i==0){
+			  	oldVal = newVal;
+			  }
+			  var diff = newVal-oldVal;
+			  if(i!=0){
+			  	oldVal = newVal;
+			  }
 			  var xval = (new Date().getTime());
         		chart1.series[0].addPoint([xval,data.values[0]],true, true);
         		chart1.series[1].addPoint([xval,data.values[1]],true, true);
         		chart1.series[2].addPoint([xval,data.values[2]],true, true);
         		chart1.series[3].addPoint([xval,data.values[3]],true, true);
-        		chart2.series[0].addPoint([xval,data.values[4]],true, true);
+        		chart2.series[0].addPoint([xval,diff],true, true);
+        		i++;
 		};
 		
 		Highcharts.setOptions({

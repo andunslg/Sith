@@ -50,18 +50,22 @@
 </div>
 <nav>
     <ul>
-		<li>
-            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Perceptions</a>
+        <li>
+            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
-         <li >
-            <a href="dashboard.jsp"><span class="icon">&#128711;</span>Analytics</a>
+        <li>
+            <a href="#"><span class="icon">&#128711;</span>Analytics</a>
+            <ul class="submenu">
+                <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+            </ul>
         </li>
-         <li>
+        <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
-         <li>
+        <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
-        </li>     
+        </li>
 	</ul>
 </nav>
 

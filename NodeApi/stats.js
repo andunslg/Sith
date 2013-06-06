@@ -23,6 +23,7 @@ exports.calAveragePerception = function(fn){
 //count perception values under each category
 exports.countPerceptions =function(fn){
 	percepManager.getAllPerception(function(docs){
+		var count = docs.length;
 		var perceptions  = [0,0,0,0,count];
 		for(var i=0; i<count; i++){
          switch(docs[i].perceptionValue)
@@ -49,9 +50,6 @@ exports.countPerceptions =function(fn){
 	});
 }
 
-getDifferece = function(docs){
-	
-}
 //this counts the total perception count
 exports.countTotPerceptions = function(fn){
 	percepManager.getAllPerception(function(docs){

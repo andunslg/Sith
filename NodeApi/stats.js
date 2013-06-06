@@ -24,7 +24,7 @@ exports.calAveragePerception = function(fn){
 exports.countPerceptions =function(fn){
 	percepManager.getAllPerception(function(docs){
 		var count = docs.length;
-		var perceptions  = [0,0,0,0,0,0];
+		var perceptions  = [0,0,0,0,count];
 		for(var i=0; i<count; i++){
          switch(docs[i].perceptionValue)
 			{
@@ -41,7 +41,7 @@ exports.countPerceptions =function(fn){
   				perceptions[3]++;
   				break;
 				default:
-  				console.log('perception not found');
+  				//console.log('perception not found');
 			}
         
         }

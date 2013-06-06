@@ -18,6 +18,7 @@ exports.sendPerceptionCount = function(req,res){
 	});
 };
 
+/*
 exports.sendPeriodicTotalPerceptions = function(req,res){
 		res.writeHead(200, {
 		'Content-Type' : 'text/event-stream',
@@ -29,7 +30,7 @@ exports.sendPeriodicTotalPerceptions = function(req,res){
 		constructTotPerceptionMessage(res, id, (new Date()).getTime());
 		},3000);
 };
-
+*/
 exports.sendPeriodicAvgPerception = function(req,res){
 		res.writeHead(200, {
 		'Content-Type' : 'text/event-stream',
@@ -70,12 +71,13 @@ function constructCountMessage(res){
 	stats.countPerceptions(function(perceptions){		
 		res.write('event: graph\n');
 		res.write('data: {\n');
-    	res.write('data: "data": ['+ perceptions[0]+','+perceptions[1]+','+perceptions[2]+','+perceptions[3]+']\n');
+    	res.write('data: "values": ['+ perceptions[0]+','+perceptions[1]+','+perceptions[2]+','+perceptions[3]+','+perceptions[4]+']\n');
     	res.write('data: }\n\n');
 });
 	
 };
 
+/*
 function constructTotPerceptionMessage(res){
 	stats.countTotPerceptions(function(length){
 		res.write('event: Totgraph\n');
@@ -83,4 +85,4 @@ function constructTotPerceptionMessage(res){
     	res.write('data: "length":'+length+'\n');
     	res.write('data: }\n\n');
 	});
-}
+}*/

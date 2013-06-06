@@ -17,7 +17,6 @@
     <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
     <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
     <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimeTotalPercepGraph.js"></script>
 </head>
 <body>
 <div class="testing">

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="">
+<%  if(session.getAttribute("user")==null){
+    response.sendRedirect("index.jsp");
+}
+%>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>

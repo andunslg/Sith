@@ -22,6 +22,10 @@
             response.sendRedirect("signup.jsp?state=pdif");
         }
     }
+
+    if(session.getAttribute("user")==null){
+        response.sendRedirect("index.jsp");
+    }
 %>
 
 <head>
@@ -165,7 +169,7 @@
             </ul>
 		</span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>

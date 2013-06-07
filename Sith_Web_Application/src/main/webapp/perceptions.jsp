@@ -5,9 +5,9 @@
 <%
 
     if(session.getAttribute("isLogged")!=null)  {
-            if( !(Boolean)session.getAttribute("isLogged")){
-                response.sendRedirect("index.jsp");
-            }
+        if( !(Boolean)session.getAttribute("isLogged")){
+            response.sendRedirect("index.jsp");
+        }
     }
 %>
 
@@ -22,18 +22,7 @@
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/carousel.css" media="screen" alt="">
     <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
-    <style>
-        .thumbnail
-        {
-            float:left;
-            height:100px;
-            width: 100px;
-            margin-top: 10%;
-            margin-right: 5%;
-            margin-left:5%;
-        }
 
-    </style>
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.carousel.min.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
@@ -306,20 +295,24 @@
                 <h2>Current Perceptions</h2>
             </hgroup>
         </header>
-        <div id="toggle1" >
-            <img class="thumbnail" src="images/perceptions/happy.png" title="Happy">
-        </div>
-        <div id="toggle2" >
-            <img class="thumbnail" src="images/perceptions/neutral.png"  title="Sleepy">
-        </div>
-        <div id="toggle3"  class="tooltip">
-            <img class="thumbnail" src="images/perceptions/excited.png" title="Interested">
-        </div>
-        <div id="toggle4"  class="tooltip" >
-            <img class="thumbnail" src="images/perceptions/doomed.png" title="Bored">
-        </div>
-        <div id="toggle5"  class="tooltip" >
-            <img class="thumbnail" src="images/perceptions/satisfied.png" title="Satisfied">
+
+        <div class="row-fluid">
+            <div id="toggle1" class="span2 offset1">
+                <img class="thumbnail" src="images/perceptions/happy.png" title="Happy">
+            </div>
+            <div id="toggle2" class="span2">
+                <img class="thumbnail" src="images/perceptions/neutral.png"  title="Sleepy">
+            </div>
+            <div id="toggle3" class="span2">
+                <img class="thumbnail" src="images/perceptions/excited.png" title="Interested">
+            </div>
+            <div id="toggle4" class="span2">
+                <img class="thumbnail" src="images/perceptions/doomed.png" title="Bored">
+            </div>
+            <div id="toggle5" class="span2">
+                <img class="thumbnail" src="images/perceptions/satisfied.png" title="Satisfied">
+            </div>
+
         </div>
         <h4 id="h42" align="center">Select your Perception</h4>
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden" >

@@ -23,10 +23,10 @@
         <p style="color: red">Passwords do not match.</p>
         <%} %>
 		<form method="POST" action="init.jsp">
-			<input name="user" type="text" value="Email" />
-			<input name="password" value="Password" type="password" />
-            <input name="password2" value="Password" type="password" />
-			<input type="submit" class="blue"  value="Login" style="color: floralwhite"/>
+			<input name="user" placeholder="username" type="text"  />
+			<input name="password" placeholder="password" type="password" />
+            <input name="password2" placeholder="retype password" type="password" />
+			<input type="submit" class="blue"  value="Sign Up" style="color: floralwhite"/>
 		</form>
 	</section>
 </body>

@@ -45,3 +45,18 @@ exports.publishEventPerception = function(req,res){
 	res.end();
 };
 
+exports.publishComment = function(req,res){
+	percepManager2.insertComment(req.body.userID , req.body.eventID , percepManager2.mapPerception(req.body.perceptionValue) , req.body.text);
+	res.writeHead(200, {'Content-Type': 'application/json'});
+  	var result = JSON.stringify({response: true });
+	res.write(result);
+	res.end();
+}
+
+exports.getAllComments = function(req,res){
+	percepManager2.getAllComments(function(docs){
+	res.writeHead(200, {'Content-Type': 'application/json'});
+	res.write(JSON.stringify(docs));
+	res.end();
+	});	
+}

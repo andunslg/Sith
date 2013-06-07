@@ -42,3 +42,14 @@ exports.mapPerception = function(perception){
   				return "Not valid";
 			}
 }
+
+exports.insertComment = function(userID, eventID, perceptionValue, text){
+	doc = {userID:userID, eventID:eventID, perceptionValie:perceptionValue,text:text}
+	mongoAdapter3.insertDocument("Comments", doc);
+}
+
+exports.getAllComments = function(fn){
+	mongoAdapter3.getDocuments({},"Comments",function(docs){
+		fn(docs);
+	});
+}

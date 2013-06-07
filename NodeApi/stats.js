@@ -50,13 +50,6 @@ exports.countPerceptions =function(fn){
 	});
 }
 
-//this counts the total perception count
-exports.countTotPerceptions = function(fn){
-	percepManager.getAllPerception(function(docs){
-		fn(docs.length);
-	});	
-}
-
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);
 	for(var key in req.headers) {

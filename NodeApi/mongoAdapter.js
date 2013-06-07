@@ -48,7 +48,7 @@ exports.getDocuments = function(query,collection,fn){
 	if(err)
 		throw err;
 	else{
-		console.log("Connected to UoM server");
+		//console.log("Connected to UoM server");
 		db.collection(collection, function(err, collection) {
 			collection.find(query).toArray(function(err, doc) {
 				if(err)

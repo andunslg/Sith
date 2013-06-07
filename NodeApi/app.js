@@ -52,6 +52,8 @@ app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
+app.post('/publishComment',eventRoutes.publishComment);
+app.get('/getAllComments',eventRoutes.getAllComments);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);

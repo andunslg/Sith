@@ -32,11 +32,8 @@
     <script type="text/javascript">
 
         jQuery(document).ready(function($){
-            $('#carosal').carousel({width: 1030,
-                height: 350,
-                itemWidth:120,
-                horizontalRadius:270,
-                verticalRadius:80,
+            $('#carosal').carousel({
+
                 resize:false,
                 mouseScroll:true,
                 mouseDrag:true,
@@ -219,52 +216,58 @@
                             </ul> </span>
             </aside>
         </header>
-        <ul id="carosal" class="roundabout-holder" style="padding: 0px; position: relative;">
+        <div class="row-fluid" align="center">
+            <div class="span10 offset1" aligh="center">
+                <ul id="carosal"  class="roundabout-holder" style="padding: 0px; position: relative;width: 80%;height: 40%">
 
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="1" class="emotions" src="images/perceptions/128_19.png" alt="Enjoying">
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="1" class="emotions" src="images/perceptions/128_19.png" alt="Enjoying">
 
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="2" class="emotions" src="images/perceptions/funny.png" alt="Funny">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="3" class="emotions" src="images/perceptions/lovely.png" alt="Lovely">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="4"  class="emotions" src="images/perceptions/neutral.png" alt="Neutral">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="5" class="emotions" src="images/perceptions/satisfied.png" alt="Sad">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="6"  class="emotions" src="images/perceptions/angry.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="7"  class="emotions" src="images/perceptions/annoyed.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="8"  class="emotions" src="images/perceptions/crying.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="9"  class="emotions" src="images/perceptions/excited.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="10"  class="emotions" src="images/perceptions/rocking.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="11"  class="emotions" src="images/perceptions/very_happy.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="12"  class="emotions" src="images/perceptions/doomed.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="13"  class="emotions" src="images/perceptions/happy.png" alt="smile">
-            </li>
-            <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
-                <img id="14"  class="emotions" src="images/perceptions/laughing.png" alt="smile">
-            </li>
-        </ul>
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="2" class="emotions" src="images/perceptions/funny.png" alt="Funny">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="3" class="emotions" src="images/perceptions/lovely.png" alt="Lovely">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="4"  class="emotions" src="images/perceptions/neutral.png" alt="Neutral">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="5" class="emotions" src="images/perceptions/satisfied.png" alt="Sad">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="6"  class="emotions" src="images/perceptions/angry.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="7"  class="emotions" src="images/perceptions/annoyed.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="8"  class="emotions" src="images/perceptions/crying.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="9"  class="emotions" src="images/perceptions/excited.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="10"  class="emotions" src="images/perceptions/rocking.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="11"  class="emotions" src="images/perceptions/very_happy.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="12"  class="emotions" src="images/perceptions/doomed.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="13"  class="emotions" src="images/perceptions/happy.png" alt="smile">
+                    </li>
+                    <li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">
+                        <img id="14"  class="emotions" src="images/perceptions/laughing.png" alt="smile">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <br>
         <h4 id="h4" align="center">Select your Perception</h4>
         <div id="wrapper" style="width:100%; text-align:center;visibility:hidden" >
             <img id="selected_image" src="images/perceptions/annoyed.png" alt="Smiley face" align="center">
@@ -296,21 +299,21 @@
             </hgroup>
         </header>
 
-        <div class="row-fluid">
+        <div class="row-fluid" align="center">
             <div id="toggle1" class="span2 offset1">
-                <img class="thumbnail" src="images/perceptions/happy.png" title="Happy">
+                <img class="thumbnail" style="width: 80px;height: 80px" src="images/perceptions/happy.png" title="Happy">
             </div>
-            <div id="toggle2" class="span2">
-                <img class="thumbnail" src="images/perceptions/neutral.png"  title="Sleepy">
+            <div id="toggle2" class="span2" >
+                <img class="thumbnail" src="images/perceptions/neutral.png" style="width: 80px;height: 80px" title="Sleepy">
             </div>
             <div id="toggle3" class="span2">
-                <img class="thumbnail" src="images/perceptions/excited.png" title="Interested">
+                <img class="thumbnail" src="images/perceptions/excited.png" style="width: 80px;height: 80px" title="Interested">
             </div>
             <div id="toggle4" class="span2">
-                <img class="thumbnail" src="images/perceptions/doomed.png" title="Bored">
+                <img class="thumbnail" src="images/perceptions/doomed.png" style="width: 80px;height: 80px" title="Bored">
             </div>
             <div id="toggle5" class="span2">
-                <img class="thumbnail" src="images/perceptions/satisfied.png" title="Satisfied">
+                <img class="thumbnail" src="images/perceptions/satisfied.png" style="width: 80px;height: 80px" title="Satisfied">
             </div>
 
         </div>

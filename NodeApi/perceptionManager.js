@@ -1,10 +1,10 @@
 /**
  * @author Sachintha
  */
-mongoAdapter3 = require('./mongoAdapter.js');
+//mongoAdapter = require('./mongoAdapter.js');
 exports.insertPerception = function(userID,eventID,perceptionVal) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
-	mongoAdapter3.insertDocument("Event_Perception", doc);
+	mongoAdapter.insertDocument("Event_Perception", doc);
 }
 
 exports.getPerceptionForEvent = function(eventID){
@@ -17,9 +17,9 @@ exports.getPerceptionForUser = function(userID){
 
 exports.getAllPerception = function(fn){
 	//var count=0;
-		mongoAdapter3.getDocuments({},"Event_Perception",function(docs){
+	mongoAdapter.getDocuments({},"Event_Perception",function(docs){
 			fn(docs);
-		})
+	});
 				
 }
 //Map strings to perception values
@@ -45,11 +45,11 @@ exports.mapPerception = function(perception){
 
 exports.insertComment = function(userID, eventID, perceptionValue, text){
 	doc = {userID:userID, eventID:eventID, perceptionValie:perceptionValue,text:text}
-	mongoAdapter3.insertDocument("Comments", doc);
+	mongoAdapter.insertDocument("Comments", doc);
 }
 
 exports.getAllComments = function(fn){
-	mongoAdapter3.getDocuments({},"Comments",function(docs){
+	mongoAdapter.getDocuments({},"Comments",function(docs){
 		fn(docs);
 	});
 }

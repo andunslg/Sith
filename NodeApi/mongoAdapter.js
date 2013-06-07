@@ -22,7 +22,7 @@ exports.insertDocument = function(collection,doc){
 		});	
 	}		
 	});
-}
+};
 //retireve the first object that matches the query
 exports.getSingleDocument = function(query,collection,fn){
 	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
@@ -40,7 +40,7 @@ exports.getSingleDocument = function(query,collection,fn){
 		});	
 	}		
 	});
-}
+};
 
 //retireve multiple documents that matches the given query
 exports.getDocuments = function(query,collection,fn){
@@ -58,5 +58,15 @@ exports.getDocuments = function(query,collection,fn){
 			});
 		});	
 	}		
+	});
+};
+
+exports.createCollection = function(name){
+	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+	db.createCollection(name,function(err,collection){
+			if(err)
+				throw err;
+			db.close();
+		});
 	});
 }

@@ -48,6 +48,7 @@ app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
 
 //routing for event category
+app.post('/addEvent',eventRoutes.addEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);

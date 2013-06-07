@@ -38,6 +38,7 @@
                 </li>
             </ul>
 		</span>
+            <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
@@ -46,17 +47,12 @@
 <nav>
     <ul>
         <li>
-            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
-        </li>
-        <li>
-            <a href="#"><span class="icon">&#128711;</span>Analytics</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Events</a>
             <ul class="submenu">
-                <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
-                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <li><a href="my_events.jsp"></span>My Event</a></li>
+                <li><a href="join_events.jsp"></span>Join Events</a></li>
+                <li><a href="add_events.jsp"></span>Add Events</a></li>
             </ul>
-        </li>
-        <li>
-            <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
         <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
@@ -66,8 +62,7 @@
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
-        <%--<span class="close">&#10006;</span>--%>
+
     </div>
 </section>
 
@@ -76,25 +71,56 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Participants</h1>
-                <h2>Participants of this event</h2>
+                <h1>My Profile</h1>
+                <h2>Edit and Save the profile</h2>
             </hgroup>
         </header>
         <div class="content">
-            <table id="myTable" border="0" width="100">
-                <thead>
+            <table>
                 <tr>
-                    <th class="avatar">Name</th>
-                    <th>Date</th>
+                    <td >
+                        <div>User name</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> readonly>
+                        </div>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
                 <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td>12/03/2013</td>
+                    <td >
+                        <div>Old Pasword</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="old password" type="password">
+                        </div>
+                    </td>
                 </tr>
-                </tbody>
+                <tr>
+                    <td >
+                        <div>New Pasword</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="new password" type="password">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div >Confirm New Pasword &nbsp;&nbsp;&nbsp;</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="new password confirm" type="password">
+                        </div>
+                    </td>
+                </tr>
             </table>
+            <div>
+                <input id="update" type="button" value="Update" class="button">
+            </div>
         </div>
     </section>
 </section>

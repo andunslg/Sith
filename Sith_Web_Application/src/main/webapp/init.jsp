@@ -19,7 +19,7 @@
             if(session.getAttribute("isLogged")!=null)  {
                 session.setAttribute("isLogged",true);
             }
-            response.sendRedirect("perceptions.jsp");
+            response.sendRedirect("home.jsp");
         }else{
             response.sendRedirect("index.jsp?state=loginFailed");
         }
@@ -30,7 +30,7 @@
                 if(session.getAttribute("isLogged")!=null)  {
                     session.setAttribute("isLogged",true);
                 }
-                response.sendRedirect("perceptions.jsp");
+                response.sendRedirect("home.jsp");
             }
         }else{
             response.sendRedirect("signup.jsp?state=pdif");

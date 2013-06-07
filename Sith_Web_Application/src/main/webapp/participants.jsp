@@ -1,5 +1,8 @@
-<%@ page import="com.sith.model.Event" %>
 <%@ page import="com.sith.SithAPI" %>
+<%@ page import="com.sith.model.Participant" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.sith.model.Event" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -20,25 +23,17 @@
     <meta name="robots" content="" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all" />
-    <script  type = "text/javascript" src ="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script type = "text/javascript" src = "js/jquery.wysiwyg.js"></script>
-    <script type = "text/javascript" src = "js/custom.js"></script>
-    <script type = "text/javascript" src = "js/cycle.js"></script>
-    <script type = "text/javascript" src = "js/jquery.checkbox.min.js"></script>
-    <script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
-    <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
-    <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
+    <!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
 </head>
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong>SITH</strong> Dashboard</h1>
+        <h1><strong>Sith</strong></h1>
         <input type="text" value="search" />
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" /> Logged in as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> </p>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" />Logged in as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> </p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -76,43 +71,61 @@
         <li>
             <a href="participants.jsp"><span class="icon">&#128101;</span>Participants</a>
         </li>
-    </ul>
+	</ul>
 </nav>
+
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="participants.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <p>Current event is <a href="#">Workshop1</a> , Click here to <a href="#">change</a> </p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
+
 <section class="content">
     <section class="widget">
         <header>
-            <span class="icon">&#128200;</span>
+            <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Event Statistics</h1>
-                <h2>Public view</h2>
+                <h1>Participants</h1>
+                <h2>Participants of this event</h2>
             </hgroup>
-            <aside>
-                <button class="left-btn">&#59229;</button><button class="right-btn">&#59230;</button>
-            </aside>
         </header>
         <div class="content">
-            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div></br></br>
-            <div id="TotLiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <table id="myTable" border="0" width="100">
+                <thead>
+                <tr>
+                    <th class="avatar">Name</th>
+                    <th>Feeling</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    List<Participant> participantList=new ArrayList<Participant>();
+                    participantList=sithAPI.getParticipants("dkkdnk");
+                   for(Participant participant:participantList){
+                %>
+                <tr>
+                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=participant.getUserName()%></td>
+                    <td><%=participant.getMode()%></td>
+                    <td><%=participant.getTime()%></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
         </div>
     </section>
-
-
 </section>
-<script type="text/javascript">
-    // Feature slider for graphs
-    $('.cycle').cycle({
-        fx: "scrollHorz",
-        timeout: 0,
-        slideResize: 0,
-        prev:    '.left-btn',
-        next:    '.right-btn'
-    });
-</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="js/jquery.wysiwyg.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/cycle.js"></script>
+<script src="js/jquery.checkbox.min.js"></script>
+<script src="js/flot.js"></script>
+<script src="js/flot.resize.js"></script>
+<script src="js/flot-graphs.js"></script>
+<script src="js/flot-time.js"></script>
+<script src="js/cycle.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
 </body>
 </html>

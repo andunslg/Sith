@@ -1,10 +1,16 @@
+<%@ page import="com.sith.SithAPI" %>
+<%@ page import="com.sith.model.Event" %>
 <!DOCTYPE html>
 <html lang="">
-<%  if(session.getAttribute("isLogged")!=null)  {
-    if( !(Boolean)session.getAttribute("isLogged")){
-        response.sendRedirect("index.jsp");
+<%
+    SithAPI sithAPI=SithAPI.getInstance();
+
+    if(session.getAttribute("isLogged")!=null)  {
+        if( !(Boolean)session.getAttribute("isLogged")){
+            response.sendRedirect("index.jsp");
+        }
     }
-}
+    Event currentEvent=sithAPI.getEvent(session.getAttribute("eventID").toString());
 %>
 <head>
     <meta charset="utf-8">
@@ -46,6 +52,7 @@
                 </li>
             </ul>
 		</span>
+            <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
@@ -54,7 +61,7 @@
 <nav>
     <ul>
         <li>
-            <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
@@ -67,13 +74,13 @@
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
         <li>
-            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
+            <a href="participants.jsp"><span class="icon">&#128101;</span>Participants</a>
         </li>
     </ul>
 </nav>
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <p>Current event is <a href="participants.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>

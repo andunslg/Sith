@@ -2,7 +2,13 @@
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="">
-<% SithAPI sithAPI=new SithAPI(); %>
+<% SithAPI sithAPI=new SithAPI();
+    if(session.getAttribute("isLogged")!=null)  {
+        if( !(Boolean)session.getAttribute("isLogged")){
+            response.sendRedirect("index.jsp");
+        }
+    }
+%>
 <head>
     <meta charset="utf-8">
     <title>Sith</title>

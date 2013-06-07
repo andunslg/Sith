@@ -2,25 +2,12 @@
 <!DOCTYPE html>
 <html lang="">
 
-<%  String user=request.getParameter("user");
-    String password=request.getParameter("password");
-    String password2=request.getParameter("password2");
+<%
 
-    Authenticator authenticator=new Authenticator();
-    if(password2==null && user!=null){
-        if(authenticator.authenticateUser(user,password)){
-            session.setAttribute("user",user);
-        }else{
-            response.sendRedirect("index.jsp?state=loginFailed");
-        }
-    }else if(password2!=null){
-        if(password.equals(password2)){
-            if(authenticator.addUser(user,password)){
-                session.setAttribute("user",user);
+    if(session.getAttribute("isLogged")!=null)  {
+            if( !(Boolean)session.getAttribute("isLogged")){
+                response.sendRedirect("index.jsp");
             }
-        }else{
-            response.sendRedirect("signup.jsp?state=pdif");
-        }
     }
 %>
 
@@ -185,7 +172,7 @@
             </ul>
 		</span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>

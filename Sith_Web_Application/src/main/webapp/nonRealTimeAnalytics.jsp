@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="">
+<%  if(session.getAttribute("isLogged")!=null)  {
+    if( !(Boolean)session.getAttribute("isLogged")){
+        response.sendRedirect("index.jsp");
+    }
+}
+%>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>

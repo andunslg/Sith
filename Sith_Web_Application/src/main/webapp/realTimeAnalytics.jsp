@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="">
+<% if(session.getAttribute("isLogged")!=null)  {
+    if( !(Boolean)session.getAttribute("isLogged")){
+        response.sendRedirect("index.jsp");
+    }
+}
+%>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>
@@ -17,7 +23,6 @@
     <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
     <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
     <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimeTotalPercepGraph.js"></script>
 </head>
 <body>
 <div class="testing">

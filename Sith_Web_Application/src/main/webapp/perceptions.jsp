@@ -32,10 +32,26 @@
     <meta name="robots" content="" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/carousel.css" media="screen" alt="">
+    <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
+    <style>
+        .thumbnail
+        {
+            float:left;
+            height:100px;
+            width: 100px;
+            margin-top: 10%;
+            margin-right: 5%;
+            margin-left:5%;
+        }
+
+    </style>
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.carousel.min.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
 
     <script type="text/javascript">
 
@@ -48,6 +64,7 @@
                 resize:false,
                 mouseScroll:true,
                 mouseDrag:true,
+                speedAdjusted:2,
                 scaleRatio:0.4,
                 scrollbar:true,
                 tooltip:true,
@@ -59,11 +76,10 @@
         function onItemClick(event) {
             var perception = event.index;
 
-            postToAPI("123","aslg","Interested");// Here I have hardcorded user ID
+            postToAPI("123","aslgg","Interested");// Here I have hardcorded user ID
             showPerception(perception);
         }
         function postToAPI(eventID,userID,perceptionValue){
-
             $.ajax({
                 url: 'http://192.248.8.246:3000/publishEventPerception',
                 data: 'eventID='+eventID+'&userID='+userID+'&perceptionValue='+perceptionValue,
@@ -75,7 +91,6 @@
                     console.log('Error: ' + error.message);
                 }
             });
-
         }
         function showPerception(perception){
             var edit_save = document.getElementById("selected_image");
@@ -140,6 +155,11 @@
 
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.thumbnail').tooltipster();
+        });
+    </script>
 </head>
 <body>
 
@@ -174,26 +194,25 @@
         <li>
             <a href="perceptions.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
-         <li>
-             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
-             <ul class="submenu">
-                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
-                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
-             </ul>
+        <li>
+            <a href="#"><span class="icon">&#128711;</span>Analytics</a>
+            <ul class="submenu">
+                <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+            </ul>
         </li>
-         <li>
+        <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
-         <li>
+        <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
-        </li>     
-	</ul>
+        </li>
+    </ul>
 </nav>
 
 <section class="alert">
     <div class="green">
         <p>Current event is <a href="event.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
-        <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
 
@@ -275,7 +294,100 @@
             <img id="selected_image" src="images/perceptions/annoyed.png" alt="Smiley face" align="center">
         </div>
     </section>
+    <script>
+        $( "#toggle1" ).click(function() {
+            $( "#toggle1" ).effect( "shake" );
+        });
+        $( "#toggle2" ).click(function() {
+            $( "#toggle2" ).effect( "shake" );
+        });
+        $( "#toggle3" ).click(function() {
+            $( "#toggle3" ).effect( "shake" );
+        });
+        $( "#toggle4" ).click(function() {
+            $( "#toggle4" ).effect( "shake" );
+        });
+        $( "#toggle5" ).click(function() {
+            $( "#toggle5" ).effect( "shake" );
+        });
+    </script>
+    <section class="widget">
+        <header>
+            <span class="icon">&#128100;</span>
+            <hgroup>
+                <h1>Perceptions</h1>
+                <h2>Current Perceptions</h2>
+            </hgroup>
+        </header>
+        <div id="toggle1" >
+            <img class="thumbnail" src="images/perceptions/happy.png" title="Happy">
+        </div>
+        <div id="toggle2" >
+            <img class="thumbnail" src="images/perceptions/neutral.png"  title="Sleepy">
+        </div>
+        <div id="toggle3"  class="tooltip">
+            <img class="thumbnail" src="images/perceptions/excited.png" title="Interested">
+        </div>
+        <div id="toggle4"  class="tooltip" >
+            <img class="thumbnail" src="images/perceptions/doomed.png" title="Bored">
+        </div>
+        <div id="toggle5"  class="tooltip" >
+            <img class="thumbnail" src="images/perceptions/satisfied.png" title="Satisfied">
+        </div>
+        <h4 id="h42" align="center">Select your Perception</h4>
+        <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden" >
+            <img id="selected_image2" src="images/perceptions/annoyed.png" alt="Smiley face" align="center">
+        </div>
+
+    </section>
 </section>
+<script>
+    $( "#toggle1" ).click(function() {
+        $( "#toggle1" ).effect( "shake" );
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Happy";
+        edit_save.src = "images/perceptions/happy.png";
+        document.getElementById('selected_image2').style.visibility='visible';
+        postToAPI("123","tgts","Happy");
+    });
+    $( "#toggle2" ).click(function() {
+        $( "#toggle2" ).effect( "shake" );
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Sleepy";
+        edit_save.src = "images/perceptions/neutral.png";
+        document.getElementById('selected_image2').style.visibility='visible';
+        postToAPI("123","tgts","Sleepy");
+
+
+    });
+    $( "#toggle3" ).click(function() {
+        $( "#toggle3" ).effect( "shake" );
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Interested";
+        edit_save.src = "images/perceptions/excited.png";
+        document.getElementById('selected_image2').style.visibility='visible';
+        postToAPI("123","tgts","Interested");
+
+    });
+    $( "#toggle4" ).click(function() {
+        $( "#toggle4" ).effect( "shake" );
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Bored";
+        edit_save.src = "images/perceptions/doomed.png";
+        document.getElementById('selected_image2').style.visibility='visible';
+        postToAPI("123","aslgg","Bored");
+
+    });
+    $( "#toggle5" ).click(function() {
+        $( "#toggle5" ).effect( "shake" );
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Sleepy";
+        edit_save.src = "images/perceptions/satisfied.png";
+        document.getElementById('selected_image2').style.visibility='visible';
+        postToAPI("123","aslgg","Sleepy");
+
+    });
+</script>
 
 <script src="js/jquery.wysiwyg.js"></script>
 <script src="js/custom.js"></script>

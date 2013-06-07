@@ -4,7 +4,16 @@
  */
 
 // This method returns the nearest event list as a json object given the users gps location
-percepManager2 = require("../perceptionManager");
+percepManager = require("../perceptionManager");
+eventManager = require("../eventManager");
+exports.addEvent = function(req,res){
+	eventManager.addEvent(req.body.eventName, req.body.desc, req.body.location, req.body.date, 
+							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
+	res.writeHead(200, {'Content-Type': 'application/json'});
+  	var result = JSON.stringify({response: true });
+	res.write(result);
+	res.end();
+};
 exports.searchEventListByGps = function(req,res){	
 	// dataAdapter.getEventListByGps(req.body.gpsLocation);
 	res.writeHead(200, {'Content-Type': 'application/json'});	
@@ -37,8 +46,7 @@ exports.registerForEvent = function(req,res){
 };
 
 exports.publishEventPerception = function(req,res){
-	//dataAdapter.publishEventPerception(userId,eventId,timestamp,perception_val)
-   	percepManager2.insertPerception(req.body.userID , req.body.eventID , percepManager2.mapPerception(req.body.perceptionValue));  	
+   	percepManager.insertPerception(req.body.userID , req.body.eventID , percepManager.mapPerception(req.body.perceptionValue));  	
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);
@@ -46,7 +54,7 @@ exports.publishEventPerception = function(req,res){
 };
 
 exports.publishComment = function(req,res){
-	percepManager2.insertComment(req.body.userID , req.body.eventID , percepManager2.mapPerception(req.body.perceptionValue) , req.body.text);
+	percepManager.insertComment(req.body.userID , req.body.eventID , percepManager.mapPerception(req.body.perceptionValue) , req.body.text);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);
@@ -54,7 +62,7 @@ exports.publishComment = function(req,res){
 }
 
 exports.getAllComments = function(req,res){
-	percepManager2.getAllComments(function(docs){
+	percepManager.getAllComments(function(docs){
 	res.writeHead(200, {'Content-Type': 'application/json'});
 	res.write(JSON.stringify(docs));
 	res.end();

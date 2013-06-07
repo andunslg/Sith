@@ -1,7 +1,7 @@
 /**
  * @author Sachintha
  */
-mongoAdapter2 = require('./mongoAdapter.js');
+mongoAdapter = require('./mongoAdapter.js');
 var crypto = require('crypto');
 
 exports.addAnnonymousUser = function(req,res){
@@ -12,7 +12,7 @@ exports.addAnnonymousUser = function(req,res){
 		});
 	var hash = crypto.createHash('md5').update(req.body.password).digest("hex");
 	document = {userName: req.body.userName,password: hash};
-	mongoAdapter2.getSingleDocument({userName:req.body.userName},'Users',function(doc){
+	mongoAdapter.getSingleDocument({userName:req.body.userName},'Users',function(doc){
 		if(doc){		
 			res.write(JSON.stringify({result:false}));
 			res.end();
@@ -31,7 +31,7 @@ exports.authenticateUser = function(req,res){
 		'Connection' : 'keep-alive'
 		});
 	var hash = crypto.createHash('md5').update(req.body.password).digest("hex");
-	mongoAdapter2.getSingleDocument({userName:req.body.userName , password: hash},'Users',function(doc){
+	mongoAdapter.getSingleDocument({userName:req.body.userName , password: hash},'Users',function(doc){
 		if(doc){		
 			res.write(JSON.stringify({result:true}));
 			res.end();

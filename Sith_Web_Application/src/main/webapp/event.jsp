@@ -107,6 +107,9 @@
 <nav>
     <ul>
         <li>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+        </li>
+        <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
@@ -126,7 +129,7 @@
             if(currentEvent.getAdminID().equals(participant.getUserID())){
         %>
         <li>
-            <a href="event_admin.jsp"><span class="icon">&#128101;</span>Event Admin</a>
+            <a href="event_admin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
         </li>
         <%
             }

@@ -87,7 +87,7 @@
 <nav>
     <ul>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>Events</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
                 <li><a href="my_events.jsp"></span>My Events</a></li>
                 <li><a href="join_events.jsp"></span>Join Events</a></li>

@@ -6,14 +6,15 @@
 <!DOCTYPE html>
 <html lang="">
 <%
-    SithAPI sithAPI=SithAPI.getInstance();
-
     if(session.getAttribute("isLogged")!=null)  {
         if( !(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
-    Event currentEvent=sithAPI.getEvent(session.getAttribute("eventID").toString());
+
+    SithAPI sithAPI=SithAPI.getInstance();
+    Event currentEvent=currentEvent=sithAPI.getEvent(session.getAttribute("eventID").toString());
+    Participant participant=sithAPI.getParticipant(session.getAttribute("user").toString());
 %>
 <head>
     <meta charset="utf-8">
@@ -56,6 +57,9 @@
 <nav>
     <ul>
         <li>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+        </li>
+        <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
@@ -71,6 +75,15 @@
         <li>
             <a href="participants.jsp"><span class="icon">&#128101;</span>Participants</a>
         </li>
+        <%
+            if(currentEvent.getAdminID().equals(participant.getUserID())){
+        %>
+        <li>
+            <a href="event_admin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
+        </li>
+        <%
+            }
+        %>
 	</ul>
 </nav>
 
@@ -103,12 +116,12 @@
                 <%
                     List<Participant> participantList=new ArrayList<Participant>();
                     participantList=sithAPI.getParticipants("dkkdnk");
-                   for(Participant participant:participantList){
+                   for(Participant temp:participantList){
                 %>
                 <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=participant.getUserName()%></td>
-                    <td><%=participant.getMode()%></td>
-                    <td><%=participant.getTime()%></td>
+                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=temp.getUserName()%></td>
+                    <td><%=temp.getMode()%></td>
+                    <td><%=temp.getTime()%></td>
                 </tr>
                 <% } %>
                 </tbody>

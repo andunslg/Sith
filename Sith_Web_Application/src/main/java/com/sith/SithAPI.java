@@ -45,7 +45,7 @@ public class SithAPI {
 	}
 
 	public Participant getParticipant(String name){
-		if(name.equals("alsg")){
+		if(name.equals("aslg")){
 			return new Participant("aslg","Andun Sameera","2.35PM","Happy");
 		}
 		else{

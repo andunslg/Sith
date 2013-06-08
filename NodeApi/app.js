@@ -49,6 +49,7 @@ app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will cou
 
 //routing for event category
 app.post('/addEvent',eventRoutes.addEvent);
+app.get('/deleteEvent',eventRoutes.deleteEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/registerForEvent', eventRoutes.registerForEvent);
@@ -58,6 +59,7 @@ app.get('/getAllComments',eventRoutes.getAllComments);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

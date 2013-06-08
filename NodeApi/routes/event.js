@@ -14,6 +14,10 @@ exports.addEvent = function(req,res){
 	res.write(result);
 	res.end();
 };
+
+exports.deleteEvent = function(req,res){
+    eventManager.deleteEvent(req.query.eventID);
+};
 exports.searchEventListByGps = function(req,res){	
 	// dataAdapter.getEventListByGps(req.body.gpsLocation);
 	res.writeHead(200, {'Content-Type': 'application/json'});	

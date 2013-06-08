@@ -9,3 +9,21 @@ exports.addEvent = function(eventName, desc, location, date, startTime, endTime,
 	mongoAdapter.createCollection('EventUser_'+eventName);
 };
 
+exports.getEvent = function(eventID){
+
+};
+
+exports.getAllEvents = function(){
+    //
+};
+exports.deleteEvent = function(eventID){
+   //mongoAdaptercall
+};
+
+exports.addUserToEvent = function(eventID,userID){
+    //
+};
+
+exports.removeUserFromEvent = function(eventID,userID){
+
+};

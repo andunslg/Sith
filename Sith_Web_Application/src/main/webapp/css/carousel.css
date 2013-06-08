@@ -1,25 +1,21 @@
-.carousel
-{
-    position:relative;
-    margin:0px;
-    padding:0px;
-    -moz-user-select:none;
-    -webkit-user-select:none;
+.carousel {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
-
-.carousel .carousel-item
-{
+.carousel .carousel-item {
     /*background-image:url(carousel-assets/images/preloader.gif);*/
-    background-position:center;
-    background-repeat:no-repeat;
-    position:absolute;
-    cursor:pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    cursor: pointer;
 
 }
 
-.carousel .over
-{
+.carousel .over {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=130, Color='#000000')";
     width: 300px;
     height: 300px;
@@ -31,8 +27,8 @@
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
 }
-.carousel .click
-{
+
+.carousel .click {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=130, Color='#000000')";
     width: 300px;
     height: 300px;
@@ -44,8 +40,7 @@
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
 
-.carousel .select
-{
+.carousel .select {
     width: 300px;
     height: 300px;
     border-radius: 150px;
@@ -61,73 +56,64 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=130, Color='#000000')";
 }
 
-
-.carousel .tooltip
-{
-    position:absolute;
-    z-index:9999;
-    background-color:#DDD;
-    margin-bottom:20px;
-    border:#EEE solid 4px;
-    border-radius:8px;
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;
+.carousel .tooltip {
+    position: absolute;
+    z-index: 9999;
+    background-color: #DDD;
+    margin-bottom: 20px;
+    border: #EEE solid 4px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
 }
 
-
-.carousel .tooltip p
-{
-    color:#999;
-    padding:10px;
-    margin:0px;
+.carousel .tooltip p {
+    color: #999;
+    padding: 10px;
+    margin: 0px;
 }
-.carousel .carousel-item.click{
-    width:340px;
+
+.carousel .carousel-item.click {
+    width: 340px;
 
 }
 
-
-.carousel .scrollbar
-{
-    width:340px;
-    position:absolute;
-    margin-top:100px;
+.carousel .scrollbar {
+    width: 340px;
+    position: absolute;
+    margin-top: 100px;
 
 }
 
-.carousel .scrollbar .track
-{
+.carousel .scrollbar .track {
     /*background-image:url(carousel-assets/images/track.png);*/
-    width:300px;
-    height:20px;
-    position:absolute;
-    left:20px;
+    width: 300px;
+    height: 20px;
+    position: absolute;
+    left: 20px;
 }
 
-.carousel .scrollbar .thumb
-{
+.carousel .scrollbar .thumb {
 
-    width:70px;
-    height:20px;
-    position:absolute;
-    cursor:pointer;
+    width: 70px;
+    height: 20px;
+    position: absolute;
+    cursor: pointer;
 }
 
-.carousel .scrollbar .left
-{
+.carousel .scrollbar .left {
 
-    width:20px;
-    height:20px;
-    position:absolute;
-    cursor:pointer;
-    left:0px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    cursor: pointer;
+    left: 0px;
 }
 
-.carousel .scrollbar .right
-{
-    width:20px;
-    height:20px;
-    position:absolute;
-    cursor:pointer;
-    right:0px;
+.carousel .scrollbar .right {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    cursor: pointer;
+    right: 0px;
 }

@@ -1,39 +1,43 @@
 <%@ page import="com.sith.SithAPI" %>
+<%@ page import="com.sith.event.Event" %>
+<%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.sith.model.Event" %>
-<%@ page import="com.sith.model.Participant" %>
+<%@ page import="com.sith.event.EventHandler" %>
 <!DOCTYPE html>
 <html lang="">
 <%
-    if(session.getAttribute("isLogged")!=null)  {
-        if( !(Boolean)session.getAttribute("isLogged")){
+    if(session.getAttribute("isLogged")!=null){
+        if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
 
-    SithAPI sithAPI=SithAPI.getInstance();
-    Event currentEvent=currentEvent=sithAPI.getEvent(session.getAttribute("eventID").toString());
-    Participant participant=sithAPI.getParticipant(session.getAttribute("user").toString());
+    EventHandler eventHandler=new EventHandler();
+    Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
+    Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 <head>
     <meta charset="utf-8">
     <title>Sith</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
+    <link rel="stylesheet" href="../css/style.css" media="all"/>
+    <!--[if IE]>
+    <link rel="stylesheet" href="css/ie.css" media="all"/><![endif]-->
 </head>
 <body>
 <div class="testing">
     <header class="main">
         <h1><strong>Sith</strong></h1>
-        <input type="text" value="search" />
+        <input type="text" value="search"/>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" />Logged in as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%></p>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
+                as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+                Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -59,7 +63,7 @@
             <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
         </li>
         <li>
-            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event/event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
@@ -78,7 +82,7 @@
             if(currentEvent.getAdminID().equals(participant.getUserID())){
         %>
         <li>
-            <a href="event_admin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
+            <a href="eventAdmin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
         </li>
         <%
             }
@@ -88,16 +92,16 @@
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="eventt.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <p>Current event is <a href="eventt.jsp">Workshop1</a> , Click here to <a href="#">change</a></p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
 
 <section class="content">
 
-    <form method="POST" action="event.jsp">
-        <input  name="user" type="text" value="Email" />
-        <input name="password" value="Password" type="password" />
+    <form method="POST" action="event/event.jsp">
+        <input name="user" type="text" value="Email"/>
+        <input name="password" value="Password" type="password"/>
     </form>
 
     <section class="widget">
@@ -105,19 +109,23 @@
             <span class="icon">&#59168;</span>
             <hgroup>
                 <h1>Comments</h1>
+
                 <h2>What they're saying</h2>
             </hgroup>
         </header>
         <div class="content no-padding timeline">
             <div class="tl-post comments">
-                <%List<String> list=sithAPI.getComments("kdnka");
+                <%
+                    List<String> list=eventHandler.getComments("kdnka");
                     String[] temp=null;
-                    for(String s:list){
+                    for(String s : list){
                         temp=s.split("::");
-                    %>
+                %>
                 <span class="icon">&#59168;</span>
+
                 <p>
-                    <strong><%=temp[0] %></strong><br />
+                    <strong><%=temp[0] %>
+                    </strong><br/>
                     <%=temp[1] %>
                 </p>
                 <%}%>
@@ -126,15 +134,15 @@
     </section>
 </section>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="js/jquery.wysiwyg.js"></script>
-<script src="js/custom.js"></script>
-<script src="js/cycle.js"></script>
-<script src="js/jquery.checkbox.min.js"></script>
+<script src="../js/jquery.wysiwyg.js"></script>
+<script src="../js/custom.js"></script>
+<script src="../js/cycle.js"></script>
+<script src="../js/jquery.checkbox.min.js"></script>
 <!--<script src="js/flot.js"></script>
 <script src="js/flot.resize.js"></script>
 <script src="js/flot-graphs.js"></script>
 <script src="js/flot-time.js"></script>
 <script src="js/cycle.js"></script>-->
-<script src="js/jquery.tablesorter.min.js"></script>
+<script src="../js/jquery.tablesorter.min.js"></script>
 </body>
 </html>

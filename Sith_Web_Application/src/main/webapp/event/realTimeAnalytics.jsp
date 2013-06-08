@@ -1,46 +1,49 @@
-<%@ page import="com.sith.model.Event" %>
-<%@ page import="com.sith.SithAPI" %>
-<%@ page import="com.sith.model.Participant" %>
+<%@ page import="com.sith.event.Event" %>
+<%@ page import="com.sith.event.EventHandler" %>
+<%@ page import="com.sith.event.Participant" %>
 <!DOCTYPE html>
 <html lang="">
 <%
-    if(session.getAttribute("isLogged")!=null)  {
-        if( !(Boolean)session.getAttribute("isLogged")){
+    if(session.getAttribute("isLogged")!=null){
+        if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
 
-    SithAPI sithAPI=SithAPI.getInstance();
-    Event currentEvent=currentEvent=sithAPI.getEvent(session.getAttribute("eventID").toString());
-    Participant participant=sithAPI.getParticipant(session.getAttribute("user").toString());
+    EventHandler eventHandler=new EventHandler();
+    Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
+    Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" media="all" />
-    <script  type = "text/javascript" src ="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script type = "text/javascript" src = "js/jquery.wysiwyg.js"></script>
-    <script type = "text/javascript" src = "js/custom.js"></script>
-    <script type = "text/javascript" src = "js/cycle.js"></script>
-    <script type = "text/javascript" src = "js/jquery.checkbox.min.js"></script>
-    <script type = "text/javascript" src = "js/jquery.tablesorter.min.js"></script>
-    <script type = "text/javascript" src = "js/highCharts/highcharts.js"></script>
-    <script type = "text/javascript" src = "js/highCharts/modules/exporting.js"></script>
-    <script type = "text/javascript" src = "js/charts/realTimePercepGraph.js"></script>
+    <link rel="stylesheet" href="../css/style.css" media="all"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/cycle.js"></script>
+    <script type="text/javascript" src="../js/jquery.checkbox.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
+    <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
+    <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
 </head>
 <body>
 <div class="testing">
     <header class="main">
         <h1><strong>SITH</strong> Dashboard</h1>
-        <input type="text" value="search" />
+        <input type="text" value="search"/>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" /> Logged in as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> </p>
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Logged
+                in
+                as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+                Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -54,16 +57,16 @@
                 </li>
             </ul>
 		</span>
-            <span class="button"><a href="home.jsp">Home</a></span>
+            <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button blue"><a href="../index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
         </li>
         <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
@@ -85,7 +88,7 @@
             if(currentEvent.getAdminID().equals(participant.getUserID())){
         %>
         <li>
-            <a href="event_admin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
+            <a href="eventAdmin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
         </li>
         <%
             }
@@ -94,7 +97,7 @@
 </nav>
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="participants.jsp">Workshop1</a> , Click here to <a href="#">change</a> </p>
+        <p>Current event is <a href="participants.jsp">Workshop1</a> , Click here to <a href="#">change</a></p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
@@ -104,14 +107,17 @@
             <span class="icon">&#128200;</span>
             <hgroup>
                 <h1>Event Statistics</h1>
+
                 <h2>Public view</h2>
             </hgroup>
             <aside>
-                <button class="left-btn">&#59229;</button><button class="right-btn">&#59230;</button>
+                <button class="left-btn">&#59229;</button>
+                <button class="right-btn">&#59230;</button>
             </aside>
         </header>
         <div class="content">
-            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div></br></br>
+            <div id="LiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            </br></br>
             <div id="TotLiveChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </section>
@@ -124,8 +130,8 @@
         fx: "scrollHorz",
         timeout: 0,
         slideResize: 0,
-        prev:    '.left-btn',
-        next:    '.right-btn'
+        prev: '.left-btn',
+        next: '.right-btn'
     });
 </script>
 </body>

@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="">
 
 <%
-    if(session.getAttribute("isLogged")!=null)  {
-        if( !(Boolean)session.getAttribute("isLogged")){
+    if(session.getAttribute("isLogged")!=null){
+        if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
@@ -13,12 +12,12 @@
 <head>
     <meta charset="utf-8">
     <title>SITH Dashboard</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" media="all" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
 
 
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -38,7 +37,7 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
         });
 
@@ -50,11 +49,13 @@
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
-        <input type="text" value="search" />
+        <input type="text" value="search"/>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40" /> Welcome back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%></p>
+            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40"/> Welcome
+                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+                Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -78,11 +79,11 @@
 <nav>
     <ul>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
-                <li><a href="my_events.jsp"></span>My Events</a></li>
-                <li><a href="join_events.jsp"></span>Join Events</a></li>
-                <li><a href="add_events.jsp"></span>Add Events</a></li>
+                <li><a href="myEvents.jsp"></span>My Events</a></li>
+                <li><a href="joinEvents.jsp"></span>Join Events</a></li>
+                <li><a href="addEvents.jsp"></span>Add Events</a></li>
             </ul>
         </li>
         <li>
@@ -99,6 +100,7 @@
             <span class="icon">&#128100;</span>
             <hgroup>
                 <h1>My Perceptions</h1>
+
                 <h2>Current Perception</h2>
             </hgroup>
         </header>

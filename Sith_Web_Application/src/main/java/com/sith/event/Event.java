@@ -1,9 +1,6 @@
-package com.sith.model;
+package com.sith.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Event {
+public class Event{
 	private String eventID;
 	private String eventName;
 	private String adminID;
@@ -14,7 +11,7 @@ public class Event {
 	private String location;
 	private String perceptionSchema;
 
-	public Event(String eventID,String eventName,String adminID,String description, String startTime, String endTime,String date,String location, String perceptionSchema){
+	public Event(String eventID, String eventName, String adminID, String description, String startTime, String endTime, String date, String location, String perceptionSchema){
 
 		this.eventID=eventID;
 		this.eventName=eventName;

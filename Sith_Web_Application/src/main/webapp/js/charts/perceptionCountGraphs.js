@@ -2,40 +2,40 @@
  * @author Sachintha
  * This document contains barchart and pie chart to display perception counts
  */
-$(document).ready(function(){
-	barChart();
-	$("#chartType").change(function(){
-		if($('#chartType').val()== 'bar'){
-		barChart();
-	}else{
-		pieChart();
-	}
-  });
+$(document).ready(function () {
+    barChart();
+    $("#chartType").change(function () {
+        if ($('#chartType').val() == 'bar') {
+            barChart();
+        } else {
+            pieChart();
+        }
+    });
 })
-	
+
 
 barChart = function () {
-	//load data from the server
-	$.get('http://192.248.8.246:3000/countPerceptions', function (e) {
-		var chart;
-		var perceptions;
-		//$.ajax({
-		//		type: "GET",
-		//		url: "http://localhost:3000/countPerceptions",
-		//	success: function(e){
-		//			this.perceptions = e;
-		//			console.log(this.perceptions);
-		//		}
-		//	});
-			//console.log()
-		$('#CountChart').highcharts({
+    //load data from the server
+    $.get('http://192.248.8.246:3000/countPerceptions', function (e) {
+        var chart;
+        var perceptions;
+        //$.ajax({
+        //		type: "GET",
+        //		url: "http://localhost:3000/countPerceptions",
+        //	success: function(e){
+        //			this.perceptions = e;
+        //			console.log(this.perceptions);
+        //		}
+        //	});
+        //console.log()
+        $('#CountChart').highcharts({
             chart: {
                 type: 'column',
             },
             title: {
                 text: 'Perception Count'
             },
-            
+
             xAxis: {
                 categories: [
                     'Interested',
@@ -58,8 +58,8 @@ barChart = function () {
                 shared: true,
                 useHTML: true
             },
-            legend:{
-            	enabled: false
+            legend: {
+                enabled: false
             },
             plotOptions: {
                 column: {
@@ -67,18 +67,20 @@ barChart = function () {
                     borderWidth: 0
                 }
             },
-            series: [{
-            data: e.data
-            }]
+            series: [
+                {
+                    data: e.data
+                }
+            ]
         });
     });
 }
- 
+
 pieChart = function () {
-	$.get('http://192.248.8.246:3000/countPerceptions', function (e){
-		//var data = e.data;
-		//var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
-		
+    $.get('http://192.248.8.246:3000/countPerceptions', function (e) {
+        //var data = e.data;
+        //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
+
         $('#CountChart').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -89,8 +91,8 @@ pieChart = function () {
                 text: 'Perception Count'
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-            	percentageDecimals: 1
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                percentageDecimals: 1
             },
             plotOptions: {
                 pie: {
@@ -100,27 +102,29 @@ pieChart = function () {
                         enabled: true,
                         color: '#000000',
                         connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ (this.percentage).toFixed(2) +' %';
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + (this.percentage).toFixed(2) + ' %';
                         }
                     }
                 }
             },
-            series: [{
-                type: 'pie',
-                name: 'Perception Count',
-                data: [
-                ['Interested', e.data[0]],
-                ['Happy',e.data[1] ],
-                ['Bored',e.data[2]],
+            series: [
                 {
-                	name: 'Happy',
-                    y: e.data[3],
-                    sliced: true,
-                    selected: true
-                },
-              ]
-            }]
+                    type: 'pie',
+                    name: 'Perception Count',
+                    data: [
+                        ['Interested', e.data[0]],
+                        ['Happy', e.data[1] ],
+                        ['Bored', e.data[2]],
+                        {
+                            name: 'Happy',
+                            y: e.data[3],
+                            sliced: true,
+                            selected: true
+                        },
+                    ]
+                }
+            ]
         });
-     })
+    })
 }       

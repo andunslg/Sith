@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
-<%  if(session.getAttribute("isLogged")!=null)  {
-    if( !(Boolean)session.getAttribute("isLogged")){
+<% if(session.getAttribute("isLogged")!=null){
+    if(!(Boolean)session.getAttribute("isLogged")){
         response.sendRedirect("index.jsp");
     }
 }
@@ -9,22 +9,25 @@
 <head>
     <meta charset="utf-8">
     <title>Sith Dashboard</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
+    <link rel="stylesheet" href="css/style.css" media="all"/>
+    <!--[if IE]>
+    <link rel="stylesheet" href="css/ie.css" media="all"/><![endif]-->
 </head>
 <body>
 <div class="testing">
     <header class="main">
         <h1><strong>Sith</strong></h1>
-        <input type="text" value="search" />
+        <input type="text" value="search"/>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40" />Logged in as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> </p>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
+                as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+                Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
@@ -47,11 +50,11 @@
 <nav>
     <ul>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
-                <li><a href="my_events.jsp"></span>My Event</a></li>
-                <li><a href="join_events.jsp"></span>Join Events</a></li>
-                <li><a href="add_events.jsp"></span>Add Events</a></li>
+                <li><a href="myEvents.jsp"></span>My Event</a></li>
+                <li><a href="joinEvents.jsp"></span>Join Events</a></li>
+                <li><a href="addEvents.jsp"></span>Add Events</a></li>
             </ul>
         </li>
         <li>
@@ -72,23 +75,25 @@
             <span class="icon">&#128100;</span>
             <hgroup>
                 <h1>My Profile</h1>
+
                 <h2>Edit and Save the profile</h2>
             </hgroup>
         </header>
         <div class="content">
             <table>
                 <tr>
-                    <td >
+                    <td>
                         <div>User name</div>
                     </td>
                     <td>
                         <div>
-                            <input value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%> readonly>
+                            <input value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%>
+                                   readonly>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td >
+                    <td>
                         <div>Old Pasword</div>
                     </td>
                     <td>
@@ -98,7 +103,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td >
+                    <td>
                         <div>New Pasword</div>
                     </td>
                     <td>
@@ -109,7 +114,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div >Confirm New Pasword &nbsp;&nbsp;&nbsp;</div>
+                        <div>Confirm New Pasword &nbsp;&nbsp;&nbsp;</div>
                     </td>
                     <td>
                         <div>

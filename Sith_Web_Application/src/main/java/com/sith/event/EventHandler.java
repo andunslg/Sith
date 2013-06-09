@@ -46,7 +46,6 @@ public class EventHandler{
 		String result=null;
 		try{
 			result=httpUtil.doGet(SithAPI.ADD_USER_TO_EVENT+"?eventID="+eventID+"&userID="+userID+"&status=participant");
-			System.out.println(result);
 			if(!result.equals("")){
 				if("{\"result\":true}".equals(result)){
 					return true;
@@ -56,6 +55,30 @@ public class EventHandler{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		return false;
+	}
+
+	public boolean addComment(String eventID, String userID,String perceptionValue, String text){
+		Map<String,String> parms=new HashMap<String,String>();
+		parms.put("eventID",eventID);
+		parms.put("userID",userID);
+		parms.put("perceptionValue",perceptionValue);
+		parms.put("text",text);
+
+		String result=null;
+		try{
+			result=httpUtil.doPost(SithAPI.PUBLISH_COMMENT,parms);
+			System.out.println(result);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
 		return false;
 	}
 

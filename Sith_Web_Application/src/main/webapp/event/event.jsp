@@ -168,7 +168,6 @@
                 for(int i=0;i<perceptionArr.length;i++){
                     String perception=perceptionArr[i];
                     String lowerPerception=perception.toLowerCase();
-                    System.out.println(lowerPerception);
             %>
             <div id="<%=lowerPerception%>" class="perception">
                 <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"

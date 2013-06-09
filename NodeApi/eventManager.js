@@ -24,10 +24,3 @@ exports.deleteEvent = function(eventID){
    //mongoAdaptercall
 };
 
-exports.addUserToEvent = function(eventID,userID){
-    //
-};
-
-exports.removeUserFromEvent = function(eventID,userID){
-
-};

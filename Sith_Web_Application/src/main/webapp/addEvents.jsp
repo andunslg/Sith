@@ -1,5 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.SithAPI" %>
+<%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.event.EventHandler" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -13,7 +15,8 @@
     }
 
     ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
-
+    EventHandler eventHandler=new EventHandler();
+    Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 
 <head>
@@ -245,6 +248,7 @@
 
         datObj['eventID'] = eventID;
         datObj['eventName'] = eventName;
+        datObj['eventAdmin'] = '<%=participant.getUserID()%>';
         datObj['startTime'] = startTime;
         datObj['endTime'] = endTime;
         datObj['date'] = date;

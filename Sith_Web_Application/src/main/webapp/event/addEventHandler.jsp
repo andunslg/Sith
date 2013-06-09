@@ -6,6 +6,7 @@
 
     String eventID=request.getParameter("eventID");
     String eventName=request.getParameter("eventName");
+    String eventAdmin=request.getParameter("eventAdmin");
     String startTime=request.getParameter("startTime");
     String endTime=request.getParameter("endTime");
     String date=request.getParameter("date");
@@ -20,7 +21,7 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.addEvent(eventID,eventName,startTime,endTime,date,location,description,perceptionSchema);
+            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startTime,endTime,date,location,description,perceptionSchema);
             if(res){
                 message="The Event is successfully added.";
             }else{

@@ -13,10 +13,11 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 	JSONParser parser=new JSONParser();
 
-	public boolean addEvent(String eventID, String eventName, String startTime, String endTime, String date, String location, String description, String perceptionSchema){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startTime, String endTime, String date, String location, String description, String perceptionSchema){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
+		parms.put("eventAdmin",eventAdmin);
 		parms.put("desc",description);
 		parms.put("location",location);
 		parms.put("date",date);

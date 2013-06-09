@@ -44,7 +44,8 @@ exports.authenticateUser = function(req,res){
 	});
 }
 
-exports.addUserToEvent = function(eventID,userID,fn){
+//Register {userID} to {eventID}. status is whether the user is an admin or a participant
+exports.addUserToEvent = function(eventID,userID,status,fn){
     mongoAdapter.getSingleDocument({userID:userID},'EventUser_'+eventID,function(doc){
         if(doc){
              fn(new Error('user already registered'));
@@ -53,7 +54,7 @@ exports.addUserToEvent = function(eventID,userID,fn){
             //add userID to eventuser collection(users registered for the given event)
             mongoAdapter.insertDocument('EventUser_'+eventID,doc1);
             //add eventID to userevent collection(all events registered by a given user)
-            doc2 = {eventID : eventID};
+            doc2 = {eventID : eventID,status:status};
             mongoAdapter.insertDocument('UserEvent_'+userID,doc2);
             fn();
         }

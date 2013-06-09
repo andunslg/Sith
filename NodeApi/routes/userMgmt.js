@@ -18,7 +18,7 @@ exports.authenticateUser = function(req,res){
 
 exports.registerUserForEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
-    userManager.addUserToEvent(req.query.eventID,req.query.userID,function(error){
+    userManager.addUserToEvent(req.query.eventID,req.query.userID,req.query.status,function(error){
          if(error){
              console.log(error);
              res.write(JSON.stringify({result:error.message}));

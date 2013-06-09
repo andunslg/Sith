@@ -9,12 +9,16 @@ exports.addEvent = function(eventID, eventName, desc, location, date, startTime,
 	mongoAdapter.createCollection('EventUser_'+eventID);
 };
 
-exports.getEvent = function(eventID){
-
+exports.getEventByID = function(eventID,fn){
+     mongoAdapter.getDocuments({eventID:eventID},'EventDetails',function(doc){
+                fn(doc);
+     });
 };
 
-exports.getAllEvents = function(){
-    //
+exports.getAllEvents = function(fn){
+    mongoAdapter.getDocuments({},'EventDetails',function(doc){
+        fn(doc);
+    });
 };
 exports.deleteEvent = function(eventID){
    //mongoAdaptercall

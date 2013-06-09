@@ -51,6 +51,8 @@ app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will cou
 app.get('/getMasterPerceptions',eventRoutes.getMasterPerceptions);
 //routing for event category
 app.post('/addEvent',eventRoutes.addEvent);
+app.get('/getEventById',eventRoutes.getEventByID);
+app.get('/getAllEvents',eventRoutes.getAllEvents);
 app.get('/deleteEvent',eventRoutes.deleteEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);

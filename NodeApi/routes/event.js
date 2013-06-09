@@ -7,7 +7,7 @@
 percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
 exports.addEvent = function(req,res){
-	eventManager.addEvent(req.body.eventName, req.body.desc, req.body.location, req.body.date, 
+	eventManager.addEvent(req.body.eventID,req.body.eventName, req.body.desc, req.body.location, req.body.date,
 							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
@@ -15,6 +15,23 @@ exports.addEvent = function(req,res){
 	res.end();
 };
 
+exports.getEventByID = function(req,res){
+    eventManager.getEventByID(req.query.eventID,function(docs){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        var result = JSON.stringify(docs);
+        res.write(result);
+        res.end();
+    });
+};
+
+exports.getAllEvents = function(req,res){
+    eventManager.getAllEvents(function(docs){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        var result = JSON.stringify(docs);
+        res.write(result);
+        res.end();
+    });
+}
 exports.deleteEvent = function(req,res){
     eventManager.deleteEvent(req.query.eventID);
 };

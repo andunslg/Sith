@@ -261,8 +261,8 @@
                 var $response = $(data);
                 var msg = $response.filter('#msg').text()
                 alert(msg)
-                if (msg == 'The Event is successfully added.' || msg == 'The Event is not added. Please try later!') {
-                    window.location.href = '../myEvents.jsp';
+                if (msg == "The Event is successfully added.\n" || msg == "The Event is not added. Please try later!\n") {
+                    window.location.href = 'myEvents.jsp';
                 }
             },
             error: function (xhr, status, error) {

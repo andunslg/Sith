@@ -273,14 +273,6 @@
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
     });
-    $("#disgusting").click(function () {
-        $("#disgusting").effect("shake");
-        var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Disgusting";
-        edit_save.src = "../images/perceptions/disgusting.png";
-        document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Disgusting");
-    });
     $("#horrible").click(function () {
         $("#horrible").effect("shake");
         var edit_save = document.getElementById("selected_image2");

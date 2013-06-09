@@ -1,7 +1,9 @@
 package com.sith.event;
 
 import com.sith.SithAPI;
+import com.sith.perception.Perception;
 import com.sith.util.HTTPUtil;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -103,11 +105,24 @@ public class EventHandler{
 
 	}
 
-	public ArrayList<String> getComments(String eventID){
+	public ArrayList<Perception> getComments(String eventID){
+		ArrayList<Perception> comments=null;
 
-		ArrayList<String> list=new ArrayList<String>();
-		list.add("Prabhath::this is cool");
-		return list;
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.GET_ALL_COMMENTS+"?eventID="+eventID);
+			JSONArray jsonArray=new JSONArray(result);
+			comments=new ArrayList<Perception>();
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject jsonObject=jsonArray.getJSONObject(i);
+				Perception perception= new Perception(jsonObject.getString("userID"),jsonObject.getString("eventID"),jsonObject.getString("perceptionValue"),jsonObject.getString("text"));
+				comments.add(perception);
+			}return comments;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+
 
 	}
 

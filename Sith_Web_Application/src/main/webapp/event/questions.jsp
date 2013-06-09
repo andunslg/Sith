@@ -2,6 +2,8 @@
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sith.perception.Perception" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -166,17 +168,16 @@
         <div class="content no-padding timeline">
             <div class="tl-post comments">
                 <%
-                    List<String> list=eventHandler.getComments("kdnka");
-                    String[] temp=null;
-                    for(String s : list){
-                        temp=s.split("::");
+                    ArrayList<Perception> list=eventHandler.getComments(currentEvent.getEventID());
+                    for(Perception p : list){
+
                 %>
                 <span class="icon">&#59168;</span>
 
                 <p>
-                    <strong><%=temp[0] %>
-                    </strong><br/>
-                    <%=temp[1] %>
+                    <strong>
+                        <%=p.getUserID() %> is feeling <%=p.getPerceptionValue() %> about  <%=eventHandler.getEvent(p.getEventID()).getEventName() %> and  <%=p.getUserID() %>'s comment is  <%=p.getText() %>
+                    </strong>
                 </p>
                 <%}%>
             </div>

@@ -10,11 +10,19 @@ userManager = require("../userManager");
 exports.addEvent = function(req,res){
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.date,
 							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
-    userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin')
-	res.writeHead(200, {'Content-Type': 'application/json'});
-  	var result = JSON.stringify({response: true });
-	res.write(result);
-	res.end();
+    userManager.addUserToEvent(req.body.eventID,eq.body.eventAdmin,'admin',function(error){
+        if(error){
+            console.log(error);
+            res.write(JSON.stringify({result:error.message}));
+            res.end();
+        }else{
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            var result = JSON.stringify({response: true });
+            res.write(result);
+            res.end();
+        }
+    });
+
 };
 
 exports.getEventByID = function(req,res){

@@ -2,6 +2,8 @@ package com.sith;
 
 import com.sith.event.Event;
 import com.sith.util.HTTPUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -20,25 +22,26 @@ public class SithAPI{
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
 	public ArrayList<Event> getEventList(){
-		ArrayList<Event> events=new ArrayList<Event>();
-		Event sampleEvent=new Event("event1","CSE_Programming_Challange","aslg","This is programming challenge","1300","1700","20-06-2013","CSLR","Happy:Sleepy:Bored:Interested:Neutral");
-		events.add(sampleEvent);
-		sampleEvent=new Event("event2","Software_Engineering_Project","prabhath","This is SE project","0800","1200","22-06-2013","Seminar Room","Happy:Sleepy:Bored:Interested:Neutral");
-		events.add(sampleEvent);
-		sampleEvent=new Event("event3","FYP","sachintha","This is FYP","0800","1200","22-10-2013","FYP Lab","Happy:Sleepy:Bored:Interested:Neutral");
-		events.add(sampleEvent);
-		sampleEvent=new Event("event4","WSO2_Con","tgts","This is WSO2 CON","0800","1200","04-11-2013","USA","Happy:Sleepy:Bored:Interested:Neutral");
-		events.add(sampleEvent);
+		ArrayList<Event> events=null;
 
 		String result=null;
 		try{
 			result=httpUtil.doGet(GET_EVENT_LIST);
+			JSONArray jsonArray=new JSONArray(result);
+			events=new ArrayList<Event>();
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject jsonObject=jsonArray.getJSONObject(i);
+				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("date"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+				events.add(event);
+			}
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println(result);
+
 		return events;
 	}
+
 	public ArrayList<String> getMasterPerceptions(){
 		ArrayList<String> perceptions=null;
 		try{
@@ -56,7 +59,6 @@ public class SithAPI{
 		}
 		return perceptions;
 	}
-
 
 	public static SithAPI getInstance(){
 		return sithAPI;

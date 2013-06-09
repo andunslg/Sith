@@ -7,7 +7,6 @@
 <%
     SithAPI sithAPI=SithAPI.getInstance();
     ArrayList<Event> events=sithAPI.getEventList();
-    ;
 
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
@@ -165,7 +164,7 @@
 <script type="text/javascript">
     $('.event_rows').click(function () {
         <%--Here should call the API function to register user to the event--%>
-        document.location.href = 'event.jsp' + '?eventID=' + this.id;
+        document.location.href = 'event/event.jsp' + '?eventID=' + this.id;
     });
 </script>
 

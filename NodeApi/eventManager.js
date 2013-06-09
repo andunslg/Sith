@@ -1,8 +1,8 @@
 /**
  * @author Sachintha
  */
-exports.addEvent = function(eventID, eventName, desc, location, date, startTime, endTime,perceptionSchema){
-	doc = {eventID:eventID,eventName:eventName, description:desc, location:location,
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema){
+	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
 			date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema};
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerception_'+eventID);

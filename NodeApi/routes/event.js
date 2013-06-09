@@ -92,6 +92,6 @@ exports.getAllComments = function(req,res){
 
 exports.getMasterPerceptions = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify(['Interested', 'Happy', 'Nutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Excited','Disgusting', 'Horrible']));
+    res.write(JSON.stringify(['Awesome','Wonderful','Excited', 'Happy','Interested', 'Neutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Disgusting', 'Horrible']));
     res.end();
 }

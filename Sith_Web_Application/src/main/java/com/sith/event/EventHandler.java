@@ -40,6 +40,24 @@ public class EventHandler{
 		return false;
 	}
 
+	public boolean addUserToEvent(String userID,String eventID){
+
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.ADD_USER_TO_EVENT+"?eventID="+eventID+"&userID="+userID+"&status=participant");
+			System.out.println(result);
+			if(!result.equals("")){
+				if("{\"result\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public boolean isEventAvailable(String eventID){
 		//Check availability via API
 		return true;
@@ -75,8 +93,9 @@ public class EventHandler{
 	public Participant getParticipant(String name){
 		if(name.equals("aslg")){
 			return new Participant("aslg","2.35PM","Happy");
-		}else{
-			return new Participant("Prabhath Pathirana","2.35PM","Happy");
+		}
+		else{
+			return new Participant("andunslg","2.35PM","Happy");
 		}
 	}
 

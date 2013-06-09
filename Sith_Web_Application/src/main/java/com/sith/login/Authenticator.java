@@ -2,8 +2,7 @@ package com.sith.login;
 
 import com.sith.SithAPI;
 import com.sith.util.HTTPUtil;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,6 @@ import java.util.Map;
 public class Authenticator{
 
 	HTTPUtil httpUtil=new HTTPUtil();
-	JSONParser parser=new JSONParser();
 
 	public boolean addUser(String userName, String password) throws Exception{
 		Map<String,String> map=new HashMap<String,String>();
@@ -19,8 +17,7 @@ public class Authenticator{
 		map.put("password",password);
 		String result=httpUtil.doPost(SithAPI.SIGNUP,map);
 		if(!result.equals("")){
-			Object o=parser.parse(result);
-			JSONObject jsonObject=(JSONObject)o;
+			JSONObject jsonObject=new JSONObject(result);
 			Boolean name=(Boolean)jsonObject.get("result");
 			return name;
 		}
@@ -34,8 +31,7 @@ public class Authenticator{
 		map.put("password",password);
 		String result=httpUtil.doPost(SithAPI.LOGIN,map);
 		if(!result.equals("")){
-			Object o=parser.parse(result);
-			JSONObject jsonObject=(JSONObject)o;
+			JSONObject jsonObject=new JSONObject(result);
 			Boolean name=(Boolean)jsonObject.get("result");
 			return name;
 		}

@@ -1,24 +1,19 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
 <%
+    SithAPI sithAPI=SithAPI.getInstance();
+
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
 
-    ArrayList<String> perceptionList=new ArrayList<String>();
-    perceptionList.add("Excited");
-    perceptionList.add("Amazing");
-    perceptionList.add("Happy");
-    perceptionList.add("Interested");
-    perceptionList.add("Satisfied");
-    perceptionList.add("Bored");
-    perceptionList.add("Sleepy");
-    perceptionList.add("Depressed");
-    perceptionList.add("Frustrated");
+    ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
+
 %>
 
 <head>

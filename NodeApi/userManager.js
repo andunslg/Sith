@@ -46,6 +46,7 @@ exports.authenticateUser = function(req,res){
 
 //Register {userID} to {eventID}. status is whether the user is an admin or a participant
 exports.addUserToEvent = function(eventID,userID,status,fn){
+    console.log(eventID+userID+status);
     mongoAdapter.getSingleDocument({userID:userID},'EventUser_'+eventID,function(doc){
         if(doc){
              fn(new Error('user already registered'));

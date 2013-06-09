@@ -47,6 +47,8 @@ app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 //routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
 
+//routing for get all the perceptions available in the platform
+app.get('/getMasterPerceptions',eventRoutes.getMasterPerceptions);
 //routing for event category
 app.post('/addEvent',eventRoutes.addEvent);
 app.get('/deleteEvent',eventRoutes.deleteEvent);

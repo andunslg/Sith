@@ -72,3 +72,9 @@ exports.getAllComments = function(req,res){
 	res.end();
 	});	
 }
+
+exports.getMasterPerceptions = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write(JSON.stringify(['Interested', 'Happy', 'Nutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Excited','Disgusting', 'Horrible']));
+    res.end();
+}

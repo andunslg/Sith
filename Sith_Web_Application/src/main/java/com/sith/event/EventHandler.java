@@ -74,17 +74,17 @@ public class EventHandler{
 
 	public Participant getParticipant(String name){
 		if(name.equals("aslg")){
-			return new Participant("aslg","Andun Sameera","2.35PM","Happy");
+			return new Participant("aslg","2.35PM","Happy");
 		}else{
-			return new Participant("prabhath","Prabhath Pathirana","2.35PM","Happy");
+			return new Participant("Prabhath Pathirana","2.35PM","Happy");
 		}
 	}
 
 	public List<Participant> getParticipants(String eventID){
 		ArrayList<Participant> participants=new ArrayList<Participant>();
 
-		participants.add(new Participant("prabhath","Prabhath Pathirana","2.35PM","Happy"));
-		participants.add(new Participant("aslg","Andun Sameera","2.35PM","Happy"));
+		participants.add(new Participant("Prabhath Pathirana","2.35PM","Happy"));
+		participants.add(new Participant("aslg","2.35PM","Happy"));
 		return participants;
 	}
 

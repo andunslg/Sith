@@ -63,7 +63,7 @@
             <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
         </li>
         <li>
-            <a href="event/event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>

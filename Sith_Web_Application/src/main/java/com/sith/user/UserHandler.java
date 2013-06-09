@@ -8,9 +8,9 @@ public class UserHandler{
 
 	public ArrayList<Event> getUserEventList(String userID){
 		ArrayList<Event> events=new ArrayList<Event>();
-		Event sampleEvent=new Event("event1","CSE_Programming_Challange","aslg","This is programming challenge","1300","1700","20-06-2013","CSLR","Happy:Sleepy:Bored:Interested:Neutral");
+		Event sampleEvent=new Event("cse_pc1","Programming Challange 1","aslg","Programming Challange 1 for Batch 11th","13","17","20-06-2013","Level 2 Lab CSE UOM","Awesome:Wonderful:Excited:Happy:Interested:Neutral:Bored:Sleepy:Sad:Angry:Disgusting:Horrible");
 		events.add(sampleEvent);
-		sampleEvent=new Event("event2","Software_Engineering_Project","prabhath","This is SE project","0800","1200","22-06-2013","Seminar Room","Happy:Sleepy:Bored:Interested:Neutral");
+		sampleEvent=new Event("cse_sep","Software Engineering Project","aslg","Software Engineering Project for 10th Batch","08","12","04-06-2013","CSLR CSE UOM","Awesome:Wonderful:Excited:Happy:Interested:Neutral:Bored:Sleepy:Sad:Angry:Disgusting:Horrible");
 		events.add(sampleEvent);
 		return events;
 	}

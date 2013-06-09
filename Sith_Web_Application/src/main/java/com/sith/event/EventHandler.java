@@ -2,6 +2,7 @@ package com.sith.event;
 
 import com.sith.SithAPI;
 import com.sith.util.HTTPUtil;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,21 +65,18 @@ public class EventHandler{
 	}
 
 	public Event getEvent(String eventID){
+		Event event=null;
 
-		Event sampleEvent=new Event("event1","CSE_Programming_Challange","aslg","This is programming challenge","1300","1700","20-06-2013","CSLR","Happy:Sleepy:Bored:Interested:Neutral");
-		Event sampleEvent1=new Event("event2","Software_Engineering_Project","prabhath","This is SE project","0800","1200","22-06-2013","Seminar Room","Happy:Sleepy:Bored:Interested:Neutral");
-		Event sampleEvent2=new Event("event3","FYP","sachintha","This is FYP","0800","1200","22-10-2013","FYP Lab","Happy:Sleepy:Bored:Interested:Neutral");
-		Event sampleEvent3=new Event("event4","WSO2_Con","tgts","This is WSO2 CON","0800","1200","04-11-2013","USA","Happy:Sleepy:Bored:Interested:Neutral");
-		if(eventID.equals("event1")){
-			return sampleEvent;
-		}else if(eventID.equals("event2")){
-			return sampleEvent1;
-		}else if(eventID.equals("event3")){
-			return sampleEvent2;
-		}else{
-			return sampleEvent3;
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.GET_EVENT_BY_ID+"?eventID="+eventID);
+			JSONObject jsonObject=new JSONObject(result.substring(1,result.length()-1));
+			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("date"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+			return event;
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-
+		return event;
 
 	}
 

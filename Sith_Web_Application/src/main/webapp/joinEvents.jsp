@@ -1,19 +1,24 @@
 <%@ page import="com.sith.SithAPI" %>
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.event.EventHandler" %>
 <!DOCTYPE html>
 <html lang="">
 
 <%
     SithAPI sithAPI=SithAPI.getInstance();
-    ArrayList<Event> events=sithAPI.getEventList();
+
 
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
+    EventHandler eventHandler=new EventHandler();
+    Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 
+    ArrayList<Event> events=sithAPI.getEventList();
 
 %>
 
@@ -135,6 +140,9 @@
                     <tbody>
                     <%
                         for(Event event : events){
+                            if(event.getAdminID().equals(participant.getUserID())){
+                                continue;
+                            }
                     %>
                     <tr id="<%=event.getEventID()%>" class="event_rows">
                         <td class="avatar"><%=event.getEventName()%>

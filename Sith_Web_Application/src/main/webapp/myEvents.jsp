@@ -8,14 +8,14 @@
 
 <%
 
-    EventHandler eventHandler=new EventHandler();
-    UserHandler userHandler=new UserHandler();
-
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
         }
     }
+
+    EventHandler eventHandler=new EventHandler();
+    UserHandler userHandler=new UserHandler();
 
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
     ArrayList<Event> events=userHandler.getUserEventList(participant.getUserID());

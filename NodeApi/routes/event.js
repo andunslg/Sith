@@ -6,9 +6,11 @@
 // This method returns the nearest event list as a json object given the users gps location
 percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
+userManager = require("../userManager");
 exports.addEvent = function(req,res){
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.date,
 							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
+    userManager.addUserToEvent(req.body.eventID,req.body.userID,'admin')
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);

@@ -2,7 +2,6 @@ package com.sith.event;
 
 import com.sith.SithAPI;
 import com.sith.util.HTTPUtil;
-import org.json.simple.parser.JSONParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
-	JSONParser parser=new JSONParser();
+
 
 	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startTime, String endTime, String date, String location, String description, String perceptionSchema){
 		Map<String,String> parms=new HashMap<String,String>();

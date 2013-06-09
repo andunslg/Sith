@@ -1,7 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.SithAPI" %>
-<%@ page import="com.sith.event.Participant" %>
 <%@ page import="com.sith.event.EventHandler" %>
+<%@ page import="com.sith.event.Participant" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -234,15 +234,21 @@
         var description = $('input[id=description]').val();
 
         var perceptionSchema = "";
-        $('#perceptionSchema :selected').each(function (i, selected) {
-            if (i == 0) {
-                perceptionSchema += $(selected).text();
-            }
-            else {
-                perceptionSchema += ':' + $(selected).text();
-            }
 
-        });
+        var selObj = document.getElementById('perceptionSchema');
+        var i;
+        var first=1;
+        for (i=0; i<selObj.options.length; i++) {
+            if (selObj.options[i].selected) {
+                if (first == 1) {
+                    perceptionSchema += selObj.options[i].value;
+                    first =0;
+                }
+                else {
+                    perceptionSchema += ':' + selObj.options[i].value;
+                }
+            }
+        }
 
         var datObj = {};
 
@@ -263,7 +269,7 @@
             type: 'POST',
             success: function (data) {
                 var $response = $(data);
-                var msg = $response.filter('#msg').text()
+                var msg = $response.filter('#msg').text();
                 alert(msg)
                 if (msg == "The Event is successfully added.\n" || msg == "The Event is not added. Please try later!\n") {
                     window.location.href = 'myEvents.jsp';

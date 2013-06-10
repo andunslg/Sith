@@ -21,7 +21,9 @@ exports.getAllEvents = function(fn){
     });
 };
 exports.deleteEvent = function(eventID){
-   //mongoAdaptercall
+    mongoAdapter.deleteDocument('EventDetails', {eventID:eventID});
+    mongoAdapter.dropCollection('EventPerception_'+eventID);
+    mongoAdapter.dropCollection('EventUser_'+eventID);
 };
 
 exports.getParticipants = function(eventID,fn){

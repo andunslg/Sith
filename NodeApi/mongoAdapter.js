@@ -60,6 +60,33 @@ exports.getDocuments = function (query,collection,fn){
 	}		
 	});
 };
+//delete a specific document from a collection
+exports.deleteDocument = function(collection,query){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        if(err)
+            throw err;
+        else{
+            db.collection(collection, function(err, collection) {
+                collection.remove(query,function(err, numberOfRemovedDocs) {
+                    if(err)
+                        throw err;
+                    db.close();
+                });
+            });
+        }
+    });
+};
+
+//Dropping a specific collection
+exports.dropCollection = function(name){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        db.dropCollection(name,function(err,collection){
+            if(err)
+                throw err;
+            db.close();
+        });
+    });
+}
 
 exports.createCollection = function(name){
 	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){

@@ -1,21 +1,38 @@
 package com.sith.user;
 
+import com.sith.SithAPI;
 import com.sith.event.Event;
+import com.sith.event.EventHandler;
+import com.sith.util.HTTPUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class UserHandler{
-
+	private HTTPUtil httpUtil=new HTTPUtil();
+	private EventHandler eventHandler= new EventHandler();
 	public ArrayList<Event> getUserEventList(String userID){
-		ArrayList<Event> events=new ArrayList<Event>();
-		Event sampleEvent=new Event("cse_pc1","Programming Challange 1","aslg","Programming Challange 1 for Batch 11th","13","17","20-06-2013","Level 2 Lab CSE UOM","Awesome:Wonderful:Excited:Happy:Interested:Neutral:Bored:Sleepy:Sad:Angry:Disgusting:Horrible");
-		events.add(sampleEvent);
-		sampleEvent=new Event("cse_sep","Software Engineering Project","aslg","Software Engineering Project for 10th Batch","08","12","04-06-2013","CSLR CSE UOM","Awesome:Wonderful:Excited:Happy:Interested:Neutral:Bored:Sleepy:Sad:Angry:Disgusting:Horrible");
-		events.add(sampleEvent);
-		return events;
+		ArrayList<Event> events=null;
+		String result=null;
+
+		try{
+			result=httpUtil.doGet(SithAPI.GET_USER_EVENT_LIST+"?userID="+userID);
+			System.out.println(result);
+			JSONArray jsonArray=new JSONArray(result);
+			events=new ArrayList<Event>();
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject jsonObject=jsonArray.getJSONObject(i);
+				String eventID=jsonObject.getString("eventID");
+				Event event=eventHandler.getEvent(eventID);
+				events.add(event);
+			}
+			return events;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 
-	public boolean registerToEvent(String eventID, String userID){
-		return true;
-	}
 }

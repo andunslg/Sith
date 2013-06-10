@@ -25,6 +25,8 @@ public class SithAPI{
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
+	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
+
 
 	public ArrayList<Event> getEventList(){
 		ArrayList<Event> events=null;

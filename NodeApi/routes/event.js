@@ -53,6 +53,10 @@ exports.getParticipants = function(req,res){
 };
 exports.deleteEvent = function(req,res){
     eventManager.deleteEvent(req.query.eventID);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var result = JSON.stringify({response: true });
+    res.write(result);
+    res.end();
 };
 exports.searchEventListByGps = function(req,res){	
 	// dataAdapter.getEventListByGps(req.body.gpsLocation);
@@ -76,7 +80,7 @@ exports.searchEventListByName = function(req,res){
 	res.end();
 };
 
-//user regiter for event
+//user register for event
 exports.registerForEvent = function(req,res){	
 	//dataAdapter.registerForEvent(req.body.userId,req.body.eventId);
 	res.writeHead(200, {'Content-Type': 'application/json'});

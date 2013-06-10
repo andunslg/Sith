@@ -26,6 +26,11 @@ exports.addAnnonymousUser = function(req,res){
 	});
 };
 
+exports.getUserById = function(userID,fn){
+      mongoAdapter.getDocuments({userName: userID},'Users', function (docs) {
+          fn(docs);
+      });
+};
 exports.authenticateUser = function(req,res){
 	res.writeHead(200, {
 		'Content-Type' : 'application/json',
@@ -60,3 +65,9 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
         }
     });
 };
+
+exports.getSubscribedEvents = function(userID,fn){
+    mongoAdapter.getDocuments({},'UserEvent_'+userID,function(docs){
+        fn(docs);
+    });
+}

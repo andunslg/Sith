@@ -33,3 +33,19 @@ exports.registerUserForEvent = function(req,res){
 exports.removeUserFromEvent = function(eventID,userID){
 
 };
+
+exports.getUserById = function(req,res){
+  userManager.getUserById(req.query.userID,function(docs){
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify(docs));
+      res.end();
+  });
+};
+
+exports.getSubscribedEvents = function(req,res){
+    userManager.getSubscribedEvents(req.query.userID,function(docs){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(JSON.stringify(docs));
+        res.end();
+    });
+}

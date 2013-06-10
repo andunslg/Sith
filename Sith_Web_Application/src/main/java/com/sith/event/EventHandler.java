@@ -99,10 +99,8 @@ public class EventHandler{
 			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("date"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
 			return event;
 		}catch(Exception e){
-			e.printStackTrace();
+			return null;
 		}
-		return event;
-
 	}
 
 	public ArrayList<Perception> getComments(String eventID){

@@ -18,6 +18,8 @@
     UserHandler userHandler=new UserHandler();
 
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+
+    String deletedEvents=userHandler.checkDeletedEvents(participant.getUserID());
     ArrayList<Event> events=userHandler.getUserEventList(participant.getUserID());
 %>
 
@@ -46,15 +48,6 @@
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
 
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-        });
-
-
-    </script>
 </head>
 <body>
 
@@ -159,6 +152,17 @@
                     %>
                     </tbody>
                 </table>
+                <%
+                    if(!deletedEvents.equals("")){
+                %>
+                <br>
+                <br>
+                <div>
+                    Following events have been deleted by there admins. So they have been removed form your registration list. There event ID's are <%=deletedEvents%>
+                </div>
+                <%
+                    }
+                %>
             </div>
         </header>
 

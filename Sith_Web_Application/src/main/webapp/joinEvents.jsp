@@ -190,7 +190,7 @@
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
+                alert("Error joining event - " + error.message);
             }
         });
     });

@@ -259,11 +259,11 @@
                 var msg = $response.filter('#msg').text();
                 alert(msg)
                 if (msg == "You are successfully deleted the event\n") {
-                    window.location.href = 'myEvents.jsp';
+                    window.location.href = '../myEvents.jsp';
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
+                alert("Error deleting event - " + error.message);
             }
         });
 

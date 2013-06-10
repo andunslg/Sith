@@ -15,6 +15,9 @@
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+
+    ArrayList<Participant> participantList=new ArrayList<Participant>();
+    participantList=eventHandler.getParticipants(currentEvent.getEventID());
 %>
 <head>
     <meta charset="utf-8">
@@ -112,24 +115,29 @@
                 <thead>
                 <tr>
                     <th class="avatar">Name</th>
-                    <th>Feeling</th>
-                    <th>Time</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    List<Participant> participantList=new ArrayList<Participant>();
-                    participantList=eventHandler.getParticipants("dkkdnk");
                     for(Participant temp : participantList){
                 %>
                 <tr>
                     <td class="avatar"><img src="images/uiface1.png" alt="" height="40"
                                             width="40"/> <%=temp.getUserName()%>
                     </td>
-                    <td><%=temp.getMode()%>
-                    </td>
-                    <td><%=temp.getTime()%>
-                    </td>
+                    <%
+                        if(currentEvent.getAdminID().equals(temp.getUserID())){
+                    %>
+                    <td>Admin</td>
+                    <%
+                    }
+                    else{
+                    %>
+                    <td>Participant</td>
+                    <%
+                        }
+                    %>
                 </tr>
                 <% } %>
                 </tbody>

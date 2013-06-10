@@ -128,19 +128,31 @@ public class EventHandler{
 
 	public Participant getParticipant(String name){
 		if(name.equals("aslg")){
-			return new Participant("aslg","2.35PM","Happy");
+			return new Participant("aslg");
 		}
 		else{
-			return new Participant("andunslg","2.35PM","Happy");
+			return new Participant("andunslg");
 		}
 	}
 
-	public List<Participant> getParticipants(String eventID){
-		ArrayList<Participant> participants=new ArrayList<Participant>();
+	public ArrayList<Participant> getParticipants(String eventID){
+		ArrayList<Participant> participants=null;
 
-		participants.add(new Participant("Prabhath Pathirana","2.35PM","Happy"));
-		participants.add(new Participant("aslg","2.35PM","Happy"));
-		return participants;
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.GET_PARTICIPANTS+"?eventID="+eventID);
+			JSONArray jsonArray=new JSONArray(result);
+			participants=new ArrayList<Participant>();
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject jsonObject=jsonArray.getJSONObject(i);
+				Participant participant= new Participant(jsonObject.getString("userID"));
+				participants.add(participant);
+			}
+			return participants;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

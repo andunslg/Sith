@@ -18,7 +18,6 @@ public class UserHandler{
 
 		try{
 			result=httpUtil.doGet(SithAPI.GET_USER_EVENT_LIST+"?userID="+userID);
-			System.out.println(result);
 			JSONArray jsonArray=new JSONArray(result);
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){

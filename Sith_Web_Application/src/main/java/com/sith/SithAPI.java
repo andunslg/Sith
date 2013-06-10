@@ -22,6 +22,7 @@ public class SithAPI{
 	public static String GET_EVENT_BY_ID=NODEAPI+"getEventById";
 	public static String PUBLISH_COMMENT=NODEAPI+"publishComment";
 	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
+	public static String GET_PARTICIPANTS=NODEAPI+"getParticipants";
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 

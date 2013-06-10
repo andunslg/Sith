@@ -23,6 +23,7 @@ public class SithAPI{
 	public static String PUBLISH_COMMENT=NODEAPI+"publishComment";
 	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
 	public static String GET_PARTICIPANTS=NODEAPI+"getParticipants";
+	public static String DELETE_EVENT=NODEAPI+"deleteEvent";
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 

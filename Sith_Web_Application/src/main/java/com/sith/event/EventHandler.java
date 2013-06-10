@@ -155,4 +155,21 @@ public class EventHandler{
 		return null;
 	}
 
+	public boolean deleteEvent(String eventID){
+
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.DELETE_EVENT+"?eventID="+eventID);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

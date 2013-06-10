@@ -154,6 +154,16 @@
             <table>
                 <tr>
                     <td>
+                        <div>Event ID</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="eventID" value="<%=currentEvent.getEventID()%>" type="text" disabled="disabled">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <div>Event Name</div>
                     </td>
                     <td>
@@ -233,6 +243,32 @@
     </section>
 
 </section>
+
+<script>
+    $("#delete").click(function () {
+
+        var datObj = {};
+        datObj['eventID'] = '<%=currentEvent.getEventID()%>';
+
+        $.ajax({
+            url: './deleteEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                var $response = $(data);
+                var msg = $response.filter('#msg').text();
+                alert(msg)
+                if (msg == "You are successfully deleted the event\n") {
+                    window.location.href = 'myEvents.jsp';
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error adding event - " + error.message);
+            }
+        });
+
+    });
+</script>
 
 </body>
 </html>

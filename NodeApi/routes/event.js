@@ -31,7 +31,16 @@ exports.getAllEvents = function(req,res){
         res.write(result);
         res.end();
     });
-}
+};
+
+exports.getParticipants = function(req,res){
+    eventManager.getParticipants(req.query.eventID,function(docs){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        var result = JSON.stringify(docs);
+        res.write(result);
+        res.end();
+    });
+};
 exports.deleteEvent = function(req,res){
     eventManager.deleteEvent(req.query.eventID);
 };

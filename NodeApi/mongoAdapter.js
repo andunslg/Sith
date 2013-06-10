@@ -43,7 +43,7 @@ exports.getSingleDocument = function(query,collection,fn){
 };
 
 //retireve multiple documents that matches the given query
-exports.getDocuments = function(query,collection,fn){
+exports.getDocuments = function (query,collection,fn){
 	Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
 	if(err)
 		throw err;

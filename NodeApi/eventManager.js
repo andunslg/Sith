@@ -10,13 +10,13 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, date,
 };
 
 exports.getEventByID = function(eventID,fn){
-     mongoAdapter.getDocuments({eventID:eventID},'EventDetails',function(doc){
-                fn(doc);
+     mongoAdapter.getDocuments({eventID: eventID},'EventDetails', function (doc) {
+         fn(doc);
      });
 };
 
 exports.getAllEvents = function(fn){
-    mongoAdapter.getDocuments({},'EventDetails',function(doc){
+    mongoAdapter.getDocuments({}, 'EventDetails', function (doc) {
         fn(doc);
     });
 };
@@ -24,3 +24,8 @@ exports.deleteEvent = function(eventID){
    //mongoAdaptercall
 };
 
+exports.getParticipants = function(eventID,fn){
+    mongoAdapter.getDocuments({}, 'EventUser_' + eventID, function (docs) {
+        fn(docs);
+    });
+};

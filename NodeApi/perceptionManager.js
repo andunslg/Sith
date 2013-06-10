@@ -17,9 +17,9 @@ exports.getPerceptionForUser = function(userID){
 
 exports.getAllPerception = function(fn){
 	//var count=0;
-	mongoAdapter.getDocuments({}, "Event_Perception", function (docs) {
-        fn(docs);
-    });
+	mongoAdapter.getDocuments({},"Event_Perception",function(docs){
+			fn(docs);
+	});
 				
 }
 //Map strings to perception values
@@ -49,7 +49,7 @@ exports.insertComment = function(userID, eventID, perceptionValue, text){
 }
 
 exports.getAllComments = function(fn){
-	mongoAdapter.getDocuments({}, "Comments", function (docs) {
-        fn(docs);
-    });
+	mongoAdapter.getDocuments({},"Comments",function(docs){
+		fn(docs);
+	});
 }

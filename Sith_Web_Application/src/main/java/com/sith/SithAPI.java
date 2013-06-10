@@ -18,8 +18,13 @@ public class SithAPI{
 
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";
 	public static String ADD_EVENT=NODEAPI+"addEvent";
+	public static String ADD_USER_TO_EVENT=NODEAPI+"registerUserForEvent";
+	public static String GET_EVENT_BY_ID=NODEAPI+"getEventById";
+	public static String PUBLISH_COMMENT=NODEAPI+"publishComment";
+	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
+
 
 	public ArrayList<Event> getEventList(){
 		ArrayList<Event> events=null;

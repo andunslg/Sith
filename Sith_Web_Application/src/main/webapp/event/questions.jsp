@@ -1,8 +1,9 @@
-<%@ page import="com.sith.SithAPI" %>
 <%@ page import="com.sith.event.Event" %>
+<%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.sith.event.EventHandler" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sith.perception.Perception" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -63,7 +64,7 @@
             <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
         </li>
         <li>
-            <a href="event/event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
@@ -92,17 +93,68 @@
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="eventt.jsp">Workshop1</a> , Click here to <a href="#">change</a></p>
-        <%--<span class="close">&#10006;</span>--%>
+        <p>Current event is <%=currentEvent.getEventName()%> , Click here to <a href="../myEvents.jsp">change</a></p>
     </div>
 </section>
 
 <section class="content">
+    <section class="widget" style="height: 100px">
+        <header>
+            <span class="icon">&#128100;</span>
+            <hgroup>
+                <h1>Your Comment</h1>
 
-    <form method="POST" action="event/event.jsp">
-        <input name="user" type="text" value="Email"/>
-        <input name="password" value="Password" type="password"/>
-    </form>
+                <h2>Enter your comment</h2>
+            </hgroup>
+        </header>
+        <div class="content">
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <div>
+                                <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <select id="overallPerception">
+                                    <%
+                                        String perceptionArr[]=currentEvent.getPerceptionSchema().split(":");
+                                        for(int i=0;i<perceptionArr.length;i++){
+                                            if(i ==0){
+                                    %>
+                                    <option selected="selected" value="<%=perceptionArr[i]%>"><%=perceptionArr[i]%></option>
+                                    <%
+                                    }
+                                    else{
+                                    %>
+                                    <option value="<%=perceptionArr[i]%>"><%=perceptionArr[i]%></option>
+                                    <%
+                                            }
+                                        }
+                                    %>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div> Your Comment </div>
+                        </td>
+                        <td>
+                            <div>
+                                <input id="comment" type="text" value="">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <input id="addComment" value="Comment" type="button" class="button">
+                </div>
+            </form>
+        </div>
+    </section>
 
     <section class="widget">
         <header>
@@ -116,33 +168,60 @@
         <div class="content no-padding timeline">
             <div class="tl-post comments">
                 <%
-                    List<String> list=eventHandler.getComments("kdnka");
-                    String[] temp=null;
-                    for(String s : list){
-                        temp=s.split("::");
+                    ArrayList<Perception> list=eventHandler.getComments(currentEvent.getEventID());
+                    for(Perception p : list){
+
                 %>
                 <span class="icon">&#59168;</span>
 
                 <p>
-                    <strong><%=temp[0] %>
-                    </strong><br/>
-                    <%=temp[1] %>
+                    <strong>
+                        <%=p.getUserID() %> is feeling <%=p.getPerceptionValue() %> about  <%=eventHandler.getEvent(p.getEventID()).getEventName() %> and  <%=p.getUserID() %>'s comment is  <%=p.getText() %>
+                    </strong>
                 </p>
                 <%}%>
             </div>
         </div>
     </section>
 </section>
+
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script src="../js/jquery.wysiwyg.js"></script>
 <script src="../js/custom.js"></script>
 <script src="../js/cycle.js"></script>
 <script src="../js/jquery.checkbox.min.js"></script>
-<!--<script src="js/flot.js"></script>
-<script src="js/flot.resize.js"></script>
-<script src="js/flot-graphs.js"></script>
-<script src="js/flot-time.js"></script>
-<script src="js/cycle.js"></script>-->
 <script src="../js/jquery.tablesorter.min.js"></script>
+
+<script>
+    $("#addComment").click(function () {
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var userID = '<%=participant.getUserID()%>';
+        var comment = $('input[id=comment]').val();
+        var perception = $("#overallPerception").val();
+
+        var datObj = {};
+
+        datObj['eventID'] = eventID;
+        datObj['userID'] = userID;
+        datObj['text'] = comment;
+        datObj['perceptionValue'] = perception;
+
+        $.ajax({
+            url: './publishCommentHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                var $response = $(data);
+                var msg = $response.filter('#msg').text();
+                alert(msg)
+            },
+            error: function (xhr, status, error) {
+                alert("Error adding event - " + error.message);
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

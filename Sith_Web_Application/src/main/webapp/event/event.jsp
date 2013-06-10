@@ -160,245 +160,129 @@
         <h4 id="h42" align="center">Select your Perception</h4>
 
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden">
-            <img id="selected_image2" src="../images/perceptions/annoyed.png" alt="Smiley face" align="center">
+            <img id="selected_image2" src="../images/perceptions/default.png" alt="Smiley face" align="center">
         </div>
         <div class="row-fluid" align="center">
-            <div id="toggle1" class="span2 offset1">
-                <img class="thumbnail" style="width: 80px;height: 80px" src="../images/perceptions/excited.png"
-                     title="Happy">
+            <%
+                String perceptionArr[]=currentEvent.getPerceptionSchema().split(":");
+                for(int i=0;i<perceptionArr.length;i++){
+                    String perception=perceptionArr[i];
+                    String lowerPerception=perception.toLowerCase();
+            %>
+            <div id="<%=lowerPerception%>" class="perception">
+                <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
+                     title="<%=perception%>">
             </div>
-            <div id="toggle2" class="span2">
-                <img class="thumbnail" src="../images/perceptions/happy.png" style="width: 80px;height: 80px"
-                     title="Interested">
-            </div>
-            <div id="toggle3" class="span2">
-                <img class="thumbnail" src="../images/perceptions/satisfied.png" style="width: 80px;height: 80px"
-                     title="Satisfied">
-            </div>
-            <div id="toggle4" class="span2">
-                <img class="thumbnail" src="../images/perceptions/doomed.png" style="width: 80px;height: 80px"
-                     title="Bored">
-            </div>
-            <div id="toggle5" class="span2">
-                <img class="thumbnail" src="../images/perceptions/neutral.png" style="width: 80px;height: 80px"
-                     title="Sleepy">
-            </div>
+
+            <%
+                }
+            %>
 
         </div>
     </section>
 
-    <%--<section class="widget">--%>
-    <%--<header>--%>
-    <%--<span class="icon">&#128100;</span>--%>
-    <%--<hgroup>--%>
-    <%--<h1>Perceptions</h1>--%>
-    <%--<h2>Current Perceptions</h2>--%>
-    <%--</hgroup>--%>
-    <%--<aside>--%>
-    <%--<span> <a href="#">&#9881;</a>--%>
-    <%--<ul class="settings-dd">--%>
-    <%--<li>--%>
-    <%--<label>Option a</label>--%>
-    <%--<input type="checkbox" />--%>
-    <%--</li>--%>
-    <%--<li>--%>
-    <%--<label>Option b</label>--%>
-    <%--<input type="checkbox" checked="checked" />--%>
-    <%--</li>--%>
-    <%--<li>--%>
-    <%--<label>Option c</label>--%>
-    <%--<input type="checkbox" />--%>
-    <%--</li>--%>
-    <%--</ul> </span>--%>
-    <%--</aside>--%>
-    <%--</header>--%>
-    <%--<div class="row-fluid" align="center">--%>
-    <%--<div class="span10 offset1" aligh="center">--%>
-    <%--<ul id="carosal"  class="roundabout-holder" style="padding: 0px; position: relative;width: 80%;height: 40%">--%>
 
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="1" class="emotions" src="images/perceptions/128_19.png" alt="Enjoying">--%>
-
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="2" class="emotions" src="images/perceptions/funny.png" alt="Funny">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="3" class="emotions" src="images/perceptions/lovely.png" alt="Lovely">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="4"  class="emotions" src="images/perceptions/neutral.png" alt="Neutral">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="5" class="emotions" src="images/perceptions/satisfied.png" alt="Sad">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="6"  class="emotions" src="images/perceptions/angry.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="7"  class="emotions" src="images/perceptions/annoyed.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="8"  class="emotions" src="images/perceptions/crying.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="9"  class="emotions" src="images/perceptions/excited.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="10"  class="emotions" src="images/perceptions/rocking.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="11"  class="emotions" src="images/perceptions/very_happy.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="12"  class="emotions" src="images/perceptions/doomed.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="13"  class="emotions" src="images/perceptions/happy.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--<li class="roundabout-moveable-item" style="position: absolute; left: 119px; top: 139px; width: 100px; height: 100px; opacity: 0.43; z-index: 109; font-size: 6.9px;">--%>
-    <%--<img id="14"  class="emotions" src="images/perceptions/laughing.png" alt="smile">--%>
-    <%--</li>--%>
-    <%--</ul>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<br>--%>
-    <%--<br>--%>
-    <%--<h4 id="h4" align="center">Select your Perception</h4>--%>
-    <%--<div id="wrapper" style="width:100%; text-align:center;visibility:hidden" >--%>
-    <%--<img id="selected_image" src="images/perceptions/annoyed.png" alt="Smiley face" align="center">--%>
-    <%--</div>--%>
-    <%--</section>--%>
 </section>
 <script>
-    $("#toggle1").click(function () {
-        $("#toggle1").effect("shake");
+
+    $("#awesome").click(function () {
+        $("#awesome").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Happy";
+        document.getElementById("h42").innerHTML = "You are Awesome";
+        edit_save.src = "../images/perceptions/awesome.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
+    });
+
+    $("#wonderful").click(function () {
+        $("#wonderful").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Wonderful";
+        edit_save.src = "../images/perceptions/wonderful.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Wonderful");
+    });
+
+    $("#excited").click(function () {
+        $("#excited").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Excited";
         edit_save.src = "../images/perceptions/excited.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI(<%=currentEvent.getEventID()%>, <%=session.getAttribute("user").toString()%>, "Happy");
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Excited");
     });
-    $("#toggle5").click(function () {
-        $("#toggle5").effect("shake");
-        var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Sleepy";
-        edit_save.src = "../images/perceptions/neutral.png";
-        document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI(<%=currentEvent.getEventID()%>, <%=session.getAttribute("user").toString()%>, "Sleepy");
 
-
-    });
-    $("#toggle2").click(function () {
-        $("#toggle2").effect("shake");
+    $("#happy").click(function () {
+        $("#happy").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Interested";
+        document.getElementById("h42").innerHTML = "You are Happy";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI(<%=currentEvent.getEventID()%>, <%=session.getAttribute("user").toString()%>, "Interested");
-
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
     });
-    $("#toggle4").click(function () {
-        $("#toggle4").effect("shake");
+
+    $("#interested").click(function () {
+        $("#interested").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Bored";
-        edit_save.src = "../images/perceptions/doomed.png";
+        document.getElementById("h42").innerHTML = "You are Interested";
+        edit_save.src = "../images/perceptions/interested.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI(<%=currentEvent.getEventID()%>, <%=session.getAttribute("user").toString()%>, "Bored");
-
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Interested");
     });
-    $("#toggle3").click(function () {
-        $("#toggle3").effect("shake");
+
+    $("#neutral").click(function () {
+        $("#neutral").effect("shake");
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "You are Neutral";
-        edit_save.src = "../images/perceptions/satisfied.png";
+        edit_save.src = "../images/perceptions/neutral.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI(<%=currentEvent.getEventID()%>, <%=session.getAttribute("user").toString()%>, "Neutral");
-
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Neutral");
     });
-    //    jQuery(document).ready(function($){
-    //        $('#carosal').carousel({
-    //
-    //            resize:false,
-    //            mouseScroll:true,
-    //            mouseDrag:true,
-    //            speedAdjusted:2,
-    //            scaleRatio:0.4,
-    //            scrollbar:true,
-    //            tooltip:true,
-    //            mouseWheel:true,
-    //            mouseWheelReverse:true,
-    //            itemClick:onItemClick});
-    //    });
-    //
-    //    function onItemClick(event) {
-    //        var perception = event.index;
-    //
-    //        postToAPI("123","aslgg","Interested");// Here I have hardcorded user ID
-    //        showPerception(perception);
-    //    }
-    //    function showPerception(perception){
-    //        var edit_save = document.getElementById("selected_image");
-    //
-    //        if(perception == "0"){
-    //            document.getElementById("h4").innerHTML = "You are Enjoying";
-    //            edit_save.src = "images/perceptions/128_19.png";
-    //        }
-    //        else if(perception == "1"){
-    //            document.getElementById("h4").innerHTML = "You are Funny";
-    //            edit_save.src = "images/perceptions/funny.png";
-    //        }
-    //        else if(perception == "2"){
-    //            document.getElementById("h4").innerHTML = "You are Lovely";
-    //            edit_save.src ="images/perceptions/lovely.png" ;
-    //        }
-    //        else if(perception == "3"){
-    //            document.getElementById("h4").innerHTML = "You are Neutral";
-    //            edit_save.src = "images/perceptions/neutral.png";
-    //        }
-    //        else if(perception == "4"){
-    //            document.getElementById("h4").innerHTML = "You are Satisfied";
-    //            edit_save.src = "images/perceptions/satisfied.png";
-    //        }
-    //        else if(perception == "5"){
-    //            document.getElementById("h4").innerHTML = "You are Angry";
-    //            edit_save.src = "images/perceptions/angry.png";
-    //        }
-    //        else if(perception == "6"){
-    //            document.getElementById("h4").innerHTML = "You are Annoyed";
-    //            edit_save.src = "images/perceptions/annoyed.png";
-    //        }
-    //        else if(perception == "7"){
-    //            document.getElementById("h4").innerHTML = "You are Crying";
-    //            edit_save.src = "images/perceptions/crying.png";
-    //        }
-    //        else if(perception == "8"){
-    //            document.getElementById("h4").innerHTML = "You are Excited";
-    //            edit_save.src ="images/perceptions/excited.png" ;
-    //        }
-    //        else if(perception == "9"){
-    //            document.getElementById("h4").innerHTML = "You are Rocking";
-    //            edit_save.src ="images/perceptions/rocking.png"
-    //        }
-    //        else if(perception == "10"){
-    //            document.getElementById("h4").innerHTML = "You are Very Happy";
-    //            edit_save.src ="images/perceptions/very_happy.png" ;
-    //        }
-    //        else if(perception == "11"){
-    //            document.getElementById("h4").innerHTML = "You are Doomed";
-    //            edit_save.src = "images/perceptions/doomed.png";
-    //        }
-    //        else if(perception == "12"){
-    //            document.getElementById("h4").innerHTML = "You are Happy";
-    //            edit_save.src ="images/perceptions/happy.png" ;
-    //        }
-    //        else if(perception == "13"){
-    //            document.getElementById("h4").innerHTML = "You are Laughing";
-    //            edit_save.src = "images/perceptions/laughing.png";
-    //        }
-    //        document.getElementById('selected_image').style.visibility='visible';
-    //
-    //    }
+
+    $("#bored").click(function () {
+        $("#bored").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Bored";
+        edit_save.src = "../images/perceptions/bored.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Bored");
+    });
+
+    $("#sleepy").click(function () {
+        $("#sleepy").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Sleepy";
+        edit_save.src = "../images/perceptions/sleepy.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
+    });
+
+    $("#sad").click(function () {
+        $("#sad").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Sad";
+        edit_save.src = "../images/perceptions/sad.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Sad");
+    });
+    $("#angry").click(function () {
+        $("#angry").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Angry";
+        edit_save.src = "../images/perceptions/angry.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
+    });
+    $("#horrible").click(function () {
+        $("#horrible").effect("shake");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "You are Horrible";
+        edit_save.src = "../images/perceptions/horrible.png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Horrible");
+    });
+
+
 </script>
 
 </body>

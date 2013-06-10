@@ -171,8 +171,28 @@
 </section>
 <script type="text/javascript">
     $('.event_rows').click(function () {
-        <%--Here should call the API function to register user to the event--%>
-        document.location.href = 'event/event.jsp' + '?eventID=' + this.id;
+
+        var datObj = {};
+        var id = this.id;
+        datObj['eventID'] = id;
+        datObj['userID']  = '<%=participant.getUserID()%>';
+
+        $.ajax({
+            url: 'event/addUserToEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                var $response = $(data);
+                var msg = $response.filter('#msg').text();
+                alert(msg)
+                if (msg == "You are successfully registered to event\n") {
+                    window.location.href = 'event/event.jsp' + '?eventID=' + id;
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error adding event - " + error.message);
+            }
+        });
     });
 </script>
 

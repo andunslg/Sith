@@ -6,13 +6,23 @@
 // This method returns the nearest event list as a json object given the users gps location
 percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
+userManager = require("../userManager");
 exports.addEvent = function(req,res){
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.date,
 							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
-	res.writeHead(200, {'Content-Type': 'application/json'});
-  	var result = JSON.stringify({response: true });
-	res.write(result);
-	res.end();
+    userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
+        if(error){
+            console.log(error);
+            res.write(JSON.stringify({result:error.message}));
+            res.end();
+        }else{
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            var result = JSON.stringify({response: true });
+            res.write(result);
+            res.end();
+        }
+    });
+
 };
 
 exports.getEventByID = function(req,res){
@@ -101,6 +111,6 @@ exports.getAllComments = function(req,res){
 
 exports.getMasterPerceptions = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify(['Awesome','Wonderful','Excited', 'Happy','Interested', 'Neutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Disgusting', 'Horrible']));
+    res.write(JSON.stringify(['Awesome','Wonderful','Excited', 'Interested','Happy', 'Neutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Horrible']));
     res.end();
 }

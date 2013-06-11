@@ -8,8 +8,8 @@ percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
 userManager = require("../userManager");
 exports.addEvent = function(req,res){
-	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.date,
-							req.body.startTime, req.body.endTime, req.body.perceptionSchema);
+	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.startDate,
+							req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema);
     userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
         if(error){
             console.log(error);

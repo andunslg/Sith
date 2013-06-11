@@ -31,10 +31,16 @@ exports.registerUserForEvent = function(req,res){
 }
 
 exports.removeUserFromEvent = function(req,res){
-        userManager.removeUserFromEvent(req.query.userID,req.query.eventID);
-        res.writeHead(200, {'Content-Type': 'application/json'});
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    userManager.removeUserFromEvent(req.query.userID,req.query.eventID,function(err){
+          if(err){
+              res.write(JSON.stringify({result:err.message}));
+              res.end();
+          }
         res.write(JSON.stringify({result:true}));
         res.end();
+    });
+
 };
 
 exports.getUserById = function(req,res){

@@ -21,7 +21,10 @@ exports.getAllEvents = function(fn){
     });
 };
 exports.deleteEvent = function(eventID){
-    mongoAdapter.deleteDocument('EventDetails', {eventID:eventID});
+    mongoAdapter.deleteDocument('EventDetails', {eventID:eventID},function(err){
+              if(err)
+                console.log(err.message);
+    });
     mongoAdapter.dropCollection('EventPerception_'+eventID);
     mongoAdapter.dropCollection('EventUser_'+eventID);
 };

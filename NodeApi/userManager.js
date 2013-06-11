@@ -67,9 +67,17 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
     });
 };
 
-exports.removeUserFromEvent = function(userID,eventID){
-    mongoAdapter.deleteDocument('EventUser_'+eventID,{userID:userID});
-    mongoAdapter.deleteDocument('UserEvent_'+userID,{eventID:eventID});
+exports.removeUserFromEvent = function(userID,eventID,fn){
+        mongoAdapter.deleteDocument('EventUser_'+eventID,{userID:userID},function(err){
+            if(err)
+                fn(err);
+              fn(null);
+        });
+        mongoAdapter.deleteDocument('UserEvent_'+userID,{eventID:eventID},function(err){
+            if(err)
+                fn(err);
+              fn(null);
+        });
 }
 exports.getSubscribedEvents = function(userID,fn){
     mongoAdapter.getDocuments({},'UserEvent_'+userID,function(docs){

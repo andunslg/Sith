@@ -98,7 +98,7 @@
 </section>
 
 <section class="content">
-    <section class="widget" style="height: 100px">
+    <section class="widget" style="height: 75px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -112,6 +112,7 @@
                 <table>
                     <tr>
                         <td>
+                            <br>
                             <div>
                                 <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
                             </div>
@@ -143,14 +144,16 @@
                             <div> Your Comment </div>
                         </td>
                         <td>
+                            <br>
                             <div>
                                 <input id="comment" type="text" value="">
                             </div>
                         </td>
                     </tr>
                 </table>
+                <br>
                 <div>
-                    <input id="addComment" value="Comment" type="button" class="button">
+                    <input id="addComment" value="Post" type="button" class="button">
                 </div>
             </form>
         </div>

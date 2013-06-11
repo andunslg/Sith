@@ -28,11 +28,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <link rel="stylesheet" href="css/jquery-ui.css" media="all"/>
 
-
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/cycle.js"></script>
@@ -44,6 +41,19 @@
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
 
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
+
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script>
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+    </script>
 
 </head>
 <body>
@@ -224,6 +234,14 @@
 </section>
 
 <script>
+
+    $(function() {
+        $('#date').datepicker();
+        $('#startTime').datetimepicker();
+        $('#endTime').datetimepicker();
+    });
+
+
     $("#addEvent").click(function () {
         var eventID = $('input[id=eventID]').val();
         var eventName = $('input[id=eventName]').val();

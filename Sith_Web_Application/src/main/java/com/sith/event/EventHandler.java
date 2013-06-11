@@ -15,15 +15,16 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startTime, String endTime, String date, String location, String description, String perceptionSchema){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
 		parms.put("eventAdmin",eventAdmin);
 		parms.put("desc",description);
 		parms.put("location",location);
-		parms.put("date",date);
+		parms.put("startDate",startDate);
 		parms.put("startTime",startTime);
+		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 

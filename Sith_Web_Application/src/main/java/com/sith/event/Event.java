@@ -5,21 +5,23 @@ public class Event{
 	private String eventName;
 	private String adminID;
 	private String description;
+	private String startDate;
+	private String endDate;
 	private String startTime;
 	private String endTime;
-	private String date;
 	private String location;
 	private String perceptionSchema;
 
-	public Event(String eventID, String eventName, String adminID, String description, String startTime, String endTime, String date, String location, String perceptionSchema){
+	public Event(String eventID, String eventName, String adminID, String description,String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
 		this.adminID=adminID;
 		this.description=description;
+		this.startDate=startDate;
+		this.endDate=endDate;
 		this.startTime=startTime;
 		this.endTime=endTime;
-		this.date=date;
 		this.location=location;
 		this.perceptionSchema=perceptionSchema;
 	}
@@ -44,10 +46,6 @@ public class Event{
 		return endTime;
 	}
 
-	public String getDate(){
-		return date;
-	}
-
 	public String getLocation(){
 		return location;
 	}
@@ -58,5 +56,13 @@ public class Event{
 
 	public String getEventID(){
 		return eventID;
+	}
+
+	public String getStartDate(){
+		return startDate;
+	}
+
+	public String getEndDate(){
+		return endDate;
 	}
 }

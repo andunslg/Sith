@@ -180,6 +180,26 @@
                 </tr>
                 <tr>
                     <td>
+                        <div>Starting Date</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="startDate" value="<%=currentEvent.getStartDate()%>" type="text">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>End Date</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input id="endDate" value="<%=currentEvent.getEndDate()%>" type="text">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <div>Start time</div>
                     </td>
                     <td>
@@ -198,16 +218,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div>Date</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="date" value="<%=currentEvent.getDate()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
+
                 <tr>
                     <td>
                         <div>Location</div>

@@ -4,7 +4,8 @@
 //mongoAdapter = require('./mongoAdapter.js');
 exports.insertPerception = function(userID,eventID,perceptionVal) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
-	mongoAdapter.insertDocument("Event_Perception", doc);
+	mongoAdapter.insertDocument("Event_Perception"+eventID, doc);
+    mongoAdapter.insertDocument("User_Perception"+userID,doc)
 }
 
 exports.getPerceptionForEvent = function(eventID){

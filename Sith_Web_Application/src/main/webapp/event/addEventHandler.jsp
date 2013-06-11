@@ -31,12 +31,12 @@
     }
 
 %>
-<html>
+
 <body>
 <div id="msg"><%=message%>
 </div>
 </body>
-</html>
+
 
 
 

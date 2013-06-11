@@ -60,6 +60,23 @@ public class EventHandler{
 		return false;
 	}
 
+	public boolean removeUserFromEvent(String userID,String eventID){
+
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.REMOVE_USER_FROM_EVENT+"?userID="+userID+"&eventID="+eventID);
+			if(!result.equals("")){
+				if("{\"result\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public boolean addComment(String eventID, String userID,String perceptionValue, String text){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);

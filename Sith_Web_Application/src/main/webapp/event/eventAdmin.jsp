@@ -10,9 +10,15 @@
             response.sendRedirect("index.jsp");
         }
     }
-
     EventHandler eventHandler=new EventHandler();
-    Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
+    Event currentEvent=null;
+    if(request.getParameter("eventID")!=null){
+        currentEvent=eventHandler.getEvent(request.getParameter("eventID").toString());
+        session.setAttribute("eventID",currentEvent.getEventID());
+    }else{
+        currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
+    }
+
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 

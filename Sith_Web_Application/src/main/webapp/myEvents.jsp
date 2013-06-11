@@ -121,7 +121,8 @@
                     <thead>
                     <tr>
                         <th class="avatar">Name</th>
-                        <th>Administrator</th>
+                        <th>Type</th>
+                        <th>Change</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -136,14 +137,21 @@
                         <td>
                             Admin
                         </td>
+                        <td>
+                            <span class="button"><a href="event/eventAdmin.jsp?eventID=<%=event.getEventID()%>">Admin Panel</a></span>
+                        </td>
                         <%
                         }else{
                         %>
                         <td>
                             Participant
                         </td>
+                        <td>
+                            <span class="button"><a href="event/removeUserFromEventHandler.jsp?eventID=<%=event.getEventID()%>&userID=<%=participant.getUserID()%>">Un-register</a></span>
+                        </td>
                         <%
                             }
+
                         %>
 
                     </tr>

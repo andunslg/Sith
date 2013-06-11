@@ -1,8 +1,9 @@
 <%@ page import="com.sith.SithAPI" %>
 <%@ page import="com.sith.event.Event" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.sith.event.Participant" %>
 <%@ page import="com.sith.event.EventHandler" %>
+<%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.user.UserHandler" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -16,9 +17,16 @@
         }
     }
     EventHandler eventHandler=new EventHandler();
+    UserHandler userHandler= new UserHandler();
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 
     ArrayList<Event> events=sithAPI.getEventList();
+
+    ArrayList<Event> userEvents=userHandler.getUserEventList(participant.getUserID());
+    ArrayList<String>  userEventsIDs= new ArrayList<String>();
+    for(Event event :userEvents){
+        userEventsIDs.add(event.getEventID());
+    }
 
 %>
 
@@ -140,7 +148,7 @@
                     <tbody>
                     <%
                         for(Event event : events){
-                            if(event.getAdminID().equals(participant.getUserID())){
+                            if(event.getAdminID().equals(participant.getUserID())||userEventsIDs.contains(event.getEventID())){
                                 continue;
                             }
                     %>

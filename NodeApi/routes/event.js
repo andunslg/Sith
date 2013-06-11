@@ -80,15 +80,6 @@ exports.searchEventListByName = function(req,res){
 	res.end();
 };
 
-//user register for event
-exports.registerForEvent = function(req,res){	
-	//dataAdapter.registerForEvent(req.body.userId,req.body.eventId);
-	res.writeHead(200, {'Content-Type': 'application/json'});
-  	var result = JSON.stringify({response: "true" });
-	res.write(result);
-	res.end();
-};
-
 exports.publishEventPerception = function(req,res){
    	percepManager.insertPerception(req.body.userID , req.body.eventID , percepManager.mapPerception(req.body.perceptionValue));  	
 	res.writeHead(200, {'Content-Type': 'application/json'});

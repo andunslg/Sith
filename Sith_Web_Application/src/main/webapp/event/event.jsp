@@ -168,13 +168,24 @@
                 for(int i=0;i<perceptionArr.length;i++){
                     String perception=perceptionArr[i];
                     String lowerPerception=perception.toLowerCase();
+                    if(i == 0){
             %>
-            <div id="<%=lowerPerception%>" class="perception">
+            <div id="<%=lowerPerception%>" class="span2 offset1">
                 <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
                      title="<%=perception%>">
             </div>
 
             <%
+
+                    }else{
+            %>
+            <div id="<%=lowerPerception%>" class="span2">
+                <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
+                     title="<%=perception%>">
+            </div>
+
+            <%
+                    }
                 }
             %>
 

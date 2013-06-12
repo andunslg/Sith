@@ -15,15 +15,16 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startTime, String endTime, String date, String location, String description, String perceptionSchema){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
 		parms.put("eventAdmin",eventAdmin);
 		parms.put("desc",description);
 		parms.put("location",location);
-		parms.put("date",date);
+		parms.put("startDate",startDate);
 		parms.put("startTime",startTime);
+		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 
@@ -48,6 +49,23 @@ public class EventHandler{
 		String result=null;
 		try{
 			result=httpUtil.doGet(SithAPI.ADD_USER_TO_EVENT+"?eventID="+eventID+"&userID="+userID+"&status=participant");
+			if(!result.equals("")){
+				if("{\"result\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean removeUserFromEvent(String userID,String eventID){
+
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.REMOVE_USER_FROM_EVENT+"?userID="+userID+"&eventID="+eventID);
 			if(!result.equals("")){
 				if("{\"result\":true}".equals(result)){
 					return true;
@@ -96,7 +114,7 @@ public class EventHandler{
 		try{
 			result=httpUtil.doGet(SithAPI.GET_EVENT_BY_ID+"?eventID="+eventID);
 			JSONObject jsonObject=new JSONObject(result.substring(1,result.length()-1));
-			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("date"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
 			return event;
 		}catch(Exception e){
 			return null;

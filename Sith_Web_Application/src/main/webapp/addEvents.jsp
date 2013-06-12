@@ -50,9 +50,9 @@
 
     <link rel="stylesheet" href="/resources/demos/style.css" />
     <script>
-    $(function() {
-        $( "#datepicker" ).datepicker();
-    });
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
     </script>
 
 </head>
@@ -142,31 +142,21 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Start time</div>
+                            <div>Start</div>
                         </td>
                         <td>
                             <div>
-                                <input name="startTime" id="startTime" value="hh" type="text">
+                                <input name="start" id="start" value="06/12/2013 00:00" type="text">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div>End Time</div>
+                            <div>End</div>
                         </td>
                         <td>
                             <div>
-                                <input name="endTime" id="endTime" value="hh" type="text">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>Date</div>
-                        </td>
-                        <td>
-                            <div>
-                                <input name="date" id="date" value="dd-mm-yyyy" type="text">
+                                <input name="end" id="end" value="06/12/2013 01:00" type="text">
                             </div>
                         </td>
                     </tr>
@@ -236,18 +226,16 @@
 <script>
 
     $(function() {
-        $('#date').datepicker();
-        $('#startTime').datetimepicker();
-        $('#endTime').datetimepicker();
+        $('#start').datetimepicker();
+        $('#end').datetimepicker();
     });
 
 
     $("#addEvent").click(function () {
         var eventID = $('input[id=eventID]').val();
         var eventName = $('input[id=eventName]').val();
-        var startTime = $('input[id=startTime]').val();
-        var endTime = $('input[id=endTime]').val();
-        var date = $('input[id=date]').val();
+        var start = $('input[id=start]').val();
+        var end = $('input[id=end]').val();
         var location = $('input[id=location]').val();
         var description = $('input[id=description]').val();
 
@@ -268,36 +256,38 @@
             }
         }
 
-        var datObj = {};
+        if(start.length!=16  ||end.length!=16){
+            alert("Please select correct Start and End values")
+        }
+        else{
 
-        datObj['eventID'] = eventID;
-        datObj['eventName'] = eventName;
-        datObj['eventAdmin'] = '<%=participant.getUserID()%>';
-        datObj['startTime'] = startTime;
-        datObj['endTime'] = endTime;
-        datObj['date'] = date;
-        datObj['location'] = location;
-        datObj['description'] = description;
-        datObj['perceptionSchema'] = perceptionSchema;
+            var datObj = {};
+
+            datObj['eventID'] = eventID;
+            datObj['eventName'] = eventName;
+            datObj['eventAdmin'] = '<%=participant.getUserID()%>';
+            datObj['start'] = start;
+            datObj['end'] = end;
+            datObj['location'] = location;
+            datObj['description'] = description;
+            datObj['perceptionSchema'] = perceptionSchema;
 
 
-        $.ajax({
-            url: 'event/addEventHandler.jsp',
-            data: datObj,
-            type: 'POST',
-            success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                if (msg == "The Event is successfully added.\n" || msg == "The Event is not added. Please try later!\n") {
-                    window.location.href = 'myEvents.jsp';
+            $.ajax({
+                url: 'event/addEventHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    alert(data)
+                    if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
+                        window.location.href = 'myEvents.jsp';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error adding event - " + error.message);
                 }
-            },
-            error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
-            }
-        });
-
+            });
+        }
     });
 </script>
 

@@ -7,21 +7,26 @@
     String eventID=request.getParameter("eventID");
     String eventName=request.getParameter("eventName");
     String eventAdmin=request.getParameter("eventAdmin");
-    String startTime=request.getParameter("startTime");
-    String endTime=request.getParameter("endTime");
-    String date=request.getParameter("date");
     String location=request.getParameter("location");
     String description=request.getParameter("description");
     String perceptionSchema=request.getParameter("perceptionSchema");
+    String start=request.getParameter("start");
+    String end=request.getParameter("end");
 
-    if("Unique event ID".equals(eventID)||"Event Name".equals(eventName)||"hh".equals(startTime)||"hh".equals(endTime)||"dd-mm-yyyy".equals(date)||"Event Location".equals(location)){
+
+    String startDate=start.substring(0,10);
+    String startTime=start.substring(11,16);
+    String endDate=end.substring(0,10);
+    String endTime=end.substring(11,16);
+
+    if("Unique event ID".equals(eventID)||"Event Name".equals(eventName)||"Event Location".equals(location)){
         message="Please fill the required filed with suitable values.";
     }else{
 
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startTime,endTime,date,location,description,perceptionSchema);
+            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema);
             if(res){
                 message="The Event is successfully added.";
             }else{
@@ -31,12 +36,8 @@
     }
 
 %>
-<html>
-<body>
-<div id="msg"><%=message%>
-</div>
-</body>
-</html>
+<%=message%>
+
 
 
 

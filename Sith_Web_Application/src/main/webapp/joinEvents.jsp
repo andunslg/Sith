@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="com.sith.event.EventHandler" %>
+<%@ page import="com.sith.user.UserHandler" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -16,9 +17,16 @@
         }
     }
     EventHandler eventHandler=new EventHandler();
+    UserHandler userHandler= new UserHandler();
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 
     ArrayList<Event> events=sithAPI.getEventList();
+
+    ArrayList<Event> userEvents=userHandler.getUserEventList(participant.getUserID());
+    ArrayList<String>  userEventsIDs= new ArrayList<String>();
+    for(Event event:userEvents){
+        userEventsIDs.add(event.getEventID());
+    }
 
 %>
 
@@ -130,9 +138,8 @@
                     <tr>
                         <th class="avatar">Name</th>
                         <th>Description</th>
-                        <th>Date</th>
-                        <th>Starting Time</th>
-                        <th>End Time</th>
+                        <th>Start</th>
+                        <th>End</th>
                         <th>Location</th>
 
                     </tr>
@@ -140,7 +147,7 @@
                     <tbody>
                     <%
                         for(Event event : events){
-                            if(event.getAdminID().equals(participant.getUserID())){
+                            if(event.getAdminID().equals(participant.getUserID())||userEventsIDs.contains(event.getEventID())){
                                 continue;
                             }
                     %>
@@ -149,11 +156,10 @@
                         </td>
                         <td><%=event.getDescription()%>
                         </td>
-                        <td><%=event.getDate()%>
+                        <td><%=event.getStartDate()+" "+event.getStartTime()%>
                         </td>
-                        <td><%=event.getStartTime()%>
+                        <td><%=event.getEndDate()+" "+event.getEndTime()%>
                         </td>
-                        <td><%=event.getEndTime()%>
                         </td>
                         <td><%=event.getLocation()%>
                         </td>

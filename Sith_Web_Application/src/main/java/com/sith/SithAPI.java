@@ -19,6 +19,7 @@ public class SithAPI{
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";
 	public static String ADD_EVENT=NODEAPI+"addEvent";
 	public static String ADD_USER_TO_EVENT=NODEAPI+"registerUserForEvent";
+	public static String REMOVE_USER_FROM_EVENT=NODEAPI+"unsubscribeFromEvent" ;
 	public static String GET_EVENT_BY_ID=NODEAPI+"getEventById";
 	public static String PUBLISH_COMMENT=NODEAPI+"publishComment";
 	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
@@ -40,7 +41,7 @@ public class SithAPI{
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){
 				JSONObject jsonObject=jsonArray.getJSONObject(i);
-				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("date"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
 				events.add(event);
 			}
 

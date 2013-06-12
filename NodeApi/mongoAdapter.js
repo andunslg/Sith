@@ -88,3 +88,15 @@ exports.createCollection = function(name){
 		});
 	});
 }
+
+exports.updateDocument = function(collection,selector,newDoc){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        db.collection(collection,function(err,collection){
+          collection.update(selector,{$set:newDoc},function(err,result){
+                 if(err)
+                    throw err;
+                  console.log('update Collection as'+result);
+          });
+        });
+    });
+}

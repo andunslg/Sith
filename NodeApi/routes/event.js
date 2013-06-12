@@ -58,6 +58,21 @@ exports.deleteEvent = function(req,res){
     res.write(result);
     res.end();
 };
+
+exports.updateEvent = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    eventManager.updateEvent(req.body.oldEventID,req.body.eventID,req.body.eventName,req.body.eventAdmin,
+                            req.body.desc, req.body.location, req.body.date,req.body.startTime, req.body.endTime,
+                            req.body.perceptionSchema,function(result){
+           if(result){
+               res.write(JSON.stringify({response: true }));
+           }else{
+               res.write(JSON.stringify({response: false}));
+           }
+            res.end();
+        });
+
+};
 exports.searchEventListByGps = function(req,res){	
 	// dataAdapter.getEventListByGps(req.body.gpsLocation);
 	res.writeHead(200, {'Content-Type': 'application/json'});	

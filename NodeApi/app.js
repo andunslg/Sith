@@ -55,6 +55,7 @@ app.get('/getEventById',eventRoutes.getEventByID);
 app.get('/getAllEvents',eventRoutes.getAllEvents);
 app.get('/getParticipants',eventRoutes.getParticipants);
 app.get('/deleteEvent',eventRoutes.deleteEvent);
+app.post('/updateEvent',eventRoutes.updateEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
@@ -63,10 +64,12 @@ app.get('/getAllComments',eventRoutes.getAllComments);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
+app.post('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
 app.get('/registerUserForEvent',userMgmtRoutes.registerUserForEvent);
 app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

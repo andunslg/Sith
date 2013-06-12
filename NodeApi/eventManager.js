@@ -10,7 +10,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, date,
 };
 
 exports.getEventByID = function(eventID,fn){
-     mongoAdapter.getDocuments({eventID: eventID},'EventDetails', function (doc) {
+     mongoAdapter.getSingleDocument({eventID: eventID},'EventDetails', function (doc) {
          fn(doc);
      });
 };
@@ -29,6 +29,18 @@ exports.deleteEvent = function(eventID){
     mongoAdapter.dropCollection('EventUser_'+eventID);
 };
 
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,fn){
+    newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
+        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema};
+     this.getEventByID(eventID,function(result){
+         if(!result || (oldEventID==eventID)){
+             mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);
+             fn(true);
+         }else{
+             fn(false);
+         }
+     });
+}
 exports.getParticipants = function(eventID,fn){
     mongoAdapter.getDocuments({}, 'EventUser_' + eventID, function (docs) {
         fn(docs);

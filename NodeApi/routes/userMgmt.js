@@ -16,6 +16,17 @@ exports.authenticateUser = function(req,res){
 	userManager.authenticateUser(req,res);
 };
 
+exports.updateAnnonymousUser = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+     userManager.updateAnnonymousUser(req.body.oldUserName,req.body.userName,req.body.password,function(result){
+         if(result){
+             res.write(JSON.stringify({result:true}));
+         }else{
+             res.write(JSON.stringify({result:false}));
+         }
+            res.end();
+     });
+}
 exports.registerUserForEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
     userManager.addUserToEvent(req.query.eventID,req.query.userID,req.query.status,function(error){
@@ -42,6 +53,7 @@ exports.removeUserFromEvent = function(req,res){
     });
 
 };
+
 
 exports.getUserById = function(req,res){
   userManager.getUserById(req.query.userID,function(docs){

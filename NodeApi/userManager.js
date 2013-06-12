@@ -4,6 +4,7 @@
 mongoAdapter = require('./mongoAdapter.js');
 var crypto = require('crypto');
 
+//annonymous users are registered without having any email verification...just collect username and password
 exports.addAnnonymousUser = function(req,res){
 	res.writeHead(200, {
 		'Content-Type' : 'application/json',
@@ -27,10 +28,32 @@ exports.addAnnonymousUser = function(req,res){
 };
 
 exports.getUserById = function(userID,fn){
-      mongoAdapter.getDocuments({userName: userID},'Users', function (docs) {
+      mongoAdapter.getSingleDocument({userName: userID},'Users', function (docs) {
           fn(docs);
       });
 };
+
+exports.updateAnnonymousUser = function(oldUserName, userName,password,fn){
+    var hash = crypto.createHash('md5').update(password).digest("hex");
+    newDoc = {userName:userName,password:hash}
+     this.getUserById(userName,function(result){
+         console.log(result);
+         if((!result) || (oldUserName==userName)){
+             mongoAdapter.updateDocument('Users',{userName:oldUserName},newDoc);
+             fn(true);
+         }else{
+             fn(false);
+         }
+     })
+
+}
+
+isUserNameAvailable = function(userName,fn){
+   mongoAdapter.getSingleDocument({userName:userName},'Users',function(docs){
+       if(docs){fn(false); return;}
+       fn(true);
+   });
+}
 exports.authenticateUser = function(req,res){
 	res.writeHead(200, {
 		'Content-Type' : 'application/json',

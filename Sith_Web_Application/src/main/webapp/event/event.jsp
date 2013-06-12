@@ -157,6 +157,7 @@
                 <h2>Current Perception</h2>
             </hgroup>
         </header>
+        <br>
         <h4 id="h42" align="center">Select your Perception</h4>
 
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden">

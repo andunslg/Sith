@@ -214,8 +214,8 @@
                         </td>
                     </tr>
                 </table>
-                <div>
-                    <input id="addEvent" value="Add" type="button" class="button">
+                <div align="center">
+                    <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
                 </div>
             </form>
 

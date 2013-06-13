@@ -27,6 +27,20 @@ exports.addAnnonymousUser = function(req,res){
 	});
 };
 
+exports.addFBUser = function(userName,token){
+    res.writeHead(200, {
+        'Content-Type' : 'application/json',
+        'Cache-Control' : 'no-cache',
+        'Connection' : 'keep-alive'
+    });
+    var newUserName = "sith@123!@#$_" +userName;
+    var document = {userName: newUserName, token:token};
+    mongoAdapter.insertDocument('Users',document);
+    mongoAdapter.createCollection('UserEvent_'+newUserName);
+    mongoAdapter.createCollection('UserPerceptions_'+newUserName);
+    res.write(JSON.stringify({result:true}));
+    res.end();
+};
 exports.getUserById = function(userID,fn){
       mongoAdapter.getSingleDocument({userName: userID},'Users', function (docs) {
           fn(docs);

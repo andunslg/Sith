@@ -58,7 +58,7 @@ app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 //routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
-
+app.get('/countPerceptions2',analyticRoutes.sendPerceptionCount2);
 //routing for get all the perceptions available in the platform
 app.get('/getMasterPerceptions',eventRoutes.getMasterPerceptions);
 //routing for event category
@@ -75,6 +75,7 @@ app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getAllComments',eventRoutes.getAllComments);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
+app.post('/registerFBUser',userMgmtRoutes.registerFBUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
 app.put('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
 app.get('/registerUserForEvent',userMgmtRoutes.registerUserForEvent);

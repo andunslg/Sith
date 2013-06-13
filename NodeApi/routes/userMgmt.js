@@ -12,6 +12,10 @@ exports.registerAnnonymousUser = function(req,res){
 	userManager.addAnnonymousUser(req,res);
 	
 };
+
+exports.registerFBUser = function(){
+    userManager.addFBUser(req.body.userName,req.body.token);
+};
 exports.authenticateUser = function(req,res){
 	userManager.authenticateUser(req,res);
 };

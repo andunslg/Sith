@@ -4,8 +4,8 @@
 //mongoAdapter = require('./mongoAdapter.js');
 exports.insertPerception = function(userID,eventID,perceptionVal) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
-	mongoAdapter.insertDocument("Event_Perception"+eventID, doc);
-    mongoAdapter.insertDocument("User_Perception"+userID,doc)
+	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);
+    mongoAdapter.insertDocument("UserPerceptions_"+userID,doc)
 }
 
 exports.getPerceptionForEvent = function(eventID){
@@ -16,9 +16,9 @@ exports.getPerceptionForUser = function(userID){
 	//code for filter based on users
 }
 
-exports.getAllPerception = function(fn){
+exports.getEventPerception = function(eventID,fn){
 	//var count=0;
-	mongoAdapter.getDocuments({},"Event_Perception",function(docs){
+	mongoAdapter.getDocuments({}, "EventPerceptions_"+eventID, function(docs){
 			fn(docs);
 	});
 				

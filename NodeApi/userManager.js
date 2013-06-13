@@ -46,14 +46,18 @@ exports.updateAnnonymousUser = function(oldUserName, userName,password,fn){
          }
      })
 
-}
+};
 
-isUserNameAvailable = function(userName,fn){
-   mongoAdapter.getSingleDocument({userName:userName},'Users',function(docs){
-       if(docs){fn(false); return;}
-       fn(true);
-   });
-}
+exports.deleteUser = function(userID,fn){
+     mongoAdapter.deleteDocument('Users',{userName:userID},function(error){
+           if(error){
+             fn(error);
+               return;
+           }
+            fn(null);
+     });
+};
+
 exports.authenticateUser = function(req,res){
 	res.writeHead(200, {
 		'Content-Type' : 'application/json',

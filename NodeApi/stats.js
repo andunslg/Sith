@@ -21,8 +21,8 @@ exports.calAveragePerception = function(fn){
 }
 
 //count perception values under each category
-exports.countPerceptions =function(fn){
-	percepManager.getAllPerception(function(docs){
+exports.countPerceptions =function(EventID,fn){
+	percepManager.getEventPerception(EventID,function(docs){
 		var count = docs.length;
 		var perceptions  = [0,0,0,0,count];
 		for(var i=0; i<count; i++){

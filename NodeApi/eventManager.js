@@ -5,7 +5,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, start
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
 			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema};
 	mongoAdapter.insertDocument('EventDetails',doc);
-	mongoAdapter.createCollection('EventPerception_'+eventID);
+	mongoAdapter.createCollection('EventPerceptions_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
 };
 

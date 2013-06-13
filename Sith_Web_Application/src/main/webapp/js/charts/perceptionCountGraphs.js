@@ -2,21 +2,9 @@
  * @author Sachintha
  * This document contains barchart and pie chart to display perception counts
  */
-$(document).ready(function () {
-    barChart();
-    $("#chartType").change(function () {
-        if ($('#chartType').val() == 'bar') {
-            barChart();
-        } else {
-            pieChart();
-        }
-    });
-})
-
-
-barChart = function () {
+barChart = function (url) {
     //load data from the server
-    $.get('http://192.248.8.246:3000/countPerceptions', function (e) {
+    $.get(url, function (e) {
         var chart;
         var perceptions;
         //$.ajax({
@@ -76,8 +64,8 @@ barChart = function () {
     });
 }
 
-pieChart = function () {
-    $.get('http://192.248.8.246:3000/countPerceptions', function (e) {
+pieChart = function (url) {
+    $.get(url, function (e) {
         //var data = e.data;
         //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
 

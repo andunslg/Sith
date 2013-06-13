@@ -5,7 +5,8 @@ stats = require('../stats');
 
 //send perception totals in each catelog
 exports.sendPerceptionCount = function(req,res){
-	stats.countPerceptions(function(perceptions){
+    eventID = req.query.eventID;
+	stats.countPerceptions(eventID,function(perceptions){
 		//send perceptions as a json abject
 		var reply = JSON.stringify({data:[perceptions[0], perceptions[1], perceptions[2], perceptions[3]]});
 		res.writeHead(200, {
@@ -44,13 +45,15 @@ exports.sendPeriodicAvgPerception = function(req,res){
 };
 
 exports.sendPeriodicPerceptionCount = function(req,res){
+    eventID = req.query.eventID;
+    console.log(eventID);
 	res.writeHead(200, {
 		'Content-Type' : 'text/event-stream',
 		'Cache-Control' : 'no-cache',
 		'Connection' : 'keep-alive'
 		});	
 		setInterval(function() {
-		constructCountMessage(res);
+		constructCountMessage(eventID, res);
 		},3000);
 }
 
@@ -66,9 +69,9 @@ function constructAvgPerceptionMessage(res,id,time){
 };
 
 
-function constructCountMessage(res){
+function constructCountMessage(eventID,res){
 //	var perceptions;
-	stats.countPerceptions(function(perceptions){		
+	stats.countPerceptions(eventID,function(perceptions){
 		res.write('event: graph\n');
 		res.write('data: {\n');
     	res.write('data: "values": ['+ perceptions[0]+','+perceptions[1]+','+perceptions[2]+','+perceptions[3]+','+perceptions[4]+']\n');

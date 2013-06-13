@@ -16,9 +16,9 @@ exports.getPerceptionForUser = function(userID){
 	//code for filter based on users
 }
 
-exports.getAllPerception = function(fn){
+exports.getEventPerception = function(eventID,fn){
 	//var count=0;
-	mongoAdapter.getDocuments({},"Event_Perception",function(docs){
+	mongoAdapter.getDocuments({}, "EventPerception_"+eventID, function(docs){
 			fn(docs);
 	});
 				

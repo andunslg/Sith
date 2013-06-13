@@ -10,7 +10,9 @@
     "hjs": "*",
     "mysql": "*",
     "mongodb": "*",
-    "crypto" : "*"
+    "crypto" : "*",
+    "passport" : "*",
+    "passport-http-bearer" : "*"
   },
   "subdomain": "sachintha-sith",
   "engines": {

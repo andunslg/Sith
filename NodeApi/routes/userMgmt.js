@@ -27,6 +27,18 @@ exports.updateAnnonymousUser = function(req,res){
             res.end();
      });
 }
+
+exports.deleteUser = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    userManager.deleteUser(req.body.userName,function(error){
+        if(!error){
+            res.write(JSON.stringify({result:true}));
+        }else{
+            res.write(JSON.stringify({result:false}));
+        }
+        res.end();
+    })
+}
 exports.registerUserForEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
     userManager.addUserToEvent(req.query.eventID,req.query.userID,req.query.status,function(error){

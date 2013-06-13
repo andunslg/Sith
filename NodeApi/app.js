@@ -9,7 +9,9 @@ var express = require('express')
   , path = require('path')
   , eventRoutes = require('./routes/event')
   , analyticRoutes = require('./routes/analytics')
-  , userMgmtRoutes = require('./routes/userMgmt');
+  , userMgmtRoutes = require('./routes/userMgmt')
+  , passport = require("passport")
+  , BearerStrategy =require('passport-http-bearer');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -24,7 +26,17 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
-
+/*
+passport.use(new BearerStrategy(
+    function(token, done) {
+        User.findOne({ token: token }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user, { scope: 'read' });
+        });
+    }
+));
+ */
 app.all('/*', function(req, res, next) {
  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -55,7 +67,7 @@ app.get('/getEventById',eventRoutes.getEventByID);
 app.get('/getAllEvents',eventRoutes.getAllEvents);
 app.get('/getParticipants',eventRoutes.getParticipants);
 app.get('/deleteEvent',eventRoutes.deleteEvent);
-app.post('/updateEvent',eventRoutes.updateEvent);
+app.put('/updateEvent',eventRoutes.updateEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
@@ -64,12 +76,12 @@ app.get('/getAllComments',eventRoutes.getAllComments);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
-app.post('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
+app.put('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
 app.get('/registerUserForEvent',userMgmtRoutes.registerUserForEvent);
 app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
-
+app.get('/deleteUser',userMgmtRoutes.deleteUser);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

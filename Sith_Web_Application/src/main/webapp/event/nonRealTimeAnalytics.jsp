@@ -30,6 +30,18 @@
     <script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            barChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+            $("#chartType").change(function () {
+                if ($('#chartType').val() == 'bar') {
+                    barChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+                } else {
+                    pieChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+                }
+            });
+        })
+    </script>
     <script type="text/javascript" src="../js/charts/perceptionCountGraphs.js"></script>
 </head>
 <body>

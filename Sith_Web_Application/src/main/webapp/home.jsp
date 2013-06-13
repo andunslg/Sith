@@ -93,7 +93,7 @@
 </nav>
 
 
-<section class="content" height="250">
+<section class="content" style="margin-top: 10px">
 
     <section class="widget" height="100">
         <header>

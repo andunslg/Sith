@@ -14,7 +14,14 @@ exports.registerAnnonymousUser = function(req,res){
 };
 
 exports.registerFBUser = function(){
+    res.writeHead(200, {
+        'Content-Type' : 'application/json',
+        'Cache-Control' : 'no-cache',
+        'Connection' : 'keep-alive'
+    });
     userManager.addFBUser(req.body.userName,req.body.token);
+    res.write(JSON.stringify({result:true}));
+    res.end();
 };
 exports.authenticateUser = function(req,res){
 	userManager.authenticateUser(req,res);

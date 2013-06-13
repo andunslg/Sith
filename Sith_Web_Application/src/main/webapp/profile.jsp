@@ -63,13 +63,8 @@
     </ul>
 </nav>
 
-<section class="alert">
-    <div class="green">
 
-    </div>
-</section>
-
-<section class="content">
+<section class="content" style="margin-top: 10px">
     <section class="widget">
         <header>
             <span class="icon">&#128100;</span>

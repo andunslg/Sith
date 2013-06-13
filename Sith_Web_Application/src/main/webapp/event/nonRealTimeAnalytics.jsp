@@ -32,12 +32,12 @@
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            barChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+            barChart('http://192.248.8.246:3000/countPerceptions?eventID=cse_pc1');
             $("#chartType").change(function () {
                 if ($('#chartType').val() == 'bar') {
-                    barChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+                    barChart('http://192.248.8.246:3000/countPerceptions?eventID=cse_pc1');
                 } else {
-                    pieChart('http://localhost:3000/countPerceptions?eventID=cse_pc1');
+                    pieChart('http://192.248.8.246:3000/countPerceptions?eventID=cse_pc1');
                 }
             });
         })

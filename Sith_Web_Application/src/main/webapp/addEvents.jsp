@@ -28,6 +28,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <link rel="stylesheet" href="css/button_style.css" media="all"/>
     <link rel="stylesheet" href="css/jquery-ui.css" media="all"/>
 
     <script src="js/jquery.wysiwyg.js"></script>
@@ -182,30 +183,49 @@
                     </tr>
                     <tr>
                         <td>
+                            <br>
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td>
                             <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
                         </td>
                         <td>
-                            <div>
-                                <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
-                                        style="width: 400px">
-                                    <%
-                                        for(String perception : perceptionList){
-                                            if(perception.equals("Happy")){
-                                    %>
-                                    <option name="<%=perception%>" value="<%=perception%>"
-                                            selected="selected"><%=perception%>
-                                    </option>
-                                    <%
-                                    }else{
-                                    %>
-                                    <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
-                                    </option>
-                                    <%
-                                            }
+                            <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
+                                    style="width: 400px">
+                                <%
+                                    for(String perception : perceptionList){
+                                        if(perception.equals("Happy")){
+                                %>
+                                <option name="<%=perception%>" value="<%=perception%>"
+                                        selected="selected"><%=perception%>
+                                </option>
+                                <%
+                                }else{
+                                %>
+                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
+                                </option>
+                                <%
                                         }
-                                    %>
-                                </select>
+                                    }
+                                %>
+
+                            </select>
+                        </td>
+                        <td>
+                            <div class="m-btn-group" align="center">
+                                <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
+                                <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
                             </div>
+                        </td>
+                        <td>
+                            <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
+                                    style="width:350px">
+
+                            </select>
+
                         </td>
                     </tr>
                     <tr>
@@ -218,12 +238,62 @@
                     <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
                 </div>
             </form>
-
         </div>
     </section>
 </section>
 
 <script>
+    function SecListBox(ListBox,text,value)
+    {
+        try
+        {
+            var option=document.createElement("OPTION");
+            option.value=value;
+            option.text=text;
+            ListBox.options.add(option)
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
+    function FirstListBox()
+    {
+        try
+        {
+            var count=document.getElementById("perceptionSchema").options.length;
+            for(i=0;i<count;i++)
+            {
+                if(document.getElementById("perceptionSchema").options[i].selected)
+                {
+                    SecListBox(document.getElementById("selectedPerceptionSchema"),document.getElementById("perceptionSchema").options[i].value,document.getElementById("perceptionSchema").options[i].value);document.getElementById("perceptionSchema").remove(i);
+                    break;
+                }
+            }
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
+    function SecondListBox()
+    {
+        try
+        {
+            var count=document.getElementById("selectedPerceptionSchema").options.length;
+            for(i=0;i<count;i++)
+            {
+                if(document.getElementById("selectedPerceptionSchema").options[i].selected){SecListBox(document.getElementById("perceptionSchema"),document.getElementById("selectedPerceptionSchema").options[i].value,document.getElementById("selectedPerceptionSchema").options[i].value);document.getElementById("selectedPerceptionSchema").remove(i);
+                    break
+                }
+            }
+
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
 
     $(function() {
         $('#start').datetimepicker();
@@ -241,20 +311,29 @@
 
         var perceptionSchema = "";
 
-        var selObj = document.getElementById('perceptionSchema');
-        var i;
-        var first=1;
-        for (i=0; i<selObj.options.length; i++) {
-            if (selObj.options[i].selected) {
-                if (first == 1) {
-                    perceptionSchema += selObj.options[i].value;
-                    first =0;
-                }
-                else {
-                    perceptionSchema += ':' + selObj.options[i].value;
-                }
+
+        $("#selectedPerceptionSchema>option").each(function () {
+            if(perceptionSchema!=""){
+                perceptionSchema += ":"+$(this).text();
+            }else{
+                perceptionSchema+= $(this).text();
             }
-        }
+        });
+
+//        var selObj = document.getElementById('perceptionSchema');
+//        var i;
+//        var first=1;
+//        for (i=0; i<selObj.options.length; i++) {
+//            if (selObj.options[i].selected) {
+//                if (first == 1) {
+//                    perceptionSchema += selObj.options[i].value;
+//                    first =0;
+//                }
+//                else {
+//                    perceptionSchema += ':' + selObj.options[i].value;
+//                }
+//            }
+//        }
 
         if(start.length!=16  ||end.length!=16){
             alert("Please select correct Start and End values")

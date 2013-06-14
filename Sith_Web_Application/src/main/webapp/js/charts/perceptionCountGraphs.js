@@ -2,35 +2,32 @@
  * @author Sachintha
  * This document contains barchart and pie chart to display perception counts
  */
-barChart = function (url) {
+barChart = function (perceptions, url) {
     //load data from the server
     $.get(url, function (e) {
+        var data = new Array();
+        console.log(e);
+        for(var i=0; i<perceptions.length;i++){
+            perception = e.data[perceptions[i]];
+            if(perception){
+                data[i] =  perception;
+                console.log(data[i]);
+            }else{
+                data[i]=0;
+                console.log(data[i]);
+            }
+        }
         var chart;
-        var perceptions;
-        //$.ajax({
-        //		type: "GET",
-        //		url: "http://localhost:3000/countPerceptions",
-        //	success: function(e){
-        //			this.perceptions = e;
-        //			console.log(this.perceptions);
-        //		}
-        //	});
-        //console.log()
         $('#CountChart').highcharts({
             chart: {
-                type: 'column',
+                type: 'column'
             },
             title: {
                 text: 'Perception Count'
             },
 
             xAxis: {
-                categories: [
-                    'Interested',
-                    'Happy',
-                    'Bored',
-                    'Sleepy',
-                ]
+                categories: perceptions
             },
             yAxis: {
                 min: 0,
@@ -57,18 +54,29 @@ barChart = function (url) {
             },
             series: [
                 {
-                    data: e.data
+                    data: data
                 }
             ]
         });
-    });
+  });
 }
 
-pieChart = function (url) {
+pieChart = function (perceptions,url) {
     $.get(url, function (e) {
         //var data = e.data;
         //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
-
+        var data = new Array();
+        console.log(e);
+        for(var i=0; i<perceptions.length;i++){
+            perception = e.data[perceptions[i]];
+            if(perception){
+                data[i] =  [perceptions[i], perception];
+                console.log(data[i]);
+            }else{
+                data[i]=[perceptions[i], 0];
+                console.log(data[i]);
+            }
+        }
         $('#CountChart').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -100,17 +108,7 @@ pieChart = function (url) {
                 {
                     type: 'pie',
                     name: 'Perception Count',
-                    data: [
-                        ['Interested', e.data[0]],
-                        ['Happy', e.data[1] ],
-                        ['Bored', e.data[2]],
-                        {
-                            name: 'Happy',
-                            y: e.data[3],
-                            sliced: true,
-                            selected: true
-                        },
-                    ]
+                    data: data
                 }
             ]
         });

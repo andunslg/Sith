@@ -19,6 +19,21 @@ exports.sendPerceptionCount = function(req,res){
 	});
 };
 
+exports.sendPerceptionCount2 = function(req,res){
+    eventID = req.query.eventID;
+    console.log(eventID);
+    stats.countPerceptions2(eventID,function(perceptions){
+        //send perceptions as a json abject
+        var reply = JSON.stringify({data:perceptions});
+        res.writeHead(200, {
+            'Content-Type' : 'application/json',
+            'Cache-Control' : 'no-cache',
+            'Connection' : 'keep-alive'
+        });
+        res.write(reply);
+        res.end();
+    });
+};
 /*
 exports.sendPeriodicTotalPerceptions = function(req,res){
 		res.writeHead(200, {

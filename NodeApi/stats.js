@@ -50,6 +50,20 @@ exports.countPerceptions =function(EventID,fn){
 	});
 }
 
+exports.countPerceptions2 = function(eventID,fn){
+   percepManager.getEventPerception(eventID,function(docs){
+       var count = docs.length;
+       var perceptions  = new Object();
+       for(var i=0; i<count; i++){
+           if(perceptions[docs[i].perceptionValue]){
+               ++perceptions[docs[i].perceptionValue];
+           }else{
+               perceptions[docs[i].perceptionValue]=1;
+           }
+       }
+       fn(perceptions);
+   })
+};
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);
 	for(var key in req.headers) {

@@ -14,7 +14,7 @@ exports.getPerceptionForEvent = function(eventID){
 
 exports.getPerceptionForUser = function(userID){
 	//code for filter based on users
-}
+};
 
 exports.getEventPerception = function(eventID,fn){
 	//var count=0;
@@ -22,7 +22,9 @@ exports.getEventPerception = function(eventID,fn){
 			fn(docs);
 	});
 				
-}
+};
+
+//exports.getUser
 //Map strings to perception values
 exports.mapPerception = function(perception){
 	switch(perception)

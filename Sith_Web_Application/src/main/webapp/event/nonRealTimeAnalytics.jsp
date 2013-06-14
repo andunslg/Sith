@@ -36,12 +36,12 @@
             $.get("http://192.248.8.246:3000/getEventById?eventID=cse_pc1",function(event){
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
-                barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=cse_pc1');
+                barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=cse_pc1');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
-                        barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=cse_pc1');
+                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=cse_pc1');
                     } else {
-                        pieChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=cse_pc1');
+                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=cse_pc1');
                     }
                 });
             })

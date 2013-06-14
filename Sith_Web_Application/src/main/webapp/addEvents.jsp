@@ -133,12 +133,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Event Name</div>
                         </td>
                         <td>
                             <div>
                                 <input name="eventName" id="eventName" value="Event Name" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -153,12 +163,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>End</div>
                         </td>
                         <td>
                             <div>
                                 <input name="end" id="end" value="06/12/2013 01:00" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -173,6 +193,11 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Description</div>
                         </td>
                         <td>
@@ -183,18 +208,18 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
+                            &nbsp;
                         </td>
                     </tr>
 
                     <tr>
 
                         <td>
-                            <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
+                            <div  >Perception Schema &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
-                                    style="width: 400px">
+                                    style="width: 400px;height: 120px">
                                 <%
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
@@ -215,14 +240,14 @@
                             </select>
                         </td>
                         <td>
-                            <div class="m-btn-group" align="center">
+                            <div class="m-btn-group" style="display: table-row;display: inline-table">
                                 <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
                                 <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
                             </div>
                         </td>
                         <td>
                             <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
-                                    style="width:350px">
+                                    style="width:350px;height: 120px">
 
                             </select>
 
@@ -233,8 +258,13 @@
                             &nbsp;
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
                 </table>
-                <div align="center">
+                <div style="display: inline-block">
                     <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
                 </div>
             </form>

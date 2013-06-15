@@ -25,7 +25,7 @@ exports.deleteEvent = function(eventID){
               if(err)
                 console.log(err.message);
     });
-    mongoAdapter.dropCollection('EventPerception_'+eventID);
+    mongoAdapter.dropCollection('EventPerceptions_'+eventID);
     mongoAdapter.dropCollection('EventUser_'+eventID);
 };
 

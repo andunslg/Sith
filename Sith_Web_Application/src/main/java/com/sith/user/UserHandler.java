@@ -101,4 +101,16 @@ public class UserHandler{
 		return false;
 	}
 
+	public boolean deleteUser(String userName) throws Exception{
+
+		String result=httpUtil.doGet(SithAPI.DELETE_USER+"?userName="+userName);
+		if(!result.equals("")){
+			JSONObject jsonObject=new JSONObject(result);
+			Boolean name=(Boolean)jsonObject.get("result");
+			return name;
+		}
+		return false;
+	}
+
+
 }

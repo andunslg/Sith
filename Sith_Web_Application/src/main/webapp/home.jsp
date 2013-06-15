@@ -95,16 +95,26 @@
 
 <section class="content" style="margin-top: 10px">
 
-    <section class="widget" height="100">
+    <section class="widget">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Perceptions </h1>
+                <h1>Welcome</h1>
 
-                <h2>Current Perception</h2>
+                <h2>Sith - Crowdsourced perception capturing and analysis platform</h2>
             </hgroup>
         </header>
+        <br>
+        <div align="center">
+            <iframe width="480" height="360" src="http://www.youtube.com/embed/RA1WHjnLJEQ" frameborder="0" allowfullscreen></iframe>
+        </div>
 
+        <br>
+        <div align="center">
+            <a href="https://twitter.com/sithplatform" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @sithplatform</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <br>
     </section>
 
 </section>

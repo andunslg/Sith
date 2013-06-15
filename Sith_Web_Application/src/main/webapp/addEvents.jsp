@@ -350,21 +350,6 @@
             }
         });
 
-//        var selObj = document.getElementById('perceptionSchema');
-//        var i;
-//        var first=1;
-//        for (i=0; i<selObj.options.length; i++) {
-//            if (selObj.options[i].selected) {
-//                if (first == 1) {
-//                    perceptionSchema += selObj.options[i].value;
-//                    first =0;
-//                }
-//                else {
-//                    perceptionSchema += ':' + selObj.options[i].value;
-//                }
-//            }
-//        }
-
         if(start.length!=16  ||end.length!=16){
             alert("Please select correct Start and End values")
         }

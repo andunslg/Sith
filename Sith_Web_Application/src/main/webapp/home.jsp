@@ -99,7 +99,7 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Perceptions test</h1>
+                <h1>My Perceptions </h1>
 
                 <h2>Current Perception</h2>
             </hgroup>

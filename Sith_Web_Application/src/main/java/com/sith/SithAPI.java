@@ -30,6 +30,7 @@ public class SithAPI{
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
 	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
+	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
 
 
 	public ArrayList<Event> getEventList(){

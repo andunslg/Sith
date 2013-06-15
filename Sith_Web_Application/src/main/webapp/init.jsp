@@ -1,4 +1,5 @@
 <%@ page import="com.sith.login.Authenticator" %>
+<%@ page import="com.sith.user.UserHandler" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String user=request.getParameter("user");
@@ -6,6 +7,8 @@
     String password2=request.getParameter("password2");
 
     Authenticator authenticator=new Authenticator();
+    UserHandler userHandler=new UserHandler();
+
     if(password2==null&&user!=null){
         if(authenticator.authenticateUser(user,password)){
             session.setAttribute("user",user);
@@ -18,7 +21,7 @@
         }
     }else if(password2!=null){
         if(password.equals(password2)){
-            if(authenticator.addUser(user,password)){
+            if(userHandler.addUser(user,password)){
                 session.setAttribute("user",user);
                 if(session.getAttribute("isLogged")!=null){
                     session.setAttribute("isLogged",true);

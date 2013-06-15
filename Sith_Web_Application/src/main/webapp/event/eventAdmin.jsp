@@ -174,7 +174,7 @@
                         <td>
                             <div>
                                 <input name="eventID" id="eventID" value="<%=currentEvent.getEventID()%>" type="text"
-                                       style="width: 400px">
+                                       style="width: 400px" readonly>
                             </div>
                         </td>
                     </tr>
@@ -441,7 +441,7 @@
                     }
                 },
                 error: function (xhr, status, error) {
-                    alert("Error adding event - " + error.message);
+                    alert("Error updating event - " + error.message);
                 }
             });
         }

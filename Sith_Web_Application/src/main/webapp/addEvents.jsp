@@ -353,6 +353,9 @@
         if(start.length!=16  ||end.length!=16){
             alert("Please select correct Start and End values")
         }
+        else if(perceptionSchema==""){
+            alert("Please select perception schema")
+        }
         else{
 
             var datObj = {};

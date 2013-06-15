@@ -1,6 +1,11 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -10,6 +15,7 @@
             response.sendRedirect("index.jsp");
         }
     }
+    SithAPI sithAPI=SithAPI.getInstance();
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=null;
     if(request.getParameter("eventID")!=null){
@@ -18,6 +24,23 @@
     }else{
         currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     }
+
+    String arr[]=currentEvent.getPerceptionSchema().split(":");
+    List<String> perceptionListSelected=Arrays.asList(arr);
+
+    ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
+    ArrayList<String> temp=perceptionList;
+    for(int i=0;i<perceptionList.size();i++){
+        if(perceptionListSelected.contains(perceptionList.get(i))){
+            for(int j=0;j<temp.size();j++){
+                if(perceptionList.get(i).equals(temp.get(j))){
+                    temp.remove(j);
+                    break;
+                }
+            }
+        }
+    }
+    perceptionList=temp;
 
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
@@ -30,16 +53,9 @@
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" media="all"/>
-    <link rel="stylesheet" href="../css/bootstrap-responsive.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="../css/carousel.css" media="screen" alt="">
-    <link rel="stylesheet" type="text/css" href="../css/tooltipster.css"/>
+    <link rel="stylesheet" href="../css/button_style.css" media="all"/>
 
-    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.carousel.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <script type="text/javascript" src="../js/jquery.tooltipster.min.js"></script>
-
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/cycle.js"></script>
@@ -51,24 +67,16 @@
     <script src="../js/cycle.js"></script>
     <script src="../js/jquery.tablesorter.min.js"></script>
 
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="../js/jquery-ui-timepicker-addon.js"></script>
+
     <script type="text/javascript">
 
-        function postToAPI(eventID, userID, perceptionValue) {
-            $.ajax({
-                url: 'http://192.248.8.246:3000/publishEventPerception',
-                data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue,
-                type: 'POST',
-                success: function (data) {
-                    console.log('Success: ')
-                },
-                error: function (xhr, status, error) {
-                    console.log('Error: ' + error.message);
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            $('.thumbnail').tooltipster();
+        $(function() {
+            $( "#datepicker" ).datepicker();
         });
 
 
@@ -157,111 +165,209 @@
             </hgroup>
         </header>
         <div class="content">
-            <table>
-                <tr>
-                    <td>
-                        <div>Event ID</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="eventID" value="<%=currentEvent.getEventID()%>" type="text" disabled="disabled">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Event Name</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="eventName" value="<%=currentEvent.getEventName()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Starting Date</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="startDate" value="<%=currentEvent.getStartDate()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>End Date</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="endDate" value="<%=currentEvent.getEndDate()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Start time</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="statTime" value="<%=currentEvent.getStartTime()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>End Time</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="endTime" value="<%=currentEvent.getEndTime()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <div>Event ID</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="eventID" id="eventID" value="<%=currentEvent.getEventID()%>" type="text"
+                                       style="width: 400px">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Event Name</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="eventName" id="eventName" value="<%=currentEvent.getEventName()%>" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Start</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="start" id="start" value="<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>End</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="end" id="end" value="<%=currentEvent.getEndDate()+" "+currentEvent.getEndTime()%>" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Location</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="location" id="location" value="<%=currentEvent.getLocation()%>" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Description</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="description" id="description" value="<%=currentEvent.getDescription()%>" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>
-                        <div>Location</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="location" value="<%=currentEvent.getLocation()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Description</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="description" value="<%=currentEvent.getDescription()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="perceptionSchema" value="<%=currentEvent.getPerceptionSchema()%>" type="text">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div>
-                <input id="update" value="Update" type="button" class="button">
-            </div>
-            <div>
-                <input id="delete" value="Delete Event" type="button" class="button">
-            </div>
+                    <tr>
+
+                        <td>
+                            <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
+                        </td>
+                        <td>
+                            <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
+                                    style="width: 400px">
+                                <%
+                                    for(String perception : perceptionList){
+                                        if(perception.equals("Happy")){
+                                %>
+                                <option name="<%=perception%>" value="<%=perception%>"
+                                        selected="selected"><%=perception%>
+                                </option>
+                                <%
+                                }else{
+                                %>
+                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+
+                            </select>
+                        </td>
+                        <td>
+                            <div class="m-btn-group" align="center">
+                                <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
+                                <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
+                            </div>
+                        </td>
+                        <td>
+                            <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
+                                    style="width:350px">
+                                <%
+                                    for(String perception : perceptionListSelected){
+                                        if(perception.equals("Happy")){
+                                %>
+                                <option name="<%=perception%>" value="<%=perception%>"
+                                        selected="selected"><%=perception%>
+                                </option>
+                                <%
+                                }else{
+                                %>
+                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <div align="center">
+                    <input id="update" value="Update" type="button" class="button" style="text-align: center;width: 100px">
+                </div>
+                <div align="center">
+                    <input id="delete" value="Delete Event" type="button" class="button" style="text-align: center;width: 100px">
+                </div>
+            </form>
         </div>
     </section>
 
 </section>
 
 <script>
+
+    function SecListBox(ListBox,text,value)
+    {
+        try
+        {
+            var option=document.createElement("OPTION");
+            option.value=value;
+            option.text=text;
+            ListBox.options.add(option)
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
+    function FirstListBox()
+    {
+        try
+        {
+            var count=document.getElementById("perceptionSchema").options.length;
+            for(i=0;i<count;i++)
+            {
+                if(document.getElementById("perceptionSchema").options[i].selected)
+                {
+                    SecListBox(document.getElementById("selectedPerceptionSchema"),document.getElementById("perceptionSchema").options[i].value,document.getElementById("perceptionSchema").options[i].value);document.getElementById("perceptionSchema").remove(i);
+                    break;
+                }
+            }
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
+    function SecondListBox()
+    {
+        try
+        {
+            var count=document.getElementById("selectedPerceptionSchema").options.length;
+            for(i=0;i<count;i++)
+            {
+                if(document.getElementById("selectedPerceptionSchema").options[i].selected){SecListBox(document.getElementById("perceptionSchema"),document.getElementById("selectedPerceptionSchema").options[i].value,document.getElementById("selectedPerceptionSchema").options[i].value);document.getElementById("selectedPerceptionSchema").remove(i);
+                    break
+                }
+            }
+
+        }
+        catch(er)
+        {
+            alert(er)
+        }
+    }
+
+    $(function() {
+        $('#start').datetimepicker();
+        $('#end').datetimepicker();
+    });
+
+
     $("#delete").click(function () {
 
         var datObj = {};
@@ -272,10 +378,8 @@
             data: datObj,
             type: 'POST',
             success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                if (msg == "You are successfully deleted the event\n") {
+                alert(data)
+                if (data.indexOf("You are successfully deleted the event") != -1) {
                     window.location.href = '../myEvents.jsp';
                 }
             },
@@ -284,6 +388,63 @@
             }
         });
 
+    });
+
+    $("#update").click(function () {
+        var eventID = $('input[id=eventID]').val();
+        var eventName = $('input[id=eventName]').val();
+        var start = $('input[id=start]').val();
+        var end = $('input[id=end]').val();
+        var location = $('input[id=location]').val();
+        var description = $('input[id=description]').val();
+
+        var perceptionSchema = "";
+
+
+        $("#selectedPerceptionSchema>option").each(function () {
+            if(perceptionSchema!=""){
+                perceptionSchema += ":"+$(this).text();
+            }else{
+                perceptionSchema+= $(this).text();
+            }
+        });
+
+        if(start.length!=16  ||end.length!=16){
+            alert("Please select correct Start and End values")
+        }
+        else if(perceptionSchema==""){
+            alert("Please select perception schema")
+        }
+        else{
+
+            var datObj = {};
+
+            datObj['oldEventID'] ='<%=currentEvent.getEventID()%>';
+            datObj['eventID'] = eventID;
+            datObj['eventName'] = eventName;
+            datObj['eventAdmin'] = '<%=participant.getUserID()%>';
+            datObj['start'] = start;
+            datObj['end'] = end;
+            datObj['location'] = location;
+            datObj['description'] = description;
+            datObj['perceptionSchema'] = perceptionSchema;
+
+
+            $.ajax({
+                url: 'updateEventHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    alert(data)
+                    if (data.indexOf("The Event is successfully updated.") != -1) {
+                        window.location.href = '../myEvents.jsp';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error adding event - " + error.message);
+                }
+            });
+        }
     });
 </script>
 

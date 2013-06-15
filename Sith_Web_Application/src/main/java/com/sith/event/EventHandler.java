@@ -44,6 +44,36 @@ public class EventHandler{
 		return false;
 	}
 
+	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema){
+		Map<String,String> parms=new HashMap<String,String>();
+		parms.put("oldEventID",oldEventID);
+		parms.put("eventID",eventID);
+		parms.put("eventName",eventName);
+		parms.put("eventAdmin",eventAdmin);
+		parms.put("desc",description);
+		parms.put("location",location);
+		parms.put("startDate",startDate);
+		parms.put("startTime",startTime);
+		parms.put("endDate",endDate);
+		parms.put("endTime",endTime);
+		parms.put("perceptionSchema",perceptionSchema);
+
+		String result=null;
+		try{
+			result=httpUtil.doPut(SithAPI.UPDATE_EVENT,parms);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 	public boolean addUserToEvent(String userID,String eventID){
 
 		String result=null;

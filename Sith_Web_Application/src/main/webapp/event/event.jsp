@@ -83,7 +83,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40"/> Welcome
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
                 back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>

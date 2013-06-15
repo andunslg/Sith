@@ -108,7 +108,7 @@
 <nav>
     <ul>
         <li>
-            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px;">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>

@@ -47,7 +47,7 @@ exports.mapPerception = function(perception){
 }
 
 exports.insertComment = function(userID, eventID, perceptionValue, text){
-	doc = {userID:userID, eventID:eventID, perceptionValie:perceptionValue,text:text}
+	doc = {userID:userID, eventID:eventID, perceptionValue:perceptionValue,text:text}
 	mongoAdapter.insertDocument("Comments", doc);
 }
 

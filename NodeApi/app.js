@@ -73,6 +73,7 @@ app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
 app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getAllComments',eventRoutes.getAllComments);
+app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/registerFBUser',userMgmtRoutes.registerFBUser);

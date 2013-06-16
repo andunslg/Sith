@@ -25,10 +25,15 @@ public class SithAPI{
 	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
 	public static String GET_PARTICIPANTS=NODEAPI+"getParticipants";
 	public static String DELETE_EVENT=NODEAPI+"deleteEvent";
+	public static String UPDATE_EVENT=NODEAPI+"updateEvent";
+	public static String SET_COMMENT_ENABLED=NODEAPI+"setCommentEnabled";
+
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
 	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
+	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
+	public static String DELETE_USER=NODEAPI+"deleteUser";
 
 
 	public ArrayList<Event> getEventList(){
@@ -41,7 +46,7 @@ public class SithAPI{
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){
 				JSONObject jsonObject=jsonArray.getJSONObject(i);
-				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"));
 				events.add(event);
 			}
 

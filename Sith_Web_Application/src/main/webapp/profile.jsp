@@ -82,8 +82,8 @@
                     </td>
                     <td>
                         <div>
-                            <input value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%} else{ %>Guest <%}%>
-                                   readonly>
+                            <input id="username" readonly value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%>  <%} else{ %>Guest <%}%>
+                                    >
                         </div>
                     </td>
                 </tr>
@@ -93,7 +93,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="old password" type="password">
+                            <input id="oldPassword" type="password">
                         </div>
                     </td>
                 </tr>
@@ -103,7 +103,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="new password" type="password">
+                            <input id="newPassword" type="password">
                         </div>
                     </td>
                 </tr>
@@ -113,13 +113,16 @@
                     </td>
                     <td>
                         <div>
-                            <input id="new password confirm" type="password">
+                            <input id="newPasswordConfirm" type="password">
                         </div>
                     </td>
                 </tr>
             </table>
             <div>
-                <input id="update" type="button" value="Update" class="button">
+                <input id="update" type="button" value="Update" class="button" style="text-align: center;width: 100px">
+            </div>
+            <div>
+                <input id="unregister" type="button" value="Unregister" class="button" style="text-align: center;width: 100px">
             </div>
         </div>
     </section>
@@ -135,5 +138,81 @@
 <script src="js/flot-time.js"></script>
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $("#update").click(function () {
+        var username = $('input[id=username]').val();
+        var oldPassword = $('input[id=oldPassword]').val();
+        var newPassword = $('input[id=newPassword]').val();
+        var newPasswordConfirm = $('input[id=newPasswordConfirm]').val();
+
+
+        if(oldPassword.length==0 ||newPassword.length==0||newPasswordConfirm.length==0){
+            alert("Please type a password")
+        }
+        else{
+
+            var datObj = {};
+
+            datObj['oldUserName'] = username;
+            datObj['newUserName'] = username;
+            datObj['oldPassword'] = oldPassword;
+            datObj['newPassword'] = newPassword;
+            datObj['newPasswordConfirm'] = newPasswordConfirm;
+
+
+
+            $.ajax({
+                url: 'user/updateUserHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    alert(data)
+                    if (data.indexOf("User profile updated successfully") != -1 ) {
+                        window.location.href = 'home.jsp';
+                    }
+                    else if(data.indexOf("User not logged-in")!=-1){
+                        window.location.href = 'index.jsp';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error updating user - " + error.message);
+                }
+            });
+        }
+    });
+
+    $("#unregister").click(function () {
+        var conf = confirm("Are you sure want to unregister from Sith Platform ?");
+
+        if(conf){
+            var username = $('input[id=username]').val();
+
+            var datObj = {};
+            datObj['userName'] = username;
+
+            $.ajax({
+                url: 'user/unregisterUserHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    alert(data)
+                    if (data.indexOf("User profile deleted successfully") != -1 ) {
+                        window.location.href = 'index.jsp?state=loggedOut';
+                    }
+                    else if(data.indexOf("User not logged-in")!=-1){
+                        window.location.href = 'index.jsp?state=loggedOut';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error updating user - " + error.message);
+                }
+            });
+        }
+
+    });
+</script>
 </body>
 </html>

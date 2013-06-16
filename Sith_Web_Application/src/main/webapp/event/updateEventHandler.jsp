@@ -4,6 +4,7 @@
     String message="";
     EventHandler eventHandler=new EventHandler();
 
+    String oldEventID=request.getParameter("oldEventID");
     String eventID=request.getParameter("eventID");
     String eventName=request.getParameter("eventName");
     String eventAdmin=request.getParameter("eventAdmin");
@@ -27,11 +28,11 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema,commentEnabled);
+            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema,commentEnabled);
             if(res){
-                message="The Event is successfully added.";
+                message="The Event is successfully updated.";
             }else{
-                message="The Event is not added. Please try later!";
+                message="The Event is not updated. Please try later!";
             }
         }
     }

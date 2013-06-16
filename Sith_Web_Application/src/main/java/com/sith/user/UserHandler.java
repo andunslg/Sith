@@ -8,10 +8,26 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserHandler{
 	private HTTPUtil httpUtil=new HTTPUtil();
 	private EventHandler eventHandler= new EventHandler();
+
+	public boolean addUser(String userName, String password) throws Exception{
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("userName",userName);
+		map.put("password",password);
+		String result=httpUtil.doPost(SithAPI.SIGNUP,map);
+		if(!result.equals("")){
+			JSONObject jsonObject=new JSONObject(result);
+			Boolean name=(Boolean)jsonObject.get("result");
+			return name;
+		}
+		return false;
+	}
+
 	public ArrayList<Event> getUserEventList(String userID){
 		ArrayList<Event> events=null;
 		String result=null;
@@ -66,5 +82,35 @@ public class UserHandler{
 		return events;
 
 	}
+
+	public  boolean isUserIDAvailable(String userID){
+		return true;
+	}
+
+	public boolean updateUser(String oldUserName,String newUserName, String password) throws Exception{
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("oldUserName",oldUserName);
+		map.put("userName",newUserName);
+		map.put("password",password);
+		String result=httpUtil.doPut(SithAPI.UPDATE_USER,map);
+		if(!result.equals("")){
+			JSONObject jsonObject=new JSONObject(result);
+			Boolean name=(Boolean)jsonObject.get("result");
+			return name;
+		}
+		return false;
+	}
+
+	public boolean deleteUser(String userName) throws Exception{
+
+		String result=httpUtil.doGet(SithAPI.DELETE_USER+"?userName="+userName);
+		if(!result.equals("")){
+			JSONObject jsonObject=new JSONObject(result);
+			Boolean name=(Boolean)jsonObject.get("result");
+			return name;
+		}
+		return false;
+	}
+
 
 }

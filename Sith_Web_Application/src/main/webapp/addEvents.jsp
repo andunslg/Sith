@@ -133,12 +133,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Event Name</div>
                         </td>
                         <td>
                             <div>
                                 <input name="eventName" id="eventName" value="Event Name" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -153,12 +163,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>End</div>
                         </td>
                         <td>
                             <div>
                                 <input name="end" id="end" value="06/12/2013 01:00" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -173,6 +193,11 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Description</div>
                         </td>
                         <td>
@@ -183,18 +208,18 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
+                            &nbsp;
                         </td>
                     </tr>
 
                     <tr>
 
                         <td>
-                            <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
+                            <div  >Perception Schema &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
-                                    style="width: 400px">
+                                    style="width: 400px;height: 120px">
                                 <%
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
@@ -215,17 +240,43 @@
                             </select>
                         </td>
                         <td>
-                            <div class="m-btn-group" align="center">
+                            <div class="m-btn-group" style="display: table-row;display: inline-table">
                                 <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
                                 <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
                             </div>
                         </td>
                         <td>
                             <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
-                                    style="width:350px">
+                                    style="width:350px;height: 120px">
 
                             </select>
 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Enable User Comments</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -234,7 +285,7 @@
                         </td>
                     </tr>
                 </table>
-                <div align="center">
+                <div style="display: inline-block">
                     <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
                 </div>
             </form>
@@ -309,6 +360,12 @@
         var location = $('input[id=location]').val();
         var description = $('input[id=description]').val();
 
+        var c=document.getElementById('commentEnabled');
+        var commentEnabled = false;
+        if(c.checked){
+           commentEnabled=true;
+        }
+
         var perceptionSchema = "";
 
 
@@ -320,23 +377,11 @@
             }
         });
 
-//        var selObj = document.getElementById('perceptionSchema');
-//        var i;
-//        var first=1;
-//        for (i=0; i<selObj.options.length; i++) {
-//            if (selObj.options[i].selected) {
-//                if (first == 1) {
-//                    perceptionSchema += selObj.options[i].value;
-//                    first =0;
-//                }
-//                else {
-//                    perceptionSchema += ':' + selObj.options[i].value;
-//                }
-//            }
-//        }
-
         if(start.length!=16  ||end.length!=16){
             alert("Please select correct Start and End values")
+        }
+        else if(perceptionSchema==""){
+            alert("Please select perception schema")
         }
         else{
 
@@ -350,6 +395,7 @@
             datObj['location'] = location;
             datObj['description'] = description;
             datObj['perceptionSchema'] = perceptionSchema;
+            datObj['commentEnabled'] = commentEnabled;
 
 
             $.ajax({

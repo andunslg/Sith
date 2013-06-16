@@ -141,6 +141,7 @@
                         <th>Start</th>
                         <th>End</th>
                         <th>Location</th>
+                        <th></th>
 
                     </tr>
                     </thead>
@@ -151,7 +152,7 @@
                                 continue;
                             }
                     %>
-                    <tr id="<%=event.getEventID()%>" class="event_rows">
+                    <tr class="event_rows">
                         <td class="avatar"><%=event.getEventName()%>
                         </td>
                         <td><%=event.getDescription()%>
@@ -163,6 +164,10 @@
                         </td>
                         <td><%=event.getLocation()%>
                         </td>
+                        <td >
+                            <span id="<%=event.getEventID()%>" class="button" ><a>Join</a></span>
+                        </td>
+
                     </tr>
                     <%
                         }
@@ -176,7 +181,7 @@
 
 </section>
 <script type="text/javascript">
-    $('.event_rows').click(function () {
+    $('.button').click(function () {
 
         var datObj = {};
         var id = this.id;

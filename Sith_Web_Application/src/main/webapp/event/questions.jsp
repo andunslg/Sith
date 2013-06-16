@@ -36,7 +36,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
                 as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
@@ -61,7 +61,7 @@
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
@@ -98,6 +98,42 @@
 </section>
 
 <section class="content">
+    <%
+        if(participant.getUserID().equals(currentEvent.getAdminID())){
+    %>
+    <section class="widget" style="height: 75px">
+        <header>
+            <span class="icon">&#128100;</span>
+            <hgroup>
+                <h1>Enable User Comments</h1>
+
+                <h2>Enable the commenting functionality for users</h2>
+            </hgroup>
+        </header>
+        <%
+            if("false".equals(currentEvent.getCommentEnabled())) {
+        %>
+        <div class="content">
+            <input type="button" class="button" id="commentEnable" value="Enable User Comments">
+        </div>
+        <%
+        }
+        else{
+        %>
+        <div class="content">
+            <input type="button" class="button" id="commentDisable" value="Disable User Comments">
+        </div>
+        <%
+            }
+        %>
+    </section>
+    <%
+        }
+    %>
+    <%
+        if("true".equals(currentEvent.getCommentEnabled())){
+    %>
+
     <section class="widget" style="height: 75px">
         <header>
             <span class="icon">&#128100;</span>
@@ -158,6 +194,9 @@
             </form>
         </div>
     </section>
+    <%
+        }
+    %>
 
     <section class="widget">
         <header>
@@ -218,12 +257,98 @@
                 var $response = $(data);
                 var msg = $response.filter('#msg').text();
                 alert(msg)
+                window.location.reload();
             },
             error: function (xhr, status, error) {
                 alert("Error adding event - " + error.message);
             }
         });
 
+    });
+
+    $("#commentEnable").click(function () {
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var eventName = '<%=currentEvent.getEventName()%>';
+        var start = '<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>';
+        var end = '<%=currentEvent.getEndDate()+" "+currentEvent.getEndTime()%>';
+        var location = '<%=currentEvent.getLocation()%>';
+        var description = '<%=currentEvent.getDescription()%>';
+        var perceptionSchema = '<%=currentEvent.getPerceptionSchema()%>';
+        var eventAdmin='<%=participant.getUserID()%>';
+        var commentEnabled = 'true';
+
+
+        var datObj = {};
+
+        datObj['oldEventID'] =eventID;
+        datObj['eventID'] = eventID;
+        datObj['eventName'] = eventName;
+        datObj['eventAdmin'] =eventAdmin;
+        datObj['start'] = start;
+        datObj['end'] = end;
+        datObj['location'] = location;
+        datObj['description'] = description;
+        datObj['perceptionSchema'] = perceptionSchema;
+        datObj['commentEnabled'] = commentEnabled;
+
+
+        $.ajax({
+            url: 'updateEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                if (data.indexOf("The Event is successfully updated.") != -1) {
+                    alert("Comments enabled successfully")
+                    window.location.reload();
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error enabling comments - " + error.message);
+            }
+        });
+
+    });
+
+    $("#commentDisable").click(function () {
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var eventName = '<%=currentEvent.getEventName()%>';
+        var start = '<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>';
+        var end = '<%=currentEvent.getEndDate()+" "+currentEvent.getEndTime()%>';
+        var location = '<%=currentEvent.getLocation()%>';
+        var description = '<%=currentEvent.getDescription()%>';
+        var perceptionSchema = '<%=currentEvent.getPerceptionSchema()%>';
+        var eventAdmin='<%=participant.getUserID()%>';
+        var commentEnabled = 'false';
+
+
+        var datObj = {};
+
+        datObj['oldEventID'] =eventID;
+        datObj['eventID'] = eventID;
+        datObj['eventName'] = eventName;
+        datObj['eventAdmin'] =eventAdmin;
+        datObj['start'] = start;
+        datObj['end'] = end;
+        datObj['location'] = location;
+        datObj['description'] = description;
+        datObj['perceptionSchema'] = perceptionSchema;
+        datObj['commentEnabled'] = commentEnabled;
+
+
+        $.ajax({
+            url: 'updateEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                if (data.indexOf("The Event is successfully updated.") != -1) {
+                    alert("Comments enabled successfully")
+                    window.location.reload();
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error enabling comments - " + error.message);
+            }
+        });
     });
 </script>
 </body>

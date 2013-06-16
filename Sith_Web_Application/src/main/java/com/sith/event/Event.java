@@ -11,8 +11,9 @@ public class Event{
 	private String endTime;
 	private String location;
 	private String perceptionSchema;
+	private String commentEnabled;
 
-	public Event(String eventID, String eventName, String adminID, String description,String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema){
+	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema, String commentEnabled){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
@@ -24,6 +25,7 @@ public class Event{
 		this.endTime=endTime;
 		this.location=location;
 		this.perceptionSchema=perceptionSchema;
+		this.commentEnabled=commentEnabled;
 	}
 
 	public String getEventName(){
@@ -64,5 +66,9 @@ public class Event{
 
 	public String getEndDate(){
 		return endDate;
+	}
+
+	public String getCommentEnabled(){
+		return commentEnabled;
 	}
 }

@@ -55,7 +55,6 @@
     <link rel="stylesheet" href="../css/style.css" media="all"/>
     <link rel="stylesheet" href="../css/button_style.css" media="all"/>
 
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/cycle.js"></script>
@@ -69,18 +68,10 @@
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
-
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
 
-    <script type="text/javascript">
-
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
-
-
-    </script>
 </head>
 <body>
 
@@ -334,7 +325,13 @@
 
 </section>
 
-<script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $( "#datepicker" ).datepicker();
+        $('#start').datetimepicker();
+        $('#end').datetimepicker();
+    });
 
     function SecListBox(ListBox,text,value)
     {
@@ -387,12 +384,6 @@
             alert(er)
         }
     }
-
-    $(function() {
-        $('#start').datetimepicker();
-        $('#end').datetimepicker();
-    });
-
 
     $("#delete").click(function () {
 

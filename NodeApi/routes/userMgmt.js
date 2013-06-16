@@ -41,7 +41,7 @@ exports.updateAnnonymousUser = function(req,res){
 
 exports.deleteUser = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
-    userManager.deleteUser(req.body.userName,function(error){
+    userManager.deleteUser(req.query.userName,function(error){
         if(!error){
             res.write(JSON.stringify({result:true}));
         }else{

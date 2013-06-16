@@ -25,10 +25,13 @@ public class SithAPI{
 	public static String GET_ALL_COMMENTS=NODEAPI+"getAllComments";
 	public static String GET_PARTICIPANTS=NODEAPI+"getParticipants";
 	public static String DELETE_EVENT=NODEAPI+"deleteEvent";
+	public static String UPDATE_EVENT=NODEAPI+"updateEvent";
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
 	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
+	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
+	public static String DELETE_USER=NODEAPI+"deleteUser";
 
 
 	public ArrayList<Event> getEventList(){

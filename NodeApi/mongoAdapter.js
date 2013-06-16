@@ -41,14 +41,26 @@ exports.getSingleDocument = function(query,collection,fn){
 
 //retireve multiple documents that matches the given query
 exports.getDocuments = function (query,collection,fn){
-		//console.log("Connected to UoM server");
-		db1.collection(collection, function(err, collection) {
-			collection.find(query).toArray(function(err, doc) {
-				if(err)
-					throw err;
-					fn(doc);
-			});
-		});
+    //console.log("Connected to UoM server");
+    db1.collection(collection, function(err, collection) {
+        collection.find(query).toArray(function(err, doc) {
+            if(err)
+                throw err;
+            fn(doc);
+        });
+    });
+};
+
+//get documents sorted ina order
+exports.getSortedDocuments = function (query,collection,sortkey,fn){
+    //console.log("Connected to UoM server");
+    db1.collection(collection, function(err, collection) {
+        collection.find(query).sort(sortkey).toArray(function(err, doc) {
+            if(err)
+                throw err;
+            fn(doc);
+        });
+    });
 };
 //delete a specific document from a collection
 exports.deleteDocument = function(collection,query,errorFunc){

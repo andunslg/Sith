@@ -76,6 +76,27 @@ public class EventHandler{
 		return false;
 	}
 
+	public boolean setCommentEnabled(String eventID, String commentEnabled){
+		Map<String,String> parms=new HashMap<String,String>();
+		parms.put("eventID",eventID);
+		parms.put("commentEnabled",commentEnabled);
+
+		try{
+			String result=httpUtil.doPut(SithAPI.SET_COMMENT_ENABLED,parms);
+			System.out.println(result);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 	public boolean addUserToEvent(String userID,String eventID){
 
 		String result=null;

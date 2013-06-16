@@ -68,7 +68,7 @@
     <script src="../js/jquery.tablesorter.min.js"></script>
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
+    <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
 
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
@@ -297,7 +297,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Enable User Comments &nbsp;&nbsp;&nbsp;</div>
+                            <div>Enable User Comments &nbsp;</div>
                         </td>
                         <td>
                             <div>

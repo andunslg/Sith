@@ -98,6 +98,42 @@
 </section>
 
 <section class="content">
+    <%
+        if(participant.getUserID().equals(currentEvent.getAdminID())){
+    %>
+    <section class="widget" style="height: 75px">
+        <header>
+            <span class="icon">&#128100;</span>
+            <hgroup>
+                <h1>Enable User Comments</h1>
+
+                <h2>Enable the commenting functionality for users</h2>
+            </hgroup>
+        </header>
+        <%
+            if("false".equals(currentEvent.getCommentEnabled())) {
+        %>
+        <div class="content">
+            <input type="button" class="button" id="commentEnable" value="Enable User Comments">
+        </div>
+        <%
+        }
+        else{
+        %>
+        <div class="content">
+            <input type="button" class="button" id="commentDisable" value="Disable User Comments">
+        </div>
+        <%
+            }
+        %>
+    </section>
+    <%
+        }
+    %>
+    <%
+        if("true".equals(currentEvent.getCommentEnabled())){
+    %>
+
     <section class="widget" style="height: 75px">
         <header>
             <span class="icon">&#128100;</span>
@@ -158,6 +194,9 @@
             </form>
         </div>
     </section>
+    <%
+        }
+    %>
 
     <section class="widget">
         <header>
@@ -218,6 +257,62 @@
                 var $response = $(data);
                 var msg = $response.filter('#msg').text();
                 alert(msg)
+            },
+            error: function (xhr, status, error) {
+                alert("Error adding event - " + error.message);
+            }
+        });
+
+    });
+
+    $("#commentEnable").click(function () {
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var commentEnabled='true';
+
+        var datObj = {};
+
+        datObj['eventID'] = eventID;
+        datObj['commentEnabled'] = commentEnabled;
+
+        $.ajax({
+            url: './commentEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                var $response = $(data);
+                var msg = $response.filter('#msg').text();
+                alert(msg)
+                if(msg.indexOf("Comments Enabled.")!=-1){
+                    window.location.href = './questions.jsp';
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error adding event - " + error.message);
+            }
+        });
+
+    });
+
+    $("#commentDisable").click(function () {
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var commentEnabled='false';
+
+        var datObj = {};
+
+        datObj['eventID'] = eventID;
+        datObj['commentEnabled'] = commentEnabled;
+
+        $.ajax({
+            url: './commentEventHandler.jsp',
+            data: datObj,
+            type: 'POST',
+            success: function (data) {
+                var $response = $(data);
+                var msg = $response.filter('#msg').text();
+                alert(msg)
+                if(msg.indexOf("Comments Enabled.")!=-1){
+                    window.location.href = './questions.jsp';
+                }
             },
             error: function (xhr, status, error) {
                 alert("Error adding event - " + error.message);

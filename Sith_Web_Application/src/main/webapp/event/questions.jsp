@@ -257,6 +257,7 @@
                 var $response = $(data);
                 var msg = $response.filter('#msg').text();
                 alert(msg)
+                window.location.reload();
             },
             error: function (xhr, status, error) {
                 alert("Error adding event - " + error.message);
@@ -298,7 +299,7 @@
             success: function (data) {
                 if (data.indexOf("The Event is successfully updated.") != -1) {
                     alert("Comments enabled successfully")
-                    window.location.href = '../myEvents.jsp';
+                    window.location.reload();
                 }
             },
             error: function (xhr, status, error) {
@@ -341,7 +342,7 @@
             success: function (data) {
                 if (data.indexOf("The Event is successfully updated.") != -1) {
                     alert("Comments enabled successfully")
-                    window.location.href = '../myEvents.jsp';
+                    window.location.reload();
                 }
             },
             error: function (xhr, status, error) {

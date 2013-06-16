@@ -179,6 +179,7 @@ public class EventHandler{
 		String result=null;
 		try{
 			result=httpUtil.doGet(SithAPI.GET_ALL_COMMENTS+"?eventID="+eventID);
+			System.out.println(result);
 			JSONArray jsonArray=new JSONArray(result);
 			comments=new ArrayList<Perception>();
 			for(int i=0;i<jsonArray.length();i++){

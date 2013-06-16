@@ -9,7 +9,7 @@ eventManager = require("../eventManager");
 userManager = require("../userManager");
 exports.addEvent = function(req,res){
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.startDate,
-							req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema);
+							req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled);
     userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
         if(error){
             console.log(error);
@@ -58,12 +58,24 @@ exports.deleteEvent = function(req,res){
     res.write(result);
     res.end();
 };
+exports.setCommentEnabled = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    eventManager.setCommentEnabled(req.body.eventID,req.body.commentEnabled,function(result){
+            if(result){
+                res.write(JSON.stringify({response: true }));
+            }else{
+                res.write(JSON.stringify({response: false}));
+            }
+            res.end();
+        });
+
+};
 
 exports.updateEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
     eventManager.updateEvent(req.body.oldEventID,req.body.eventID,req.body.eventName,req.body.eventAdmin,
                             req.body.desc, req.body.location, req.body.date,req.body.startTime, req.body.endTime,
-                            req.body.perceptionSchema,function(result){
+                            req.body.perceptionSchema,req.body.commentEnabled,function(result){
            if(result){
                res.write(JSON.stringify({response: true }));
            }else{

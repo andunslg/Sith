@@ -1,9 +1,9 @@
 /**
  * @author Sachintha
  */
-exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, startDate,endDate, startTime, endTime,perceptionSchema){
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
-			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema};
+			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled};
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
@@ -29,9 +29,26 @@ exports.deleteEvent = function(eventID){
     mongoAdapter.dropCollection('EventUser_'+eventID);
 };
 
-exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,fn){
+exports.setCommentEnabled = function(eventID,commentEnabled,fn){
+    this.getEventByID(eventID,function(result){
+        if(!result ){
+            mongoAdapter.updateSelectedFields('EventDetails',{eventID:eventID},{commentEnabled:commentEnabled});
+            fn(true);
+        }else{
+            fn(false);
+        }
+    });
+}
+//exports.getCommentEnabled = function(eventID, fn){
+//    mongoAdapter.getProjection('EventDetails',{eventID: eventID},{commentEnabled:1}, function (doc) {
+//        fn(doc);
+//    });
+//
+//}
+
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,commentEnabled,fn){
     newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
-        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema};
+        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){
              mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);

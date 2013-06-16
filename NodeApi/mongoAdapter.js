@@ -67,6 +67,23 @@ exports.deleteDocument = function(collection,query,errorFunc){
         }
     });
 };
+//retireve documents with projection of certain fields
+exports.getProjection = function(collection,query,projection,fn){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        if(err)
+            throw err;
+        else{
+            db.collection(collection, function(err, collection) {
+                collection.findOne(query,projection,function(err, doc) {
+                    if(err)
+                        throw err;
+                    fn(doc);
+                    db.close();
+                });
+            });
+        }
+    });
+};
 
 //Dropping a specific collection
 exports.dropCollection = function(name){
@@ -87,6 +104,17 @@ exports.createCollection = function(name){
 			db.close();
 		});
 	});
+}
+exports.updateSelectedFields = function(collection,selector,fieldSelector){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        db.collection(collection,function(err,collection){
+            collection.update(selector,{$set:fieldSelector},function(err,result){
+                if(err)
+                    throw err;
+                console.log('update Collection as'+result);
+            });
+        });
+    });
 }
 
 exports.updateDocument = function(collection,selector,newDoc){

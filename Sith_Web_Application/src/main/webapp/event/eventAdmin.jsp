@@ -1,11 +1,10 @@
+<%@ page import="com.sith.SithAPI" %>
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -17,6 +16,7 @@
     }
     SithAPI sithAPI=SithAPI.getInstance();
     EventHandler eventHandler=new EventHandler();
+
     Event currentEvent=null;
     if(request.getParameter("eventID")!=null){
         currentEvent=eventHandler.getEvent(request.getParameter("eventID").toString());
@@ -41,7 +41,6 @@
         }
     }
     perceptionList=temp;
-
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 
@@ -300,7 +299,7 @@
                                 }
                                 else{
                                 %>
-                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="false">
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" >
                                 <%
                                     }
                                 %>

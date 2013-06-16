@@ -83,7 +83,6 @@ public class EventHandler{
 
 		try{
 			String result=httpUtil.doPut(SithAPI.SET_COMMENT_ENABLED,parms);
-			System.out.println(result);
 			if(!result.equals("")){
 				if("{\"response\":true}".equals(result)){
 					return true;
@@ -141,7 +140,6 @@ public class EventHandler{
 		String result=null;
 		try{
 			result=httpUtil.doPost(SithAPI.PUBLISH_COMMENT,parms);
-			System.out.println(result);
 			if(!result.equals("")){
 				if("{\"response\":true}".equals(result)){
 					return true;

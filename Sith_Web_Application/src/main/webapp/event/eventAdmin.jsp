@@ -237,7 +237,7 @@
                     <tr>
 
                         <td>
-                            <div>Perception Schema &nbsp;&nbsp;&nbsp;</div>
+                            <div>Perception Schema </div>
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
@@ -288,6 +288,32 @@
                                 %>
                             </select>
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Enable User Comments &nbsp;&nbsp;&nbsp;</div>
+                        </td>
+                        <td>
+                            <div>
+                                <%
+                                    if("true".equals(currentEvent.getCommentEnabled())){
+                                %>
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="true">
+                                <%
+                                }
+                                else{
+                                %>
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="false">
+                                <%
+                                    }
+                                %>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -398,6 +424,12 @@
         var location = $('input[id=location]').val();
         var description = $('input[id=description]').val();
 
+        var c=document.getElementById('commentEnabled');
+        var commentEnabled = false;
+        if(c.checked){
+            commentEnabled=true;
+        }
+
         var perceptionSchema = "";
 
 
@@ -428,6 +460,7 @@
             datObj['location'] = location;
             datObj['description'] = description;
             datObj['perceptionSchema'] = perceptionSchema;
+            datObj['commentEnabled'] = commentEnabled;
 
 
             $.ajax({

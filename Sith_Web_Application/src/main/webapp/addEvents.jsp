@@ -253,6 +253,27 @@
 
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Enable User Comments</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox">
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             &nbsp;
@@ -339,6 +360,12 @@
         var location = $('input[id=location]').val();
         var description = $('input[id=description]').val();
 
+        var c=document.getElementById('commentEnabled');
+        var commentEnabled = false;
+        if(c.checked){
+           commentEnabled=true;
+        }
+
         var perceptionSchema = "";
 
 
@@ -368,6 +395,7 @@
             datObj['location'] = location;
             datObj['description'] = description;
             datObj['perceptionSchema'] = perceptionSchema;
+            datObj['commentEnabled'] = commentEnabled;
 
 
             $.ajax({

@@ -8,14 +8,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema, String commentEnabled){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
@@ -27,6 +26,7 @@ public class EventHandler{
 		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
+		parms.put("commentEnabled",commentEnabled);
 
 		String result=null;
 		try{
@@ -44,7 +44,7 @@ public class EventHandler{
 		return false;
 	}
 
-	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema){
+	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema, String commentEnabled){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("oldEventID",oldEventID);
 		parms.put("eventID",eventID);
@@ -57,6 +57,8 @@ public class EventHandler{
 		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
+		parms.put("commentEnabled",commentEnabled);
+
 
 		String result=null;
 		try{
@@ -144,9 +146,10 @@ public class EventHandler{
 		try{
 			result=httpUtil.doGet(SithAPI.GET_EVENT_BY_ID+"?eventID="+eventID);
 			JSONObject jsonObject=new JSONObject(result);
-			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"));
+			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"));
 			return event;
 		}catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 	}

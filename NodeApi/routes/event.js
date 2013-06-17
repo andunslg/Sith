@@ -123,8 +123,8 @@ exports.publishComment = function(req,res){
 	res.end();
 }
 
-exports.getAllComments = function(req,res){
-	percepManager.getAllComments(function(docs){
+exports.getEventComments = function(req,res){
+	percepManager.getEventComments(req.query.eventID,function(docs){
 	res.writeHead(200, {'Content-Type': 'application/json'});
 	res.write(JSON.stringify(docs));
 	res.end();

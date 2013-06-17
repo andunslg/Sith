@@ -38,23 +38,23 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="../images/uiface1.png" alt="" height="40" width="40"/>Logged in
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
                 as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">
-			<a href="#">Notifications <span class="pip">4</span></a>
-			<ul class="notice">
-                <li>
-                    <hgroup>
-                        <h1>You have no new Notifications</h1>
-                    </hgroup>
-                </li>
-            </ul>
-		</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
+		<%--<span class="button dropdown">--%>
+			<%--<a href="#">Notifications <span class="pip">4</span></a>--%>
+			<%--<ul class="notice">--%>
+                <%--<li>--%>
+                    <%--<hgroup>--%>
+                        <%--<h1>You have no new Notifications</h1>--%>
+                    <%--</hgroup>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+		<%--</span>--%>
+            <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
@@ -63,10 +63,10 @@
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
-            <a href="event/event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>

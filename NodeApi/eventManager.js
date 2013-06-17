@@ -6,6 +6,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, start
 			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled};
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
+    mongoAdapter.createCollection('EventComments_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
 };
 
@@ -26,6 +27,7 @@ exports.deleteEvent = function(eventID){
                 console.log(err.message);
     });
     mongoAdapter.dropCollection('EventPerceptions_'+eventID);
+    mongoAdapter.dropCollection('EventComments_'+eventID);
     mongoAdapter.dropCollection('EventUser_'+eventID);
 };
 

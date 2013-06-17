@@ -1,11 +1,10 @@
+<%@ page import="com.sith.SithAPI" %>
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -17,6 +16,7 @@
     }
     SithAPI sithAPI=SithAPI.getInstance();
     EventHandler eventHandler=new EventHandler();
+
     Event currentEvent=null;
     if(request.getParameter("eventID")!=null){
         currentEvent=eventHandler.getEvent(request.getParameter("eventID").toString());
@@ -41,7 +41,6 @@
         }
     }
     perceptionList=temp;
-
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 %>
 
@@ -55,7 +54,6 @@
     <link rel="stylesheet" href="../css/style.css" media="all"/>
     <link rel="stylesheet" href="../css/button_style.css" media="all"/>
 
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/cycle.js"></script>
@@ -69,18 +67,10 @@
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
-
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
 
-    <script type="text/javascript">
-
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
-
-
-    </script>
 </head>
 <body>
 
@@ -91,7 +81,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/uiface2.jpeg" alt="" height="40" width="40"/> Welcome
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
                 back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
@@ -309,7 +299,7 @@
                                 }
                                 else{
                                 %>
-                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="false">
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" >
                                 <%
                                     }
                                 %>
@@ -334,7 +324,13 @@
 
 </section>
 
-<script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $( "#datepicker" ).datepicker();
+        $('#start').datetimepicker();
+        $('#end').datetimepicker();
+    });
 
     function SecListBox(ListBox,text,value)
     {
@@ -387,12 +383,6 @@
             alert(er)
         }
     }
-
-    $(function() {
-        $('#start').datetimepicker();
-        $('#end').datetimepicker();
-    });
-
 
     $("#delete").click(function () {
 
@@ -470,7 +460,7 @@
                 success: function (data) {
                     alert(data)
                     if (data.indexOf("The Event is successfully updated.") != -1) {
-                        window.location.href = '../myEvents.jsp';
+                        window.location.reload();
                     }
                 },
                 error: function (xhr, status, error) {

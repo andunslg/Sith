@@ -47,12 +47,12 @@ exports.mapPerception = function(perception){
 }
 
 exports.insertComment = function(userID, eventID, perceptionValue, text){
-	doc = {userID:userID, eventID:eventID, perceptionValie:perceptionValue,text:text}
+	doc = {userID:userID, eventID:eventID, perceptionValue:perceptionValue,text:text}
 	mongoAdapter.insertDocument("Comments", doc);
 }
 
-exports.getAllComments = function(fn){
-	mongoAdapter.getDocuments({},"Comments",function(docs){
+exports.getEventComments = function(eventID,fn){
+	mongoAdapter.getDocuments({},"EventComments_"+eventID,function(docs){
 		fn(docs);
 	});
 }

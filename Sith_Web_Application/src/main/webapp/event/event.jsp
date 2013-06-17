@@ -163,39 +163,42 @@
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden">
             <img id="selected_image2" src="../images/perceptions/default.png" alt="Smiley face" align="center">
         </div>
-        <div class="row-fluid" align="center">
-            <%
-                String perceptionArr[]=currentEvent.getPerceptionSchema().split(":");
-                for(int i=0;i<perceptionArr.length;i++){
-                    String perception=perceptionArr[i];
-                    String lowerPerception=perception.toLowerCase();
-                    if(i == 0){
-            %>
-            <div id="<%=lowerPerception%>" class="span2 offset1">
-                <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
-                     title="<%=perception%>">
-            </div>
+        <div align="center">
+            <table border="0" style="text-align: center" align="center">
+                <tr >
+                    <%
+                        String perceptionArr[]=currentEvent.getPerceptionSchema().split(":");
+                        int count = 1000/perceptionArr.length;
 
-            <%
+                        for(int i=0;i<perceptionArr.length;i++){
+                            String perception=perceptionArr[i];
+                            String lowerPerception=perception.toLowerCase();
+                            System.out.println(lowerPerception);
 
-                    }else{
-            %>
-            <div id="<%=lowerPerception%>" class="span2">
-                <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
-                     title="<%=perception%>">
-            </div>
 
-            <%
-                    }
-                }
-            %>
+                    %>
 
+                    <td width = "<%=count%>px"class="test"  id="<%=lowerPerception%>">
+                        <img class="thumbnail" style="width: 80px;height: 80px" src="<%="../images/perceptions/"+lowerPerception+".png"%>"
+                             title="<%=perception%>">
+                    </td>
+                    <%
+                        }
+                    %>
+
+                </tr>
+            </table>
         </div>
+
     </section>
 
 
 </section>
 <script>
+    function getWindowWidth(){
+        var w=window.innerWidth;
+        return w;
+    }
 
     $("#awesome").click(function () {
         $("#awesome").effect("shake");

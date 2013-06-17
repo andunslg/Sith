@@ -257,6 +257,7 @@
                 var $response = $(data);
                 var msg = $response.filter('#msg').text();
                 alert(msg)
+                window.location.reload();
             },
             error: function (xhr, status, error) {
                 alert("Error adding event - " + error.message);
@@ -267,27 +268,42 @@
 
     $("#commentEnable").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
-        var commentEnabled='true';
+        var eventName = '<%=currentEvent.getEventName()%>';
+        var start = '<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>';
+        var end = '<%=currentEvent.getEndDate()+" "+currentEvent.getEndTime()%>';
+        var location = '<%=currentEvent.getLocation()%>';
+        var description = '<%=currentEvent.getDescription()%>';
+        var perceptionSchema = '<%=currentEvent.getPerceptionSchema()%>';
+        var eventAdmin='<%=participant.getUserID()%>';
+        var commentEnabled = 'true';
+
 
         var datObj = {};
 
+        datObj['oldEventID'] =eventID;
         datObj['eventID'] = eventID;
+        datObj['eventName'] = eventName;
+        datObj['eventAdmin'] =eventAdmin;
+        datObj['start'] = start;
+        datObj['end'] = end;
+        datObj['location'] = location;
+        datObj['description'] = description;
+        datObj['perceptionSchema'] = perceptionSchema;
         datObj['commentEnabled'] = commentEnabled;
 
+
         $.ajax({
-            url: './commentEventHandler.jsp',
+            url: 'updateEventHandler.jsp',
             data: datObj,
             type: 'POST',
             success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                if(msg.indexOf("Comments Enabled.")!=-1){
-                    window.location.href = './questions.jsp';
+                if (data.indexOf("The Event is successfully updated.") != -1) {
+                    alert("Comments enabled successfully")
+                    window.location.reload();
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
+                alert("Error enabling comments - " + error.message);
             }
         });
 
@@ -295,30 +311,44 @@
 
     $("#commentDisable").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
-        var commentEnabled='false';
+        var eventName = '<%=currentEvent.getEventName()%>';
+        var start = '<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>';
+        var end = '<%=currentEvent.getEndDate()+" "+currentEvent.getEndTime()%>';
+        var location = '<%=currentEvent.getLocation()%>';
+        var description = '<%=currentEvent.getDescription()%>';
+        var perceptionSchema = '<%=currentEvent.getPerceptionSchema()%>';
+        var eventAdmin='<%=participant.getUserID()%>';
+        var commentEnabled = 'false';
+
 
         var datObj = {};
 
+        datObj['oldEventID'] =eventID;
         datObj['eventID'] = eventID;
+        datObj['eventName'] = eventName;
+        datObj['eventAdmin'] =eventAdmin;
+        datObj['start'] = start;
+        datObj['end'] = end;
+        datObj['location'] = location;
+        datObj['description'] = description;
+        datObj['perceptionSchema'] = perceptionSchema;
         datObj['commentEnabled'] = commentEnabled;
 
+
         $.ajax({
-            url: './commentEventHandler.jsp',
+            url: 'updateEventHandler.jsp',
             data: datObj,
             type: 'POST',
             success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                if(msg.indexOf("Comments Enabled.")!=-1){
-                    window.location.href = './questions.jsp';
+                if (data.indexOf("The Event is successfully updated.") != -1) {
+                    alert("Comments enabled successfully")
+                    window.location.reload();
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
+                alert("Error enabling comments - " + error.message);
             }
         });
-
     });
 </script>
 </body>

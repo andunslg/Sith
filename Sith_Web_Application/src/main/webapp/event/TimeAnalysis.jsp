@@ -11,7 +11,10 @@
     </script>
 </head>
 <body>
-<select id="perceptions"></select>
+<p>Graph Type:</p><select id="perceptions"></select><br>
+<p>Time Interval:Note-if the graph consists of many data points or unresponsive increase this value</p><input type="text">
+<input type="submit">
+
 <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
 </body>
 </html>

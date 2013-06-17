@@ -18,10 +18,10 @@ $(function(){
             $("#perceptions").change(function (){
                 var selected = $('#perceptions').val();
                 if(selected == "stacked"){
-                    stackedGraph();
+                    stackedGraph(500000);
                     return;
                 }
-                chart(selected,50000);
+                chart(selected,500000);
             });
 
             Highcharts.setOptions({
@@ -85,19 +85,29 @@ $(function(){
             });
         };
 
-        stackedGraph = function(){
+        stackedGraph = function(interval){
+                 var series = new Array();
+                 for(var name in result){
+                     if(name == 'startTime'|| name=='endTime'){
+                         continue;
+                     };
+                     var ob = new Object();
+                     ob.name = name;
+                     ob.data = result[name];
+                     ob.pointInterval = interval;
+                     ob.pointStart = result.startTime;
+                     series.push(ob);
+                 }
                 $('#TimeAnalysis').highcharts({
                     chart: {
-                        type: 'area'
+                        type: 'area',
+                        zoomType: 'x',
                     },
                     title: {
-                        text: 'Historic and Estimated Worldwide Population Growth by Region'
-                    },
-                    subtitle: {
-                        text: 'Source: Wikipedia.org'
+                        text: 'Perception Time Graph'
                     },
                     xAxis: {
-                        categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                        type: 'datetime',
                         tickmarkPlacement: 'on',
                         title: {
                             enabled: false
@@ -105,17 +115,16 @@ $(function(){
                     },
                     yAxis: {
                         title: {
-                            text: 'Billions'
+                            text: 'Count'
                         },
                         labels: {
                             formatter: function() {
-                                return this.value / 1000;
+                                return this.value;
                             }
                         }
                     },
                     tooltip: {
                         shared: true,
-                        valueSuffix: ' millions'
                     },
                     plotOptions: {
                         area: {
@@ -128,22 +137,7 @@ $(function(){
                             }
                         }
                     },
-                    series: [{
-                        name: 'Asia',
-                        data: [502, 635, 809, 947, 1402, 3634, 5268]
-                    }, {
-                        name: 'Africa',
-                        data: [106, 107, 111, 133, 221, 767, 1766]
-                    }, {
-                        name: 'Europe',
-                        data: [163, 203, 276, 408, 547, 729, 628]
-                    }, {
-                        name: 'America',
-                        data: [18, 31, 54, 156, 339, 818, 1201]
-                    }, {
-                        name: 'Oceania',
-                        data: [2, 2, 2, 6, 13, 30, 46]
-                    }]
+                    series: series
                 });
         }
 

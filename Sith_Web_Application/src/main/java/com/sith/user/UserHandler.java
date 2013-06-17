@@ -44,7 +44,7 @@ public class UserHandler{
 					events.add(event);
 				}
 				else {
-					//Remove events from registrtion list
+					//Remove events from registration list
 				}
 			}
 

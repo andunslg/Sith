@@ -21,6 +21,7 @@
 
     String deletedEvents=userHandler.checkDeletedEvents(participant.getUserID());
     ArrayList<Event> events=userHandler.getUserEventList(participant.getUserID());
+
 %>
 
 <head>

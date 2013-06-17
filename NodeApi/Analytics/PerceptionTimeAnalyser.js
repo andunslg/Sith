@@ -9,7 +9,7 @@ exports.getTimeAnalysisData = function(collection,sortKey,fn){
           var timediff = docs[docs.length-1].timeStamp-docs[0].timeStamp;
           var minimumTime = docs[0].timeStamp;
           for(var i=0;i<docs.length;i++){
-             var index = Math.floor((docs[i].timeStamp-minimumTime)/(50000));
+             var index = Math.floor((docs[i].timeStamp-minimumTime)/(500000));
               var perception = docs[i].perceptionValue;
               if(result[perception]){
                   if(result[perception][index]){

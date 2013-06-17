@@ -77,7 +77,7 @@
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
-        <input type="text" value="search"/>
+        <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
         <div class="profile-img">
@@ -87,16 +87,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<span class="button dropdown">
-			<a href="#">Notifications <span class="pip"></span></a>
-			<ul class="notice">
-                <li>
-                    <hgroup>
-                        <h1>You have no notifications</h1>
-                    </hgroup>
-                </li>
-            </ul>
-		</span>
+		<%--<span class="button dropdown">--%>
+			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
+			<%--<ul class="notice">--%>
+                <%--<li>--%>
+                    <%--<hgroup>--%>
+                        <%--<h1>You have no notifications</h1>--%>
+                    <%--</hgroup>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+		<%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="../index.jsp?state=loggedOut">Logout</a></span>

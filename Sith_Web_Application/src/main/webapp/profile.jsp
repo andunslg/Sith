@@ -117,13 +117,21 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <input id="update" type="button" value="Update" class="button" style="text-align: center;width: 100px">
+                        </div>
+                    </td>
+
+                    <td>
+                        <div>
+                            <input id="unregister" type="button" value="Unregister" class="button" style="text-align: center;width: 100px">
+                        </div>
+                    </td>
+                </tr>
             </table>
-            <div>
-                <input id="update" type="button" value="Update" class="button" style="text-align: center;width: 100px">
-            </div>
-            <div>
-                <input id="unregister" type="button" value="Unregister" class="button" style="text-align: center;width: 100px">
-            </div>
+
         </div>
     </section>
 </section>

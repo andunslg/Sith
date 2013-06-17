@@ -14,6 +14,7 @@
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
+    <link rel="stylesheet" href="css/apprise.min.css" type="text/css" />
     <!--[if IE]>
     <link rel="stylesheet" href="css/ie.css" media="all"/><![endif]-->
 </head>
@@ -31,16 +32,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip">4</span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no new Notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip">4</span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no new Notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
@@ -146,6 +147,7 @@
 <script src="js/flot-time.js"></script>
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/apprise-1.5.min.js"></script>
 
 <script type="text/javascript">
 
@@ -158,7 +160,8 @@
 
 
         if(oldPassword.length==0 ||newPassword.length==0||newPasswordConfirm.length==0){
-            alert("Please type a password")
+//            alert("Please type a password")
+            apprise("Please type a password");
         }
         else{
 
@@ -177,7 +180,7 @@
                 data: datObj,
                 type: 'POST',
                 success: function (data) {
-                    alert(data)
+                    apprise(data)
                     if (data.indexOf("User profile updated successfully") != -1 ) {
                         window.location.href = 'home.jsp';
                     }
@@ -186,40 +189,40 @@
                     }
                 },
                 error: function (xhr, status, error) {
-                    alert("Error updating user - " + error.message);
+                    apprise("Error updating user - " + error.message);
                 }
             });
         }
     });
 
     $("#unregister").click(function () {
-        var conf = confirm("Are you sure want to unregister from Sith Platform ?");
+//        var conf = confirm("Are you sure want to unregister from Sith Platform ?");
+        apprise('Are you sure want to unregister from Sith Platform ?',{'verify':true},function(r){
+            if(r){
+                var username = $('input[id=username]').val();
 
-        if(conf){
-            var username = $('input[id=username]').val();
+                var datObj = {};
+                datObj['userName'] = username;
 
-            var datObj = {};
-            datObj['userName'] = username;
-
-            $.ajax({
-                url: 'user/unregisterUserHandler.jsp',
-                data: datObj,
-                type: 'POST',
-                success: function (data) {
-                    alert(data)
-                    if (data.indexOf("User profile deleted successfully") != -1 ) {
-                        window.location.href = 'index.jsp?state=loggedOut';
+                $.ajax({
+                    url: 'user/unregisterUserHandler.jsp',
+                    data: datObj,
+                    type: 'POST',
+                    success: function (data) {
+                        apprise(data)
+                        if (data.indexOf("User profile deleted successfully") != -1 ) {
+                            window.location.href = 'index.jsp?state=loggedOut';
+                        }
+                        else if(data.indexOf("User not logged-in")!=-1){
+                            window.location.href = 'index.jsp?state=loggedOut';
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        apprise("Error updating user - " + error.message);
                     }
-                    else if(data.indexOf("User not logged-in")!=-1){
-                        window.location.href = 'index.jsp?state=loggedOut';
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert("Error updating user - " + error.message);
-                }
-            });
-        }
-
+                });
+            }
+        });
     });
 </script>
 </body>

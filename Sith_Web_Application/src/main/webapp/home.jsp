@@ -36,6 +36,12 @@
 
 
     <script type="text/javascript">
+        window.onload= setPerception;
+        function setPerception(){
+            if(sessionStorage.getItem("currentPerception")==null){
+                sessionStorage.setItem("currentPerception","");
+            }
+        }
 
         $(document).ready(function () {
 

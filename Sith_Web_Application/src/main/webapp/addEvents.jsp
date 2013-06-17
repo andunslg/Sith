@@ -71,16 +71,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip"></span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
@@ -120,7 +120,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 160px">
                             <div>Event ID</div>
                         </td>
                         <td>
@@ -218,7 +218,7 @@
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
-                                    style="width: 400px;height: 120px">
+                                    style="width: 400px;height: 120px;vertical-align: middle" >
                                 <%
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
@@ -238,15 +238,15 @@
 
                             </select>
                         </td>
-                        <td>
-                            <div class="m-btn-group" style="display: table-row;display: inline-table">
+                        <td style="vertical-align: middle">
+                            <div class="m-btn-group" style="display: inline-table">
                                 <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
                                 <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
                             </div>
                         </td>
-                        <td>
+                        <td style="vertical-align: middle">
                             <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
-                                    style="width:350px;height: 120px">
+                                    style="width:300px;height: 120px">
 
                             </select>
 
@@ -267,26 +267,32 @@
                         <td>
                             <div>Enable User Comments</div>
                         </td>
+                        <td >
+                            <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" >
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
-                            <div>
-                                <input name="commentEnabled" id="commentEnabled" type="checkbox">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <div style="display: inline-block">
+                                <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
                 </table>
-                <div style="display: inline-block">
-                    <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
-                </div>
+
             </form>
         </div>
     </section>
@@ -362,7 +368,7 @@
         var c=document.getElementById('commentEnabled');
         var commentEnabled = false;
         if(c.checked){
-           commentEnabled=true;
+            commentEnabled=true;
         }
 
         var perceptionSchema = "";

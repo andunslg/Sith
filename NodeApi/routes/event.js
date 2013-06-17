@@ -133,6 +133,6 @@ exports.getEventComments = function(req,res){
 
 exports.getMasterPerceptions = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify(['Awesome','Wonderful','Excited', 'Interested','Happy', 'Neutral', 'Bored', 'Sleepy', 'Sad', 'Angry', 'Horrible']));
+    res.write(JSON.stringify([{'perception':'Awesome','value':'1'},{'perception':'Wonderful','value':'2'},{'perception':'Excited','value':'3'}, {'perception':'Interested','value':'4'},{'perception':'Happy','value':'5'}, {'perception':'Neutral','value':'6'}, {'perception':'Bored','value':'7'}, {'perception':'Sleepy','value':'8'}, {'perception':'Sad','value':'9'}, {'perception':'Angry','value':'10'}, {'perception':'Horrible','value':'11'}]));
     res.end();
 }

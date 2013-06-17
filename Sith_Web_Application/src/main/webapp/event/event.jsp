@@ -1,10 +1,13 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
 <%
+    SithAPI sithAPI=new SithAPI();
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=null;
 
@@ -89,16 +92,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip"></span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="../index.jsp?state=loggedOut">Logout</a></span>
@@ -168,6 +171,26 @@
                 <tr >
                     <%
                         String perceptionArr[]=currentEvent.getPerceptionSchema().split(":");
+                        HashMap<String,Integer> perceptionMap=sithAPI.getMasterPerceptionsMap();
+
+                        int j;
+                        boolean flag = true;   // set flag to true to begin first pass
+                        String temp;   //holding variable
+
+                        while ( flag )
+                        {
+                            flag= false;    //set flag to false awaiting a possible swap
+                            for( j=0;  j < perceptionArr.length -1;  j++ )
+                            {
+                                if ( perceptionMap.get(perceptionArr[ j ]) > perceptionMap.get(perceptionArr[ j+1 ]))   // change to > for ascending sort
+                                {
+                                    temp = perceptionArr[ j ];                //swap elements
+                                    perceptionArr[ j ] = perceptionArr[ j+1 ];
+                                    perceptionArr[ j+1 ] = temp;
+                                    flag = true;              //shows a swap occurred
+                                }
+                            }
+                        }
                         int count = 1000/perceptionArr.length;
 
                         for(int i=0;i<perceptionArr.length;i++){
@@ -308,10 +331,10 @@
     function persistCurrentPerception(){
         if(sessionStorage.getItem("currentPerception")!= "" ){
             var currentPerception = sessionStorage.getItem("currentPerception");
-           var edit_save = document.getElementById("selected_image2");
-           document.getElementById("h42").innerHTML = "You are "+currentPerception;
-           edit_save.src = "../images/perceptions/"+currentPerception+".png";
-           document.getElementById('selected_image2').style.visibility = 'visible';
+            var edit_save = document.getElementById("selected_image2");
+            document.getElementById("h42").innerHTML = "You are "+currentPerception;
+            edit_save.src = "../images/perceptions/"+currentPerception+".png";
+            document.getElementById('selected_image2').style.visibility = 'visible';
         }
     }
 

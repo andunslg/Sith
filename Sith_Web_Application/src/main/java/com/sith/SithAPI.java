@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SithAPI{
 	public static SithAPI sithAPI=new SithAPI();
@@ -36,6 +37,9 @@ public class SithAPI{
 	public static String DELETE_USER=NODEAPI+"deleteUser";
 
 
+	private ArrayList<String> masterPerceptionCollection;
+	private HashMap<String,Integer>  masterPerceptionCollectionMap;
+
 	public ArrayList<Event> getEventList(){
 		ArrayList<Event> events=null;
 
@@ -58,22 +62,31 @@ public class SithAPI{
 	}
 
 	public ArrayList<String> getMasterPerceptions(){
-		ArrayList<String> perceptions=null;
+
 		try{
 			String result=httpUtil.doGet(GET_MASTER_PERCEPTIONS);
-			if(result!=null){
-				perceptions=new ArrayList<String>();
-				result=result.substring(1,result.length()-1);
-				String arr[]=result.split(",");
-				for(int i=0;i<arr.length;i++){
-					perceptions.add(arr[i].substring(1,arr[i].length()-1));
+			JSONArray jsonArray=new JSONArray(result);
+			if(jsonArray!=null){
+				masterPerceptionCollection=new ArrayList<String>();
+				masterPerceptionCollectionMap=new HashMap<String,Integer>();
+
+				for(int i=0;i<jsonArray.length();i++){
+					JSONObject jsonObject=jsonArray.getJSONObject(i);
+					masterPerceptionCollection.add(jsonObject.getString("perception"));
+					masterPerceptionCollectionMap.put(jsonObject.getString("perception"),Integer.parseInt(jsonObject.getString("value")));
 				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return perceptions;
+		return masterPerceptionCollection;
 	}
+
+	public HashMap<String,Integer> getMasterPerceptionsMap(){
+		this.getMasterPerceptions();
+		return masterPerceptionCollectionMap;
+	}
+
 
 	public static SithAPI getInstance(){
 		return sithAPI;

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
     <link rel="stylesheet" href="css/button_style.css" media="all"/>
     <link rel="stylesheet" href="css/jquery-ui.css" media="all"/>
+    <link rel="stylesheet" href="css/apprise.min.css" type="text/css" />
 
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
@@ -47,6 +48,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
+    <script src="js/apprise-1.5.min.js"></script>
 
     <link rel="stylesheet" href="/resources/demos/style.css" />
     <script>

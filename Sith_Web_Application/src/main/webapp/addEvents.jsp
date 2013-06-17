@@ -310,7 +310,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
     function FirstListBox()
@@ -329,7 +329,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
     function SecondListBox()
@@ -347,7 +347,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
 
@@ -383,10 +383,10 @@
         });
 
         if(start.length!=16  ||end.length!=16){
-            alert("Please select correct Start and End values")
+            apprise("Please select correct Start and End values")
         }
         else if(perceptionSchema==""){
-            alert("Please select perception schema")
+            apprise("Please select perception schema")
         }
         else{
 
@@ -408,13 +408,13 @@
                 data: datObj,
                 type: 'POST',
                 success: function (data) {
-                    alert(data)
+                    apprise(data)
                     if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
                         window.location.href = 'myEvents.jsp';
                     }
                 },
                 error: function (xhr, status, error) {
-                    alert("Error adding event - " + error.message);
+                    apprise("Error adding event - " + error.message);
                 }
             });
         }

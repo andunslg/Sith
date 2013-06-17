@@ -53,6 +53,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" media="all"/>
     <link rel="stylesheet" href="../css/button_style.css" media="all"/>
+    <link rel="stylesheet" href="../css/apprise.min.css" media="all"/>
 
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
@@ -70,6 +71,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
+    <script src="../js/apprise-1.5.min.js"></script>
 
 </head>
 <body>
@@ -158,7 +160,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 160px">
                             <div>Event ID</div>
                         </td>
                         <td>
@@ -166,6 +168,11 @@
                                 <input name="eventID" id="eventID" value="<%=currentEvent.getEventID()%>" type="text"
                                        style="width: 400px" readonly>
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -180,12 +187,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Start</div>
                         </td>
                         <td>
                             <div>
                                 <input name="start" id="start" value="<%=currentEvent.getStartDate()+" "+currentEvent.getStartTime()%>" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -200,12 +217,22 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Location</div>
                         </td>
                         <td>
                             <div>
                                 <input name="location" id="location" value="<%=currentEvent.getLocation()%>" type="text">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -220,10 +247,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
+                            &nbsp;
                         </td>
                     </tr>
-
                     <tr>
 
                         <td>
@@ -231,7 +257,7 @@
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
-                                    style="width: 400px">
+                                    style="width: 400px;height:120px;vertical-align: middle">
                                 <%
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
@@ -251,7 +277,7 @@
 
                             </select>
                         </td>
-                        <td>
+                        <td style="vertical-align: middle;width: 83px">
                             <div class="m-btn-group" align="center">
                                 <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
                                 <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
@@ -259,7 +285,7 @@
                         </td>
                         <td>
                             <select name="selectedPerceptionSchema"  id="selectedPerceptionSchema" multiple="multiple"
-                                    style="width:350px">
+                                    style="width:300px;height:120px;vertical-align: middle">
                                 <%
                                     for(String perception : perceptionListSelected){
                                         if(perception.equals("Happy")){
@@ -311,13 +337,29 @@
                             &nbsp;
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <div align="center">
+                                <input id="update" value="Update" type="button" class="button" style="text-align: center;width: 100px">
+                            </div>
+
+                        </td>
+                        <td>
+                            <div align="center">
+                                <input id="delete" value="Delete Event" type="button" class="button" style="text-align: center;width: 100px">
+                            </div>
+                        </td>
+                    </tr>
                 </table>
-                <div align="center">
-                    <input id="update" value="Update" type="button" class="button" style="text-align: center;width: 100px">
-                </div>
-                <div align="center">
-                    <input id="delete" value="Delete Event" type="button" class="button" style="text-align: center;width: 100px">
-                </div>
+
             </form>
         </div>
     </section>
@@ -343,7 +385,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
     function FirstListBox()
@@ -362,7 +404,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
     function SecondListBox()
@@ -380,7 +422,7 @@
         }
         catch(er)
         {
-            alert(er)
+            apprise(er)
         }
     }
 
@@ -394,13 +436,13 @@
             data: datObj,
             type: 'POST',
             success: function (data) {
-                alert(data)
+                apprise(data)
                 if (data.indexOf("You are successfully deleted the event") != -1) {
                     window.location.href = '../myEvents.jsp';
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error deleting event - " + error.message);
+                apprise("Error deleting event - " + error.message);
             }
         });
 
@@ -432,10 +474,10 @@
         });
 
         if(start.length!=16  ||end.length!=16){
-            alert("Please select correct Start and End values")
+            apprise("Please select correct Start and End values")
         }
         else if(perceptionSchema==""){
-            alert("Please select perception schema")
+            apprise("Please select perception schema")
         }
         else{
 
@@ -458,13 +500,13 @@
                 data: datObj,
                 type: 'POST',
                 success: function (data) {
-                    alert(data)
+                    apprise(data)
                     if (data.indexOf("The Event is successfully updated.") != -1) {
                         window.location.reload();
                     }
                 },
                 error: function (xhr, status, error) {
-                    alert("Error updating event - " + error.message);
+                    apprise("Error updating event - " + error.message);
                 }
             });
         }

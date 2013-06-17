@@ -173,9 +173,6 @@
                         for(int i=0;i<perceptionArr.length;i++){
                             String perception=perceptionArr[i];
                             String lowerPerception=perception.toLowerCase();
-                            System.out.println(lowerPerception);
-
-
                     %>
 
                     <td width = "<%=count%>px"class="test"  id="<%=lowerPerception%>">

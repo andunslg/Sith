@@ -79,7 +79,7 @@
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
-        <input type="text" value="search"/>
+        <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
         <div class="profile-img">

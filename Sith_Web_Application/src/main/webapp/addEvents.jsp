@@ -31,23 +31,22 @@
     <link rel="stylesheet" href="css/button_style.css" media="all"/>
     <link rel="stylesheet" href="css/jquery-ui.css" media="all"/>
 
-    <script src="js/jquery.wysiwyg.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/cycle.js"></script>
-    <script src="js/jquery.checkbox.min.js"></script>
-    <script src="js/flot.js"></script>
-    <script src="js/flot.resize.js"></script>
-    <script src="js/flot-graphs.js"></script>
-    <script src="js/flot-time.js"></script>
-    <script src="js/cycle.js"></script>
-    <script src="js/jquery.tablesorter.min.js"></script>
-
+    <script src="../js/jquery.wysiwyg.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../js/cycle.js"></script>
+    <script src="../js/jquery.checkbox.min.js"></script>
+    <script src="../js/flot.js"></script>
+    <script src="../js/flot.resize.js"></script>
+    <script src="../js/flot-graphs.js"></script>
+    <script src="../js/flot-time.js"></script>
+    <script src="../js/cycle.js"></script>
+    <script src="../js/jquery.tablesorter.min.js"></script>
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
+    <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="js/jquery-ui-timepicker-addon.js"></script>
+    <script src="../js/jquery-ui-timepicker-addon.js"></script>
 
     <link rel="stylesheet" href="/resources/demos/style.css" />
     <script>
@@ -62,7 +61,7 @@
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
-        <input type="text" value="search"/>
+        <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
         <div class="profile-img">
@@ -72,16 +71,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<span class="button dropdown">
-			<a href="#">Notifications <span class="pip"></span></a>
-			<ul class="notice">
-                <li>
-                    <hgroup>
-                        <h1>You have no notifications</h1>
-                    </hgroup>
-                </li>
-            </ul>
-		</span>
+		<%--<span class="button dropdown">--%>
+			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
+			<%--<ul class="notice">--%>
+                <%--<li>--%>
+                    <%--<hgroup>--%>
+                        <%--<h1>You have no notifications</h1>--%>
+                    <%--</hgroup>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+		<%--</span>--%>
             <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>

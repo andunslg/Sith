@@ -54,7 +54,7 @@
                 </li>
             </ul>
 		</span>
-            <span class="button"><a href="home.jsp">Home</a></span>
+            <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
@@ -63,10 +63,10 @@
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
-            <a href="event/event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
         </li>
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>

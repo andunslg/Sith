@@ -1,8 +1,8 @@
 /**
  * @author Sachintha
  */
-stats = require('../stats');
-
+var stats = require('../stats'),
+analyser = require('../Analytics/PerceptionTimeAnalyser');
 //send perception totals in each catelog
 exports.sendPerceptionCount = function(req,res){
     eventID = req.query.eventID;
@@ -95,6 +95,21 @@ function constructCountMessage(eventID,res){
 	
 };
 
+exports.getTimeAnalysis = function(req,res){
+    var collection = "EventPerceptions_"+req.query.eventID;
+    //var sortfield = req.query.sortfield;
+    //var sortkey = new Object(sortfield: req.query.order);
+        analyser.getTimeAnalysisData(collection,{timeStamp:+1},function(result){
+            dataString = JSON.stringify(result)
+            res.writeHead(200, {
+                'Content-Type' : 'application/json',
+                'Cache-Control' : 'no-cache',
+                'Connection' : 'keep-alive'
+            });
+            res.write(JSON.stringify(dataString));
+            res.end();
+        });
+}
 /*
 function constructTotPerceptionMessage(res){
 	stats.countTotPerceptions(function(length){

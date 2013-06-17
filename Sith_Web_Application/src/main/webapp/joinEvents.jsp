@@ -39,6 +39,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <link rel="stylesheet" href="css/apprise.min.css" type="text/css" />
 
 
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -54,6 +55,7 @@
     <script src="js/flot-time.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
+    <script src="js/apprise-1.5.min.js"></script>
 
 
     <script type="text/javascript">
@@ -195,13 +197,13 @@
             success: function (data) {
                 var $response = $(data);
                 var msg = $response.filter('#msg').text();
-                alert(msg)
+                apprise(msg)
                 if (msg == "You are successfully registered to event\n") {
                     window.location.href = 'event/event.jsp' + '?eventID=' + id;
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error joining event - " + error.message);
+                apprise("Error joining event - " + error.message);
             }
         });
     });

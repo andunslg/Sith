@@ -9,7 +9,7 @@ $(function(){
         $.get('http://localhost:3000/getTimeAnalysis?eventID=test',function(data){
             var result = JSON.parse(data);
             for(var percep in result){
-                if(percep == 'startTime'|| percep=='endTime'){
+                if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'){
                   continue;
                 }
                 $("#perceptions").append($("<option />").val(percep).text(percep));
@@ -18,10 +18,10 @@ $(function(){
             $("#perceptions").change(function (){
                 var selected = $('#perceptions').val();
                 if(selected == "stacked"){
-                    stackedGraph(500000);
+                    stackedGraph();
                     return;
                 }
-                chart(selected,500000);
+                chart(selected);
             });
 
             Highcharts.setOptions({
@@ -29,10 +29,10 @@ $(function(){
                     useUTC: false
                 }
             });
-            chart = function(type,interval){
+            chart = function(type){
                 var series = [{
                     name:type,
-                    pointInterval: interval,
+                    pointInterval: result["interval"],
                     pointStart: result.startTime,
                     data: result[type],
                 }]
@@ -85,16 +85,16 @@ $(function(){
             });
         };
 
-        stackedGraph = function(interval){
+        stackedGraph = function(){
                  var series = new Array();
                  for(var name in result){
-                     if(name == 'startTime'|| name=='endTime'){
+                     if(name == 'startTime'|| name=='endTime' || name == 'interval'){
                          continue;
                      };
                      var ob = new Object();
                      ob.name = name;
                      ob.data = result[name];
-                     ob.pointInterval = interval;
+                     ob.pointInterval = result.interval;
                      ob.pointStart = result.startTime;
                      series.push(ob);
                  }

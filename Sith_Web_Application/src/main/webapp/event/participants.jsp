@@ -123,7 +123,7 @@
                     for(Participant temp : participantList){
                 %>
                 <tr>
-                    <td class="avatar"><img src="../images/uiface1.png" alt="" height="40"
+                    <td class="avatar"><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40"
                                             width="40"/> <%=temp.getUserName()%>
                     </td>
                     <%

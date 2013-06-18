@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 countTimeChart = function(eventID){
-        $.get('http://localhost:3000/getTimeAnalysis?eventID='+eventID,function(data){
+        $.get('http://192.248.8.246:3000/getTimeAnalysis?eventID='+eventID,function(data){
             var result = JSON.parse(data);
             for(var percep in result){
                 if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'){

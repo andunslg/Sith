@@ -9,7 +9,7 @@
 <%
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("../index.jsp");
         }
     }
 
@@ -54,14 +54,14 @@
 		<%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button blue"><a href="../index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
@@ -101,7 +101,7 @@
     <%
         if(participant.getUserID().equals(currentEvent.getAdminID())){
     %>
-    <section class="widget" style="height: 75px">
+    <section class="widget" style="min-height: 200px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -121,6 +121,7 @@
         else{
         %>
         <div class="content">
+            <br>
             <input type="button" class="button" id="commentDisable" value="Disable User Comments">
         </div>
         <%
@@ -134,7 +135,7 @@
         if("true".equals(currentEvent.getCommentEnabled())){
     %>
 
-    <section class="widget" style="height: 75px">
+    <section class="widget" style="min-height: 200px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -204,7 +205,7 @@
             <hgroup>
                 <h1>Comments</h1>
 
-                <h2>What they're saying</h2>
+                <h2>What others saying?</h2>
             </hgroup>
         </header>
         <div class="content no-padding timeline">

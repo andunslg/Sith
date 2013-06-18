@@ -30,6 +30,7 @@
     <script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
@@ -49,6 +50,7 @@
         })
     </script>
     <script type="text/javascript" src="../js/charts/perceptionCountGraphs.js"></script>
+    <script type="text/javascript" src="../js/charts/countTimeAnalysis.js"></script>
 </head>
 <body>
 <div class="testing">
@@ -134,6 +136,9 @@
             </aside>
         </header>
         <div class="content">
+            <p>Graph Type:</p><select id="perceptions"></select><br>
+            <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
+            <br/><br/>
             <p>
                 Chart Type
                 <select id='chartType'>

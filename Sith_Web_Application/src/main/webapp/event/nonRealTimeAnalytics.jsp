@@ -13,6 +13,7 @@
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+    String currentPerceptionOfEvent = currentEvent.getEventID()+"_currentPerception";
 %>
 <head>
     <meta charset="utf-8">
@@ -117,8 +118,8 @@
 </nav>
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="participants.jsp"><%=currentEvent.getEventName()%></a> , Click here to <a href="../myEvents.jsp">change</a></p>
-        <%--<span class="close">&#10006;</span>--%>
+        <span>Current event is <strong><%=currentEvent.getEventName()%></strong>, Click here to <a href="../myEvents.jsp">change</a></span>
+        <span  id="current_perception"  style="margin: auto;float: right;display: none;">Current Perception is <strong></strong></span>
     </div>
 </section>
 <section class="content">
@@ -153,6 +154,17 @@
 
 </section>
 <script type="text/javascript">
+
+    window.onload=setCurrentPerception
+
+    function setCurrentPerception(){
+        if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
+            var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
+            $('#current_perception strong').html(currentPerception);
+            $('#current_perception').show();
+        }
+
+    }
     // Feature slider for graphs
     $('.cycle').cycle({
         fx: "scrollHorz",

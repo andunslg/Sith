@@ -223,7 +223,7 @@
     $("#awesome").click(function () {
         $("#awesome").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Awesome";
+        document.getElementById("h42").innerHTML = "I Feel Awesome";
         edit_save.src = "../images/perceptions/awesome.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
@@ -233,7 +233,7 @@
     $("#wonderful").click(function () {
         $("#wonderful").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Wonderful";
+        document.getElementById("h42").innerHTML = "I Feel Wonderful";
         edit_save.src = "../images/perceptions/wonderful.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Wonderful");
@@ -243,7 +243,7 @@
     $("#excited").click(function () {
         $("#excited").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Excited";
+        document.getElementById("h42").innerHTML = "I Feel Excited";
         edit_save.src = "../images/perceptions/excited.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Excited");
@@ -253,7 +253,7 @@
     $("#happy").click(function () {
         $("#happy").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Happy";
+        document.getElementById("h42").innerHTML = "I Feel Happy";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
@@ -263,7 +263,7 @@
     $("#interested").click(function () {
         $("#interested").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Interested";
+        document.getElementById("h42").innerHTML = "I Feel Interested";
         edit_save.src = "../images/perceptions/interested.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Interested");
@@ -273,7 +273,7 @@
     $("#neutral").click(function () {
         $("#neutral").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Neutral";
+        document.getElementById("h42").innerHTML = "I Feel Neutral";
         edit_save.src = "../images/perceptions/neutral.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Neutral");
@@ -283,7 +283,7 @@
     $("#bored").click(function () {
         $("#bored").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Bored";
+        document.getElementById("h42").innerHTML = "I Feel Bored";
         edit_save.src = "../images/perceptions/bored.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Bored");
@@ -293,7 +293,7 @@
     $("#sleepy").click(function () {
         $("#sleepy").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Sleepy";
+        document.getElementById("h42").innerHTML = "I Feel Sleepy";
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
@@ -303,7 +303,7 @@
     $("#sad").click(function () {
         $("#sad").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Sad";
+        document.getElementById("h42").innerHTML = "I Feel Sad";
         edit_save.src = "../images/perceptions/sad.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Sad");
@@ -312,7 +312,7 @@
     $("#angry").click(function () {
         $("#angry").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Angry";
+        document.getElementById("h42").innerHTML = "I Feel Angry";
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
@@ -321,7 +321,7 @@
     $("#horrible").click(function () {
         $("#horrible").effect("shake");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "You are Horrible";
+        document.getElementById("h42").innerHTML = "I Feel Horrible";
         edit_save.src = "../images/perceptions/horrible.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Horrible");
@@ -332,7 +332,7 @@
         if(sessionStorage.getItem("currentPerception")!= "" ){
             var currentPerception = sessionStorage.getItem("currentPerception");
             var edit_save = document.getElementById("selected_image2");
-            document.getElementById("h42").innerHTML = "You are "+currentPerception;
+            document.getElementById("h42").innerHTML = "I Feel "+currentPerception;
             edit_save.src = "../images/perceptions/"+currentPerception+".png";
             document.getElementById('selected_image2').style.visibility = 'visible';
         }

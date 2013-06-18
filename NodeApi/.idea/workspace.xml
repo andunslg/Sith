@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8a4a65d-f6db-4048-afcc-46036055bb50" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\compiler.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\modules.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Prabhath\sith\Sith\NodeApi\.idea\workspace.xml" afterPath="" />
     </list>
     <ignored path="NodeApi.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c8a4a65d-f6db-4048-afcc-46036055bb50" time="1371550451111" ignored="false" />
+    <file path="/Dummy.txt" changelist="c8a4a65d-f6db-4048-afcc-46036055bb50" time="1371550513769" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +275,11 @@
       <created>1371550460701</created>
       <updated>1371550460701</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="deleted .idea">
+      <created>1371550517031</created>
+      <updated>1371550517031</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -357,7 +355,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="update idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted .idea" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -372,6 +370,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="update idea" />
+    <MESSAGE value="deleted .idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

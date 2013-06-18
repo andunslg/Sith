@@ -270,8 +270,8 @@
                         </td>
                         <td style="vertical-align: middle;width: 83px">
                             <div class="m-btn-group" align="center">
-                                <a href="#" title=">" class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
-                                <a href="#" class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
+                                <a  class="m-btn icn-only"  onclick="FirstListBox();"><i class="icon-chevron-right" ></i></a>
+                                <a  class="m-btn icn-only" onclick="SecondListBox();"><i class="icon-chevron-left"></i></a>
                             </div>
                         </td>
                         <td>

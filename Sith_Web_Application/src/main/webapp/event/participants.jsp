@@ -95,7 +95,7 @@
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="#">Workshop1</a> , Click here to <a href="#">change</a></p>
+        <p>Current event is <a href="#"><%=currentEvent.getEventName()%></a> , Click here to <a href="../myEvents.jsp">change</a></p>
         <%--<span class="close">&#10006;</span>--%>
     </div>
 </section>
@@ -123,7 +123,7 @@
                     for(Participant temp : participantList){
                 %>
                 <tr>
-                    <td class="avatar"><img src="../images/uiface1.png" alt="" height="40"
+                    <td class="avatar"><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40"
                                             width="40"/> <%=temp.getUserName()%>
                     </td>
                     <%

@@ -33,21 +33,6 @@
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
 
-
-    <script type="text/javascript">
-        window.onload= setPerception;
-        function setPerception(){
-            if(sessionStorage.getItem("currentPerception")==null){
-                sessionStorage.setItem("currentPerception","");
-            }
-        }
-
-        $(document).ready(function () {
-
-        });
-
-
-    </script>
 </head>
 <body>
 

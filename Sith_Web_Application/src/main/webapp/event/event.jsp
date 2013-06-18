@@ -18,6 +18,7 @@
         currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     }
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+    String currentPerceptionOfEvent = currentEvent.getEventID()+"_currentPerception";
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
             response.sendRedirect("index.jsp");
@@ -227,7 +228,7 @@
         edit_save.src = "../images/perceptions/awesome.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
-        sessionStorage.setItem("currentPerception","awesome");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","awesome");
     });
 
     $("#wonderful").click(function () {
@@ -237,7 +238,7 @@
         edit_save.src = "../images/perceptions/wonderful.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Wonderful");
-        sessionStorage.setItem("currentPerception","wonderful");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","wonderful");
     });
 
     $("#excited").click(function () {
@@ -247,7 +248,7 @@
         edit_save.src = "../images/perceptions/excited.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Excited");
-        sessionStorage.setItem("currentPerception","excited");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","excited");
     });
 
     $("#happy").click(function () {
@@ -257,7 +258,7 @@
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
-        sessionStorage.setItem("currentPerception","happy");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","happy");
     });
 
     $("#interested").click(function () {
@@ -267,7 +268,7 @@
         edit_save.src = "../images/perceptions/interested.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Interested");
-        sessionStorage.setItem("currentPerception","interested");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","interested");
     });
 
     $("#neutral").click(function () {
@@ -277,7 +278,7 @@
         edit_save.src = "../images/perceptions/neutral.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Neutral");
-        sessionStorage.setItem("currentPerception","neutral");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","neutral");
     });
 
     $("#bored").click(function () {
@@ -287,7 +288,7 @@
         edit_save.src = "../images/perceptions/bored.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Bored");
-        sessionStorage.setItem("currentPerception","bored");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","bored");
     });
 
     $("#sleepy").click(function () {
@@ -297,7 +298,7 @@
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
-        sessionStorage.setItem("currentPerception","sleepy");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sleepy");
     });
 
     $("#sad").click(function () {
@@ -307,7 +308,7 @@
         edit_save.src = "../images/perceptions/sad.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Sad");
-        sessionStorage.setItem("currentPerception","sad");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sad");
     });
     $("#angry").click(function () {
         $("#angry").effect("shake");
@@ -316,7 +317,7 @@
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
-        sessionStorage.setItem("currentPerception","angry");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","angry");
     });
     $("#horrible").click(function () {
         $("#horrible").effect("shake");
@@ -325,12 +326,12 @@
         edit_save.src = "../images/perceptions/horrible.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Horrible");
-        sessionStorage.setItem("currentPerception","horrible");
+        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","horrible");
     });
     window.onload=persistCurrentPerception;
     function persistCurrentPerception(){
-        if(sessionStorage.getItem("currentPerception")!= "" ){
-            var currentPerception = sessionStorage.getItem("currentPerception");
+        if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
+            var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
             var edit_save = document.getElementById("selected_image2");
             document.getElementById("h42").innerHTML = "I Feel "+currentPerception;
             edit_save.src = "../images/perceptions/"+currentPerception+".png";

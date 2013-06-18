@@ -16,6 +16,7 @@
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+    String currentPerceptionOfEvent = currentEvent.getEventID()+"_currentPerception";
 %>
 <head>
     <meta charset="utf-8">
@@ -93,7 +94,8 @@
 
 <section class="alert">
     <div class="green">
-        <p>Current event is <%=currentEvent.getEventName()%> , Click here to <a href="../myEvents.jsp">change</a></p>
+        <span>Current event is <strong><%=currentEvent.getEventName()%></strong>, Click here to <a href="../myEvents.jsp">change</a></span>
+        <span  id="current_perception"  style="margin: auto;float: right;display: none;">Current Perception is <strong></strong></span>
     </div>
 </section>
 
@@ -237,6 +239,16 @@
 <script src="../js/jquery.tablesorter.min.js"></script>
 
 <script>
+    window.onload=setCurrentPerception
+
+    function setCurrentPerception(){
+        if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
+            var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
+            $('#current_perception strong').html(currentPerception);
+            $('#current_perception').show();
+        }
+
+    }
     $("#addComment").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
         var userID = '<%=participant.getUserID()%>';

@@ -99,7 +99,7 @@
 <nav>
     <ul>
         <li>
-            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#9790;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
         </li>
         <li>
             <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
@@ -311,12 +311,12 @@
                                 <%
                                     if("true".equals(currentEvent.getCommentEnabled())){
                                 %>
-                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="true">
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" checked="true" style="width: 10%">
                                 <%
                                 }
                                 else{
                                 %>
-                                <input name="commentEnabled" id="commentEnabled" type="checkbox" >
+                                <input name="commentEnabled" id="commentEnabled" type="checkbox" style="width: 10%">
                                 <%
                                     }
                                 %>

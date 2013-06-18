@@ -39,6 +39,7 @@
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
                 barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                countTimeChart('<%=currentEvent.getEventID()%>');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
                         barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');

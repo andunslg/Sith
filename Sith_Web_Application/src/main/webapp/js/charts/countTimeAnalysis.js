@@ -5,8 +5,8 @@
  * Time: 10:35 AM
  * To change this template use File | Settings | File Templates.
  */
-$(function(){
-        $.get('http://localhost:3000/getTimeAnalysis?eventID=test',function(data){
+countTimeChart = function(eventID){
+        $.get('http://localhost:3000/getTimeAnalysis?eventID='+eventID,function(data){
             var result = JSON.parse(data);
             for(var percep in result){
                 if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'){
@@ -15,6 +15,7 @@ $(function(){
                 $("#perceptions").append($("<option />").val(percep).text(percep));
             };
             $("#perceptions").append($("<option />").val("stacked").text("Stacked Graph"));
+            $("#perceptions").val('stacked');
             $("#perceptions").change(function (){
                 var selected = $('#perceptions').val();
                 if(selected == "stacked"){
@@ -139,7 +140,8 @@ $(function(){
                     },
                     series: series
                 });
-        }
 
+        }
+            stackedGraph();
      });
-});
+};

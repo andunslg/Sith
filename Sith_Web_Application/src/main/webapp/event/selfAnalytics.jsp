@@ -35,8 +35,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://localhost:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-                countTimeChart('<%=participant.getUserID()%>','http://localhost:3000/getSelfAnalytics?userID=');
+            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+                countTimeChart('<%=participant.getUserID()%>','http://192.248.8.246:3000/getSelfAnalytics?userID=');
             });
         })
     </script>

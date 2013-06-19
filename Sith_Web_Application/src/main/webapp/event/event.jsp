@@ -123,6 +123,7 @@
             <ul class="submenu">
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
         <li>

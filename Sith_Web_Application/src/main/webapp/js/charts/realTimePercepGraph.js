@@ -31,7 +31,7 @@ realTimeGraph = function (eventID,perceptions) {
         source.addEventListener('graph', updateChart, false);
         var i = 0;
         var oldVal=0;
-        var newVal = 0;
+        var newVal;
         function updateChart(event) {
             console.log(event.data);
             var data = JSON.parse(event.data);
@@ -39,13 +39,9 @@ realTimeGraph = function (eventID,perceptions) {
             var chart1 = $('#LiveChart').highcharts();
             var chart2 = $('#TotLiveChart').highcharts();
             var newVal = data.total;
-            if (i == 0) {
-                oldVal = newVal;
-            }
             var diff = newVal - oldVal;
-            if (i != 0) {
-                oldVal = newVal;
-            }
+            oldVal = newVal;
+
             var xval = (new Date().getTime());
             for(var i=0; i<perceptions.length; i++){
                 if(!data[chart1.series[i].name]){
@@ -167,7 +163,7 @@ realTimeGraph = function (eventID,perceptions) {
                         for (i = -6; i <= 0; i++) {
                             data.push({
                                 x: time + i * 1000,
-                                y: Math.random()
+                                y: 0
                             });
                         }
                         return data;

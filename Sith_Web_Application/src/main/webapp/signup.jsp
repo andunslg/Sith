@@ -2,8 +2,12 @@
 <html lang="">
 <% String state=request.getParameter("state");
     boolean isReturn=false;
+    boolean duplicateUser=false;
     if(state!=null&&state.equalsIgnoreCase("pdif")){
         isReturn=true;
+    }
+    else if(state!=null&&state.equalsIgnoreCase("duplicateUser")){
+        duplicateUser=true;
     }
 %>
 <head>
@@ -22,6 +26,8 @@
     <h1><strong>SITH</strong> Dashboard</h1>
     <%if(isReturn){ %>
     <p style="color: red">Passwords do not match.</p>
+    <%}else if(duplicateUser){ %>
+    <p style="color: red">Duplicate username please use another!</p>
     <%} %>
     <form method="POST" action="init.jsp">
         <input name="user" placeholder="username" type="text"/>

@@ -11,7 +11,7 @@ public class Perception{
 
 		this.userID=userID;
 		this.eventID=eventID;
-		this.perceptionValue=perceptionMapper(Integer.parseInt(perceptionValue));
+		this.perceptionValue=perceptionValue;
 		this.text=text;
 	}
 
@@ -19,7 +19,7 @@ public class Perception{
 
 		this.userID=userID;
 		this.eventID=eventID;
-		this.perceptionValue=perceptionMapper(Integer.parseInt(perceptionValue));
+		this.perceptionValue=perceptionValue;
 		this.text="";
 	}
 

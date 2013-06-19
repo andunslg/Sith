@@ -6,7 +6,6 @@
         session.setAttribute("isLogged",false);
         if(state.equalsIgnoreCase("loginFailed")){
             loginFailed=true;
-
         }
     }
 %>

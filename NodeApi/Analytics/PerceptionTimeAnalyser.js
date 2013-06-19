@@ -1,6 +1,3 @@
-/**
- * @author Sachintha
- */
 dataAdapter = require('../mongoAdapter');
 
 exports.getTimeAnalysisData = function(collection,sortKey,fn){

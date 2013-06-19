@@ -43,16 +43,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip">4</span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no new Notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip">4</span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no new Notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="../index.jsp?state=loggedOut">Logout</a></span>
@@ -70,8 +70,14 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
@@ -201,7 +207,9 @@
     <%
         }
     %>
-
+    <%
+        if(currentEvent.getAdminID().equals(participant.getUserID())){
+    %>
     <section class="widget">
         <header>
             <span class="icon">&#59168;</span>
@@ -229,6 +237,9 @@
             </div>
         </div>
     </section>
+    <%
+        }
+    %>
 </section>
 
 

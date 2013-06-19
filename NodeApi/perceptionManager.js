@@ -5,9 +5,22 @@
 exports.insertPerception = function(userID,eventID,perceptionVal) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
 	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);
-    mongoAdapter.insertDocument("UserPerceptions_"+userID,doc)
+    mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
+    insertInstantPercep(doc);
 }
 
+insertInstantPercep = function(percepdoc){
+    mongoAdapter.getSingleDocument({userID:percepdoc.userID},'EventInstantPerceptions_'+percepdoc.eventID,function(doc){
+       if(doc){
+           mongoAdapter.updateSelectedFields('EventInstantPerceptions_'+percepdoc.eventID,{userID:percepdoc.userID},{perceptionValue:percepdoc.perceptionValue});
+          // mongoAdapter.deleteDocument('EventInstantPerceptions_'+percepdoc.eventID,{userID:percepdoc.userID},function(err){
+           //  console.log('sss');
+          // })
+       }else{
+           mongoAdapter.insertDocument('EventInstantPerceptions_'+percepdoc.eventID,percepdoc);
+       }
+    })
+}
 exports.getPerceptionForEvent = function(eventID){
 	//code for filter based on events
 }
@@ -23,7 +36,13 @@ exports.getEventPerception = function(eventID,fn){
 	});
 				
 };
+exports.getInstantPerception = function(eventID,fn){
+    //var count=0;
+    mongoAdapter.getDocuments({}, "EventInstantPerceptions_"+eventID, function(docs){
+        fn(docs);
+    });
 
+};
 //exports.getUser
 //Map strings to perception values
 exports.mapPerception = function(perception){

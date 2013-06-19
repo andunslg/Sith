@@ -8,6 +8,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, start
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
     mongoAdapter.createCollection('EventComments_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
+    mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
 };
 
 exports.getEventByID = function(eventID,fn){
@@ -29,6 +30,7 @@ exports.deleteEvent = function(eventID){
     mongoAdapter.dropCollection('EventPerceptions_'+eventID);
     mongoAdapter.dropCollection('EventComments_'+eventID);
     mongoAdapter.dropCollection('EventUser_'+eventID);
+    mongoAdapter.dropCollection('EventInstantPerceptions_'+eventID);
 };
 
 exports.setCommentEnabled = function(eventID,commentEnabled,fn){

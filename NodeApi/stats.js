@@ -6,6 +6,7 @@
 percepManager = require('./perceptionManager');
 
 //calculates average perception
+/*
 exports.calAveragePerception = function(fn){
 	percepManager.getAllPerception(function(docs){
 		var count = docs.length;
@@ -19,7 +20,7 @@ exports.calAveragePerception = function(fn){
 		fn(avg);
 	});
 }
-
+*/
 //count perception values under each category
 exports.countPerceptions =function(EventID,fn){
 	percepManager.getEventPerception(EventID,function(docs){
@@ -63,6 +64,22 @@ exports.countPerceptions2 = function(eventID,fn){
        }
        fn(perceptions);
    })
+};
+
+exports.countInstantPerceptions = function(eventID,fn){
+    percepManager.getInstantPerception(eventID,function(docs){
+        var count = docs.length;
+        var perceptions  = new Object();
+        for(var i=0; i<count; i++){
+            if(perceptions[docs[i].perceptionValue]){
+                ++perceptions[docs[i].perceptionValue];
+            }else{
+                perceptions[docs[i].perceptionValue]=1;
+            }
+        }
+        perceptions['total'] = count;
+        fn(perceptions);
+    })
 };
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);

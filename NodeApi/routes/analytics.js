@@ -72,6 +72,7 @@ exports.sendPeriodicPerceptionCount = function(req,res){
 		},3000);
 }
 
+/*
 function constructAvgPerceptionMessage(res,id,time){
 	stats.calAveragePerception(function(avg){
 		res.write('event: graph\n');
@@ -82,15 +83,14 @@ function constructAvgPerceptionMessage(res,id,time){
     	res.write('data: }\n\n');
 	});
 };
-
+*/
 
 function constructCountMessage(eventID,res){
 //	var perceptions;
-	stats.countPerceptions(eventID,function(perceptions){
+	stats.countInstantPerceptions(eventID,function(perceptions){
+        perceps = JSON.stringify(perceptions);
 		res.write('event: graph\n');
-		res.write('data: {\n');
-    	res.write('data: "values": ['+ perceptions[0]+','+perceptions[1]+','+perceptions[2]+','+perceptions[3]+','+perceptions[4]+']\n');
-    	res.write('data: }\n\n');
+    	res.write('data: '+perceps+'\n\n');
 });
 	
 };

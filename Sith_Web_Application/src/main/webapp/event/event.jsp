@@ -37,13 +37,14 @@
     <link rel="stylesheet" href="../css/bootstrap-responsive.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="../css/carousel.css" media="screen" alt="">
     <link rel="stylesheet" type="text/css" href="../css/tooltipster.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/apprise.min.css"/>
 
     <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.carousel.min.js"></script>
     <script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
     <script src="../js/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/jquery.tooltipster.min.js"></script>
-
+    <script type="text/javascript" src="../js/apprise-1.5.min.js"></script>
     <script src="../js/jquery.wysiwyg.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/cycle.js"></script>
@@ -219,153 +220,298 @@
 
 </section>
 <script>
-    function getWindowWidth(){
-        var w=window.innerWidth;
-        return w;
-    }
+var clickTime = 0;
+var noOfClicks=0;
+function getWindowWidth(){
+    var w=window.innerWidth;
+    return w;
+}
+function getCurrentTime(){
+    var currentTime = new Date();
+    var seconds = currentTime.getSeconds();
+    var minuites = currentTime.getMinutes();
+    var hours= currentTime.getHours();
+    var time = seconds+(minuites*60)+(hours*3600);
 
-    $("#awesome").click(function () {
-        $("#awesome").effect("shake");
+    return time;
+}
+
+$("#awesome").click(function () {
+    $("#awesome").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
+
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Awesome";
         edit_save.src = "../images/perceptions/awesome.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","awesome");
-        $('#current_perception strong').html('Awesome');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
 
-    $("#wonderful").click(function () {
-        $("#wonderful").effect("shake");
+    }else{
+        apprise("Too Quick");
+    }
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","awesome");
+    $('#current_perception strong').html('Awesome');
+    $('#current_perception').show();
+});
+
+$("#wonderful").click(function () {
+    $("#wonderful").effect("shake");
+
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Wonderful";
         edit_save.src = "../images/perceptions/wonderful.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Wonderful");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","wonderful");
-        $('#current_perception strong').html('Wonderful');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","wonderful");
+    $('#current_perception strong').html('Wonderful');
+    $('#current_perception').show();
+});
 
-    $("#excited").click(function () {
-        $("#excited").effect("shake");
+$("#excited").click(function () {
+    $("#excited").effect("shake");
+
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Excited";
         edit_save.src = "../images/perceptions/excited.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Excited");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","excited");
-        $('#current_perception strong').html('Excited');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#happy").click(function () {
-        $("#happy").effect("shake");
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","excited");
+    $('#current_perception strong').html('Excited');
+    $('#current_perception').show();
+});
+
+$("#happy").click(function () {
+    $("#happy").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Happy";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Happy");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","happy");
-        $('#current_perception strong').html('Happy');
-        $('#current_perception').show();
-    });
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#interested").click(function () {
-        $("#interested").effect("shake");
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","happy");
+    $('#current_perception strong').html('Happy');
+    $('#current_perception').show();
+});
+
+$("#interested").click(function () {
+    $("#interested").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Interested";
         edit_save.src = "../images/perceptions/interested.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Interested");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","interested");
-        $('#current_perception strong').html('Interested');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#neutral").click(function () {
-        $("#neutral").effect("shake");
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","interested");
+    $('#current_perception strong').html('Interested');
+    $('#current_perception').show();
+});
+
+$("#neutral").click(function () {
+    $("#neutral").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Neutral";
         edit_save.src = "../images/perceptions/neutral.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Neutral");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","neutral");
-        $('#current_perception strong').html('Neutral');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#bored").click(function () {
-        $("#bored").effect("shake");
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","neutral");
+    $('#current_perception strong').html('Neutral');
+    $('#current_perception').show();
+});
+
+$("#bored").click(function () {
+    $("#bored").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
+
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Bored";
         edit_save.src = "../images/perceptions/bored.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Bored");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","bored");
-        $('#current_perception strong').html('Bored');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#sleepy").click(function () {
-        $("#sleepy").effect("shake");
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","bored");
+    $('#current_perception strong').html('Bored');
+    $('#current_perception').show();
+});
+
+$("#sleepy").click(function () {
+    $("#sleepy").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Sleepy";
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Sleepy");
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
         sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sleepy");
-        $('#current_perception strong').html('Sleepy');
-        $('#current_perception').show();
-    });
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
 
-    $("#sad").click(function () {
-        $("#sad").effect("shake");
+    $('#current_perception strong').html('Sleepy');
+    $('#current_perception').show();
+});
+
+$("#sad").click(function () {
+    $("#sad").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Sad";
         edit_save.src = "../images/perceptions/sad.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Sad");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sad");
-        $('#current_perception strong').html('Sad');
-        $('#current_perception').show();
-    });
-    $("#angry").click(function () {
-        $("#angry").effect("shake");
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
+
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sad");
+    $('#current_perception strong').html('Sad');
+    $('#current_perception').show();
+});
+$("#angry").click(function () {
+    $("#angry").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Angry";
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Angry");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","angry");
-        $('#current_perception strong').html('Angry');
-        $('#current_perception').show();
-    });
-    $("#horrible").click(function () {
-        $("#horrible").effect("shake");
+        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
+    }
+
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","angry");
+    $('#current_perception strong').html('Angry');
+    $('#current_perception').show();
+});
+$("#horrible").click(function () {
+    $("#horrible").effect("shake");
+    if(clickTime=0){
+        clickTime = getCurrentTime();
+    }
+    var timeVariance = Math.abs(getCurrentTime()-clickTime);
+
+    if(timeVariance >15 || noOfClicks==0){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Horrible";
         edit_save.src = "../images/perceptions/horrible.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Horrible");
-        sessionStorage.setItem("<%=currentPerceptionOfEvent%>","horrible");
-        $('#current_perception strong').html('Horrible');
-        $('#current_perception').show();
-    });
-    window.onload=persistCurrentPerception;
-    function persistCurrentPerception(){
-        if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
-            var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
-            var edit_save = document.getElementById("selected_image2");
-            document.getElementById("h42").innerHTML = "I Feel "+currentPerception;
-            edit_save.src = "../images/perceptions/"+currentPerception+".png";
-            document.getElementById('selected_image2').style.visibility = 'visible';
-            $('#current_perception strong').html(currentPerception);
-            $('#current_perception').show();
-//            $("#selected_image2").attr('src','http://localhost:8080/images/perceptions/awesome.png');
-        }
+        noOfClicks=noOfClicks+1;
+        clickTime=getCurrentTime();
+    }else{
+        apprise("Too Quick");
     }
+    sessionStorage.setItem("<%=currentPerceptionOfEvent%>","horrible");
+    $('#current_perception strong').html('Horrible');
+    $('#current_perception').show();
+});
+window.onload=persistCurrentPerception;
+function persistCurrentPerception(){
+    if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
+        var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
+        var edit_save = document.getElementById("selected_image2");
+        document.getElementById("h42").innerHTML = "I Feel "+currentPerception;
+        edit_save.src = "../images/perceptions/"+currentPerception+".png";
+        document.getElementById('selected_image2').style.visibility = 'visible';
+        $('#current_perception strong').html(currentPerception);
+        $('#current_perception').show();
+//            $("#selected_image2").attr('src','http://localhost:8080/images/perceptions/awesome.png');
+    }
+}
 
 
 </script>

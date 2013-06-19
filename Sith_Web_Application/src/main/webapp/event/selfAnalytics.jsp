@@ -117,9 +117,9 @@
         <header>
             <span class="icon">&#128200;</span>
             <hgroup>
-                <h1>Event Statistics</h1>
+                <h1>Self Statistics</h1>
 
-                <h2>Public view</h2>
+                <h2>This is how your perceptions changed with the time</h2>
             </hgroup>
             <aside>
                 <button class="left-btn">&#59229;</button>

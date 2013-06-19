@@ -12,7 +12,7 @@
 
 </head>
 <body background="https://dl.dropboxusercontent.com/u/41476502/error.jpg">
-<a href="index.jsp">Login Again</a>
+<a href="http://proj16.cse.mrt.ac.lk">Login Again</a>
 
 </body>
 </html>

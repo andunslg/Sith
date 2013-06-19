@@ -261,7 +261,7 @@
                             <div>Enable User Comments</div>
                         </td>
                         <td >
-                            <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" >
+                            <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" style="width: 10%">
                         </td>
                     </tr>
                     <tr>

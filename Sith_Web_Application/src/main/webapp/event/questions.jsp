@@ -151,7 +151,6 @@
                 <table>
                     <tr>
                         <td>
-                            <br>
                             <div>
                                 <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
                             </div>
@@ -180,6 +179,7 @@
                     </tr>
                     <tr>
                         <td>
+                            <br>
                             <div> Your Comment </div>
                         </td>
                         <td>

@@ -11,6 +11,7 @@
     String location=request.getParameter("location");
     String description=request.getParameter("description");
     String perceptionSchema=request.getParameter("perceptionSchema");
+    perceptionSchema=perceptionSchema.replaceAll("\\s+", "");
     String commentEnabled=request.getParameter("commentEnabled");
     String start=request.getParameter("start");
     String end=request.getParameter("end");

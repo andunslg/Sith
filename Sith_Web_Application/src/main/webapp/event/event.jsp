@@ -266,7 +266,7 @@
         document.getElementById("h42").innerHTML = "I Feel Happy";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Happy");
         sessionStorage.setItem("<%=currentPerceptionOfEvent%>","happy");
         $('#current_perception strong').html('Happy');
         $('#current_perception').show();
@@ -314,7 +314,7 @@
         document.getElementById("h42").innerHTML = "I Feel Sleepy";
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Sleepy");
         sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sleepy");
         $('#current_perception strong').html('Sleepy');
         $('#current_perception').show();
@@ -337,7 +337,7 @@
         document.getElementById("h42").innerHTML = "I Feel Angry";
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Angry");
         sessionStorage.setItem("<%=currentPerceptionOfEvent%>","angry");
         $('#current_perception strong').html('Angry');
         $('#current_perception').show();

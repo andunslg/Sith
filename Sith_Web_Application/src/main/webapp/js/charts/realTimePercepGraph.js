@@ -1,10 +1,24 @@
 /**
  * @author Sachintha
  */
-$(function () {
-    $(document).ready(function () {
-        var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions?eventID=cse_pc1');
+realTimeGraph = function (eventID,perceptions) {
+        var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions?eventID='+eventID);
+        var series = new Array();
         var t = (new Date().getTime());
+
+        for(var i=0;i<perceptions.length;i++){
+            var ob = new Object();
+            ob.name = perceptions[i];
+            ob.data =  [
+                [t - 5000, 0],
+                [t - 4000, 0],
+                [t - 3000, 0],
+                [t - 2000, 0],
+                [t - 1000, 0],
+                [t, 0]
+            ];
+            series.push(ob);
+        }
         source.onopen = function () {
             console.log('open')
         };
@@ -16,14 +30,15 @@ $(function () {
         //Event listners for page stats
         source.addEventListener('graph', updateChart, false);
         var i = 0;
-        var oldVal;
-
+        var oldVal=0;
+        var newVal = 0;
         function updateChart(event) {
+            console.log(event.data);
             var data = JSON.parse(event.data);
-            //console.log(event.data);
+
             var chart1 = $('#LiveChart').highcharts();
             var chart2 = $('#TotLiveChart').highcharts();
-            var newVal = data.values[4];
+            var newVal = data.total;
             if (i == 0) {
                 oldVal = newVal;
             }
@@ -32,10 +47,16 @@ $(function () {
                 oldVal = newVal;
             }
             var xval = (new Date().getTime());
-            chart1.series[0].addPoint([xval, data.values[0]], true, true);
-            chart1.series[1].addPoint([xval, data.values[1]], true, true);
-            chart1.series[2].addPoint([xval, data.values[2]], true, true);
-            chart1.series[3].addPoint([xval, data.values[3]], true, true);
+            for(var i=0; i<perceptions.length; i++){
+                if(!data[chart1.series[i].name]){
+                    data[chart1.series[i].name] = 0
+                }
+                chart1.series[i].addPoint([xval, data[chart1.series[i].name]], true, true);
+            }
+           // chart1.series[0].addPoint([xval, data[chart1.series[0].name]], true, true);
+            //chart1.series[1].addPoint([xval, data[chart1.series[1].name]], true, true);
+            //chart1.series[2].addPoint([xval, data[chart1.series[2].name]], true, true);
+            //chart1.series[3].addPoint([xval, data.values[3]], true, true);
             chart2.series[0].addPoint([xval, diff], true, true);
             i++;
         };
@@ -82,56 +103,7 @@ $(function () {
                     }
                 }
             },
-            series: [
-                {
-                    name: 'Interested',
-                    data: [
-                        [t - 5000, 0],
-                        [t - 4000, 0],
-                        [t - 3000, 0],
-                        [t - 2000, 0],
-                        [t - 1000, 0],
-                        [t, 0]
-                    ],
-                    color: '#009900'
-                },
-                {
-                    name: 'Happy',
-                    data: [
-                        [t - 5000, 0],
-                        [t - 4000, 0],
-                        [t - 3000, 0],
-                        [t - 2000, 0],
-                        [t - 1000, 0],
-                        [t, 0]
-                    ],
-                    color: '#FFFF00'
-                },
-                {
-                    name: 'Bored',
-                    data: [
-                        [t - 5000, 0],
-                        [t - 4000, 0],
-                        [t - 3000, 0],
-                        [t - 2000, 0],
-                        [t - 1000, 0],
-                        [t, 0]
-                    ],
-                    color: '#0066FF'
-                },
-                {
-                    name: 'Sleepy',
-                    data: [
-                        [t - 5000, 0],
-                        [t - 4000, 0],
-                        [t - 3000, 0],
-                        [t - 2000, 0],
-                        [t - 1000, 0],
-                        [t, 0]
-                    ],
-                    color: '#CC0000'
-                }
-            ]
+            series: series
         });
 
         function updateChart2(event) {
@@ -203,7 +175,5 @@ $(function () {
                 }
             ]
         });
-    });
-
-});
+};
     

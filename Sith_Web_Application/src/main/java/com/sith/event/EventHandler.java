@@ -196,12 +196,18 @@ public class EventHandler{
 	}
 
 	public Participant getParticipant(String name){
-		if(name.equals("aslg")){
-			return new Participant("aslg");
-		}
-		else{
-			return new Participant("andunslg");
-		}
+        Participant participant=null;
+
+        String result=null;
+        try{
+            result=httpUtil.doGet(SithAPI.GET_USER_BY_ID+"?userID="+name);
+            JSONObject jsonObject=new JSONObject(result);
+            participant= new Participant(jsonObject.getString("userName"));
+            return participant;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
 	}
 
 	public ArrayList<Participant> getParticipants(String eventID){

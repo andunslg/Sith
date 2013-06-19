@@ -3,6 +3,10 @@ dataAdapter = require('../mongoAdapter');
 exports.getTimeAnalysisData = function(collection,sortKey,fn){
     var result = new Object();
       dataAdapter.getDocuments({},collection,function(docs){
+          if(docs.length==0){
+              fn(result['empty'] = 1);
+              return;
+          }
           var minimumTime = docs[0].timeStamp;
           var maxTime = docs[docs.length-1].timeStamp;
           var interval = getTimeInterval(minimumTime,maxTime)

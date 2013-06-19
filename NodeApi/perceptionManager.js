@@ -30,19 +30,23 @@ exports.getPerceptionForUser = function(userID){
 };
 
 exports.getEventPerception = function(eventID,fn){
-	//var count=0;
 	mongoAdapter.getDocuments({}, "EventPerceptions_"+eventID, function(docs){
 			fn(docs);
 	});
 				
 };
 exports.getInstantPerception = function(eventID,fn){
-    //var count=0;
     mongoAdapter.getDocuments({}, "EventInstantPerceptions_"+eventID, function(docs){
         fn(docs);
     });
 
 };
+
+exports.getPerceptionCount = function(eventID,fn){
+     mongoAdapter.countDocuments('EventPerceptions_'+eventID,function(count){
+               fn(count);
+     });
+}
 //exports.getUser
 //Map strings to perception values
 exports.mapPerception = function(perception){

@@ -77,8 +77,11 @@ exports.countInstantPerceptions = function(eventID,fn){
                 perceptions[docs[i].perceptionValue]=1;
             }
         }
-        perceptions['total'] = count;
-        fn(perceptions);
+        percepManager.getPerceptionCount(eventID,function(count){
+              perceptions['total'] = count;
+                fn(perceptions);
+        });
+
     })
 };
 function debugHeaders(req) {

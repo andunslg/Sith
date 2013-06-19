@@ -35,16 +35,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+            $.get('http://localhost:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
-                barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
-                countTimeChart('<%=currentEvent.getEventID()%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
+                barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                countTimeChart('<%=currentEvent.getEventID()%>','http://localhost:3000/getTimeAnalysis?eventID=');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
-                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                        barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                     } else {
-                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                        pieChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                     }
                 });
             })
@@ -96,8 +96,14 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>

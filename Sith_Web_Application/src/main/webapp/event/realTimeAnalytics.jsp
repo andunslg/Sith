@@ -33,7 +33,7 @@
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
     <script type="text/javascript">
-        $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+        $.get('http://localhost:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
             var schema = event.perceptionSchema;
             var perceptions = schema.split(":");
             realTimeGraph('<%=currentEvent.getEventID()%>',perceptions);
@@ -82,8 +82,14 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>

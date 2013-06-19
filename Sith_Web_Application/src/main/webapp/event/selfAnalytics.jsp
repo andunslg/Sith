@@ -84,8 +84,14 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>

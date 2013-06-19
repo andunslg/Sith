@@ -109,15 +109,8 @@
 
                 <h2>Events I am administrating and registered</h2>
             </hgroup>
-
+        </header>
             <div class="content">
-                <%--This have to be formalized, This is a hack--%>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
@@ -173,7 +166,7 @@
                     }
                 %>
             </div>
-        </header>
+
 
     </section>
 

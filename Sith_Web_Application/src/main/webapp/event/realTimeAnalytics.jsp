@@ -32,6 +32,13 @@
     <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
+    <script type="text/javascript">
+        $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+            var schema = event.perceptionSchema;
+            var perceptions = schema.split(":");
+            realTimeGraph('<%=currentEvent.getEventID()%>',perceptions);
+        });
+    </script>
 </head>
 <body>
 <div class="testing">

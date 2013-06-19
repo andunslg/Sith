@@ -110,7 +110,7 @@
     <%
         if(participant.getUserID().equals(currentEvent.getAdminID())){
     %>
-    <section class="widget" style="min-height: 200px">
+    <section class="widget" style="min-height: 100px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -122,16 +122,16 @@
         <%
             if("false".equals(currentEvent.getCommentEnabled())) {
         %>
-        <div class="content">
-            <input type="button" class="button" id="commentEnable" value="Enable User Comments">
+        <div class="content" align="center" style="vertical-align: middle">
+            <input type="button" class="button" id="commentEnable" value="Enable User Comments" style="width: 160px">
         </div>
         <%
         }
         else{
         %>
-        <div class="content">
+        <div class="content" align="center" style="vertical-align: middle">
             <br>
-            <input type="button" class="button" id="commentDisable" value="Disable User Comments">
+            <input type="button" class="button" id="commentDisable" value="Disable User Comments" style="width: 160px">
         </div>
         <%
             }
@@ -149,7 +149,6 @@
             <span class="icon">&#128100;</span>
             <hgroup>
                 <h1>Your Comment</h1>
-
                 <h2>Enter your comment</h2>
             </hgroup>
         </header>
@@ -157,7 +156,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 200px">
                             <div>
                                 <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
                             </div>
@@ -186,7 +185,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
                             <div> Your Comment </div>
                         </td>
                         <td>
@@ -198,8 +201,8 @@
                     </tr>
                 </table>
                 <br>
-                <div>
-                    <input id="addComment" value="Post" type="button" class="button">
+                <div align="center" >
+                    <input id="addComment" value="Post" type="button" class="button" style="width: 160px">
                 </div>
             </form>
         </div>

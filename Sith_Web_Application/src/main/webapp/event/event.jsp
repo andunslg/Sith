@@ -323,7 +323,7 @@ $("#happy").click(function () {
         document.getElementById("h42").innerHTML = "I Feel Happy";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Happy");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Happy");
         noOfClicks=noOfClicks+1;
         clickTime=getCurrentTime();
     }else{
@@ -420,7 +420,7 @@ $("#sleepy").click(function () {
         document.getElementById("h42").innerHTML = "I Feel Sleepy";
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Sleepy");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Sleepy");
         sessionStorage.setItem("<%=currentPerceptionOfEvent%>","sleepy");
         noOfClicks=noOfClicks+1;
         clickTime=getCurrentTime();
@@ -467,7 +467,7 @@ $("#angry").click(function () {
         document.getElementById("h42").innerHTML = "I Feel Angry";
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
-        postToAPI('<%=currentEvent.getEventID()%>',' <%=session.getAttribute("user").toString()%>', "Angry");
+        postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Angry");
         noOfClicks=noOfClicks+1;
         clickTime=getCurrentTime();
     }else{

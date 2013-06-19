@@ -222,7 +222,6 @@
 </section>
 <script>
 var clickTime = 0;
-var noOfClicks=0;
 function getWindowWidth(){
     var w=window.innerWidth;
     return w;
@@ -239,19 +238,22 @@ function getCurrentTime(){
 
 $("#awesome").click(function () {
     $("#awesome").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
 
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Awesome";
         edit_save.src = "../images/perceptions/awesome.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
-        noOfClicks=noOfClicks+1;
+        noOfClicks=1;
         clickTime=getCurrentTime();
 
     }else{
@@ -264,13 +266,14 @@ $("#awesome").click(function () {
 
 $("#wonderful").click(function () {
     $("#wonderful").effect("shake");
-
-    if(clickTime=0){
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Wonderful";
         edit_save.src = "../images/perceptions/wonderful.png";
@@ -289,12 +292,14 @@ $("#wonderful").click(function () {
 $("#excited").click(function () {
     $("#excited").effect("shake");
 
-    if(clickTime=0){
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Excited";
         edit_save.src = "../images/perceptions/excited.png";
@@ -313,12 +318,15 @@ $("#excited").click(function () {
 
 $("#happy").click(function () {
     $("#happy").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Happy";
         edit_save.src = "../images/perceptions/happy.png";
@@ -337,12 +345,15 @@ $("#happy").click(function () {
 
 $("#interested").click(function () {
     $("#interested").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Interested";
         edit_save.src = "../images/perceptions/interested.png";
@@ -361,12 +372,15 @@ $("#interested").click(function () {
 
 $("#neutral").click(function () {
     $("#neutral").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Neutral";
         edit_save.src = "../images/perceptions/neutral.png";
@@ -385,12 +399,15 @@ $("#neutral").click(function () {
 
 $("#bored").click(function () {
     $("#bored").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
 
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Bored";
@@ -410,12 +427,15 @@ $("#bored").click(function () {
 
 $("#sleepy").click(function () {
     $("#sleepy").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Sleepy";
         edit_save.src = "../images/perceptions/sleepy.png";
@@ -434,12 +454,15 @@ $("#sleepy").click(function () {
 
 $("#sad").click(function () {
     $("#sad").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Sad";
         edit_save.src = "../images/perceptions/sad.png";
@@ -457,12 +480,15 @@ $("#sad").click(function () {
 });
 $("#angry").click(function () {
     $("#angry").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Angry";
         edit_save.src = "../images/perceptions/angry.png";
@@ -480,12 +506,15 @@ $("#angry").click(function () {
 });
 $("#horrible").click(function () {
     $("#horrible").effect("shake");
-    if(clickTime=0){
+
+    var clicked=false;
+    if(clickTime==0){
         clickTime = getCurrentTime();
+        clicked=true;
     }
     var timeVariance = Math.abs(getCurrentTime()-clickTime);
 
-    if(timeVariance >15 || noOfClicks==0){
+    if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
         document.getElementById("h42").innerHTML = "I Feel Horrible";
         edit_save.src = "../images/perceptions/horrible.png";

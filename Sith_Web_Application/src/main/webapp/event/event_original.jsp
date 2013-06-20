@@ -55,7 +55,7 @@
 
         function postToAPI(eventID, userID, perceptionValue) {
             $.ajax({
-                url: 'http://localhost:3000/publishEventPerception',
+                url: 'http://192.248.8.246:3000/publishEventPerception',
                 data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue,
                 type: 'POST',
                 success: function (data) {

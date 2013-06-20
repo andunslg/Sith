@@ -195,7 +195,7 @@
                         <td>
                             <br>
                             <div>
-                                <input id="comment" type="text" value="">
+                                <input id="comment" type="text" value="" style="width: 600px;height: 200px; vertical-align: middle">
                             </div>
                         </td>
                     </tr>

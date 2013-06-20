@@ -14,7 +14,7 @@
 			 $("#vote").click(function (){
 				$.ajax({
 				type: "POST",
-				url: "http://localhost:3000/publishEventPerception",
+				url: "http://192.248.8.246:3000/publishEventPerception",
 				data: {
 					userID : $("#userId").val() , 
 					perceptionValue: $("#vote").val() },

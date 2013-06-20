@@ -24,10 +24,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://localhost:3000/getEventById?eventID='<%=subcriptionID%>, function (event) {
+            $.get('http://192.248.8.246:3000/getEventById?eventID='<%=subcriptionID%>, function (event) {
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
-                pieChart(perceptions, 'http://localhost:3000/countPerceptions2?eventID='<%=subcriptionID
+                pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID='<%=subcriptionID
                 %>);
             });
         })

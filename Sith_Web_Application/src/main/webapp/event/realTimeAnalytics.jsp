@@ -23,7 +23,7 @@
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" media="all"/>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.wysiwyg.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script>
     <script type="text/javascript" src="../js/cycle.js"></script>
@@ -34,13 +34,16 @@
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
     <script type="text/javascript">
         $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-           // var schema1 = JSON.parse(event);
-            var schema = event.perceptionSchema;
+            if(typeof event=='string' || event instanceof String){
+                var schema1 = JSON.parse(event);
+                var schema = schema1.perceptionSchema;
+            }else{
+                var schema = event.perceptionSchema;
+            }
             var perceptions = schema.split(":");
             realTimeGraph('<%=currentEvent.getEventID()%>',perceptions);
         });
     </script>
-    <script src="../js/jquery-migrate-1.0.0.js"></script>
 </head>
 <body>
 <div class="testing">

@@ -36,7 +36,8 @@
         $(document).ready(function () {
             var perceptions;
             $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-                var schema = event.perceptionSchema;
+                var schema1 = JSON.parse(event);
+                var schema = schema1.perceptionSchema;
                 var perceptions = schema.split(":");
                 barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                 countTimeChart('<%=currentEvent.getEventID()%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');

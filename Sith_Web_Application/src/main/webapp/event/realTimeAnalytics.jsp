@@ -34,7 +34,8 @@
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
     <script type="text/javascript">
         $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-            var schema = event.perceptionSchema;
+            var schema1 = JSON.parse(event);
+            var schema = schema1.perceptionSchema;
             var perceptions = schema.split(":");
             realTimeGraph('<%=currentEvent.getEventID()%>',perceptions);
         });

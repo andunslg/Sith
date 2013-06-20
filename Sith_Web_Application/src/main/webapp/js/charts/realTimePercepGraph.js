@@ -2,7 +2,7 @@
  * @author Sachintha
  */
 realTimeGraph = function (eventID,perceptions) {
-        var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions?eventID='+eventID);
+        var source = new EventSource('http://localhost:3000/countPeriodicPerceptions?eventID='+eventID);
         var series = new Array();
         var t = (new Date().getTime());
 

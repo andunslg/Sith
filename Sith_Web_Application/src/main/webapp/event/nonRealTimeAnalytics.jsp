@@ -36,8 +36,12 @@
         $(document).ready(function () {
             var perceptions;
             $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-                var schema1 = JSON.parse(event);
-                var schema = schema1.perceptionSchema;
+                if(typeof event=='string' || event instanceof String){
+                    var schema1 = JSON.parse(event);
+                    var schema = schema1.perceptionSchema;
+                }else{
+                    var schema = event.perceptionSchema;
+                }
                 var perceptions = schema.split(":");
                 barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                 countTimeChart('<%=currentEvent.getEventID()%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');

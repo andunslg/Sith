@@ -7,6 +7,9 @@ barChart = function (perceptions, url) {
     $.get(url, function (e) {
         var data = new Array();
         console.log(e);
+        if(typeof e=='string' || e instanceof String){
+            e = JSON.parse(e);
+        }
         for(var i=0; i<perceptions.length;i++){
             perception = e.data[perceptions[i]];
             if(perception){

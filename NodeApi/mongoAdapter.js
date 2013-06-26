@@ -5,7 +5,7 @@ var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 var MongoClient = require('mongodb').MongoClient;
 var db1;
-//var client = new Db('Sith', new Server('localhost', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false});
+//var client = new Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false});
 var mongoClient = new MongoClient(new Server('localhost', 27017, {auto_reconnect: false, poolSize: 6}));
 mongoClient.open(function(err, mongoClient) {
     db1 = mongoClient.db("Sith");

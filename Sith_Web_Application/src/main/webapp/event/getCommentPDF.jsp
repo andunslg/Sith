@@ -41,10 +41,10 @@
         JasperReport jasperReport = JasperCompileManager.compileReport(input);
 
         System.out.println("Reporting");
-        String[] columnNames = new String[]{"Name", "No", "Comment"};
         JRCsvDataSource ds = new JRCsvDataSource(JRLoader.getLocationInputStream(System.getProperty("java.io.tmpdir")+File.separator+"report_"+eventID+".csv"));
-        ds.setRecordDelimiter("\r\n");
-        ds.setColumnNames(columnNames);
+        ds.setRecordDelimiter("\n");
+        ds.setUseFirstRowAsHeader(true);
+        ds.setFieldDelimiter(',');
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, ds);
 

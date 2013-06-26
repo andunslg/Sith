@@ -127,14 +127,10 @@
                 <h2>Click to register</h2>
             </hgroup>
 
+        </header>
+
             <div class="content">
-                <%--This have to be formalized, This is a hack--%>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
@@ -177,7 +173,7 @@
                     </tbody>
                 </table>
             </div>
-        </header>
+
 
     </section>
 

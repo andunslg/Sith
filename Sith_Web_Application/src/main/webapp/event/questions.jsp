@@ -4,6 +4,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.perception.Perception" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.FileWriter" %>
+<%@ page import="java.io.BufferedWriter" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -225,6 +228,7 @@
         <div class="content no-padding timeline">
             <div class="tl-post comments">
                 <%
+
                     ArrayList<Perception> list=eventHandler.getComments(currentEvent.getEventID());
                     for(Perception p : list){
 
@@ -236,7 +240,21 @@
                         <%=p.getUserID() %> is feeling <%=p.getPerceptionValue() %> about  <%=eventHandler.getEvent(p.getEventID()).getEventName() %> and  <%=p.getUserID() %>'s comment is  <%=p.getText() %>
                     </strong>
                 </p>
-                <%}%>
+                <%}
+                    File file = new File(System.getProperty("java.io.tmpdir")+File.separator+"report1"+currentEvent.getEventID()+".csv");
+
+                    file.createNewFile();
+
+
+                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    bw.write("Name,No,Comment,,");
+                    for(Perception p : list){
+                    bw.newLine();
+                    bw.write(p.getUserID()+","+p.getPerceptionValue()+","+p.getText()+",,");
+                }
+                bw.close();
+                fw.close();%>
             </div>
         </div>
     </section>

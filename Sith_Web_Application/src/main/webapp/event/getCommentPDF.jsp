@@ -37,10 +37,8 @@
         InputStream input = new URL("http://proj16.cse.mrt.ac.lk/Sith/event/SithEventComments.jrxml").openStream();
 
         //Generating the report
-        System.out.println("Compiling");
         JasperReport jasperReport = JasperCompileManager.compileReport(input);
 
-        System.out.println("Reporting");
         JRCsvDataSource ds = new JRCsvDataSource(JRLoader.getLocationInputStream(System.getProperty("java.io.tmpdir")+File.separator+"report_"+eventID+".csv"));
         ds.setRecordDelimiter("\n");
         ds.setUseFirstRowAsHeader(true);

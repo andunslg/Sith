@@ -127,21 +127,16 @@
                 <h2>Click to register</h2>
             </hgroup>
 
+        </header>
+
             <div class="content">
-                <%--This have to be formalized, This is a hack--%>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
                         <th class="avatar">Name</th>
                         <th>Description</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Duration</th>
                         <th>Location</th>
                         <th></th>
 
@@ -159,10 +154,7 @@
                         </td>
                         <td><%=event.getDescription()%>
                         </td>
-                        <td><%=event.getStartDate()+" "+event.getStartTime()%>
-                        </td>
-                        <td><%=event.getEndDate()+" "+event.getEndTime()%>
-                        </td>
+                        <td><%=event.getStartDate()+" "+event.getStartTime()+" to "+event.getEndDate()+" "+event.getEndTime()%>
                         </td>
                         <td><%=event.getLocation()%>
                         </td>
@@ -177,7 +169,7 @@
                     </tbody>
                 </table>
             </div>
-        </header>
+
 
     </section>
 

@@ -545,7 +545,7 @@ function persistCurrentPerception(){
         document.getElementById('selected_image2').style.visibility = 'visible';
         $('#current_perception strong').html(currentPerception);
         $('#current_perception').show();
-//            $("#selected_image2").attr('src','http://localhost:8080/images/perceptions/awesome.png');
+//            $("#selected_image2").attr('src','http://192.248.8.246:8080/images/perceptions/awesome.png');
     }
 }
 

@@ -136,8 +136,7 @@
                     <tr>
                         <th class="avatar">Name</th>
                         <th>Description</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Duration</th>
                         <th>Location</th>
                         <th></th>
 
@@ -155,10 +154,7 @@
                         </td>
                         <td><%=event.getDescription()%>
                         </td>
-                        <td><%=event.getStartDate()+" "+event.getStartTime()%>
-                        </td>
-                        <td><%=event.getEndDate()+" "+event.getEndTime()%>
-                        </td>
+                        <td><%=event.getStartDate()+" "+event.getStartTime()+" to "+event.getEndDate()+" "+event.getEndTime()%>
                         </td>
                         <td><%=event.getLocation()%>
                         </td>

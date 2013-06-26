@@ -43,16 +43,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip">4</span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no new Notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip">4</span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no new Notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="../index.jsp?state=loggedOut">Logout</a></span>
@@ -70,8 +70,15 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
+                <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
         <li>
@@ -103,7 +110,7 @@
     <%
         if(participant.getUserID().equals(currentEvent.getAdminID())){
     %>
-    <section class="widget" style="min-height: 200px">
+    <section class="widget" style="min-height: 100px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -115,16 +122,16 @@
         <%
             if("false".equals(currentEvent.getCommentEnabled())) {
         %>
-        <div class="content">
-            <input type="button" class="button" id="commentEnable" value="Enable User Comments">
+        <div class="content" align="center" style="vertical-align: middle">
+            <input type="button" class="button" id="commentEnable" value="Enable User Comments" style="width: 160px">
         </div>
         <%
         }
         else{
         %>
-        <div class="content">
+        <div class="content" align="center" style="vertical-align: middle">
             <br>
-            <input type="button" class="button" id="commentDisable" value="Disable User Comments">
+            <input type="button" class="button" id="commentDisable" value="Disable User Comments" style="width: 160px">
         </div>
         <%
             }
@@ -142,7 +149,6 @@
             <span class="icon">&#128100;</span>
             <hgroup>
                 <h1>Your Comment</h1>
-
                 <h2>Enter your comment</h2>
             </hgroup>
         </header>
@@ -150,7 +156,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 200px">
                             <div>
                                 <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
                             </div>
@@ -179,20 +185,24 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
                             <div> Your Comment </div>
                         </td>
                         <td>
                             <br>
                             <div>
-                                <input id="comment" type="text" value="">
+                                <input id="comment" type="text" value="" style="width: 600px;height: 200px; vertical-align: middle">
                             </div>
                         </td>
                     </tr>
                 </table>
                 <br>
-                <div>
-                    <input id="addComment" value="Post" type="button" class="button">
+                <div align="center" >
+                    <input id="addComment" value="Post" type="button" class="button" style="width: 160px">
                 </div>
             </form>
         </div>
@@ -200,7 +210,9 @@
     <%
         }
     %>
-
+    <%
+        if(currentEvent.getAdminID().equals(participant.getUserID())){
+    %>
     <section class="widget">
         <header>
             <span class="icon">&#59168;</span>
@@ -228,6 +240,9 @@
             </div>
         </div>
     </section>
+    <%
+        }
+    %>
 </section>
 
 

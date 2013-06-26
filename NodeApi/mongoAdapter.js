@@ -140,3 +140,13 @@ exports.updateDocument = function(collection,selector,newDoc){
         });
     });
 }
+
+exports.countDocuments = function(collection,fn){
+    db1.collection(collection, function(err, collection) {
+        collection.count(function(err,count){
+            if(err)
+                throw err;
+            fn(count);
+        });
+    });
+}

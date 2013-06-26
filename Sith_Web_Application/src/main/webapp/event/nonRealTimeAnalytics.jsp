@@ -36,10 +36,15 @@
         $(document).ready(function () {
             var perceptions;
             $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-                var schema = event.perceptionSchema;
+                if(typeof event=='string' || event instanceof String){
+                    var schema1 = JSON.parse(event);
+                    var schema = schema1.perceptionSchema;
+                }else{
+                    var schema = event.perceptionSchema;
+                }
                 var perceptions = schema.split(":");
                 barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
-                countTimeChart('<%=currentEvent.getEventID()%>');
+                countTimeChart('<%=currentEvent.getEventID()%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
                         barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
@@ -96,8 +101,15 @@
         <li>
             <a href="#"><span class="icon">&#128711;</span>Analytics</a>
             <ul class="submenu">
+                <%
+                    if(currentEvent.getAdminID().equals(participant.getUserID())){
+                %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <%
+                    }
+                %>
+                <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
         <li>

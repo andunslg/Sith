@@ -106,9 +106,25 @@ exports.getTimeAnalysis = function(req,res){
                 'Cache-Control' : 'no-cache',
                 'Connection' : 'keep-alive'
             });
-            res.write(JSON.stringify(dataString));
+            res.write(dataString);
             res.end();
         });
+};
+
+exports.getSelfAnalytics= function(req,res){
+    var collection = "UserPerceptions_"+req.query.userID;
+    //var sortfield = req.query.sortfield;
+    //var sortkey = new Object(sortfield: req.query.order);
+    analyser.getTimeAnalysisData(collection,{timeStamp:+1},function(result){
+        dataString = JSON.stringify(result)
+        res.writeHead(200, {
+            'Content-Type' : 'application/json',
+            'Cache-Control' : 'no-cache',
+            'Connection' : 'keep-alive'
+        });
+        res.write(dataString);
+        res.end();
+    });
 }
 /*
 function constructTotPerceptionMessage(res){

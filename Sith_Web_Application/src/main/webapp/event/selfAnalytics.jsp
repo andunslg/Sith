@@ -1,8 +1,6 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -15,9 +13,7 @@
     EventHandler eventHandler=new EventHandler();
     Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
-
-    ArrayList<Participant> participantList=new ArrayList<Participant>();
-    participantList=eventHandler.getParticipants(currentEvent.getEventID());
+    String currentPerceptionOfEvent = currentEvent.getEventID()+"_currentPerception";
 %>
 <head>
     <meta charset="utf-8">
@@ -27,36 +23,53 @@
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" media="all"/>
-    <!--[if IE]>
-    <link rel="stylesheet" href="../css/ie.css" media="all"/><![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/cycle.js"></script>
+    <script type="text/javascript" src="../js/jquery.checkbox.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
+    <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var perceptions;
+            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+                countTimeChart('<%=participant.getUserID()%>','http://192.248.8.246:3000/getSelfAnalytics?userID=');
+            });
+        })
+    </script>
+    <script type="text/javascript" src="../js/charts/countTimeAnalysis.js"></script>
 </head>
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong>Sith</strong></h1>
+        <h1><strong>SITH</strong> Dashboard</h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Logged
+                in
                 as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip">4</span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no new Notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip">4</span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no new Notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="../home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button blue"><a href="../index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
 </div>
@@ -99,69 +112,54 @@
         %>
     </ul>
 </nav>
-
 <section class="alert">
     <div class="green">
-        <p>Current event is <a href="#"><%=currentEvent.getEventName()%></a> , Click here to <a href="../myEvents.jsp">change</a></p>
-        <%--<span class="close">&#10006;</span>--%>
+        <span>Current event is <strong><%=currentEvent.getEventName()%></strong>, Click here to <a href="../myEvents.jsp">change</a></span>
+        <span  id="current_perception"  style="margin: auto;float: right;display: none;">Current Perception is <strong></strong></span>
     </div>
 </section>
-
 <section class="content">
     <section class="widget">
         <header>
-            <span class="icon">&#128100;</span>
+            <span class="icon">&#128200;</span>
             <hgroup>
-                <h1>Participants</h1>
+                <h1>Self Statistics</h1>
 
-                <h2>Participants of this event</h2>
+                <h2>This is how your perceptions changed with the time</h2>
             </hgroup>
+            <aside>
+                <button class="left-btn">&#59229;</button>
+                <button class="right-btn">&#59230;</button>
+            </aside>
         </header>
         <div class="content">
-            <table id="myTable" border="0" width="100">
-                <thead>
-                <tr>
-                    <th class="avatar">Name</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                    for(Participant temp : participantList){
-                %>
-                <tr>
-                    <td class="avatar"><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40"
-                                            width="40"/> <%=temp.getUserName()%>
-                    </td>
-                    <%
-                        if(currentEvent.getAdminID().equals(temp.getUserID())){
-                    %>
-                    <td>Admin</td>
-                    <%
-                    }
-                    else{
-                    %>
-                    <td>Participant</td>
-                    <%
-                        }
-                    %>
-                </tr>
-                <% } %>
-                </tbody>
-            </table>
+            <p>Graph Type:</p><select id="perceptions"></select><br>
+            <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
         </div>
     </section>
+
+
 </section>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="../js/jquery.wysiwyg.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/cycle.js"></script>
-<script src="../js/jquery.checkbox.min.js"></script>
-<script src="../js/flot.js"></script>
-<script src="../js/flot.resize.js"></script>
-<script src="../js/flot-graphs.js"></script>
-<script src="../js/flot-time.js"></script>
-<script src="../js/cycle.js"></script>
-<script src="../js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript">
+
+    window.onload=setCurrentPerception
+
+    function setCurrentPerception(){
+        if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
+            var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
+            $('#current_perception strong').html(currentPerception);
+            $('#current_perception').show();
+        }
+
+    }
+    // Feature slider for graphs
+    $('.cycle').cycle({
+        fx: "scrollHorz",
+        timeout: 0,
+        slideResize: 0,
+        prev: '.left-btn',
+        next: '.right-btn'
+    });
+</script>
 </body>
 </html>

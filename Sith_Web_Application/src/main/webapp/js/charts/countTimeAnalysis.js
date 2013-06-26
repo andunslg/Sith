@@ -5,9 +5,14 @@
  * Time: 10:35 AM
  * To change this template use File | Settings | File Templates.
  */
-countTimeChart = function(eventID){
-        $.get('http://192.248.8.246:3000/getTimeAnalysis?eventID='+eventID,function(data){
-            var result = JSON.parse(data);
+countTimeChart = function(eventID,url){
+        $.get(url+eventID,function(data){
+            var result;
+            if(typeof data=='string' || data instanceof String){
+                 result = JSON.parse(data);
+            }else{
+                var result = data;
+            }
             for(var percep in result){
                 if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'){
                   continue;

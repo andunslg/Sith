@@ -27,6 +27,8 @@
                     session.setAttribute("isLogged",true);
                 }
                 response.sendRedirect("home.jsp");
+            }else{
+                response.sendRedirect("signup.jsp?state=duplicateUser");
             }
         }else{
             response.sendRedirect("signup.jsp?state=pdif");

@@ -1,16 +1,16 @@
-/**
- * @author Sachintha
- */
 dataAdapter = require('../mongoAdapter');
 
 exports.getTimeAnalysisData = function(collection,sortKey,fn){
     var result = new Object();
-      dataAdapter.getSortedDocuments({},collection,sortKey,function(docs){
-          var timediff = docs[docs.length-1].timeStamp-docs[0].timeStamp;
+      dataAdapter.getDocuments({},collection,function(docs){
+          if(docs.length==0){
+              fn(result['empty'] = 1);
+              return;
+          }
           var minimumTime = docs[0].timeStamp;
           var maxTime = docs[docs.length-1].timeStamp;
           var interval = getTimeInterval(minimumTime,maxTime)
-          for(var i=0;i<docs.length;i++){
+          for(var i=0 ; i<docs.length ; i++){
              var index = Math.floor((docs[i].timeStamp-minimumTime)/(interval));
               var perception = docs[i].perceptionValue;
               if(result[perception]){

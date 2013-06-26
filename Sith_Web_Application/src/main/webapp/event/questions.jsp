@@ -225,7 +225,13 @@
 
                 <h2>What others saying?</h2>
             </hgroup>
+            <div class="buttons">
+
+                <input type="button" id="download"  value="Download as PDF" class="button" style="width: 160px">
+
+            </div>
         </header>
+
         <div class="content no-padding timeline">
             <div class="tl-post comments">
                 <%
@@ -245,7 +251,6 @@
             </div>
         </div>
 
-        <input type="button" id="download"  value="Download as PDF" class="button" style="width: 160px">
     </section>
     <%
         }

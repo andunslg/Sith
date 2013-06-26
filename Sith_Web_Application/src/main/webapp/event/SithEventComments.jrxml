@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SithEventComments" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f99cc319-a733-4cfe-b08e-03fa7aaffcd6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SithEventComments" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="ireport.zoom" value="2.1435888100000016"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="83"/>
@@ -15,7 +15,7 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="34b13f96-aeb3-4579-9d4b-7b79a3a2ef29" x="141" y="33" width="254" height="31"/>
+				<reportElement x="141" y="33" width="254" height="31"/>
 				<textElement>
 					<font size="24"/>
 				</textElement>
@@ -26,21 +26,21 @@
 	<columnHeader>
 		<band height="33" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="183847f5-7f7f-45bd-82bd-29096013241d" x="24" y="13" width="100" height="20"/>
+				<reportElement x="24" y="13" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="df220351-fa5a-43d3-8769-ca26e0596b94" x="124" y="13" width="100" height="20"/>
+				<reportElement x="124" y="13" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="25477b26-53f3-4052-a72c-90a2639ba234" x="224" y="13" width="331" height="20"/>
+				<reportElement x="224" y="13" width="331" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -51,17 +51,17 @@
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement uuid="90c97401-1adf-4b8f-b066-9bea1d71ffda" x="24" y="0" width="100" height="20"/>
+				<reportElement  x="24" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="bf9dc134-b18e-42e4-be43-d8091fb8e6b7" x="124" y="0" width="100" height="20"/>
+				<reportElement  x="124" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{No}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="97096e88-33f0-4ef9-b030-a6c1a4ca3f43" x="224" y="0" width="331" height="20"/>
+				<reportElement  x="224" y="0" width="331" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{Comment}]]></textFieldExpression>
 			</textField>

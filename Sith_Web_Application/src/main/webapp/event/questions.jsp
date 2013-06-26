@@ -193,13 +193,16 @@
                     </tr>
                     <tr>
                         <td style="width: 200px">
-                            <div> Your Comment </div>
+                            <br> <br> <br> <br>
+                            <div style="vertical-align: middle"> Your Comment </div>
                         </td>
                         <td>
                             <br>
-                            <div>
-                                <input id="comment" type="text" value="" style="width: 600px;height: 200px; vertical-align: middle">
-                            </div>
+
+                            <form method="post" action="">
+                                <textarea id="comment" value ="" name="comments" cols="100" rows="5" placeholder="Enter your comments here..."></textarea>
+                                <br>
+                            </form>
                         </td>
                     </tr>
                 </table>
@@ -285,7 +288,7 @@
     $("#addComment").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
         var userID = '<%=participant.getUserID()%>';
-        var comment = $('input[id=comment]').val();
+        var comment = $('textarea[id=comment]').val();
         var perception = $("#overallPerception").val();
 
         var datObj = {};
@@ -295,20 +298,24 @@
         datObj['text'] = comment;
         datObj['perceptionValue'] = perception;
 
-        $.ajax({
-            url: './publishCommentHandler.jsp',
-            data: datObj,
-            type: 'POST',
-            success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                window.location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
-            }
-        });
+        if(comment != ""){
+            $.ajax({
+                url: './publishCommentHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    var $response = $(data);
+                    var msg = $response.filter('#msg').text();
+                    alert(msg)
+                    window.location.href='event.jsp';
+                },
+                error: function (xhr, status, error) {
+                    alert("Error adding event - " + error.message);
+                }
+            });
+        }else{
+            alert("The comment should not be empty!");
+        }
 
     });
 

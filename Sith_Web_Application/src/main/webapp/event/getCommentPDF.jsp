@@ -9,6 +9,7 @@
 <%@ page import="net.sf.jasperreports.engine.util.JRLoader" %>
 <%@ page import="java.io.*" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.net.URL" %>
 
 
 <%
@@ -33,15 +34,11 @@
     try {
         //Loading Jasper Report File from Local file system
 
-        InputStream in = application.getResourceAsStream("Sith.jrxml");
-//    JasperDesign jasperDesign = JRXmlLoader.load(in);
-//    ServletContext context = session.getServletContext();
-//    String realContextPath = context.getRealPath(request.getContextPath());
-////        InputStream input = new FileInputStream(new File(jrxmlFile));
-//    System.out.println(realContextPath);
+        InputStream input = new URL("http://proj16.cse.mrt.ac.lk/Sith/event/Sith.jrxml").openStream();
+
         //Generating the report
         System.out.println("Compiling");
-        JasperReport jasperReport = JasperCompileManager.compileReport(in);
+        JasperReport jasperReport = JasperCompileManager.compileReport(input);
 
         System.out.println("Reporting");
         String[] columnNames = new String[]{"Name", "No", "Comment"};

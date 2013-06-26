@@ -253,13 +253,15 @@
                     BufferedWriter bw = new BufferedWriter(fw);
                     bw.write("Name,No,Comment,,");
                     for(Perception p : list){
-                    bw.newLine();
-                    bw.write(p.getUserID()+","+p.getPerceptionValue()+","+p.getText()+",,");
-                }
-                bw.close();
-                fw.close();%>
+                        bw.newLine();
+                        bw.write(p.getUserID()+","+p.getPerceptionValue()+","+p.getText()+",,");
+                    }
+                    bw.close();
+                    fw.close();%>
             </div>
         </div>
+
+        <input type="button" id="download"  value="Download as PDF" class="button" style="width: 160px">
     </section>
     <%
         }
@@ -285,6 +287,13 @@
         }
 
     }
+
+    $("#download").click(function () {
+
+        window.location= "getCommentPDF.jsp";
+
+    });
+
     $("#addComment").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
         var userID = '<%=participant.getUserID()%>';

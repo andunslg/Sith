@@ -3,6 +3,9 @@
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.sith.SithAPI" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -172,7 +175,17 @@
                 <h2>Current Perception</h2>
             </hgroup>
         </header>
+
         <br>
+        <%
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            Date currentDate = new Date();
+
+            Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
+            if(currentDate.compareTo(eventEndDate)<0){
+
+        %>
         <h4 id="h42" align="center">Select your Perception</h4>
 
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden">
@@ -221,6 +234,16 @@
                 </tr>
             </table>
         </div>
+        <%
+        }
+        else{
+        %>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This event has finished. Please <a href="selfAnalytics.jsp">click here</a> to view your self analytics.
+        </div>
+        <%
+            }
+        %>
 
     </section>
 

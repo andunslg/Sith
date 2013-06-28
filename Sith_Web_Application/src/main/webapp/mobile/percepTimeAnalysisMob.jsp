@@ -23,7 +23,7 @@
 <body>
 <div data-role="page">
     <div data-role="content">
-        <p>Graph Type:</p><select id="perceptions"></select><br>
+        Graph Type:<select id="perceptions" data-mini="true"></select><br>
         <div id="TimeAnalysis" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     </div>
 </div>

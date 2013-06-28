@@ -4,7 +4,6 @@
     <%
         String subcriptionID=request.getParameter("subcriptionID");
         String subcriptionName=request.getParameter("subcriptionName");
-
     %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><%=subcriptionName%></title>
@@ -19,9 +18,21 @@
         $(document).ready(function () {
             var perceptions;
             $.get('http://192.248.8.246:3000/getEventById?eventID=<%=subcriptionID%>', function (event) {
-                var schema = event.perceptionSchema;
+                if(typeof event=='string' || event instanceof String){
+                    var schema1 = JSON.parse(event);
+                    var schema = schema1.perceptionSchema;
+                }else{
+                    var schema = event.perceptionSchema;
+                }
                 var perceptions = schema.split(":");
                 barChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                $("#chartType").change(function () {
+                    if ($('#chartType').val() == 'bar') {
+                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                    } else {
+                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                    }
+                });
             });
         })
     </script>
@@ -29,6 +40,11 @@
 <body>
 <div data-role="page">
     <div data-role="content">
+        Chart Type
+        <select id='chartType' data-mini="true">
+            <option value="bar">Bar Chart</option>
+            <option value="pie">Pie Chart</option>
+        </select>
         <div id="CountChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     </div>
 </div>

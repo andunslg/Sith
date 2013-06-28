@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.perception.Perception" %>
+<%@ page import="java.io.*" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -110,7 +111,7 @@
     <%
         if(participant.getUserID().equals(currentEvent.getAdminID())){
     %>
-    <section class="widget" style="min-height: 200px">
+    <section class="widget" style="min-height: 100px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -122,16 +123,16 @@
         <%
             if("false".equals(currentEvent.getCommentEnabled())) {
         %>
-        <div class="content">
-            <input type="button" class="button" id="commentEnable" value="Enable User Comments">
+        <div class="content" align="center" style="vertical-align: middle">
+            <input type="button" class="button" id="commentEnable" value="Enable User Comments" style="width: 160px">
         </div>
         <%
         }
         else{
         %>
-        <div class="content">
+        <div class="content" align="center" style="vertical-align: middle">
             <br>
-            <input type="button" class="button" id="commentDisable" value="Disable User Comments">
+            <input type="button" class="button" id="commentDisable" value="Disable User Comments" style="width: 160px">
         </div>
         <%
             }
@@ -149,7 +150,6 @@
             <span class="icon">&#128100;</span>
             <hgroup>
                 <h1>Your Comment</h1>
-
                 <h2>Enter your comment</h2>
             </hgroup>
         </header>
@@ -157,7 +157,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 200px">
                             <div>
                                 <%=currentEvent.getEventName()%> was &nbsp; &nbsp;
                             </div>
@@ -186,20 +186,27 @@
                     </tr>
                     <tr>
                         <td>
-                            <br>
-                            <div> Your Comment </div>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            <br> <br> <br> <br>
+                            <div style="vertical-align: middle"> Your Comment </div>
                         </td>
                         <td>
                             <br>
-                            <div>
-                                <input id="comment" type="text" value="">
-                            </div>
+
+                            <form method="post" action="">
+                                <textarea id="comment" value ="" name="comments" cols="100" rows="5" placeholder="Enter your comments here..."></textarea>
+                                <br>
+                            </form>
                         </td>
                     </tr>
                 </table>
                 <br>
-                <div>
-                    <input id="addComment" value="Post" type="button" class="button">
+                <div align="center" >
+                    <input id="addComment" value="Post" type="button" class="button" style="width: 160px">
                 </div>
             </form>
         </div>
@@ -218,10 +225,17 @@
 
                 <h2>What others saying?</h2>
             </hgroup>
+            <div class="buttons">
+
+                <input type="button" id="download"  value="Download as PDF" class="button" style="width: 160px">
+
+            </div>
         </header>
+
         <div class="content no-padding timeline">
             <div class="tl-post comments">
                 <%
+
                     ArrayList<Perception> list=eventHandler.getComments(currentEvent.getEventID());
                     for(Perception p : list){
 
@@ -236,6 +250,7 @@
                 <%}%>
             </div>
         </div>
+
     </section>
     <%
         }
@@ -261,10 +276,17 @@
         }
 
     }
+
+    $("#download").click(function () {
+
+        window.location= "getCommentPDF.jsp";
+
+    });
+
     $("#addComment").click(function () {
         var eventID = '<%=currentEvent.getEventID()%>';
         var userID = '<%=participant.getUserID()%>';
-        var comment = $('input[id=comment]').val();
+        var comment = $('textarea[id=comment]').val();
         var perception = $("#overallPerception").val();
 
         var datObj = {};
@@ -274,20 +296,24 @@
         datObj['text'] = comment;
         datObj['perceptionValue'] = perception;
 
-        $.ajax({
-            url: './publishCommentHandler.jsp',
-            data: datObj,
-            type: 'POST',
-            success: function (data) {
-                var $response = $(data);
-                var msg = $response.filter('#msg').text();
-                alert(msg)
-                window.location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert("Error adding event - " + error.message);
-            }
-        });
+        if(comment != ""){
+            $.ajax({
+                url: './publishCommentHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    var $response = $(data);
+                    var msg = $response.filter('#msg').text();
+                    alert(msg)
+                    window.location.href='event.jsp';
+                },
+                error: function (xhr, status, error) {
+                    alert("Error adding event - " + error.message);
+                }
+            });
+        }else{
+            alert("The comment should not be empty!");
+        }
 
     });
 

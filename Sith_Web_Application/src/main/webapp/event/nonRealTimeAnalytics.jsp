@@ -35,16 +35,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://localhost:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
-                var schema = event.perceptionSchema;
+            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+                if(typeof event=='string' || event instanceof String){
+                    var schema1 = JSON.parse(event);
+                    var schema = schema1.perceptionSchema;
+                }else{
+                    var schema = event.perceptionSchema;
+                }
                 var perceptions = schema.split(":");
-                barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
-                countTimeChart('<%=currentEvent.getEventID()%>','http://localhost:3000/getTimeAnalysis?eventID=');
+                barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                countTimeChart('<%=currentEvent.getEventID()%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
-                        barChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                     } else {
-                        pieChart(perceptions,'http://localhost:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
+                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>');
                     }
                 });
             })

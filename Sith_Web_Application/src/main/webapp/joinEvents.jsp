@@ -4,6 +4,9 @@
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.user.UserHandler" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -20,7 +23,19 @@
     UserHandler userHandler= new UserHandler();
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
 
-    ArrayList<Event> events=sithAPI.getEventList();
+    ArrayList<Event> temp=sithAPI.getEventList();
+    ArrayList<Event> events=new ArrayList<Event>();
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    Date currentDate = new Date();
+
+    for(Event event:temp){
+        Date eventEndDate=dateFormat1.parse(event.getEndDate()+" "+event.getEndTime());
+        if(currentDate.compareTo(eventEndDate)<0){
+            events.add(event);
+        }
+    }
 
     ArrayList<Event> userEvents=userHandler.getUserEventList(participant.getUserID());
     ArrayList<String>  userEventsIDs= new ArrayList<String>();
@@ -127,21 +142,16 @@
                 <h2>Click to register</h2>
             </hgroup>
 
+        </header>
+
             <div class="content">
-                <%--This have to be formalized, This is a hack--%>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
                         <th class="avatar">Name</th>
                         <th>Description</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Duration</th>
                         <th>Location</th>
                         <th></th>
 
@@ -159,10 +169,7 @@
                         </td>
                         <td><%=event.getDescription()%>
                         </td>
-                        <td><%=event.getStartDate()+" "+event.getStartTime()%>
-                        </td>
-                        <td><%=event.getEndDate()+" "+event.getEndTime()%>
-                        </td>
+                        <td><%=event.getStartDate()+" "+event.getStartTime()+" to "+event.getEndDate()+" "+event.getEndTime()%>
                         </td>
                         <td><%=event.getLocation()%>
                         </td>
@@ -177,7 +184,7 @@
                     </tbody>
                 </table>
             </div>
-        </header>
+
 
     </section>
 

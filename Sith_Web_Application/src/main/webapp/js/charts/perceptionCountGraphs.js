@@ -7,6 +7,9 @@ barChart = function (perceptions, url) {
     $.get(url, function (e) {
         var data = new Array();
         console.log(e);
+        if(typeof e=='string' || e instanceof String){
+            e = JSON.parse(e);
+        }
         for(var i=0; i<perceptions.length;i++){
             perception = e.data[perceptions[i]];
             if(perception){
@@ -67,6 +70,9 @@ pieChart = function (perceptions,url) {
         //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
         var data = new Array();
         console.log(e);
+        if(typeof e=='string' || e instanceof String){
+            e = JSON.parse(e);
+        }
         for(var i=0; i<perceptions.length;i++){
             perception = e.data[perceptions[i]];
             if(perception){

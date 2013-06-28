@@ -106,7 +106,7 @@ exports.getTimeAnalysis = function(req,res){
                 'Cache-Control' : 'no-cache',
                 'Connection' : 'keep-alive'
             });
-            res.write(JSON.stringify(dataString));
+            res.write(dataString);
             res.end();
         });
 };
@@ -122,7 +122,7 @@ exports.getSelfAnalytics= function(req,res){
             'Cache-Control' : 'no-cache',
             'Connection' : 'keep-alive'
         });
-        res.write(JSON.stringify(dataString));
+        res.write(dataString);
         res.end();
     });
 }

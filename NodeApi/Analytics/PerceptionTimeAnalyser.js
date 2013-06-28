@@ -10,6 +10,10 @@ exports.getTimeAnalysisData = function(collection,sortKey,fn){
           var minimumTime = docs[0].timeStamp;
           var maxTime = docs[docs.length-1].timeStamp;
           var interval = getTimeInterval(minimumTime,maxTime)
+          if(interval == 0){
+              interval =10;
+
+          }
           for(var i=0 ; i<docs.length ; i++){
              var index = Math.floor((docs[i].timeStamp-minimumTime)/(interval));
               var perception = docs[i].perceptionValue;

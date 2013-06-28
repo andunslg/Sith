@@ -17,7 +17,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://localhost:3000/countPerceptionsMapReduce?eventID=cse_pc1_2', function (data) {
+            $.get('http://192.248.8.246:3000/countPerceptionsMapReduce?eventID=cse_pc1_2', function (data) {
                 if(typeof data=='string' || data instanceof String){
                     var dataparsed = JSON.parse(data);
 

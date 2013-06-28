@@ -17,26 +17,26 @@
 
     <script src="../js/charts/perceptionCountGraphs.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+    <%--<script type="text/javascript">--%>
+      /*  $(document).ready(function () {
             var perceptions;
             $.get('http://192.248.8.246:3000/getEventById?eventID='<%=subcriptionID%>, function (event) {
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
                 pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID='<%=subcriptionID%>);
             });
-        })
-    </script>
-</head>
-<body>
-<div data-role="page">
+        })  */
+        <%--</script>--%>
+ </head>
+ <body>
+ <div data-role="page">
 
-    <div data-role="content">
-        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
-            <div id="CountChart" style="min-width: 400px; height: 400px;"></div>
-        </div>
-    </div>
-
+     <%--<div data-role="content">
+         <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
+             <div id="CountChart" style="min-width: 400px; height: 400px;"></div>
+         </div>
+     </div>--%>
+    <p><%=subcriptionID%></p>
 </div>
 
 </body>

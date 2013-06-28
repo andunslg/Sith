@@ -3,6 +3,8 @@
  */
 var stats = require('../stats'),
 analyser = require('../Analytics/PerceptionTimeAnalyser');
+mapreduceAnalyser = require('../Analytics/mapReduce');
+eventManager2 = require('../eventManager');
 //send perception totals in each catelog
 exports.sendPerceptionCount = function(req,res){
     eventID = req.query.eventID;
@@ -34,6 +36,36 @@ exports.sendPerceptionCount2 = function(req,res){
         res.end();
     });
 };
+
+exports.sendPerceptionCountMapReduce = function(req,res){
+     mapreduceAnalyser.categorize("EventPerceptions_"+req.query.eventID,function(results){
+         res.writeHead(200, {
+             'Content-Type' : 'application/json',
+             'Cache-Control' : 'no-cache',
+             'Connection' : 'keep-alive'
+         });
+         var perceptionSchema = new Array();
+         eventManager2.getEventByID(req.query.eventID,function(event){
+              perceptionSchema = event.perceptionSchema.split(":");
+             var perceptions = new Object();
+             for(var i=0;i<results.length;i++){
+                 perceptions[results[i]._id] = results[i].value.count;
+             }
+             if(results.length != perceptionSchema.length){
+                 for(var i=0;i<perceptionSchema.length;i++){
+                     if(!perceptions[perceptionSchema[i]]){
+                         perceptions[perceptionSchema[i]] = 0;
+                     }
+                 }
+             };
+
+             res.write(JSON.stringify(perceptions));
+             res.end();
+         });
+
+
+     });
+}
 /*
 exports.sendPeriodicTotalPerceptions = function(req,res){
 		res.writeHead(200, {

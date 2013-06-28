@@ -59,6 +59,7 @@ app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 //routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
 app.get('/countPerceptions2',analyticRoutes.sendPerceptionCount2);
+app.get('/countPerceptionsMapReduce',analyticRoutes.sendPerceptionCountMapReduce);
 app.get('/getTimeAnalysis',analyticRoutes.getTimeAnalysis);
 app.get('/getSelfAnalytics',analyticRoutes.getSelfAnalytics);
 //routing for get all the perceptions available in the platform

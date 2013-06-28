@@ -13,7 +13,7 @@
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="/mobile/js/percepCountMob.js"></script>
+    <script src="../mobile/js/percepCountMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;

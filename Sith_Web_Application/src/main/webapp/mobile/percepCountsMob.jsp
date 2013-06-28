@@ -13,24 +13,34 @@
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="../js/charts/perceptionCountGraphs.js"></script>
+    <script src="/mobile/js/percepCountMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=subcriptionID%>', function (event) {
-                if(typeof event=='string' || event instanceof String){
-                    var schema1 = JSON.parse(event);
-                    var schema = schema1.perceptionSchema;
+            $.get('http://localhost:3000/countPerceptionsMapReduce?eventID=cse_pc1_2', function (data) {
+                if(typeof data=='string' || data instanceof String){
+                    var dataparsed = JSON.parse(data);
+
                 }else{
-                    var schema = event.perceptionSchema;
+                    var dataparsed = data;
                 }
-                var perceptions = schema.split(":");
-                barChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                var perceptions = new Array();
+                var values  = new Array();
+                var valueArray = new Array();
+                for(percep in dataparsed){
+                    perceptions.push(percep);
+                    values.push(dataparsed[percep])
+                    var val = new Array();
+                    val.push(percep);
+                    val.push(dataparsed[percep]);
+                    valueArray.push(val);
+                }
+                barChart(perceptions, values);
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
-                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                        barChart(perceptions,values);
                     } else {
-                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
+                        pieChart(valueArray);
                     }
                 });
             });

@@ -20,10 +20,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.8.246:3000/getEventById?eventID=cse_pc1_2', function (event) {
+            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=subcriptionID%>', function (event) {
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
-                pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID=cse_pc1_2');
+                pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID=<%=subcriptionID%>');
             });
         })
     </script>

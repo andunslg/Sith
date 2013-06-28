@@ -13,7 +13,7 @@ exports.registerAnnonymousUser = function(req,res){
 	
 };
 
-exports.registerFBUser = function(){
+exports.registerFBUser = function(req,res){
     res.writeHead(200, {
         'Content-Type' : 'application/json',
         'Cache-Control' : 'no-cache',

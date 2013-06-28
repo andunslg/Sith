@@ -4,8 +4,6 @@
     <%
         String subcriptionID=request.getParameter("subcriptionID");
         String subcriptionName=request.getParameter("subcriptionName");
-
-
     %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>perception count</title>
@@ -25,8 +23,7 @@
             $.get('http://192.248.8.246:3000/getEventById?eventID='<%=subcriptionID%>, function (event) {
                 var schema = event.perceptionSchema;
                 var perceptions = schema.split(":");
-                pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID='<%=subcriptionID
-                %>);
+                pieChart(perceptions, 'http://192.248.8.246:3000/countPerceptions2?eventID='<%=subcriptionID%>);
             });
         })
     </script>

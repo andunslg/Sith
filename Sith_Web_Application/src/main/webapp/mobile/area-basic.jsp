@@ -16,7 +16,7 @@
     <script src="../js/charts/countTimeAnalysis.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-                countTimeChart('cse_pc1_2','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
+                countTimeChart('<%=subcriptionID%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
         });
     </script>
 </head>

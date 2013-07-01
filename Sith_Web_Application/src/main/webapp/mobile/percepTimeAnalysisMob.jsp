@@ -12,11 +12,10 @@
     <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="../js/charts/countTimeAnalysis.js"></script>
+    <script src="../mobile/js/percepTimeAnalysisMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-                countTimeChart('<%=subcriptionID%>','http://192.248.8.246:3000/getTimeAnalysis?eventID=');
+                countTimeChartMob('http://192.248.8.246:3000/getTimeAnalysis?eventID=<%=subcriptionID%>');
         });
     </script>
 </head>

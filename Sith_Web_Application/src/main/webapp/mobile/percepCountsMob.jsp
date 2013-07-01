@@ -12,12 +12,11 @@
     <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="../mobile/js/percepCountMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.8.246:3000/countPerceptionsMapReduce?eventID=cse_pc1_2', function (data) {
+            $.get('http://192.248.8.246:3000/countPerceptionsMapReduce?eventID=<%=subcriptionID%>', function (data) {
                 if(typeof data=='string' || data instanceof String){
                     var dataparsed = JSON.parse(data);
 

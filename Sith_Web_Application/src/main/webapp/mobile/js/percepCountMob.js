@@ -45,6 +45,9 @@ barChart = function (perceptions, values) {
                     borderWidth: 0
                 }
             },
+            exporting: {
+                enabled:false
+            },
             series: [
                 {
                     data: values
@@ -80,6 +83,9 @@ pieChart = function (values) {
                         }
                     }
                 }
+            },
+            exporting: {
+                enabled:false
             },
             series: [
                 {

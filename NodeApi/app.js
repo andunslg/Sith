@@ -42,9 +42,16 @@ app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-app.configure('development', function(){
-  app.use(express.errorHandler());
+
+app.configure('production', function(){
+    console.log('prod');
+    app.use(express.errorHandler());
 });
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    console.log('dev');
+});
+
 process.on('uncaughtException', function(err) {
     // handle the error safely
     console.log(err);

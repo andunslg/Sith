@@ -2,7 +2,7 @@
  * @author Sachintha
  * This document contains barchart and pie chart to display perception counts
  */
-barChart = function (perceptions, url) {
+barChart = function (perceptions, url,colors) {
     //load data from the server
     $.get(url, function (e) {
         var data = new Array();
@@ -12,11 +12,14 @@ barChart = function (perceptions, url) {
         }
         for(var i=0; i<perceptions.length;i++){
             perception = e.data[perceptions[i]];
+            data[i] = new Object();
             if(perception){
-                data[i] =  perception;
+                data[i].y =  perception;
+                data[i].color = colors[i];
                 console.log(data[i]);
             }else{
-                data[i]=0;
+                data[i].y=0;
+                data[i].color = colors[i]
                 console.log(data[i]);
             }
         }
@@ -64,10 +67,13 @@ barChart = function (perceptions, url) {
   });
 }
 
-pieChart = function (perceptions,url) {
+pieChart = function (perceptions,url,colors) {
     $.get(url, function (e) {
         //var data = e.data;
         //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
+        Highcharts.setOptions({
+            colors: colors
+        });
         var data = new Array();
         console.log(e);
         if(typeof e=='string' || e instanceof String){
@@ -83,6 +89,9 @@ pieChart = function (perceptions,url) {
                 console.log(data[i]);
             }
         }
+        //Highcharts.setOptions({
+        //    colors: colors;
+       // });
         $('#CountChart').highcharts({
             chart: {
                 plotBackgroundColor: null,

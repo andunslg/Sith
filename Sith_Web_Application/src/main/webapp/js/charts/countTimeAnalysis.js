@@ -5,8 +5,8 @@
  * Time: 10:35 AM
  * To change this template use File | Settings | File Templates.
  */
-countTimeChart = function(eventID,url){
-        $.get(url+eventID,function(data){
+countTimeChart = function(url){
+        $.get(url,function(data){
             var result;
             if(typeof data=='string' || data instanceof String){
                  result = JSON.parse(data);
@@ -14,7 +14,7 @@ countTimeChart = function(eventID,url){
                 var result = data;
             }
             for(var percep in result){
-                if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'){
+                if(percep == 'startTime'|| percep=='endTime'|| percep=='interval'||percep == "colors"){
                   continue;
                 }
                 $("#perceptions").append($("<option />").val(percep).text(percep));
@@ -93,8 +93,9 @@ countTimeChart = function(eventID,url){
 
         stackedGraph = function(){
                  var series = new Array();
+                 var i=0;
                  for(var name in result){
-                     if(name == 'startTime'|| name=='endTime' || name == 'interval'){
+                     if(name == 'startTime'|| name=='endTime' || name == 'interval'||name == "colors"){
                          continue;
                      };
                      var ob = new Object();
@@ -102,6 +103,10 @@ countTimeChart = function(eventID,url){
                      ob.data = result[name];
                      ob.pointInterval = result.interval;
                      ob.pointStart = result.startTime;
+                     if(result["colors"]){
+                         ob.color = result["colors"][i];
+                         i++;
+                     }
                      series.push(ob);
                  }
                 $('#TimeAnalysis').highcharts({

@@ -14,7 +14,7 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema, String commentEnabled){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String description, String perceptionSchema, String commentEnabled,String colors){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
@@ -27,7 +27,7 @@ public class EventHandler{
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 		parms.put("commentEnabled",commentEnabled);
-
+        parms.put("colors",colors);
 		String result=null;
 		try{
 			result=httpUtil.doPost(SithAPI.ADD_EVENT,parms);

@@ -41,7 +41,7 @@
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
     <script src="js/apprise-1.5.min.js"></script>
     <script src="../js/jquery-migrate-1.0.0.js"></script>
-
+    <script src="../js/jscolor.js"></script>
     <script>
         $(function() {
             $( "#datepicker" ).datepicker();
@@ -245,7 +245,31 @@
 
                         </td>
                     </tr>
-
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input id="addColors" value="Add Color Schema" type="button" class="button" style="text-align: center;width: 150px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table id="colors">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             &nbsp;
@@ -348,8 +372,18 @@
         $('#start').datetimepicker();
         $('#end').datetimepicker();
     });
+     var added = false
+    $("#addColors").click(function(){
+        if(!added){
+        $("#selectedPerceptionSchema>option").each(function () {
+            $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                                         "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+            var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
 
-
+        });
+            added = true;
+        }
+    });
     $("#addEvent").click(function () {
         var eventID = $('input[id=eventID]').val();
         var eventName = $('input[id=eventName]').val();
@@ -374,7 +408,15 @@
                 perceptionSchema+= $(this).text();
             }
         });
-
+        var colors = ""
+        $("#colors").find("td:nth-child(2)").each(function () {
+            if(colors!=""){
+                colors += ":"+$(this)[0].firstChild.style.backgroundColor;
+            }else{
+                colors+= $(this)[0].firstChild.style.backgroundColor;
+            }
+        });
+         console.log(colors);
         if(start.length!=16  ||end.length!=16){
             apprise("Please select correct Start and End values")
         }
@@ -394,7 +436,7 @@
             datObj['description'] = description;
             datObj['perceptionSchema'] = perceptionSchema;
             datObj['commentEnabled'] = commentEnabled;
-
+            datObj['colors'] = colors;
 
             $.ajax({
                 url: 'event/addEventHandler.jsp',

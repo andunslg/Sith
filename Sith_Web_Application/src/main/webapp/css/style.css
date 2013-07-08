@@ -126,7 +126,7 @@ input, textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
-
+.color {height: 30px; width: 40px}
 input:focus, textarea:focus {
     border: 1px solid #5DACED;
 

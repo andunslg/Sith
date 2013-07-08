@@ -1,7 +1,7 @@
 /**
  * @author Sachintha
  */
-realTimeGraph = function (eventID,perceptions) {
+realTimeGraph = function (eventID,perceptions,colors) {
         var source = new EventSource('http://192.248.8.246:3000/countPeriodicPerceptions?eventID='+eventID);
         var series = new Array();
         var t = (new Date().getTime());
@@ -17,6 +17,7 @@ realTimeGraph = function (eventID,perceptions) {
                 [t - 1000, 0],
                 [t, 0]
             ];
+            ob.color = colors[i];
             series.push(ob);
         }
         source.onopen = function () {
@@ -35,7 +36,6 @@ realTimeGraph = function (eventID,perceptions) {
         function updateChart(event) {
             console.log(event.data);
             var data = JSON.parse(event.data);
-
             var chart1 = $('#LiveChart').highcharts();
             var chart2 = $('#TotLiveChart').highcharts();
             var newVal = data.total;
@@ -153,7 +153,6 @@ realTimeGraph = function (eventID,perceptions) {
             },
             series: [
                 {
-                    name: 'Random data',
                     data: (function () {
                         // generate an array of random data
                         var data = [],

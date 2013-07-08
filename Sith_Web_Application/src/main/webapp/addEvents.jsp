@@ -34,14 +34,14 @@
     <link rel="stylesheet" href="css/apprise.min.css" type="text/css" />
     <link rel="stylesheet" href="/resources/demos/style.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
 
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="../js/jquery-ui-timepicker-addon.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
     <script src="js/apprise-1.5.min.js"></script>
-    <script src="../js/jquery-migrate-1.0.0.js"></script>
-    <script src="../js/jscolor.js"></script>
+    <script src="js/jquery-migrate-1.0.0.js"></script>
+    <script src="js/jscolor.js"></script>
     <script>
         $(function() {
             $( "#datepicker" ).datepicker();
@@ -456,16 +456,16 @@
     });
 </script>
 
-<script src="../js/jquery.wysiwyg.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/cycle.js"></script>
-<script src="../js/jquery.checkbox.min.js"></script>
-<script src="../js/flot.js"></script>
-<script src="../js/flot.resize.js"></script>
-<script src="../js/flot-graphs.js"></script>
-<script src="../js/flot-time.js"></script>
-<script src="../js/cycle.js"></script>
-<script src="../js/jquery.tablesorter.min.js"></script>
+<script src="js/jquery.wysiwyg.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/cycle.js"></script>
+<script src="js/jquery.checkbox.min.js"></script>
+<script src="js/flot.js"></script>
+<script src="js/flot.resize.js"></script>
+<script src="js/flot-graphs.js"></script>
+<script src="js/flot-time.js"></script>
+<script src="js/cycle.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
 
 
 </body>

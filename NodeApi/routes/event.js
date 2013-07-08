@@ -8,8 +8,9 @@ percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
 userManager = require("../userManager");
 exports.addEvent = function(req,res){
+    //req.body.colors = '#A7FF4F:#3029FF:#FF3F0F';
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location, req.body.startDate,
-							req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled);
+							req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.colors);
     userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
         if(error){
             console.log(error);
@@ -75,7 +76,7 @@ exports.updateEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
     eventManager.updateEvent(req.body.oldEventID,req.body.eventID,req.body.eventName,req.body.eventAdmin,
                             req.body.desc, req.body.location, req.body.date,req.body.startTime, req.body.endTime,
-                            req.body.perceptionSchema,req.body.commentEnabled,function(result){
+                            req.body.perceptionSchema,req.body.commentEnabled,req.body.colors,function(result){
            if(result){
                res.write(JSON.stringify({response: true }));
            }else{

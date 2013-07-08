@@ -1,9 +1,9 @@
 /**
  * @author Sachintha
  */
-exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled){
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
-			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled};
+			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled, colors:colors};
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
     mongoAdapter.createCollection('EventComments_'+eventID);
@@ -50,9 +50,9 @@ exports.setCommentEnabled = function(eventID,commentEnabled,fn){
 //
 //}
 
-exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,commentEnabled,fn){
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,commentEnabled,colors,fn){
     newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
-        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled};
+        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,colors:colors};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){
              mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);

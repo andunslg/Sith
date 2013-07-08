@@ -33,7 +33,7 @@
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
     <script type="text/javascript">
-        $.get('http://localhost:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+        $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
             if(typeof event=='string' || event instanceof String){
                 var schema1 = JSON.parse(event);
                 var schema = schema1.perceptionSchema;

@@ -11,7 +11,7 @@ var mongoClient = new MongoClient(new Server(config.mongodb.host, config.mongodb
 
 mongoClient.open(function(err, mongoClient) {
     db1 = mongoClient.db(config.mongodb.database);
-    console.log('connected to '+ db1.databaseName + ' on ' + mongoClient._db.serverConfig.host +' authenticated = '+result);
+    console.log('connected to '+ db1.databaseName + ' on ' + mongoClient._db.serverConfig.host);
 
 });
 //insert a document to the specified collection
@@ -66,7 +66,7 @@ exports.getSortedDocuments = function (query,collection,sortkey,fn){
     });
 };
 //delete a specific document from a collection
-exports.delenoteDocument = function(collection,query,errorFunc){
+exports.deleteDocument = function(collection,query,errorFunc){
     Db(config.mongodb.database, new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
         if(err)
             errorFunc(new Error(err.message));

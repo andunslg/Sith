@@ -31,7 +31,7 @@ exports.getEventTimeAnalysisData = function(eventID,fn){
                   sorted["startTime"] = minimumTime;
                   sorted["endTime"] = maxTime;
                   sorted["interval"] = interval;
-                 // console.log(sorted);
+                  console.log(sorted);
                   fn(sorted);
           });
       });

@@ -1,8 +1,9 @@
 dataAdapter = require('../mongoAdapter');
 
 exports.getEventTimeAnalysisData = function(eventID,fn){
-      dataAdapter.getDocuments({},"EventDetails"+eventID,function(docs){
+      dataAdapter.getDocuments({},"EventDetails_"+eventID,function(docs){
           if(docs.length==0){
+              var result = new Object();
               fn(result['empty'] = 1);
               return;
           }
@@ -42,8 +43,9 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
     }else{
         var query = {eventID:eventID}
     }
-    dataAdapter.getDocuments(query,"UserPerceptions"+userID,function(docs){
+    dataAdapter.getDocuments(query,"UserPerceptions_"+userID,function(docs){
         if(docs.length==0){
+            var result = new Object();
             fn(result['empty'] = 1);
             return;
         }

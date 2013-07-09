@@ -34,10 +34,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var perceptions;
-            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
                 countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=participant.getUserID()%>');
-            });
         })
     </script>
     <script type="text/javascript" src="../js/charts/countTimeAnalysis.js"></script>

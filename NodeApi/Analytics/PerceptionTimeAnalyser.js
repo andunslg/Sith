@@ -1,7 +1,7 @@
 dataAdapter = require('../mongoAdapter');
 
 exports.getEventTimeAnalysisData = function(eventID,fn){
-      dataAdapter.getDocuments({},"EventDetails_"+eventID,function(docs){
+      dataAdapter.getDocuments({},"EventPerceptions_"+eventID,function(docs){
           if(docs.length==0){
               var result = new Object();
               fn(result['empty'] = 1);
@@ -14,6 +14,7 @@ exports.getEventTimeAnalysisData = function(eventID,fn){
               interval =10;
           }
           var result = analyseTimePercep(docs,minimumTime,interval);
+
           dataAdapter.getSingleDocument({eventID:eventID},"EventDetails",function(data){
                var perceptions = data.perceptionSchema.split(":");
                 var sorted = sortPerceptions(result,perceptions)
@@ -43,6 +44,7 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
     }else{
         var query = {eventID:eventID}
     }
+    console.log(query);
     dataAdapter.getDocuments(query,"UserPerceptions_"+userID,function(docs){
         if(docs.length==0){
             var result = new Object();
@@ -74,7 +76,7 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
                 result["startTime"] = minimumTime;
                 result["endTime"] = maxTime;
                 result["interval"] = interval;
-                // console.log(sorted);
+                //console.log(sorted);
                 fn(result);
             });
         }else{
@@ -115,7 +117,8 @@ analyseTimePercep = function(docs,minTime,interval){
             result[perception][index] = 1;
         }
     }
-    return result
+    console.log("***");
+    return result;
 }
 // given a perception count object this returns a object which is in order of the perceptionSchema
 sortPerceptions = function(perceptionData,referenceData){

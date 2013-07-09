@@ -130,7 +130,7 @@ function constructCountMessage(eventID,res){
 //get the analysis data for a given user
 exports.getTimeAnalysis = function(req,res){
         analyser.getEventTimeAnalysisData(req.query.eventID,function(result){
-            dataString = JSON.stringify(result)
+            var dataString = JSON.stringify(result)
             res.writeHead(200, {
                 'Content-Type' : 'application/json',
                 'Cache-Control' : 'no-cache',

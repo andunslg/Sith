@@ -29,7 +29,7 @@ exports.getTimeAnalysisData = function(collection,sortKey,fn){
           }
 
          // console.log(result);
-          var id = collection.split("_")[1];
+          var id = collection.split(/_(.+)?/)[1];
           console.log(id);
           dataAdapter.getSingleDocument({eventID:id},"EventDetails",function(data){
                var perceptions = data.perceptionSchema.split(":");

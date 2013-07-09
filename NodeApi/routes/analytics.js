@@ -127,11 +127,9 @@ function constructCountMessage(eventID,res){
 	
 };
 
+//get the analysis data for a given user
 exports.getTimeAnalysis = function(req,res){
-    var collection = "EventPerceptions_"+req.query.eventID;
-    //var sortfield = req.query.sortfield;
-    //var sortkey = new Object(sortfield: req.query.order);
-        analyser.getTimeAnalysisData(collection,{timeStamp:+1},function(result){
+        analyser.getEventTimeAnalysisData(req.query.eventID,function(result){
             dataString = JSON.stringify(result)
             res.writeHead(200, {
                 'Content-Type' : 'application/json',
@@ -143,12 +141,10 @@ exports.getTimeAnalysis = function(req,res){
         });
 };
 
+//get self analytics of a user for all the events he participated
 exports.getSelfAnalytics= function(req,res){
-    var collection = "UserPerceptions_"+req.query.userID;
-    //var sortfield = req.query.sortfield;
-    //var sortkey = new Object(sortfield: req.query.order);
-    analyser.getTimeAnalysisData(collection,{timeStamp:+1},function(result){
-        dataString = JSON.stringify(result)
+    analyser.getSelfTimeAnalysis(req.query.userID,null,function(result){
+        var dataString = JSON.stringify(result)
         res.writeHead(200, {
             'Content-Type' : 'application/json',
             'Cache-Control' : 'no-cache',

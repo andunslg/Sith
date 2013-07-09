@@ -15,11 +15,15 @@ barChart = function (perceptions, url,colors) {
             data[i] = new Object();
             if(perception){
                 data[i].y =  perception;
-                data[i].color = colors[i];
+                if(colors){
+                  data[i].color = colors[i];
+                }
                 console.log(data[i]);
             }else{
                 data[i].y=0;
-                data[i].color = colors[i]
+                if(colors){
+                  data[i].color = colors[i]
+                }
                 console.log(data[i]);
             }
         }
@@ -71,9 +75,11 @@ pieChart = function (perceptions,url,colors) {
     $.get(url, function (e) {
         //var data = e.data;
         //var perceptions = JSON.stringify({Angry:data[0], Sad:data[1], Boring:data[2], Nutral:data[3], Happy:data[4], Excited:data[5]});
-        Highcharts.setOptions({
-            colors: colors
-        });
+        if(colors){
+            Highcharts.setOptions({
+                colors: colors
+            });
+        }
         var data = new Array();
         console.log(e);
         if(typeof e=='string' || e instanceof String){

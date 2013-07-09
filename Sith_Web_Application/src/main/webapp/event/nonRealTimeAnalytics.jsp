@@ -45,7 +45,11 @@
                     var colors = event.colors;
                 }
                 var perceptions = schema.split(":");
-                var colorArray = colors.split(":");
+                var colorArray;
+                if(colors){
+                   colorArray = colors.split(":");
+                }
+
                 barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>',colorArray);
                 countTimeChart('http://192.248.8.246:3000/getTimeAnalysis?eventID=<%=currentEvent.getEventID()%>');
                 $("#chartType").change(function () {

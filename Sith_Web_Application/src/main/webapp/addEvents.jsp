@@ -372,17 +372,15 @@
         $('#start').datetimepicker();
         $('#end').datetimepicker();
     });
-     var added = false
+
     $("#addColors").click(function(){
-        if(!added){
+        $("#colors tbody").empty();
         $("#selectedPerceptionSchema>option").each(function () {
             $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
                                          "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
             var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
 
         });
-            added = true;
-        }
     });
     $("#addEvent").click(function () {
         var eventID = $('input[id=eventID]').val();
@@ -416,6 +414,9 @@
                 colors+= $(this)[0].firstChild.style.backgroundColor;
             }
         });
+        if(colors == ""){
+            colors = null;
+        }
          console.log(colors);
         if(start.length!=16  ||end.length!=16){
             apprise("Please select correct Start and End values")

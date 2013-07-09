@@ -17,7 +17,9 @@ realTimeGraph = function (eventID,perceptions,colors) {
                 [t - 1000, 0],
                 [t, 0]
             ];
-            ob.color = colors[i];
+            if(colors){
+                ob.color = colors[i];
+            }
             series.push(ob);
         }
         source.onopen = function () {

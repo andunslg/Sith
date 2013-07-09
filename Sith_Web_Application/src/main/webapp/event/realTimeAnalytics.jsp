@@ -43,7 +43,10 @@
                 var colors = event.colors;
             }
             var perceptions = schema.split(":");
-            var colorArray = colors.split(":");
+            var colorArray();
+            if(colors){
+                colorArray = colors.split(":");
+            }
             realTimeGraph('<%=currentEvent.getEventID()%>',perceptions,colorArray);
         });
     </script>

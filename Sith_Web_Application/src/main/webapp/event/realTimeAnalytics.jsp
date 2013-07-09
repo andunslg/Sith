@@ -43,7 +43,7 @@
                 var colors = event.colors;
             }
             var perceptions = schema.split(":");
-            var colorArray();
+            var colorArray;
             if(colors){
                 colorArray = colors.split(":");
             }

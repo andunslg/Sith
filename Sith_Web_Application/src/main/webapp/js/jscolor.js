@@ -413,7 +413,7 @@ var jscolor = {
 
 		this.importColor = function() {
 			if(!valueElement) {
-				this.exportColor();
+				//this.exportColor();
 			} else {
 				if(!this.adjust) {
 					if(!this.fromString(valueElement.value, leaveValue)) {
@@ -432,7 +432,7 @@ var jscolor = {
 				} else if(this.fromString(valueElement.value)) {
 					// OK
 				} else {
-					this.exportColor();
+					//this.exportColor();
 				}
 			}
 		};
@@ -970,6 +970,7 @@ var jscolor = {
 		}
 
 		// styleElement
+
 		if(styleElement) {
 			styleElement.jscStyle = {
 				backgroundImage : styleElement.style.backgroundImage,
@@ -986,7 +987,7 @@ var jscolor = {
 		jscolor.requireImage('../images/cross.gif');
 		jscolor.requireImage('../images/arrow.gif');
 
-		this.importColor();
+		//this.importColor();
 	}
 
 };

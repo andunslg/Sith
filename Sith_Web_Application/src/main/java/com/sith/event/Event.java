@@ -12,8 +12,8 @@ public class Event{
 	private String location;
 	private String perceptionSchema;
 	private String commentEnabled;
-
-	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema, String commentEnabled){
+    private String colors;
+	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema, String commentEnabled, String colors){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
@@ -26,6 +26,7 @@ public class Event{
 		this.location=location;
 		this.perceptionSchema=perceptionSchema;
 		this.commentEnabled=commentEnabled;
+        this.colors = colors;
 	}
 
 	public String getEventName(){
@@ -71,4 +72,8 @@ public class Event{
 	public String getCommentEnabled(){
 		return commentEnabled;
 	}
+
+    public String getColors(){
+        return colors;
+    }
 }

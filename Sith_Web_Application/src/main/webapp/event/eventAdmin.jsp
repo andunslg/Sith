@@ -28,6 +28,11 @@
     String arr[]=currentEvent.getPerceptionSchema().split(":");
     List<String> perceptionListSelected=Arrays.asList(arr);
 
+    List<String> colors = null;
+    if(!currentEvent.getColors().equals("")){
+        String arr2[] = currentEvent.getColors().split(":");
+        colors=Arrays.asList(arr2);
+    }
     ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
     ArrayList<String> temp=perceptionList;
     for(int i=0;i<perceptionList.size();i++){
@@ -63,6 +68,7 @@
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
     <script src="../js/apprise-1.5.min.js"></script>
     <script src="../js/jquery-migrate-1.0.0.js"></script>
+    <script src="../js/jscolor.js"></script>
 
 </head>
 <body>
@@ -311,6 +317,55 @@
                     </tr>
                     <tr>
                         <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <%
+                                if(colors != null){
+                            %>
+                            <input id="addColors" value="Update Color Schema" type="button" class="button" style="text-align: center;width: 160px">
+                            <%
+                                }else{
+                            %>
+                            <input id="addColors" value="Add Color Schema" type="button" class="button" style="text-align: center;width: 150px">
+                            <%
+                                }
+                            %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table id="colors">
+                                <tbody>
+                                <%
+                                    if(colors != null){
+                                    int i=0;
+                                    for(String perception : perceptionListSelected){
+                                %>
+                                <tr>
+                                    <td style='padding: 25px 10px 0px 0px'><%=perception%></td>
+                                    <td><input class='color' name='<%=perception%>' id='<%=perception%>' type='text' style="background-color: <%=colors.get(i)%>"></td>
+                                </tr>
+                                <%
+                                    i++;
+                                    }
+                                   }
+                                %>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div>Enable User Comments &nbsp;</div>
                         </td>
                         <td>
@@ -446,6 +501,15 @@
 
     });
 
+    $("#addColors").click(function(){
+        $("#colors tbody").empty();
+        $("#selectedPerceptionSchema>option").each(function () {
+            $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                    "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+            var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
+
+        });
+    });
     $("#update").click(function () {
         var eventID = $('input[id=eventID]').val();
         var eventName = $('input[id=eventName]').val();
@@ -471,6 +535,17 @@
             }
         });
 
+        var colors = ""
+        $("#colors").find("td:nth-child(2)").each(function () {
+            if(colors!=""){
+                colors += ":"+$(this)[0].firstChild.style.backgroundColor;
+            }else{
+                colors+= $(this)[0].firstChild.style.backgroundColor;
+            }
+        });
+        if(colors == ""){
+            colors = null;
+        }
         if(start.length!=16  ||end.length!=16){
             apprise("Please select correct Start and End values")
         }
@@ -491,7 +566,7 @@
             datObj['description'] = description;
             datObj['perceptionSchema'] = perceptionSchema;
             datObj['commentEnabled'] = commentEnabled;
-
+            datObj['colors'] = colors;
 
             $.ajax({
                 url: 'updateEventHandler.jsp',

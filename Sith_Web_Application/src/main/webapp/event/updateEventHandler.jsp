@@ -15,7 +15,7 @@
     String commentEnabled=request.getParameter("commentEnabled");
     String start=request.getParameter("start");
     String end=request.getParameter("end");
-
+    String colors = request.getParameter("colors");
 
     String startDate=start.substring(0,10);
     String startTime=start.substring(11,16);
@@ -29,7 +29,7 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema,commentEnabled);
+            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema,commentEnabled,colors);
             if(res){
                 message="The Event is successfully updated.";
             }else{

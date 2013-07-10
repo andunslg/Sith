@@ -51,7 +51,7 @@ exports.setCommentEnabled = function(eventID,commentEnabled,fn){
 //}
 
 exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location, date, startTime, endTime,perceptionSchema,commentEnabled,colors,fn){
-    newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
+    var newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,
         date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,colors:colors};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){

@@ -67,3 +67,19 @@ exports.getParticipants = function(eventID,fn){
         fn(docs);
     });
 };
+
+exports.getColorSchema = function(eventID,fn){
+    mongoAdapter.getSingleDocument({eventID: eventID},'EventDetails', function (doc) {
+        if(doc.colors){
+            var colorArray = doc.colors.split(":");
+            var percepArray = doc.perceptionSchema.split(":");
+            var colorSchema = new Object();
+            for(var i=0; i<percepArray.length;i++){
+                colorSchema[percepArray[i]] = colorArray[i];
+            }
+            fn(colorSchema);
+        } else{
+            fn("Error");
+        }
+    });
+}

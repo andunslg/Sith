@@ -75,6 +75,7 @@ app.get('/getTimeAnalysis',analyticRoutes.getTimeAnalysis);
 app.get('/getSelfAnalytics',analyticRoutes.getSelfAnalytics);
 //routing for get all the perceptions available in the platform
 app.get('/getMasterPerceptions',eventRoutes.getMasterPerceptions);
+app.get('/getColorSchema',eventRoutes.getColorSchema);
 //routing for event category
 app.post('/addEvent',eventRoutes.addEvent);
 app.get('/getEventById',eventRoutes.getEventByID);

@@ -259,6 +259,9 @@
                         <td></td>
                         <td>
                             <input id="addColors" value="Add Color Schema" type="button" class="button" style="text-align: center;width: 150px">
+                            <div style="padding-top: 10px">
+                             If you do not set the color schema, random colors will be set
+                            </div>
                         </td>
                     </tr>
                     <tr>

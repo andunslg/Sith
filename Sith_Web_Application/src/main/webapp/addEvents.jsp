@@ -216,19 +216,15 @@
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
                                 %>
-                                <option name="<%=perception%>" value="<%=perception%>"
-                                        selected="selected"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
                                 <%
                                 }else{
                                 %>
-                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
                                         }
                                     }
                                 %>
-
                             </select>
                         </td>
                         <td style="vertical-align: middle">

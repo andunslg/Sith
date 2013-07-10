@@ -266,20 +266,18 @@
                                     for(String perception : perceptionList){
                                         if(perception.equals("Happy")){
                                 %>
-                                <option name="<%=perception%>" value="<%=perception%>"
-                                        selected="selected"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
                                 <%
                                 }else{
                                 %>
-                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
                                         }
                                     }
                                 %>
 
                             </select>
+                            <div style="padding-top: 8px">If you change perception schema, make sure to define the color schema</div>
                         </td>
                         <td style="vertical-align: middle;width: 83px">
                             <div class="m-btn-group" align="center">
@@ -294,14 +292,11 @@
                                     for(String perception : perceptionListSelected){
                                         if(perception.equals("Happy")){
                                 %>
-                                <option name="<%=perception%>" value="<%=perception%>"
-                                        selected="selected"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
                                 <%
                                 }else{
                                 %>
-                                <option name="<%=perception%> " value="<%=perception%>"><%=perception%>
-                                </option>
+                                <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
                                         }
                                     }
@@ -425,8 +420,9 @@
         $( "#datepicker" ).datepicker();
         $('#start').datetimepicker();
         $('#end').datetimepicker();
+        var colorSchema;
+        loadColorSchema('<%=session.getAttribute("eventID").toString()%>');
     });
-
     function SecListBox(ListBox,text,value)
     {
         try
@@ -479,11 +475,28 @@
         }
     }
 
+    loadColorSchema = function(eventID){
+        $.ajax({
+            url: 'http://localhost:3000/getColorSchema',
+            type: 'GET',
+            data: {eventID:eventID},
+            success: function (data) {
+                if(typeof data=='string' || data instanceof String){
+                    colorSchema = JSON.parse(data);
+                }else{
+                    colorSchema = data;
+                }
+                console.log(colorSchema);
+            },
+            error: function (xhr, status, error) {
+              console.log("Error");
+              colorSchema = null;
+            }
+        });
+    }
     $("#delete").click(function () {
-
         var datObj = {};
         datObj['eventID'] = '<%=currentEvent.getEventID()%>';
-
         $.ajax({
             url: './deleteEventHandler.jsp',
             data: datObj,
@@ -504,8 +517,14 @@
     $("#addColors").click(function(){
         $("#colors tbody").empty();
         $("#selectedPerceptionSchema>option").each(function () {
-            $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
-                    "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+            if(colorSchema){
+                $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                        "<td><input class='color' style='background-color:"+colorSchema[$(this).text()]+"' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+            }else{
+                $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                        "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+            }
+
             var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
 
         });

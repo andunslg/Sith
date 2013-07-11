@@ -24,13 +24,9 @@ import org.wso2.carbon.databridge.core.exception.DataBridgeException;
 import java.net.MalformedURLException;
 
 public class PerceptionPublisher {
+	 private DataPublisher dataPublisher;
 
-	public String publishToCEP(String ipAddress,String eventID,String userID,String percetionValue) throws DataBridgeException, AgentException, MalformedURLException,
-			AuthenticationException, TransportException, MalformedStreamDefinitionException,
-			StreamDefinitionException, DifferentStreamDefinitionAlreadyDefinedException,
-			InterruptedException{
-
-		System.out.println("Starting publishing process..");
+	public PerceptionPublisher(String url,String userName,String password){
 		//KeyStoreUtil.setTrustStoreParams();
 		System.setProperty("javax.net.ssl.trustStore","wso2carbon.jks");
 		System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
@@ -38,8 +34,26 @@ public class PerceptionPublisher {
 		System.out.println("Key Store is set..");
 		//according to the convention the authentication port will be 7611+100= 7711 and its host will be the same
 
-		DataPublisher dataPublisher = new DataPublisher("tcp://localhost:7611", "admin", "admin");
+		try{
+			dataPublisher = new DataPublisher(url, userName, password);
+		}catch(MalformedURLException e){
+			e.printStackTrace();
+		}catch(AgentException e){
+			e.printStackTrace();
+		}catch(AuthenticationException e){
+			e.printStackTrace();
+		}catch(TransportException e){
+			e.printStackTrace();
+		}
 		System.out.println("Logged in..");
+	}
+
+	public String publishToCEP(String ipAddress,String eventID,String userID,String percetionValue) throws DataBridgeException, AgentException, MalformedURLException,
+			AuthenticationException, TransportException, MalformedStreamDefinitionException,
+			StreamDefinitionException, DifferentStreamDefinitionAlreadyDefinedException,
+			InterruptedException{
+
+		System.out.println("Starting publishing process..");
 
 		String streamId;
 		try {

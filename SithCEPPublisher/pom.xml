@@ -68,7 +68,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.sith.cep.publisher.PerceptionPublisher</mainClass>
+                            <mainClass>org.sith.cep.publisher.SithCEPPublisher</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>

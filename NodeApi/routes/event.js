@@ -110,7 +110,7 @@ exports.searchEventListByName = function(req,res){
 
 exports.publishEventPerception = function(req,res){
    	percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue);
-    percepManager.publishToCEP(req.body.userID , req.body.eventID , req.body.perceptionValue);
+    percepManager.publishToCEP(req.body.userID , req.body.eventID , req.body.perceptionValue,'');
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);
@@ -119,6 +119,7 @@ exports.publishEventPerception = function(req,res){
 
 exports.publishComment = function(req,res){
 	percepManager.insertComment(req.body.userID , req.body.eventID , req.body.perceptionValue , req.body.text);
+    percepManager.publishToCEP(req.body.userID , req.body.eventID , req.body.perceptionValue,req.body.text);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);

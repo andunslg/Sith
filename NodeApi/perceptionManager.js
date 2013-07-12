@@ -82,16 +82,11 @@ exports.getEventComments = function(eventID,fn){
 
 var java = require("java");
 java.classpath.push("cep-publisher-1.0.jar");
-var jClass = java.newInstanceSync("org.sith.cep.publisher.SithCEPPublisher","tcp://192.248.8.246:7611","admin","admin");
+var jClass = java.newInstanceSync("org.sith.cep.publisher.SithCEPPublisher","tcp://192.248.8.246:7611","admin","apst@sith");
 
 exports.publishToCEP = function(userID,eventID,perceptionVal,comment) {
-    //var java = require("java");
     var metaDataArray = java.newArray("java.lang.Object", ["192.248.8.246"]);
     var payloadArray = java.newArray("java.lang.Object", [eventID,userID,perceptionVal,comment]);
     var result=jClass.publishToCEPSync(metaDataArray,payloadArray);
     console.log("Returned data - "+result);
-//    res.writeHead(200, {'Content-Type': 'application/json'});
-//    var result = JSON.stringify({response: true });
-//    res.write(result);
-//    res.end();
 }

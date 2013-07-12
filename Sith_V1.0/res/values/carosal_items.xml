@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<array name="entries">
+		<item>@drawable/happy1</item>		
+		<item>@drawable/crying</item> 		
+		<item>@drawable/angry</item>		
+		<item>@drawable/excited</item>
+		<item>@drawable/neutral</item>		
+		<item>@drawable/satisfied</item>						
+	</array>	
+	<array name="names">
+	    <item>Happy</item>
+	    <item>Sad</item>
+	    <item>Angry</item>
+	    <item>Exciting</item>
+	    <item>Boring</item>
+	    <item>Neutral</item>
+	</array>
+</resources>

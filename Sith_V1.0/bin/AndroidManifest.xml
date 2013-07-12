@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sith.main"
+    android:debuggable="true"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.sith.main.SithApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sith" >
+        
+        <receiver android:name=".SithWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/sith_widget_provider" />
+        </receiver>
+
+        <activity
+            android:name="com.sith.main.MainActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sith.list.ListChooser" >
+        </activity>
+        <activity android:name="com.sith.login.FBLoginActivity" >
+        </activity>
+        <activity android:name="com.sith.main.SubscriptionsListActivity" >
+        </activity>
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sith.main.MainActivity" />
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
+        <activity
+            android:name="com.sith.main.RealtimeStatictics"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_realtime_statictics"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sith.main.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.sith.dashbord.GraphActivity"
+            android:label="@string/title_analytics"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sith.main.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.sith.main.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.sith.main.Login"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.sith.main.HelpActivity"
+            android:label="@string/title_activity_help" >
+        </activity>
+        <activity
+            android:name="com.sith.main.ManageSubscriptions"
+            android:label="@string/title_activity_manage_subscriptions" >
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.sith.main.SearchResultsActivity"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sith.main.MainActivity" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.sith.main.SubscriptionInfoActivity"
+            android:label="@string/title_activity_subscription_info" >
+        </activity>
+        <activity
+            android:name="com.sith.main.FacebookPostActivity"
+            android:label="@string/title_activity_facebook_post" >
+        </activity>
+        <activity
+            android:name="com.sith.dashbord.DashbordActivity"
+            android:label="@string/title_activity_dashbord" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sith.main.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.sith.login.SithLoginActivity"
+            android:label="@string/title_activity_sith_login" >
+        </activity>
+        <activity
+            android:name="com.sith.login.SithSignUpActivity"
+            android:label="@string/title_activity_sith_sign_up" >
+        </activity>
+        <activity
+            android:name="com.sith.login.SithProfileActivity"
+            android:label="@string/title_activity_sith_profile" >
+        </activity>
+    </application>
+
+</manifest>

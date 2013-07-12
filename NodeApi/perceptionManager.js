@@ -80,6 +80,7 @@ exports.getEventComments = function(eventID,fn){
 	});
 }
 
+var java = require("java");
 java.classpath.push("cep-publisher-1.0.jar");
 var jClass = java.newInstanceSync("org.sith.cep.publisher.SithCEPPublisher","tcp://192.248.8.246:7611","admin","admin");
 

@@ -88,6 +88,7 @@ public class SithCEPPublisher{
 		} catch (NoStreamDefinitionExistException e) {
 			try{
 				streamId = dataPublisher.defineStream(streamConfig.getStreamDefinition());
+				System.out.println("Stream created..");
 			}catch(AgentException e1){
 				e1.printStackTrace();
 				return "Failed";

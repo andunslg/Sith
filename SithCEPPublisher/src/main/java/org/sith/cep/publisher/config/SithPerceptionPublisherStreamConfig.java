@@ -39,6 +39,9 @@ public class SithPerceptionPublisherStreamConfig extends StreamConfig{
 					"        },"+
 					"		 {"+
 					"            'name':'perceptionValue','type':'STRING'"+
+					"        },"+
+					"		 {"+
+					"            'name':'comment','type':'STRING'"+
 					"        }"+
 					"    ]"+
 					"}";

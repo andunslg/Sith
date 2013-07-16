@@ -11,7 +11,8 @@ var express = require('express')
   , analyticRoutes = require('./routes/analytics')
   , userMgmtRoutes = require('./routes/userMgmt')
   , passport = require("passport")
-  , BearerStrategy =require('passport-http-bearer');
+  , BearerStrategy =require('passport-http-bearer')
+  , cepConnector = require('./cepConnector.js');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -85,7 +86,7 @@ app.get('/deleteEvent',eventRoutes.deleteEvent);
 app.put('/updateEvent',eventRoutes.updateEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
-app.post('/publishEventPerception', eventRoutes.publishEventPerception);
+app.get('/publishEventPerception', eventRoutes.publishEventPerception);
 app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
@@ -101,4 +102,5 @@ app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+  cepConnector.sendSithPerceptionStreamDef();
 }); 

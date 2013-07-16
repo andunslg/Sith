@@ -1,7 +1,7 @@
 var restClient=  require('./RestClient.js');
 
 function sendUpdate(jsonObject,streamPath,isData) {
-    var auth = "Basic " + new Buffer('admin:apst@sith').toString("base64");
+    var auth = "Basic " + new Buffer('admin:admin').toString("base64");
 
     if(!streamPath){
         streamPath='';
@@ -68,13 +68,12 @@ exports.sendSithPerceptionStreamDef=function(){
 }
 
 exports.sendSithPerception=function(userID,eventID,perceptionVal,comment){
-    jsonObject = JSON.stringify(
+    jsonObject = JSON.stringify([
         {
             "payloadData":[eventID,userID,perceptionVal,comment],
             "metadata":['127.0.0.1']
         }
-
-    );
+    ]);
     var path="sith_Perception_Analytics"+'/1.0.0/' ;
     sendUpdate(jsonObject,path,true);
 }

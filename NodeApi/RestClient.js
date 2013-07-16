@@ -1,11 +1,4 @@
-/**
- * Created by Prabhath on 7/12/13.
- */
-
-
 var https = require('https');
-
-
 
 exports.doPOSTRequest=function(optionspost,jsonObject){
     // do the POST call

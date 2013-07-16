@@ -1,6 +1,30 @@
 var restClient=  require('./RestClient.js');
 
-function sendUpdate(jsonObject,streamPath) {
+function sendStreamUpdate(jsonObject) {
+    var auth = "Basic " + new Buffer('admin:admin').toString("base64");
+
+// prepare the header
+    var postheaders = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        "Authorization": auth
+    };
+
+// the post options
+    var optionspost = {
+        host: '127.0.0.1',
+        port: '9443',
+        path: '/datareceiver/1.0.0/streams/',
+        method: 'POST',
+        rejectUnauthorized: 'false',
+        headers: postheaders
+
+    };
+
+    restClient.doPOSTRequest(optionspost, jsonObject);
+}
+
+function sendEventUpdate(jsonObject,streamPath) {
     var auth = "Basic " + new Buffer('admin:admin').toString("base64");
 
     if(!streamPath){
@@ -18,7 +42,7 @@ function sendUpdate(jsonObject,streamPath) {
     var optionspost = {
         host: '127.0.0.1',
         port: '9443',
-        path: '/datareceiver/1.0.0/streams/'+streamPath,
+        path: '/datareceiver/1.0.0/stream/'+streamPath,
         method: 'POST',
         rejectUnauthorized: 'false',
         headers: postheaders
@@ -50,15 +74,15 @@ exports.sendPerceptionStreamDef=function(userID,password,eventID,eventName,event
                 },
                 {
                     "name":"userID",
-                    "type":"double"
+                    "type":"string"
                 },
                 {
                     "name":"emotion",
-                    "type":"int"
+                    "type":"string"
                 },
                 {
                     "name":"locationName",
-                    "type":"double"
+                    "type":"string"
                 },
                 {
                     "name":"latitude",
@@ -75,7 +99,7 @@ exports.sendPerceptionStreamDef=function(userID,password,eventID,eventName,event
             ]
         }
     );
-    sendUpdate(jsonObject);
+    sendStreamUpdate(jsonObject);
 }
 
 exports.sendSubscriptionStreamDef=function(userID,password,eventID,eventName,eventDescription,timeVarientPms){
@@ -121,7 +145,7 @@ exports.sendSubscriptionStreamDef=function(userID,password,eventID,eventName,eve
             ]
         }
     );
-    sendUpdate(jsonObject);
+    sendStreamUpdate(jsonObject);
 }
 
 exports.sendUserStreamDef=function(userID,password,eventID,eventName,eventDescription){
@@ -156,19 +180,18 @@ exports.sendUserStreamDef=function(userID,password,eventID,eventName,eventDescri
             ]
         }
     );
-    sendUpdate(jsonObject);
+    sendStreamUpdate(jsonObject);
 }
 
 exports.sendPercept=function(userID,password,subcriptionID,emotion,location,latitude,longitude,time,ipadress){
     jsonObject = JSON.stringify(
-        {
-            "payloadData":[subcriptionID,userID,emotion,location,latitude,longitude,time],
-            "metadata":[ipadress]
-        }
-
+       [ {
+            "payloadData":[subcriptionID,userID,emotion,location,latitude,longitude,time]
+        }  ]
     );
+    //TODO change below line
     var path=subcriptionID+"_perception_stream"+'/1.0.0/' ;
-    sendUpdate(jsonObject,path);
+    sendEventUpdate(jsonObject,path);
 }
 
 exports.sendEventUpdate=function(userID,password,subscriptionID,subscriptionName,subscriptionLocation,latitude,longitude,time,timeVarientpms){
@@ -178,20 +201,24 @@ exports.sendEventUpdate=function(userID,password,subscriptionID,subscriptionName
     }
     var s="["+t+"]";
     jsonObject = JSON.stringify(
-        {
-            "payloadData":[subscriptionID,subscriptionName,subscriptionLocation,latitude,longitude,time,,s]
-        }
+        [ {
+            "payloadData":[subscriptionID,subscriptionName,subscriptionLocation,latitude,longitude,time,s]
+        } ]
     );
-    var path=subcriptionID+"_participant_stream"+'/1.0.0/' ;
-    sendUpdate(jsonObject,path);
+    var path=subscriptionID+"_info_stream"+'/1.0.0/' ;
+    sendEventUpdate(jsonObject,path);
 }
 
 exports.sendUserUpdate=function(userID,password,subcriptionID,userName,isMale,birthday){
     jsonObject = JSON.stringify(
-        {
+       [ {
             "payloadData":[subcriptionID,userID,userName,isMale,birthday]
-        }
+        }   ]
     );
     var path=subcriptionID+"_participant_stream"+'/1.0.0/'  ;
-    sendUpdate(jsonObject,path);
+    sendEventUpdate(jsonObject,path);
+}
+
+exports.createTanant=function(){
+    //TODO implement
 }

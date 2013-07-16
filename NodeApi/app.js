@@ -86,7 +86,7 @@ app.get('/deleteEvent',eventRoutes.deleteEvent);
 app.put('/updateEvent',eventRoutes.updateEvent);
 app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
 app.get('/searchEventListByName',eventRoutes.searchEventListByName);
-app.get('/publishEventPerception', eventRoutes.publishEventPerception);
+app.post('/publishEventPerception', eventRoutes.publishEventPerception);
 app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);

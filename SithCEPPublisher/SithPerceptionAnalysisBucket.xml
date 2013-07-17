@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cep:bucket name="SithPerceptionAnalysisBucket" xmlns:cep="http://wso2.org/carbon/cep">
-  <cep:description>Analyses Perception Status Which are coming from Sith API</cep:description>
-  <cep:engineProviderConfiguration engineProvider="SiddhiCEPRuntime">
-    <cep:property name="siddhi.persistence.snapshot.time.interval.minutes">0</cep:property>
-    <cep:property name="siddhi.enable.distributed.processing">false</cep:property>
-  </cep:engineProviderConfiguration>
-  <cep:input brokerName="localAgentBroker" topic="sith_Perception_Analytics/1.0.0">
-    <cep:tupleMapping queryEventType="Tuple" stream="sithPerceptionStream">
-      <cep:property inputDataType="payloadData" inputName="eventID"
-        name="eventID" type="java.lang.String"/>
-      <cep:property inputDataType="payloadData" inputName="userID"
-        name="userID" type="java.lang.String"/>
-      <cep:property inputDataType="payloadData" inputName="perceptionValue"
-        name="perceptionValue" type="java.lang.String"/>
-      <cep:property inputDataType="payloadData" inputName="comment"
-        name="comment" type="java.lang.String"/>
-    </cep:tupleMapping>
-  </cep:input>
-   <cep:query name="ExicitedPerceptionFilterQuery">
-    <cep:expression><![CDATA[from sithPerceptionStream[perceptionValue=='Excited' and eventID=='cse_pc1_3']
+    <cep:description>Analyses Perception Status Which are coming from Sith API</cep:description>
+    <cep:engineProviderConfiguration engineProvider="SiddhiCEPRuntime">
+        <cep:property name="siddhi.persistence.snapshot.time.interval.minutes">0</cep:property>
+        <cep:property name="siddhi.enable.distributed.processing">false</cep:property>
+    </cep:engineProviderConfiguration>
+    <cep:input brokerName="localAgentBroker" topic="sith_Perception_Analytics/1.0.0">
+        <cep:tupleMapping queryEventType="Tuple" stream="sithPerceptionStream">
+            <cep:property inputDataType="payloadData" inputName="eventID"
+                          name="eventID" type="java.lang.String"/>
+            <cep:property inputDataType="payloadData" inputName="userID"
+                          name="userID" type="java.lang.String"/>
+            <cep:property inputDataType="payloadData"
+                          inputName="perceptionValue" name="perceptionValue" type="java.lang.String"/>
+            <cep:property inputDataType="payloadData" inputName="comment"
+                          name="comment" type="java.lang.String"/>
+        </cep:tupleMapping>
+    </cep:input>
+    <cep:query name="ExicitedPerceptionFilterQuery">
+        <cep:expression><![CDATA[from sithPerceptionStream[perceptionValue=='Excited']
 			 insert into outSithPerceptionStream
 			 eventID ,perceptionValue, userID, comment;]]></cep:expression>
-    <cep:output brokerName="emailBroker" topic="andunslg@gmail.com/Exicted Feeling Detected">
-      <cep:textMapping>This mail is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}</cep:textMapping>
-    </cep:output>
-  </cep:query>
+        <cep:output brokerName="sithBroker" topic="receiveCEPAnalytics">
+            <cep:mapMapping>
+                <cep:property name="eventID" valueOf="eventID"/>
+                <cep:property name="perceptionValue" valueOf="perceptionValue"/>
+                <cep:property name="userID" valueOf="userID"/>
+                <cep:property name="comment" valueOf="comment"/>
+            </cep:mapMapping>
+        </cep:output>
+    </cep:query>
 </cep:bucket>

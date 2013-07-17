@@ -43,7 +43,7 @@ public final class SithBrokerType implements BrokerType {
 
 	private HTTPUtil httpUtil=new HTTPUtil();
 
-	public static String NODEAPI="http://localhost:3000/";
+	public static String NODEAPI="http://192.248.8.246:3000/";
 
 	private SithBrokerType() {
 		this.brokerTypeDto = new BrokerTypeDto();

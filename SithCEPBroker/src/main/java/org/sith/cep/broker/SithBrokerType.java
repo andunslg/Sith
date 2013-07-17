@@ -19,78 +19,105 @@ package org.sith.cep.broker;
 import org.apache.axis2.engine.AxisConfiguration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.carbon.broker.core.BrokerConfiguration;
-import org.wso2.carbon.broker.core.BrokerListener;
-import org.wso2.carbon.broker.core.BrokerType;
-import org.wso2.carbon.broker.core.BrokerTypeDto;
-import org.wso2.carbon.broker.core.Property;
+import org.sith.cep.broker.util.HTTPUtil;
+import org.wso2.carbon.broker.core.*;
 import org.wso2.carbon.broker.core.exception.BrokerEventProcessingException;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public final class SithBrokerType implements BrokerType {
 
-    private static final Log log = LogFactory.getLog(SithBrokerType.class);
+	private static final Log log = LogFactory.getLog(SithBrokerType.class);
 
-    private static final String BROKER_TYPE_SITH = "SithBroker";
-    private static final String BROKER_CONF_SITH_PROPERTY_REFERENCE = "sithBrokerProperty";
-    private static final String BROKER_CONF_SITH_PROPERTY_DISPLAY_NAME_REFERENCE = "sith.broker.property.display.name";
+	private static final String BROKER_TYPE_SITH = "SithBroker";
+	private static final String BROKER_CONF_SITH_PROPERTY_REFERENCE = "sithBrokerProperty";
+	private static final String BROKER_CONF_SITH_PROPERTY_DISPLAY_NAME_REFERENCE = "sith.broker.property.display.name";
 
 
-    private BrokerTypeDto brokerTypeDto = null;
+	private BrokerTypeDto brokerTypeDto = null;
 
-    private static SithBrokerType testBrokerType = new SithBrokerType();
+	private static SithBrokerType testBrokerType = new SithBrokerType();
 
-    private SithBrokerType() {
-        this.brokerTypeDto = new BrokerTypeDto();
-        this.brokerTypeDto.setName(BROKER_TYPE_SITH);
+	private HTTPUtil httpUtil=new HTTPUtil();
 
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(
-                "org.sith.cep.broker.Resources", Locale.getDefault());
+	public static String NODEAPI="http://localhost:3000/";
 
-        // set default Subject as a property
-        Property factoryInitialProperty = new Property(BROKER_CONF_SITH_PROPERTY_REFERENCE);
-        factoryInitialProperty.setRequired(true);
-        factoryInitialProperty.setDisplayName(resourceBundle.getString(
-                BROKER_CONF_SITH_PROPERTY_DISPLAY_NAME_REFERENCE));
+	private SithBrokerType() {
+		this.brokerTypeDto = new BrokerTypeDto();
+		this.brokerTypeDto.setName(BROKER_TYPE_SITH);
+
+		ResourceBundle resourceBundle = ResourceBundle.getBundle(
+				"org.sith.cep.broker.Resources", Locale.getDefault());
+
+		// set default Subject as a property
+		Property factoryInitialProperty = new Property(BROKER_CONF_SITH_PROPERTY_REFERENCE);
+		factoryInitialProperty.setRequired(true);
+		factoryInitialProperty.setDisplayName(resourceBundle.getString(
+				BROKER_CONF_SITH_PROPERTY_DISPLAY_NAME_REFERENCE));
 		getBrokerTypeDto().addProperty(factoryInitialProperty);
-    }
+	}
 
-    public static SithBrokerType getInstance() {
-        return testBrokerType;
-    }
+	public static SithBrokerType getInstance() {
+		return testBrokerType;
+	}
 
-    public String subscribe(String topicName,
-                            BrokerListener brokerListener,
-                            BrokerConfiguration brokerConfiguration,
-                            AxisConfiguration axisConfiguration)
-            throws BrokerEventProcessingException {
-        throw new BrokerEventProcessingException("Can not subscribe to Sith broker " + brokerConfiguration.getName());
-    }
+	public String subscribe(String topicName,
+							BrokerListener brokerListener,
+							BrokerConfiguration brokerConfiguration,
+							AxisConfiguration axisConfiguration)
+			throws BrokerEventProcessingException {
+		throw new BrokerEventProcessingException("Can not subscribe to Sith broker " + brokerConfiguration.getName());
+	}
 
-    public void publish(String topicName,
-                        Object message,
-                        BrokerConfiguration brokerConfiguration)
-            throws BrokerEventProcessingException {
-        System.out.println("topicName:" + topicName + " message" + message);
-    }
+	public void publish(String topicName,
+						Object message,
+						BrokerConfiguration brokerConfiguration)
+			throws BrokerEventProcessingException {
 
-    @Override
-    public void testConnection(BrokerConfiguration brokerConfiguration) throws BrokerEventProcessingException {
-        //no test
-    }
+		if(message instanceof Map){
+			sendToNode(topicName,(Map<String, String>)message);
+		}
+		else{
+			log.info("Message is not in the correct format");
+		}
 
-    public BrokerTypeDto getBrokerTypeDto() {
-        return brokerTypeDto;
-    }
+	}
 
-    public void unsubscribe(String topicName,
-                            BrokerConfiguration brokerConfiguration,
-                            AxisConfiguration axisConfiguration, String subscriptionId)
-            throws BrokerEventProcessingException {
+	@Override
+	public void testConnection(BrokerConfiguration brokerConfiguration) throws BrokerEventProcessingException {
+		//no test
+	}
+
+	public BrokerTypeDto getBrokerTypeDto() {
+		return brokerTypeDto;
+	}
+
+	public void unsubscribe(String topicName,
+							BrokerConfiguration brokerConfiguration,
+							AxisConfiguration axisConfiguration, String subscriptionId)
+			throws BrokerEventProcessingException {
 
 
-    }
+	}
+
+	public boolean sendToNode(String methodName,Map<String,String> parms){
+		String result=null;
+		try{
+			result=httpUtil.doPost(NODEAPI+methodName,parms);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 }

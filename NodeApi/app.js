@@ -100,6 +100,10 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
+
+//cep
+app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
   cepConnector.sendSithPerceptionStreamDef();

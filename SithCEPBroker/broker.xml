@@ -1,0 +1,3 @@
+<brokerTypes xmlns="http://wso2.org/carbon/broker">
+    <brokerType class="org.sith.cep.broker.SithBrokerTypeFactory"/>
+</brokerTypes>

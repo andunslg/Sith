@@ -2,6 +2,8 @@
  * @author Sachintha
  */
 mongoAdapter = require('./mongoAdapter.js');
+mySQLConnector= require("./mySQLConnector.js");
+bamConnector= require("./bamConnector.js");
 var crypto = require('crypto');
 
 //annonymous users are registered without having any email verification...just collect username and password
@@ -26,6 +28,13 @@ exports.addAnnonymousUser = function(req,res){
         }
     });
 };
+
+exports.addAnalyticsUser=function(req,res){
+    //TODO
+    mySQLConnector.createMySQLDB(req.body.userName,"1234");
+    bamConnector.createTanant();
+}
+
 
 exports.addFBUser = function(userName,token){
     var newUserName = "sith@123!@#$_" +userName;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:pj="http://schemas.android.com/apk/res/com.sith.main"
+	xmlns:bm="com.sith.main"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/nature"
+    >
+
+    <TextView
+        android:id="@+id/selected_item"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+         android:textSize="22sp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="None"
+        android:textColor="#014002"
+        android:textStyle="normal"
+         />
+    
+   <!--  <LinearLayout
+        android:id="@+id/carosal_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="5dip" > -->
+
+       <!--  <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ab_background_textured_sith" /> -->
+
+			<com.carousel.controls.Carousel
+			    android:id="@+id/carousel"
+			    android:layout_width="fill_parent"
+			    android:layout_height="310dip"
+			    android:animationDuration="200"
+			    pj:Items="@array/entries"
+			    pj:Names="@array/names"
+			    pj:SelectedItem="0"
+			    pj:UseReflection="true" />
+
+			<RelativeLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent" >
+
+			    <ImageButton
+			        android:id="@+id/imageButton1"
+			        android:layout_width="64dip"
+			        android:layout_height="64dip"
+			        android:layout_alignParentBottom="true"
+			        android:layout_alignParentLeft="true"
+			        android:scaleType="fitCenter"
+			        android:src="@drawable/fb_share"
+			        android:onClick="onFBShareClick" />
+			</RelativeLayout>
+<!--     	
+	</LinearLayout>  -->
+	
+    	
+	
+    
+</LinearLayout>

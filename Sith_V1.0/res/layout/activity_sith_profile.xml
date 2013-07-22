@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SithProfileActivity" >
+
+      <TextView
+          android:id="@+id/editText_profile_info"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="90dp"
+          android:gravity="center"
+          android:textAppearance="?android:attr/textAppearanceLarge" 
+          android:text="dlmd"/>
+
+      <Button
+          android:id="@+id/button1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_centerVertical="true"
+          android:text="@string/logout" />
+
+      <TextView
+          android:id="@+id/facebook_connect"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/button1"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="18dp"
+          android:gravity="center"
+          android:clickable="true"
+          android:onClick="onClickFacebookConnect"
+          android:text="Facebook Connect"
+          android:textColor="#0b84aa"
+          android:textSize="20sp" />
+
+</RelativeLayout>

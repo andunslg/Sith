@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+ 
+   <!--  <ViewStub
+        android:id="@+id/vsHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/header"
+        android:layout="@layout/header" />
+  -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="6dip" >
+ 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+ 
+            <Button
+                android:id="@+id/main_btn_eclair"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/icon_realtime"
+                android:onClick="onButtonClicker"
+                android:text="Realtime Statictics" />
+ 
+            <Button
+                android:id="@+id/main_btn_froyo"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/icon_nonrealtime"
+                android:onClick="onButtonClicker"
+                android:text="Nonrealtime Statictics" />
+        </LinearLayout>
+ 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+ 
+            <Button
+                android:id="@+id/main_btn_gingerbread"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/icon_count"
+                android:onClick="onButtonClicker"
+                android:text="Perception Count" />
+ 
+            <Button
+                android:id="@+id/main_btn_honeycomb"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/icon_self"
+                android:onClick="onButtonClicker"
+                android:text="Self Analytics" />
+        </LinearLayout>
+ 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+ 
+           <!--  <Button
+                android:id="@+id/main_btn_ics"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/happy"
+                android:onClick="onButtonClicker"
+                android:text="EEEE" />
+ 
+            <Button
+                android:id="@+id/main_btn_jellybean"
+                style="@style/HomeButton"
+                android:drawableTop="@drawable/happy"
+                android:onClick="onButtonClicker"
+                android:text="FFFF" /> -->
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

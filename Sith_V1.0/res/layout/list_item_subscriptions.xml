@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/activatedBackgroundIndicator" >
+
+    <!-- android:background="#E3F6CE" -->
+
+    <ImageView
+        android:id="@+id/subscription_list_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/sith" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/subscription_list_text"
+        android:layout_width="238dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="@+id/label"
+        android:textAppearance="?android:attr/textAppearanceMedium" >
+    </TextView>
+
+</LinearLayout>

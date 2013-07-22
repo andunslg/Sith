@@ -154,6 +154,15 @@ exports.getSelfAnalytics= function(req,res){
         res.end();
     });
 }
+
+exports.receiveCEPAnalytics = function(req,res){
+    console.log(req.body);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var result = JSON.stringify({response: true });
+    res.write(result);
+    res.end();
+};
+
 /*
 function constructTotPerceptionMessage(res){
 	stats.countTotPerceptions(function(length){

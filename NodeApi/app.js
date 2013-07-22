@@ -7,12 +7,15 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
+  , java = require('java')
   , eventRoutes = require('./routes/event')
   , analyticRoutes = require('./routes/analytics')
   , userMgmtRoutes = require('./routes/userMgmt')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
     cacheAccess = require('./routes/cacheAccess');
+  , BearerStrategy =require('passport-http-bearer')
+  , cepConnector = require('./cepConnector.js');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -42,11 +45,12 @@ app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     console.log('dev');
 });
-/*
+
+
 process.on('uncaughtException', function(err) {
     // handle the error safely
     console.log(err);
-});*/
+});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -89,7 +93,6 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
-app.get('/getCachedEvents',cacheAccess.getCachedEvents);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

@@ -13,8 +13,7 @@ var express = require('express')
   , userMgmtRoutes = require('./routes/userMgmt')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
-    cacheAccess = require('./routes/cacheAccess');
-  , BearerStrategy =require('passport-http-bearer')
+  , cacheAccess = require('./routes/cacheAccess')
   , cepConnector = require('./cepConnector.js');
 	
 var app = express();

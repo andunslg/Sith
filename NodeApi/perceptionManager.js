@@ -1,3 +1,6 @@
+/**
+ * @author Sachintha
+ */
 //mongoAdapter = require('./mongoAdapter.js');
 exports.insertPerception = function(userID,eventID,perceptionVal) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
@@ -75,4 +78,16 @@ exports.getEventComments = function(eventID,fn){
 	mongoAdapter.getDocuments({},"EventComments_"+eventID,function(docs){
 		fn(docs);
 	});
+}
+
+/*
+var java = require("java");
+java.classpath.push("cep-publisher-1.0.jar");
+var jClass = java.newInstanceSync("org.sith.cep.publisher.SithCEPPublisher","tcp://192.248.8.246:7611","admin","apst@sith");
+
+exports.publishToCEP = function(userID,eventID,perceptionVal,comment) {
+    var metaDataArray = java.newArray("java.lang.Object", ["192.248.8.246"]);
+    var payloadArray = java.newArray("java.lang.Object", [eventID,userID,perceptionVal,comment]);
+    var result=jClass.publishToCEPSync(metaDataArray,payloadArray);
+    console.log("Returned data - "+result);
 }

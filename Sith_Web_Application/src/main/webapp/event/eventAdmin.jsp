@@ -651,7 +651,7 @@
     }
     loadColorSchema = function(eventID){
         $.ajax({
-            url: 'http://localhost:3000/getColorSchema',
+            url: 'http://192.248.8.246:3000/getColorSchema',
             type: 'GET',
             data: {eventID:eventID},
             success: function (data) {

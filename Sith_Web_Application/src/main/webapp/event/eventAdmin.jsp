@@ -253,7 +253,7 @@
                         </td>
                         <td>
                             <div>
-                                <input name="location" id="location" value=<%=currentEvent.getLocation()%> type="text">
+                                <input name="location" id="location" value='<%=currentEvent.getLocation()%>' type="text">
                             </div>
                         </td>
                     </tr>

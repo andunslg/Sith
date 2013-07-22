@@ -1,5 +1,7 @@
 package com.sith.event;
 
+import org.json.JSONObject;
+
 public class Event{
 	private String eventID;
 	private String eventName;
@@ -10,10 +12,11 @@ public class Event{
 	private String startTime;
 	private String endTime;
 	private String location;
+    private JSONObject latLang;
 	private String perceptionSchema;
 	private String commentEnabled;
     private String colors;
-	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location, String perceptionSchema, String commentEnabled, String colors){
+	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location,JSONObject latlng, String perceptionSchema, String commentEnabled, String colors){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
@@ -24,6 +27,7 @@ public class Event{
 		this.startTime=startTime;
 		this.endTime=endTime;
 		this.location=location;
+        this.latLang = latlng;
 		this.perceptionSchema=perceptionSchema;
 		this.commentEnabled=commentEnabled;
         this.colors = colors;
@@ -52,7 +56,9 @@ public class Event{
 	public String getLocation(){
 		return location;
 	}
-
+    public JSONObject getLatLng(){
+        return latLang;
+    }
 	public String getPerceptionSchema(){
 		return perceptionSchema;
 	}

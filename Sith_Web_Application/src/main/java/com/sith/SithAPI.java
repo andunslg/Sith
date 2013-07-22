@@ -51,7 +51,7 @@ public class SithAPI{
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){
 				JSONObject jsonObject=jsonArray.getJSONObject(i);
-				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"));
+				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"));
 				events.add(event);
 			}
 

@@ -69,7 +69,7 @@
     <script src="../js/apprise-1.5.min.js"></script>
     <script src="../js/jquery-migrate-1.0.0.js"></script>
     <script src="../js/jscolor.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>
 
@@ -225,12 +225,35 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <div>Location</div>
+                        <td style="vertical-align: top">
+                            Location
                         </td>
                         <td>
                             <div>
-                                <input name="location" id="location" value="<%=currentEvent.getLocation()%>" type="text">
+                                <div id="map-canvas"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div id="Maplocation">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="margin-bottom: 0px">Location Address</p>
+                            <p>(change Accordingly)</p>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="location" id="location" value=<%=currentEvent.getLocation()%> type="text">
                             </div>
                         </td>
                     </tr>
@@ -415,13 +438,165 @@
 </section>
 
 <script type="text/javascript">
-
+    var colorSchema;
     $(document).ready(function () {
         $( "#datepicker" ).datepicker();
         $('#start').datetimepicker();
         $('#end').datetimepicker();
-        var colorSchema;
+
         loadColorSchema('<%=session.getAttribute("eventID").toString()%>');
+        google.maps.visualRefresh = true;
+        var myMarker = null;
+        var map;
+        var latLng = <%=currentEvent.getLatLng()%>;
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var mapOptions = {
+                zoom: 7,
+                center: new google.maps.LatLng(<%=currentEvent.getLatLng().getDouble("lat")%>, <%=currentEvent.getLatLng().getDouble("lng")%>),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+            var latlng = new google.maps.LatLng(<%=currentEvent.getLatLng().getDouble("lat")%>, <%=currentEvent.getLatLng().getDouble("lng")%>);
+            placeMarker(latlng,map);
+            google.maps.event.addListener(map, 'click', function(e) {
+                map.clearOverlays();
+                geocoder.geocode({'latLng': e.latLng}, function(results, status) {
+                    if(status == google.maps.GeocoderStatus.OK) {
+                        $("#Maplocation").html("<p>"+ e.latLng+"</p>");
+                        latLng.lat = e.latLng.jb;
+                        latLng.lng = e.latLng.kb;
+                        $("#location").val(results[0]['formatted_address']);
+                    }else{
+                        $("#Maplocation").html("<p>No Address Found!</p>");
+                    }
+                });
+                placeMarker(e.latLng,map)
+            });
+        }
+        // Enable the visual refresh
+        function placeMarker(position, map) {
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            myMarker = marker;
+            map.panTo(position);
+        }
+        google.maps.Map.prototype.clearOverlays = function() {
+            if(myMarker){
+                myMarker.setMap(null);
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        $("#delete").click(function () {
+            var datObj = {};
+            datObj['eventID'] = '<%=currentEvent.getEventID()%>';
+            $.ajax({
+                url: './deleteEventHandler.jsp',
+                data: datObj,
+                type: 'POST',
+                success: function (data) {
+                    apprise(data)
+                    if (data.indexOf("You are successfully deleted the event") != -1) {
+                        window.location.href = '../myEvents.jsp';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    apprise("Error deleting event - " + error.message);
+                }
+            });
+
+        });
+
+        $("#addColors").click(function(){
+            $("#colors tbody").empty();
+            $("#selectedPerceptionSchema>option").each(function () {
+                if(colorSchema){
+                    $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                            "<td><input class='color' style='background-color:"+colorSchema[$(this).text()]+"' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+                }else{
+                    $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
+                            "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
+                }
+
+                var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
+
+            });
+        });
+        $("#update").click(function () {
+            var eventID = $('input[id=eventID]').val();
+            var eventName = $('input[id=eventName]').val();
+            var start = $('input[id=start]').val();
+            var end = $('input[id=end]').val();
+            var location = $('input[id=location]').val();
+            var description = $('input[id=description]').val();
+            var c=document.getElementById('commentEnabled');
+            var commentEnabled = false;
+            if(c.checked){
+                commentEnabled=true;
+            }
+            var perceptionSchema = "";
+            $("#selectedPerceptionSchema>option").each(function () {
+                if(perceptionSchema!=""){
+                    perceptionSchema += ":"+$(this).text();
+                }else{
+                    perceptionSchema+= $(this).text();
+                }
+            });
+
+            var colors = ""
+            $("#colors").find("td:nth-child(2)").each(function () {
+                if(colors!=""){
+                    colors += ":"+$(this)[0].firstChild.style.backgroundColor;
+                }else{
+                    colors+= $(this)[0].firstChild.style.backgroundColor;
+                }
+            });
+            if(colors == ""){
+                colors = null;
+            }
+            if(start.length!=16  ||end.length!=16){
+                apprise("Please select correct Start and End values")
+            }
+            else if(perceptionSchema==""){
+                apprise("Please select perception schema")
+            }
+            else{
+
+                var datObj = {};
+
+                datObj['oldEventID'] ='<%=currentEvent.getEventID()%>';
+                datObj['eventID'] = eventID;
+                datObj['eventName'] = eventName;
+                datObj['eventAdmin'] = '<%=participant.getUserID()%>';
+                datObj['start'] = start;
+                datObj['end'] = end;
+                datObj['location'] = location;
+                datObj['latLng'] = JSON.stringify(latLng);
+                datObj['description'] = description;
+                datObj['perceptionSchema'] = perceptionSchema;
+                datObj['commentEnabled'] = commentEnabled;
+                datObj['colors'] = colors;
+
+                $.ajax({
+                    url: 'updateEventHandler.jsp',
+                    data: datObj,
+                    type: 'POST',
+                    success: function (data) {
+                        apprise(data)
+                        if (data.indexOf("The Event is successfully updated.") != -1) {
+                            window.location.reload();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        apprise("Error updating event - " + error.message);
+                    }
+                });
+            }
+        });
+
     });
     function SecListBox(ListBox,text,value)
     {
@@ -474,10 +649,9 @@
             apprise(er)
         }
     }
-
     loadColorSchema = function(eventID){
         $.ajax({
-            url: 'http://192.248.8.246:3000/getColorSchema',
+            url: 'http://localhost:3000/getColorSchema',
             type: 'GET',
             data: {eventID:eventID},
             success: function (data) {
@@ -489,120 +663,11 @@
                 console.log(colorSchema);
             },
             error: function (xhr, status, error) {
-              console.log("Error");
-              colorSchema = null;
+                console.log("Error");
+                colorSchema = null;
             }
         });
     }
-    $("#delete").click(function () {
-        var datObj = {};
-        datObj['eventID'] = '<%=currentEvent.getEventID()%>';
-        $.ajax({
-            url: './deleteEventHandler.jsp',
-            data: datObj,
-            type: 'POST',
-            success: function (data) {
-                apprise(data)
-                if (data.indexOf("You are successfully deleted the event") != -1) {
-                    window.location.href = '../myEvents.jsp';
-                }
-            },
-            error: function (xhr, status, error) {
-                apprise("Error deleting event - " + error.message);
-            }
-        });
-
-    });
-
-    $("#addColors").click(function(){
-        $("#colors tbody").empty();
-        $("#selectedPerceptionSchema>option").each(function () {
-            if(colorSchema){
-                $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
-                        "<td><input class='color' style='background-color:"+colorSchema[$(this).text()]+"' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
-            }else{
-                $("#colors tbody").append("<tr><td style='padding: 25px 10px 0px 0px'>"+$(this).text()+"</td>" +
-                        "<td><input class='color' name='"+$(this).text()+"'id='"+$(this).text()+"'type='text'></td></tr>").fadeIn("slow");
-            }
-
-            var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
-
-        });
-    });
-    $("#update").click(function () {
-        var eventID = $('input[id=eventID]').val();
-        var eventName = $('input[id=eventName]').val();
-        var start = $('input[id=start]').val();
-        var end = $('input[id=end]').val();
-        var location = $('input[id=location]').val();
-        var description = $('input[id=description]').val();
-
-        var c=document.getElementById('commentEnabled');
-        var commentEnabled = false;
-        if(c.checked){
-            commentEnabled=true;
-        }
-
-        var perceptionSchema = "";
-
-
-        $("#selectedPerceptionSchema>option").each(function () {
-            if(perceptionSchema!=""){
-                perceptionSchema += ":"+$(this).text();
-            }else{
-                perceptionSchema+= $(this).text();
-            }
-        });
-
-        var colors = ""
-        $("#colors").find("td:nth-child(2)").each(function () {
-            if(colors!=""){
-                colors += ":"+$(this)[0].firstChild.style.backgroundColor;
-            }else{
-                colors+= $(this)[0].firstChild.style.backgroundColor;
-            }
-        });
-        if(colors == ""){
-            colors = null;
-        }
-        if(start.length!=16  ||end.length!=16){
-            apprise("Please select correct Start and End values")
-        }
-        else if(perceptionSchema==""){
-            apprise("Please select perception schema")
-        }
-        else{
-
-            var datObj = {};
-
-            datObj['oldEventID'] ='<%=currentEvent.getEventID()%>';
-            datObj['eventID'] = eventID;
-            datObj['eventName'] = eventName;
-            datObj['eventAdmin'] = '<%=participant.getUserID()%>';
-            datObj['start'] = start;
-            datObj['end'] = end;
-            datObj['location'] = location;
-            datObj['description'] = description;
-            datObj['perceptionSchema'] = perceptionSchema;
-            datObj['commentEnabled'] = commentEnabled;
-            datObj['colors'] = colors;
-
-            $.ajax({
-                url: 'updateEventHandler.jsp',
-                data: datObj,
-                type: 'POST',
-                success: function (data) {
-                    apprise(data)
-                    if (data.indexOf("The Event is successfully updated.") != -1) {
-                        window.location.reload();
-                    }
-                },
-                error: function (xhr, status, error) {
-                    apprise("Error updating event - " + error.message);
-                }
-            });
-        }
-    });
 </script>
 
 <script src="../js/jquery.wysiwyg.js"></script>

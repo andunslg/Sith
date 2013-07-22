@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="css/button_style.css" media="all"/>
     <link rel="stylesheet" href="css/jquery-ui.css" media="all"/>
     <link rel="stylesheet" href="css/apprise.min.css" type="text/css" />
-    <link rel="stylesheet" href="/resources/demos/style.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css" />
 
@@ -42,12 +41,7 @@
     <script src="js/apprise-1.5.min.js"></script>
     <script src="js/jquery-migrate-1.0.0.js"></script>
     <script src="js/jscolor.js"></script>
-    <script>
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
-    </script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </head>
 <body>
 
@@ -174,8 +168,31 @@
                         </td>
                     </tr>
                     <tr>
+                        <td style="vertical-align: top">
+                           Location
+                        </td>
                         <td>
-                            <div>Location</div>
+                            <div>
+                                <div id="map-canvas"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div id="Maplocation">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="margin-bottom: 0px">Location Address</p>
+                            <p>(change Accordingly)</p>
                         </td>
                         <td>
                             <div>
@@ -315,6 +332,131 @@
 </section>
 
 <script>
+    $(document).ready(function(){
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+        google.maps.visualRefresh = true;
+        var myMarker = null;
+        var map;
+        var latLng = {};
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var mapOptions = {
+                zoom: 7,
+                center: new google.maps.LatLng(7.815, 80.65),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+            google.maps.event.addListener(map, 'click', function(e) {
+                map.clearOverlays();
+                geocoder.geocode({'latLng': e.latLng}, function(results, status) {
+                    if(status == google.maps.GeocoderStatus.OK) {
+                        $("#Maplocation").html("<p>"+ e.latLng+"</p>");
+                        latLng.lat = e.latLng.jb;
+                        latLng.lng = e.latLng.kb;
+                        $("#location").val(results[0]['formatted_address']);
+                    }else{
+                        $("#Maplocation").html("<p>No Address Found!</p>");
+                    }
+                });
+                placeMarker(e.latLng,map)
+            });
+        }
+
+        // Enable the visual refresh
+        function placeMarker(position, map) {
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            myMarker = marker;
+            map.panTo(position);
+        }
+        google.maps.Map.prototype.clearOverlays = function() {
+            if(myMarker){
+                myMarker.setMap(null);
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        $("#addEvent").click(function () {
+            var eventID = $('input[id=eventID]').val();
+            var eventName = $('input[id=eventName]').val();
+            var start = $('input[id=start]').val();
+            var end = $('input[id=end]').val();
+            var location = $('input[id=location]').val();
+            var description = $('input[id=description]').val();
+
+            var c=document.getElementById('commentEnabled');
+            var commentEnabled = false;
+            if(c.checked){
+                commentEnabled=true;
+            }
+
+            var perceptionSchema = "";
+
+
+            $("#selectedPerceptionSchema>option").each(function () {
+                if(perceptionSchema!=""){
+                    perceptionSchema += ":"+$(this).text();
+                }else{
+                    perceptionSchema+= $(this).text();
+                }
+            });
+            var colors = ""
+            $("#colors").find("td:nth-child(2)").each(function () {
+                if(colors!=""){
+                    colors += ":"+$(this)[0].firstChild.style.backgroundColor;
+                }else{
+                    colors+= $(this)[0].firstChild.style.backgroundColor;
+                }
+            });
+            if(colors == ""){
+                colors = null;
+            }
+            console.log(colors);
+            if(start.length!=16  ||end.length!=16){
+                apprise("Please select correct Start and End values")
+            }
+            else if(perceptionSchema==""){
+                apprise("Please select perception schema")
+            }
+            else{
+
+                var datObj = {};
+
+                datObj['eventID'] = eventID;
+                datObj['eventName'] = eventName;
+                datObj['eventAdmin'] = '<%=participant.getUserID()%>';
+                datObj['start'] = start;
+                datObj['end'] = end;
+                datObj['location'] = location;
+                datObj['latLng'] = JSON.stringify(latLng);
+                datObj['description'] = description;
+                datObj['perceptionSchema'] = perceptionSchema;
+                datObj['commentEnabled'] = commentEnabled;
+                datObj['colors'] = colors;
+
+                $.ajax({
+                    url: 'event/addEventHandler.jsp',
+                    data: datObj,
+                    type: 'POST',
+                    success: function (data) {
+                        apprise(data)
+                        if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
+                            window.location.href = 'myEvents.jsp';
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        apprise("Error adding event - " + error.message);
+                    }
+                });
+            }
+        });
+    })
+
+
     function SecListBox(ListBox,text,value)
     {
         try
@@ -380,79 +522,6 @@
             var myPicker = new jscolor.color(document.getElementById($(this).text()), {})
 
         });
-    });
-    $("#addEvent").click(function () {
-        var eventID = $('input[id=eventID]').val();
-        var eventName = $('input[id=eventName]').val();
-        var start = $('input[id=start]').val();
-        var end = $('input[id=end]').val();
-        var location = $('input[id=location]').val();
-        var description = $('input[id=description]').val();
-
-        var c=document.getElementById('commentEnabled');
-        var commentEnabled = false;
-        if(c.checked){
-            commentEnabled=true;
-        }
-
-        var perceptionSchema = "";
-
-
-        $("#selectedPerceptionSchema>option").each(function () {
-            if(perceptionSchema!=""){
-                perceptionSchema += ":"+$(this).text();
-            }else{
-                perceptionSchema+= $(this).text();
-            }
-        });
-        var colors = ""
-        $("#colors").find("td:nth-child(2)").each(function () {
-            if(colors!=""){
-                colors += ":"+$(this)[0].firstChild.style.backgroundColor;
-            }else{
-                colors+= $(this)[0].firstChild.style.backgroundColor;
-            }
-        });
-        if(colors == ""){
-            colors = null;
-        }
-         console.log(colors);
-        if(start.length!=16  ||end.length!=16){
-            apprise("Please select correct Start and End values")
-        }
-        else if(perceptionSchema==""){
-            apprise("Please select perception schema")
-        }
-        else{
-
-            var datObj = {};
-
-            datObj['eventID'] = eventID;
-            datObj['eventName'] = eventName;
-            datObj['eventAdmin'] = '<%=participant.getUserID()%>';
-            datObj['start'] = start;
-            datObj['end'] = end;
-            datObj['location'] = location;
-            datObj['description'] = description;
-            datObj['perceptionSchema'] = perceptionSchema;
-            datObj['commentEnabled'] = commentEnabled;
-            datObj['colors'] = colors;
-
-            $.ajax({
-                url: 'event/addEventHandler.jsp',
-                data: datObj,
-                type: 'POST',
-                success: function (data) {
-                    apprise(data)
-                    if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
-                        window.location.href = 'myEvents.jsp';
-                    }
-                },
-                error: function (xhr, status, error) {
-                    apprise("Error adding event - " + error.message);
-                }
-            });
-        }
     });
 </script>
 

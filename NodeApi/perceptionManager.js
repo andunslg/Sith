@@ -90,4 +90,4 @@ exports.publishToCEP = function(userID,eventID,perceptionVal,comment) {
     var payloadArray = java.newArray("java.lang.Object", [eventID,userID,perceptionVal,comment]);
     var result=jClass.publishToCEPSync(metaDataArray,payloadArray);
     console.log("Returned data - "+result);
-}
+}*/

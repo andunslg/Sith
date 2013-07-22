@@ -12,7 +12,8 @@
     "mongodb": "*",
     "crypto" : "*",
     "passport" : "*",
-    "passport-http-bearer" : "*"
+    "passport-http-bearer" : "*",
+    "memory-cache": "*"
   },
   "subdomain": "sachintha-sith",
   "engines": {

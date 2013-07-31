@@ -116,6 +116,22 @@
         </resources>
         <plugins>
             <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution><!-- Run our version calculation script -->
+                        <id>Version Calculation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/langConversion.sh</executable>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -128,7 +144,6 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

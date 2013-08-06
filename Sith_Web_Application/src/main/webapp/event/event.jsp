@@ -64,7 +64,7 @@
         function postToAPI(eventID, userID, perceptionValue) {
             $.ajax({
                 url: 'http://192.248.8.246:3000/publishEventPerception',
-                data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue+'&latLngLocation='+'<%=currentEvent.getLatLng().toString()%>',
+                data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue+'&latLng='+'<%=currentEvent.getLatLng().toString()%>'+'&location='+'<%=currentEvent.getLocation()%>',
                 type: 'POST',
                 success: function (data) {
                     console.log('Success: ')

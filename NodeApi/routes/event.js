@@ -109,7 +109,7 @@ exports.searchEventListByName = function(req,res){
 };
 
 exports.publishEventPerception = function(req,res){
-   	percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue, JSON.parse(req.body.latLngLocation),req.body.location);
+   	percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue, JSON.parse(req.body.latLng),req.body.location);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);
@@ -117,7 +117,7 @@ exports.publishEventPerception = function(req,res){
 };
 
 exports.publishComment = function(req,res){
-    var latLng = JSON.parse(req.body.latLngLocation);
+    var latLng = JSON.parse(req.body.latLng);
 	percepManager.insertComment(req.body.userID , req.body.eventID , req.body.perceptionValue,req.body.text, latLng.lat,latLng.lng , req.body.location);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });

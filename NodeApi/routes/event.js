@@ -110,7 +110,6 @@ exports.searchEventListByName = function(req,res){
 };
 
 exports.publishEventPerception = function(req,res){
-    console.
     percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue, JSON.parse(req.body.latLng),req.body.location);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });

@@ -9,6 +9,7 @@ exports.insertPerception = function(userID,eventID,perceptionVal,latLngLocation,
     mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
     cepConnector.sendSithPerceptionStreamDef();
     cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLngLocation.lat,latLngLocation.lng, location);
+    console.log(userID+eventID+perceptionVal+''+latLngLocation.lat+latLngLocation.lng+ location);
     insertInstantPercep(doc);
 }
 

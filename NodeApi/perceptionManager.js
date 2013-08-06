@@ -1,7 +1,7 @@
 /**
  * @author Sachintha
  */
-//mongoAdapter = require('./mongoAdapter.js');
+mongoAdapter = require('./mongoAdapter.js');
 cepConnector = require("./cepConnector.js");
 exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location) {
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime(),latLng:latLng,location:location};

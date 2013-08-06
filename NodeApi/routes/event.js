@@ -4,7 +4,6 @@
  */
 
 // This method returns the nearest event list as a json object given the users gps location
-percepManager = require("../perceptionManager");
 eventManager = require("../eventManager");
 userManager = require("../userManager");
 cepConnector = require("../cepConnector.js");
@@ -110,8 +109,7 @@ exports.searchEventListByName = function(req,res){
 };
 
 exports.publishEventPerception = function(req,res){
-   	percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue);
-    percepManager.publishToCEP(req.body.userID , req.body.eventID , req.body.perceptionValue,'');
+   	percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue, JSON.parse(req.body.latLngLocation),req.body.location);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);
@@ -119,8 +117,8 @@ exports.publishEventPerception = function(req,res){
 };
 
 exports.publishComment = function(req,res){
-	percepManager.insertComment(req.body.userID , req.body.eventID , req.body.perceptionValue , req.body.text);
-    percepManager.publishToCEP(req.body.userID , req.body.eventID , req.body.perceptionValue,req.body.text);
+    var latLng = JSON.parse(req.body.latLngLocation);
+	percepManager.insertComment(req.body.userID , req.body.eventID , req.body.perceptionValue,req.body.text, latLng.lat,latLng.lng , req.body.location);
 	res.writeHead(200, {'Content-Type': 'application/json'});
   	var result = JSON.stringify({response: true });
 	res.write(result);

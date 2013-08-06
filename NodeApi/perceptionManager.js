@@ -2,10 +2,13 @@
  * @author Sachintha
  */
 //mongoAdapter = require('./mongoAdapter.js');
-exports.insertPerception = function(userID,eventID,perceptionVal) {
-	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime()};
+cepConnector = require("./cepConnector.js");
+exports.insertPerception = function(userID,eventID,perceptionVal,latLngLocation,location) {
+	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime(),latLngLocation:latLngLocation,location:location};
 	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);
     mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
+    cepConnector.sendSithPerceptionStreamDef();
+    cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLngLocation.lat,latLngLocation.lng, location);
     insertInstantPercep(doc);
 }
 
@@ -69,9 +72,11 @@ exports.mapPerception = function(perception){
 			}
 }
 
-exports.insertComment = function(userID, eventID, perceptionValue, text){
+exports.insertComment = function(userID, eventID, perceptionValue, text,lat,lng,location){
 	doc = {userID:userID, eventID:eventID, perceptionValue:perceptionValue,text:text}
 	mongoAdapter.insertDocument("EventComments_"+eventID, doc);
+    cepConnector.sendSithPerceptionStreamDef();
+    cepConnector.sendSithPerception(userID,eventID,perceptionValue,text,lat,lng,location);
 }
 
 exports.getEventComments = function(eventID,fn){

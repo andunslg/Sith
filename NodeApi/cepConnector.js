@@ -60,6 +60,15 @@ exports.sendSithPerceptionStreamDef=function(){
                 },
                 {
                     "name":"comment","type":"STRING"
+                },
+                {
+                    "name":"lat","type":"STRING"
+                },
+                {
+                    "name":"lng","type":"STRING"
+                },
+                {
+                    "name":"location","type":"STRING"
                 }
             ]
         }
@@ -67,10 +76,10 @@ exports.sendSithPerceptionStreamDef=function(){
     sendUpdate(jsonObject,'',false);
 }
 
-exports.sendSithPerception=function(userID,eventID,perceptionVal,comment){
+exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng,location){
     jsonObject = JSON.stringify([
         {
-            "payloadData":[eventID,userID,perceptionVal,comment],
+            "payloadData":[eventID,userID,perceptionVal,comment,lat,lng,location],
             "metadata":['127.0.0.1']
         }
     ]);

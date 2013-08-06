@@ -8,30 +8,39 @@
 
     Authenticator authenticator=new Authenticator();
     UserHandler userHandler=new UserHandler();
-
-    if(password2==null&&user!=null){
-        if(authenticator.authenticateUser(user,password)){
-            session.setAttribute("user",user);
-            if(session.getAttribute("isLogged")!=null){
-                session.setAttribute("isLogged",true);
-            }
-            response.sendRedirect("home.jsp");
-        }else{
+    if(user==null||password==null||user.equals("")||password.equals("")){
+        if(password2==null){
             response.sendRedirect("index.jsp?state=loginFailed");
         }
-    }else if(password2!=null){
-        if(password.equals(password2)){
-            if(userHandler.addUser(user,password)){
+        else{
+            response.sendRedirect("signup.jsp");
+        }
+
+    } else {
+        if(password2==null){
+            if(authenticator.authenticateUser(user,password)){
                 session.setAttribute("user",user);
                 if(session.getAttribute("isLogged")!=null){
                     session.setAttribute("isLogged",true);
                 }
                 response.sendRedirect("home.jsp");
             }else{
-                response.sendRedirect("signup.jsp?state=duplicateUser");
+                response.sendRedirect("index.jsp?state=loginFailed");
             }
-        }else{
-            response.sendRedirect("signup.jsp?state=pdif");
+        }else if(password2!=null){
+            if(password.equals(password2)){
+                if(userHandler.addUser(user,password)){
+                    session.setAttribute("user",user);
+                    if(session.getAttribute("isLogged")!=null){
+                        session.setAttribute("isLogged",true);
+                    }
+                    response.sendRedirect("home.jsp");
+                }else{
+                    response.sendRedirect("signup.jsp?state=duplicateUser");
+                }
+            }else{
+                response.sendRedirect("signup.jsp?state=pdif");
+            }
         }
     }
 

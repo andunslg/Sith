@@ -7,13 +7,13 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , java = require('java')
   , eventRoutes = require('./routes/event')
   , analyticRoutes = require('./routes/analytics')
   , userMgmtRoutes = require('./routes/userMgmt')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
-    , mapRouts=require('./routes/maps.js');
+  , cacheAccess = require('./routes/cacheAccess')
+  , cepConnector = require('./cepConnector.js');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -28,17 +28,7 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
-/*
-passport.use(new BearerStrategy(
-    function(token, done) {
-        User.findOne({ token: token }, function (err, user) {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            return done(null, user, { scope: 'read' });
-        });
-    }
-));
- */
+
 app.all('/*', function(req, res, next) {
  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -101,9 +91,6 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
-//maps
-app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

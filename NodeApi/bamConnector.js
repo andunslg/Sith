@@ -1,7 +1,3 @@
-/**
- * Created by Prabhath on 7/12/13.
- */
-
 var restClient=  require('./RestClient.js');
 
 function sendStreamUpdate(jsonObject) {

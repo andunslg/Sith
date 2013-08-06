@@ -9,6 +9,7 @@
     String eventName=request.getParameter("eventName");
     String eventAdmin=request.getParameter("eventAdmin");
     String location=request.getParameter("location");
+    String latLng = request.getParameter("latLng");
     String description=request.getParameter("description");
     String perceptionSchema=request.getParameter("perceptionSchema");
     perceptionSchema=perceptionSchema.replaceAll("\\s+", "");
@@ -29,7 +30,7 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,description,perceptionSchema,commentEnabled,colors);
+            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng,description,perceptionSchema,commentEnabled,colors);
             if(res){
                 message="The Event is successfully updated.";
             }else{

@@ -50,6 +50,7 @@ public final class SithBrokerType implements BrokerType {
 						BrokerConfiguration brokerConfiguration)
 			throws BrokerEventProcessingException {
 
+		System.out.println("Message Received----------");
 		if(message instanceof Map){
 			String nodeMethodUri=topicName;
 			sendToNode(nodeMethodUri,(Map<String, String>)message);

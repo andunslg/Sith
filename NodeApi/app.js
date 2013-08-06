@@ -94,7 +94,7 @@ app.get('/deleteUser',userMgmtRoutes.deleteUser);
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 //analytics
-app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics());
+app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

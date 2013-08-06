@@ -23,9 +23,17 @@
                           name="longitude" type="java.lang.String"/>
         </cep:tupleMapping>
     </cep:input>
+    <cep:query name="AwesomePerceptionFilterQueryEmail">
+        <cep:expression><![CDATA[from sithPerceptionStream[perceptionValue=='Awesome']
+                         insert into outSithPerceptionStream
+                         eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
+        <cep:output brokerName="emailBroker" topic="sithplatform@gmail.com/Awesome Feeling Ditected">
+            <cep:textMapping>This mail is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}. Event Location is {location}. Longitude is {longitude} and Latitude is {latitude}.</cep:textMapping>
+        </cep:output>
+    </cep:query>
     <cep:query name="AwesomePerceptionFilterQueryNodeAPI">
         <cep:expression><![CDATA[from sithPerceptionStream[perceptionValue=='Awesome']
-                         insert into outSithPerceptionStream1
+                         insert into outSithPerceptionStream
                          eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
         <cep:output brokerName="sithBroker" topic="http://localhost:3000/receiveCEPAnalytics">
             <cep:mapMapping>
@@ -37,14 +45,6 @@
                 <cep:property name="location" valueOf="location"/>
                 <cep:property name="latitude" valueOf="latitude"/>
             </cep:mapMapping>
-        </cep:output>
-    </cep:query>
-    <cep:query name="AwesomePerceptionFilterQueryEmail">
-        <cep:expression><![CDATA[from sithPerceptionStream[perceptionValue=='Awesome']
-                         insert into outSithPerceptionStream
-                         eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
-        <cep:output brokerName="emailBroker" topic="sithplatform@gmail.com/Awesome Feeling Ditected">
-            <cep:textMapping>This mail is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}. Event Location is {location}. Longitude is {longitude} and Latitude is {latitude}.</cep:textMapping>
         </cep:output>
     </cep:query>
 </cep:bucket>

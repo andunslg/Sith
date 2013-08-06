@@ -7,6 +7,8 @@
 eventManager = require("../eventManager");
 userManager = require("../userManager");
 cepConnector = require("../cepConnector.js");
+percepManager =require("../perceptionManager.js");
+
 exports.addEvent = function(req,res){
     //req.body.colors = '#A7FF4F:#3029FF:#FF3F0F';
 	eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location,JSON.parse(req.body.latLng), req.body.startDate,

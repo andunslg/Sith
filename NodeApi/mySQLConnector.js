@@ -7,17 +7,17 @@
  */
 
 
-var MySQLRootURL ="jdbc:mysql://localhost:3306/?user=root&password=root";
-var MySQLDomain ="localhost";
+var MySQLRootURL ="jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2";
+var MySQLDomain ="192.248.8.246";
 
-var MySQLRootPassword="root";
+var MySQLRootPassword="mysqlsith2";
 
 var mysql = require('mysql');
 
 var client = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
+    host: '192.248.8.246',
+    user: 'sithuser',
+    password: 'mysqlsith2',
     port: 3306
 });
 
@@ -32,4 +32,26 @@ exports.createMySQLDB=function(userID,password){
 
     client.query("GRANT ALL PRIVILEGES ON "+dbName+".* To '"+userID+"'@'"+MySQLDomain +"' IDENTIFIED BY '"+password+"';");
 }
+
+
+exports.getQueryResults=function(dbName,query,fn){
+    client.query('USE '+dbName);
+    client.query(query, function(err, rows, fields) {
+        if (err) {
+            console.log('Error ocuured',err);
+        };
+        fn(rows);
+
+    });
+}
+
+exports.getEventPerceptionCurrent =function(){
+    var currentEvents=eventManager.getLiveEvents();
+
+}
+
+exports.createUserTable=function(){
+
+}
+
 

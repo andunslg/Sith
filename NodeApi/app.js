@@ -12,7 +12,8 @@ var express = require('express')
   , analyticRoutes = require('./routes/analytics')
   , userMgmtRoutes = require('./routes/userMgmt')
   , passport = require("passport")
-  , BearerStrategy =require('passport-http-bearer');
+  , BearerStrategy =require('passport-http-bearer')
+    , mapRouts=require('./routes/maps.js');
 	
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -100,6 +101,9 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
+//maps
+app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 }); 

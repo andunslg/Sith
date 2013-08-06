@@ -9,7 +9,6 @@ exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location
     mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
     cepConnector.sendSithPerceptionStreamDef();
     cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLng.lat,latLng.lng, location);
-    console.log(userID+eventID+perceptionVal+''+latLng.lat+latLng.lng+ location);
     insertInstantPercep(doc);
 }
 
@@ -78,7 +77,6 @@ exports.insertComment = function(userID, eventID, perceptionValue, text,lat,lng,
 	mongoAdapter.insertDocument("EventComments_"+eventID, doc);
     cepConnector.sendSithPerceptionStreamDef();
     cepConnector.sendSithPerception(userID,eventID,perceptionValue,text,lat,lng,location);
-    console.log(userID+eventID+perceptionVal+text+lat+lng+ location);
 }
 
 exports.getEventComments = function(eventID,fn){

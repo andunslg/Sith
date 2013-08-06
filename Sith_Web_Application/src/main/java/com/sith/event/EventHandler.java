@@ -138,7 +138,8 @@ public class EventHandler{
 		parms.put("userID",userID);
 		parms.put("perceptionValue",perceptionValue);
 		parms.put("text",text);
-		parms.put("latLngLocation",getEvent(eventID).getLatLng().toString());
+		parms.put("latLng",getEvent(eventID).getLatLng().toString());
+		parms.put("location",getEvent(eventID).getLocation());
 
 		String result=null;
 		try{

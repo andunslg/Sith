@@ -38,7 +38,8 @@ exports.getQueryResults=function(dbName,query,fn){
     client.query('USE '+dbName);
     client.query(query, function(err, rows, fields) {
         if (err) {
-            console.log('Error ocuured',err);
+            var array = new Array();
+            fn(array);
         };
         fn(rows);
 

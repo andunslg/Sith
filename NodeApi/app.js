@@ -93,6 +93,7 @@ app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
+app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 http.createServer(app).listen(app.get('port'), function(){

@@ -61,6 +61,13 @@
         <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>
+        <li>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>How World Feels</a>
+            <ul class="submenu">
+                <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
+                <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>
 

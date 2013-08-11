@@ -37,6 +37,7 @@ public class SithAPI{
 	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
 	public static String DELETE_USER=NODEAPI+"deleteUser";
 
+    public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;

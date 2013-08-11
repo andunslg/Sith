@@ -1,6 +1,9 @@
 /**
  * @author Sachintha
+ *
  */
+bamConnector=require("./bamConnector.js");
+
 exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
 			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled, colors:colors};
@@ -9,6 +12,10 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng
     mongoAdapter.createCollection('EventComments_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
     mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
+
+    //TODO latlng, unix time
+
+    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng,latLng,startTime,endTime,'false');
 };
 
 exports.getEventByID = function(eventID,fn){

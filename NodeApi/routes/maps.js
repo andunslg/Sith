@@ -29,3 +29,14 @@ exports.getAllCurrentEventMap=function(req,res){
         }
     });
 }
+
+exports.getSelfMap=function(req,res){
+    locationAnalyzer.getAllCurrentEventMap(req.query.emotion,function(array){
+        if(array){
+            res.write(JSON.stringify(array));
+            res.end();
+        }else{
+
+        }
+    });
+}

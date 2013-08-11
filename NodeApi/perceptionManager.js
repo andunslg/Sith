@@ -3,14 +3,19 @@
  */
 //mongoAdapter = require('./mongoAdapter.js');
 cepConnector = require("./cepConnector.js");
+bamConnector= require("./bamConnector.js");
 
 exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location) {
-	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: (new Date()).getTime(),latLng:latLng,location:location};
+    var time= (new Date()).getTime();
+
+	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: time,latLng:latLng,location:location};
 	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);
     mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
     cepConnector.sendSithPerceptionStreamDef();
     cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLng.lat,latLng.lng, location);
     insertInstantPercep(doc);
+
+    bamConnector.sendPercept(userID,eventID,perceptionVal,location,latLng,latLng,time,'0.0.0.0');
 }
 
 insertInstantPercep = function(percepdoc){

@@ -60,3 +60,30 @@ exports.getAllCurrentEventMap=function(emotion, fn){
 
 }
 
+exports.getSelfMap=function(userID,emotion, fn){
+
+    var dbName='test';
+    var tableName=emotion+'_table';
+
+    var query='select * from '+tableName;
+
+    mySQLConnector.getQueryResults("test",query,function(rows){
+
+        var array = new Array();
+
+        for(var i = 0; i < rows.length; i++){
+            var object={};
+            object.subid=rows[i].name;
+            object.count= rows[i].count;
+            object.lat=rows[i].lat;
+            object.lo= rows[i].longi;
+            object.location= rows[i].locationName;
+            array.push(object);
+        }
+
+        fn(array);
+    });
+
+}
+
+

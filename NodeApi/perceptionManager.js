@@ -15,7 +15,7 @@ exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location
     cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLng.lat,latLng.lng, location);
     insertInstantPercep(doc);
 
-    bamConnector.sendPercept(userID,eventID,perceptionVal,location,latLng,latLng,time,'0.0.0.0');
+    bamConnector.sendPercept(userID,eventID,perceptionVal,location,latLng.lat,latLng.lng,time,'0.0.0.0');
 }
 
 insertInstantPercep = function(percepdoc){

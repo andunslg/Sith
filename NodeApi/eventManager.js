@@ -3,6 +3,7 @@
  *
  */
 bamConnector=require("./bamConnector.js");
+util=require("./util.js")
 
 exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
@@ -13,9 +14,11 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng
 	mongoAdapter.createCollection('EventUser_'+eventID);
     mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
 
-    //TODO latlng, unix time
+    //unix timestamp
+    var start=(util.parseDateTime(startDate,startTime)).getTime();
+    var end=(util.parseDateTime(endDate,endTime)).getTime();
 
-    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng,latLng,startTime,endTime,'false');
+    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,'false');
 };
 
 exports.getEventByID = function(eventID,fn){

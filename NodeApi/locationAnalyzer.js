@@ -63,9 +63,9 @@ exports.getAllCurrentEventMap=function(emotion, fn){
 exports.getSelfMap=function(userID,emotion, fn){
 
     var dbName='test';
-    var tableName=emotion+'_table';
+    var tableName='self_'+emotion+'_table';
 
-    var query='select * from '+tableName;
+    var query='select * from '+tableName+' where userID='+userID;
 
     mySQLConnector.getQueryResults("test",query,function(rows){
 

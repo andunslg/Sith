@@ -8,6 +8,44 @@
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 //var MongoClient = require('mongodb').MongoClient;
+
+exports.aggregate = function(collection,perception,fn){
+    var map = function() {
+        roundlat = this.latLngLocation.lat.toFixed(4);
+        roundlng = this.latLngLocation.lng.toFixed(4);
+        emit(
+            {lat: roundlat, lng: roundlng},					// how to group
+            {count: 1}	// associated data point (document)
+        );
+    };
+
+    var reduce = function(key,values) {
+        var reduced = {key:key,count:0}; // initialize a doc (same format as emitted value)
+
+        values.forEach(function(val) {
+            // reduce logic
+            reduced.count += val.count;
+        });
+
+        return reduced;
+    };
+
+    Db('Sith', new Server('localhost', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+        if(err)
+            throw err;
+        else{
+            db.collection(collection, function(err, collection) {
+                if(err)
+                    throw err;
+                collection.mapReduce(map,reduce,{out : {inline: 1}, query:{perceptionValue:perception},verbose:true},function(err, results, stats){
+                    if(err)
+                        throw err;
+                    fn(results);
+                });
+            });
+        }
+    });
+}
 exports.categorize = function(collection,fn){
     // Map function
     var map = function() {

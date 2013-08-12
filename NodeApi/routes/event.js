@@ -116,6 +116,9 @@ exports.publishEventPerception = function(req,res){
 	res.end();
 };
 
+exports.getAggregatedAnalytics = function(req,res){
+   percepManager.getAggregatedAnalytics("sach","Happy");
+}
 exports.publishComment = function(req,res){
     var latLng = JSON.parse(req.body.latLngLocation);
 	percepManager.insertComment(req.body.userID , req.body.eventID , req.body.perceptionValue,req.body.text, latLng.lat,latLng.lng , req.body.location);

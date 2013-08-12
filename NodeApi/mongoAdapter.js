@@ -144,6 +144,28 @@ exports.updateDocument = function(collection,selector,newDoc){
     });
 }
 
+//aggregated self analytics using lng and lat
+exports.getLocationAggregatedSelfAnalytics = function(collection,perception,fn){
+    db1.collection(collection,function(err,collection){
+        collection.aggregate([
+                { $match: {perceptionValue: perception}  },
+
+                { $group: {
+                            _id: { lat: "$latLngLocation.lat",
+                                  lng: "$latLngLocation.lat"
+                            },
+                            count:{$sum:1}
+                       }
+                }],
+                function(err,doc){
+                    if(err)
+                        throw err;
+                    fn(doc);
+                });
+    });
+}
+
+//count documents of a particular collection
 exports.countDocuments = function(collection,fn){
     db1.collection(collection, function(err, collection) {
         collection.count(function(err,count){

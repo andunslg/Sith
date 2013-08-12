@@ -60,6 +60,7 @@ app.get('/vote',routes.vote);
 //routing for real time analytic data
 app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
+app.get('/getAggregated',analyticRoutes.getAggregatedAnalyticsMapReduce);
 //routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
 app.get('/countPerceptions2',analyticRoutes.sendPerceptionCount2);

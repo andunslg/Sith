@@ -1,7 +1,6 @@
 package com.sith.Analytics.LocationBasedAnalytics;
 
 import com.sith.SithAPI;
-import com.sith.event.Participant;
 import com.sith.util.HTTPUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +28,6 @@ public class LocationBasedAnalytics {
             locationDatas =new ArrayList<LocationData>();
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
-                Participant participant= new Participant(jsonObject.getString("userID"));
                 LocationData perceptionOnLoc = new LocationData(perception,jsonObject.getString("lo"),
                         jsonObject.getString("lat"), Integer.parseInt(jsonObject.getString("count")));
                 locationDatas.add(perceptionOnLoc);
@@ -43,22 +41,22 @@ public class LocationBasedAnalytics {
 
     public ArrayList<LocationData> getHappyCount() {
         ArrayList<LocationData> t= new ArrayList<LocationData>();
+//
+//        for(int i=0;i<10;i++){
+//            Random r = new Random();
+//            String latitude = String.valueOf(6.8111 + (7.1234 - 6.8111) * r.nextDouble());
+//            String longitude = String.valueOf(79.33 + (80.11 - 79.33) * r.nextDouble());
+//            int rm = Math.abs(r.nextInt(100));
+//            for(int j=1;j<=rm;j++){
+//                LocationData p = new LocationData(latitude,longitude);
+//
+//                t.add(p);
+//            }
+//
+//        }
+//        return t;
 
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(6.8111 + (7.1234 - 6.8111) * r.nextDouble());
-            String longitude = String.valueOf(79.33 + (80.11 - 79.33) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            for(int j=1;j<=rm;j++){
-                LocationData p = new LocationData(latitude,longitude);
-
-                t.add(p);
-            }
-
-        }
-        return t;
-
-//        return getPerceptionCount("happy","1");
+        return getPerceptionCount("happy","1");
     }
 
     public ArrayList<LocationData> getPieChartHappy() {

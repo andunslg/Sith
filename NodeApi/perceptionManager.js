@@ -91,7 +91,7 @@ exports.getEventComments = function(eventID,fn){
 	});
 }
 
-
+/*
 exports.getAggregatedAnalytics = function(userID,perception){
      mongoAdapter.getLocationAggregatedSelfAnalytics("UserPerceptions_sach","Angry",function(docs){
       console.log(docs);

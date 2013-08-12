@@ -100,7 +100,7 @@ getTimeInterval = function(startTime,endTime){
     return Math.floor(duration/100);
 }
 
-//return the tome analysis data object for the given docs(data)
+//return the time analysis data object for the given docs(data)
 analyseTimePercep = function(docs,minTime,interval){
     var result = new Object();
     for(var i=0 ; i<docs.length ; i++){
@@ -117,7 +117,7 @@ analyseTimePercep = function(docs,minTime,interval){
             result[perception][index] = 1;
         }
     }
-    console.log("***");
+    //console.log("");
     return result;
 }
 // given a perception count object this returns a object which is in order of the perceptionSchema

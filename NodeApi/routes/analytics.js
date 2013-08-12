@@ -68,7 +68,7 @@ exports.sendPerceptionCountMapReduce = function(req,res){
 }
 
 exports.getAggregatedAnalyticsMapReduce = function(req,res){
-   mapreduceAnalyser.aggregate("UserPerceptions_sach","Happy",function(docs){
+   mapreduceAnalyser.aggregateLocationSelfData("UserPerceptions_sach","Happy",function(docs){
                 console.log(docs);
    });
 }

@@ -9,7 +9,7 @@ var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 //var MongoClient = require('mongodb').MongoClient;
 
-exports.aggregate = function(collection,perception,fn){
+exports.aggregateLocationSelfData = function(collection,perception,fn){
     var map = function() {
         roundlat = this.latLngLocation.lat.toFixed(4);
         roundlng = this.latLngLocation.lng.toFixed(4);

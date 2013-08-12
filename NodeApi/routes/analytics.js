@@ -66,6 +66,12 @@ exports.sendPerceptionCountMapReduce = function(req,res){
 
      });
 }
+
+exports.getAggregatedAnalyticsMapReduce = function(req,res){
+   mapreduceAnalyser.aggregateLocationSelfData("UserPerceptions_sach","Happy",function(docs){
+                console.log(docs);
+   });
+}
 /*
 exports.sendPeriodicTotalPerceptions = function(req,res){
 		res.writeHead(200, {

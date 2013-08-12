@@ -92,6 +92,12 @@ exports.getEventComments = function(eventID,fn){
 }
 
 /*
+exports.getAggregatedAnalytics = function(userID,perception){
+     mongoAdapter.getLocationAggregatedSelfAnalytics("UserPerceptions_sach","Angry",function(docs){
+      console.log(docs);
+     });
+}
+/*
 var java = require("java");
 java.classpath.push("cep-publisher-1.0.jar");
 var jClass = java.newInstanceSync("org.sith.cep.publisher.SithCEPPublisher","tcp://192.248.8.246:7611","admin","apst@sith");

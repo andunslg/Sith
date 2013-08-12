@@ -113,84 +113,82 @@
 </section>
 
 <script>
-google.load( 'visualization', '1', { packages:['corechart'] });
+    google.load( 'visualization', '1', { packages:['corechart'] });
 
-function drawChart(marker, data) {
+    function drawChart(marker, data) {
 
 
-    var options = {'title':'Perception Analysis ',
-        'width':400,
-        'height':150,
-        slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}};
+        var options = {'title':'Perception Analysis ',
+            'width':400,
+            'height':150,
+            slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}};
 
-    var node        = document.createElement('div'),
-            infoWindow  = new google.maps.InfoWindow(),
-            chart       = new google.visualization.PieChart(node);
+        var node        = document.createElement('div'),
+                infoWindow  = new google.maps.InfoWindow(),
+                chart       = new google.visualization.PieChart(node);
 
-    chart.draw(data, options);
-    infoWindow.setContent(node);
-    infoWindow.open(marker.getMap(),marker);
-}
+        chart.draw(data, options);
+        infoWindow.setContent(node);
+        infoWindow.open(marker.getMap(),marker);
+    }
 
-function ChartMarker( options ) {
-    this.setValues( options );
+    function ChartMarker( options ) {
+        this.setValues( options );
 
-    this.$inner = $('<div>').css({
-        position: 'relative',
-        left: '-50%', top: '-50%',
-        width: options.width,
-        height: options.height,
-        fontSize: '1px',
-        lineHeight: '1px',
-        padding: '2px',
-        backgroundColor: 'transparent',
-        cursor: 'default'
-    });
+        this.$inner = $('<div>').css({
+            position: 'relative',
+            left: '-50%', top: '-50%',
+            width: options.width,
+            height: options.height,
+            fontSize: '1px',
+            lineHeight: '1px',
+            padding: '2px',
+            backgroundColor: 'transparent',
+            cursor: 'default'
+        });
 
-    this.$div = $('<div>')
-            .append( this.$inner )
-            .css({
-                position: 'absolute',
-                display: 'none'
-            });
-};
+        this.$div = $('<div>')
+                .append( this.$inner )
+                .css({
+                    position: 'absolute',
+                    display: 'none'
+                });
+    };
 
-ChartMarker.prototype = new google.maps.OverlayView;
+    ChartMarker.prototype = new google.maps.OverlayView;
 
-ChartMarker.prototype.onAdd = function() {
-    $( this.getPanes().overlayMouseTarget ).append( this.$div );
-};
+    ChartMarker.prototype.onAdd = function() {
+        $( this.getPanes().overlayMouseTarget ).append( this.$div );
+    };
 
-ChartMarker.prototype.onRemove = function() {
-    this.$div.remove();
-};
+    ChartMarker.prototype.onRemove = function() {
+        this.$div.remove();
+    };
 
-ChartMarker.prototype.draw = function() {
-    var marker = this;
-    var projection = this.getProjection();
-    var position = projection.fromLatLngToDivPixel( this.get('position') );
+    ChartMarker.prototype.draw = function() {
+        var marker = this;
+        var projection = this.getProjection();
+        var position = projection.fromLatLngToDivPixel( this.get('position') );
 
-    this.$div.css({
-        left: position.x,
-        top: position.y,
-        display: 'block'
-    })
+        this.$div.css({
+            left: position.x,
+            top: position.y,
+            display: 'block'
+        })
 
-    this.$inner
-            .html( '<img src="' + this.get('image') + '"/>' )
-            .click( function( event ) {
-                var events = marker.get('events');
-                events && events.click( event );
-            });
+        this.$inner
+                .html( '<img src="' + this.get('image') + '"/>' )
+                .click( function( event ) {
+                    var events = marker.get('events');
+                    events && events.click( event );
+                });
 
-    this.chart = new google.visualization.PieChart( this.$inner[0] );
-    this.chart.draw( this.get('chartData'), this.get('chartOptions') );
-};
+        this.chart = new google.visualization.PieChart( this.$inner[0] );
+        this.chart.draw( this.get('chartData'), this.get('chartOptions') );
+    };
 
-var markers = new Array();
-
-function drawPieChartsOnMap(){
-    var latLng = new google.maps.LatLng(6.796728, 79.901749)
+    var markers = new Array();
+    var latLng = new google.maps.LatLng(6.999, 80.101749)
 
     var mapOptions = {
         center: latLng,
@@ -200,54 +198,63 @@ function drawPieChartsOnMap(){
 
     var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
-    <%
-    for(String key:pieChartData.keySet()){
-    PerceptionsOnLocation p = pieChartData.get(key);
-    String[] locationData = key.split("/");
 
-    %>
-    var pie_chart_latlng = new google.maps.LatLng(<%=locationData[0]%>,<%=locationData[1]%>)
+    function drawPieChartsOnMap(lat1,lat2,long1,long2){
 
-    var data = google.visualization.arrayToDataTable([
-        [ 'Perception', '%' ],
-        [ 'Excited',<%=p.getExcitedCount()%>],
-        [ 'Happy',<%=p.getHappyCount()%>],
-        [ 'Neutral',<%=p.getNeutralCount()%>],
-        [ 'Sad',<%=p.getSadCount()%>],
-        [ 'Horrible',<%=p.getHappyCount()%>]
-    ]);
+        <%
+        for(String key:pieChartData.keySet()){
+        PerceptionsOnLocation p = pieChartData.get(key);
+        String[] locationData = key.split("/");
+        %>
+        if(lat1<=<%=locationData[0]%> && lat2>=<%=locationData[0]%> && long1<=<%=locationData[1]%> && long2>=<%=locationData[1]%>){
+        var pie_chart_latlng = new google.maps.LatLng(<%=locationData[0]%>,<%=locationData[1]%>)
 
-    var options = {
+        var data = google.visualization.arrayToDataTable([
+            [ 'Perception', '%' ],
+            [ 'Excited',<%=p.getExcitedCount()%>],
+            [ 'Happy',<%=p.getHappyCount()%>],
+            [ 'Neutral',<%=p.getNeutralCount()%>],
+            [ 'Sad',<%=p.getSadCount()%>],
+            [ 'Horrible',<%=p.getHappyCount()%>]
+        ]);
 
-        fontSize: 8,
-        backgroundColor: 'transparent',
-        legend: {position: 'none'},
-        slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}
-    };
+        var options = {
 
-    var marker = new ChartMarker({
-        map: map,
-        position: pie_chart_latlng,
-        width: '250px',
-        height: '100px',
-        chartData: data,
-        chartOptions: options,
-        events: {
-            click: function( event ) {
-                drawChart(marker,data)
+            fontSize: 8,
+            backgroundColor: 'transparent',
+            legend: {position: 'none'},
+            slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}
+        };
+
+        var marker = new ChartMarker({
+            map: map,
+            position: pie_chart_latlng,
+            width: '250px',
+            height: '100px',
+            chartData: data,
+            chartOptions: options,
+            events: {
+                click: function( event ) {
+                    drawChart(marker,data)
+                }
             }
-        }
-    });
-    markers.push(marker);
+        });
 
-    <%
+        }
+        <%
+        }
+        %>
     }
-    %>
-}
-function initialize() {
-    drawPieChartsOnMap();
-};
-google.maps.event.addDomListener(window, 'load', initialize);
+    function initialize() {
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+            var bounds = map.getBounds();
+            var ne = bounds.getNorthEast(); // LatLng of the north-east corner
+            var sw = bounds.getSouthWest(); // LatLng of the south-west corder
+
+            drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
+        });
+    };
+    google.maps.event.addDomListener(window, 'load', initialize);
 
 
 </script>

@@ -10,6 +10,7 @@ import org.wso2.carbon.broker.core.BrokerType;
 import org.wso2.carbon.broker.core.BrokerTypeDto;
 import org.wso2.carbon.broker.core.exception.BrokerEventProcessingException;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -52,7 +53,20 @@ public final class SithBrokerType implements BrokerType {
 
 		if(message instanceof Map){
 			String nodeMethodUri=topicName;
-			sendToNode(nodeMethodUri,(Map<String, String>)message);
+
+			Map<String, Object> messageMap=(Map<String, Object>)message;
+			Map<String,String> parmMap= new HashMap<String,String>();
+
+			for(String key:messageMap.keySet()){
+				if(messageMap.get(key) instanceof String){
+					parmMap.put(key,(String)messageMap.get(key)) ;
+				}
+				else{
+					parmMap.put(key,messageMap.get(key).toString()) ;
+				}
+			}
+
+			sendToNode(nodeMethodUri,parmMap);
 		}
 		else{
 			log.info("Message is not in the correct format");

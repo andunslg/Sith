@@ -183,14 +183,14 @@ exports.sendUserStreamDef=function(userID,password,eventID,eventName,eventDescri
     sendStreamUpdate(jsonObject);
 }
 
-exports.sendPercept=function(userID,password,subcriptionID,emotion,location,latitude,longitude,time,ipadress){
+exports.sendPercept=function(userID,subcriptionID,emotion,location,latitude,longitude,time,ipadress){
     jsonObject = JSON.stringify(
        [ {
             "payloadData":[subcriptionID,userID,emotion,location,latitude,longitude,time]
         }  ]
     );
     //TODO change below line
-    var path=subcriptionID+"_perception_stream"+'/1.0.0/' ;
+    var path="perception_stream2"+'/1.0.0/' ;
     sendEventUpdate(jsonObject,path);
 }
 
@@ -206,6 +206,16 @@ exports.sendEventUpdate=function(userID,password,subscriptionID,subscriptionName
         } ]
     );
     var path=subscriptionID+"_info_stream"+'/1.0.0/' ;
+    sendEventUpdate(jsonObject,path);
+}
+
+exports.addEventInfo=function(userID,subscriptionID,subscriptionName,subscriptionLocation,latitude,longitude,startTime,endTime,isDistributed){
+    jsonObject = JSON.stringify(
+        [ {
+            "payloadData":[subscriptionID,subscriptionName,startTime,endTime,subscriptionLocation,latitude,longitude,isDistributed]
+        } ]
+    );
+    var path="event_stream"+'/1.0.0/' ;
     sendEventUpdate(jsonObject,path);
 }
 

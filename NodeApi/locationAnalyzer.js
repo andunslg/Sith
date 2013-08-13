@@ -9,7 +9,7 @@ eventManager=require('./eventManager.js');
 mySQLConnector=require('./mySQLConnector.js');
 mapReduceAnalyzer=require('./Analytics/mapReduce.js')
 
-exports.getAllMap=function(emotion,timeRange, fn){
+exports.getAllMap=function(emotion,timeRange,latmin,lngmin,latmax,lngmx,fn){
     emotion=emotion+'';
     emotion=emotion.toLowerCase();
 
@@ -17,7 +17,7 @@ exports.getAllMap=function(emotion,timeRange, fn){
     var dbName='test';
     var tableName='z'+timeRange+emotion;
 
-    var query='select * from '+tableName;
+    var query='select * from '+tableName+' where la<='+latmax+' and la>='+latmin+' and lo>='+lngmin+' and lo<='+lngmx;
 
     mySQLConnector.getQueryResults("test",query,function(rows){
 
@@ -38,7 +38,7 @@ exports.getAllMap=function(emotion,timeRange, fn){
 }
 
 
-exports.getAllCurrentEventMap=function(emotion, fn){
+exports.getAllCurrentEventMap=function(emotion,latmin,lngmin,latmax,lngmx, fn){
 
     emotion=emotion+'';
     emotion=emotion.toLowerCase();
@@ -46,7 +46,7 @@ exports.getAllCurrentEventMap=function(emotion, fn){
     var dbName='test';
     var tableName=emotion+'_table';
 
-    var query='select * from '+tableName;
+    var query='select * from '+tableName+'where la<='+latmax+' and la>='+latmin+' and lo>='+lngmin+' and lo<='+lngmx;
 
     mySQLConnector.getQueryResults("test",query,function(rows){
 
@@ -70,6 +70,27 @@ exports.getAllCurrentEventMap=function(emotion, fn){
 exports.getSelfMap=function(userID,emotion, fn){
 
     var tableName='UserPerceptions_'+userID;
+
+    mapReduceAnalyzer.aggregateLocationSelfData(tableName,emotion,function(objects){
+
+        var array = new Array();
+
+        for(var i = 0; i < objects.length; i++){
+            var object={};
+            object.lat=objects[i]._id.lat;
+            object.lo= objects[i]._id.lng;
+            object.count= objects[i].value.count;
+            array.push(object);
+        }
+
+        fn(array);
+    });
+
+}
+
+exports.getEventMap=function(eventID,emotion,fn){
+
+    var tableName='EventPerceptions_'+eventID;
 
     mapReduceAnalyzer.aggregateLocationSelfData(tableName,emotion,function(objects){
 

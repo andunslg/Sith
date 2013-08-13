@@ -9,7 +9,7 @@
 locationAnalyzer= require("../locationAnalyzer.js");
 
 exports.getAverageLocationPerceptions=function(req,res){
-    locationAnalyzer.getAllMap(req.query.emotion,req.query.timelevel,function(array){
+    locationAnalyzer.getAllMap(req.query.emotion,req.query.timelevel,req.query.latmin,req.query.lngmin,req.query.latmax,req.query.lngmx,function(array){
         if(array){
             res.write(JSON.stringify(array));
             res.end();
@@ -20,7 +20,7 @@ exports.getAverageLocationPerceptions=function(req,res){
 }
 
 exports.getAllCurrentEventMap=function(req,res){
-    locationAnalyzer.getAllCurrentEventMap(req.query.emotion,function(array){
+    locationAnalyzer.getAllCurrentEventMap(req.query.emotion,req.query.latmin,req.query.lngmin,req.query.latmax,req.query.lngmx,function(array){
         if(array){
             res.write(JSON.stringify(array));
             res.end();
@@ -32,6 +32,17 @@ exports.getAllCurrentEventMap=function(req,res){
 
 exports.getSelfMap=function(req,res){
     locationAnalyzer.getSelfMap(req.query.userID,req.query.emotion,function(array){
+        if(array){
+            res.write(JSON.stringify(array));
+            res.end();
+        }else{
+
+        }
+    });
+}
+
+exports.getEventMap=function(req,res){
+    locationAnalyzer.getSelfMap(req.query.eventID,req.query.emotion,function(array){
         if(array){
             res.write(JSON.stringify(array));
             res.end();

@@ -1,7 +1,7 @@
 var restClient=  require('./RestClient.js');
 
 function sendStreamUpdate(jsonObject) {
-    var auth = "Basic " + new Buffer('admin:admin').toString("base64");
+    var auth = "Basic " + new Buffer('admin:apst@sith').toString("base64");
 
 // prepare the header
     var postheaders = {
@@ -13,7 +13,7 @@ function sendStreamUpdate(jsonObject) {
 // the post options
     var optionspost = {
         host: '127.0.0.1',
-        port: '9443',
+        port: '9444',
         path: '/datareceiver/1.0.0/streams/',
         method: 'POST',
         rejectUnauthorized: 'false',
@@ -41,7 +41,7 @@ function sendEventUpdate(jsonObject,streamPath) {
 // the post options
     var optionspost = {
         host: '127.0.0.1',
-        port: '9443',
+        port: '9444',
         path: '/datareceiver/1.0.0/stream/'+streamPath,
         method: 'POST',
         rejectUnauthorized: 'false',

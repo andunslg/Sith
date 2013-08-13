@@ -95,6 +95,7 @@ app.get('/deleteUser',userMgmtRoutes.deleteUser);
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
+app.get('/getSelfMap',mapRouts.getSelfMap);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 http.createServer(app).listen(app.get('port'), function(){

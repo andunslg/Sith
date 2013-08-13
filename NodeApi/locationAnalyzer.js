@@ -7,8 +7,12 @@
  */
 eventManager=require('./eventManager.js');
 mySQLConnector=require('./mySQLConnector.js');
+mapReduceAnalyzer=require('./Analytics/mapReduce.js')
 
 exports.getAllMap=function(emotion,timeRange, fn){
+    emotion=emotion+'';
+    emotion=emotion.toLowerCase();
+
 
     var dbName='test';
     var tableName='z'+timeRange+emotion;
@@ -36,6 +40,9 @@ exports.getAllMap=function(emotion,timeRange, fn){
 
 exports.getAllCurrentEventMap=function(emotion, fn){
 
+    emotion=emotion+'';
+    emotion=emotion.toLowerCase();
+
     var dbName='test';
     var tableName=emotion+'_table';
 
@@ -62,22 +69,17 @@ exports.getAllCurrentEventMap=function(emotion, fn){
 
 exports.getSelfMap=function(userID,emotion, fn){
 
-    var dbName='test';
-    var tableName='self_'+emotion+'_table';
+    var tableName='UserPerceptions_'+userID;
 
-    var query='select * from '+tableName+' where userID='+userID;
-
-    mySQLConnector.getQueryResults("test",query,function(rows){
+    mapReduceAnalyzer.aggregateLocationSelfData(tableName,emotion,function(objects){
 
         var array = new Array();
 
-        for(var i = 0; i < rows.length; i++){
+        for(var i = 0; i < objects.length; i++){
             var object={};
-            object.subid=rows[i].name;
-            object.count= rows[i].count;
-            object.lat=rows[i].lat;
-            object.lo= rows[i].longi;
-            object.location= rows[i].locationName;
+            object.lat=objects[i]._id.lat;
+            object.lo= objects[i]._id.lng;
+            object.count= objects[i].value.count;
             array.push(object);
         }
 

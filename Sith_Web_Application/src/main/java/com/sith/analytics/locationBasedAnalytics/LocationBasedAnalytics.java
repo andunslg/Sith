@@ -1,4 +1,4 @@
-package com.sith.Analytics.LocationBasedAnalytics;
+package com.sith.analytics.locationBasedAnalytics;
 
 import com.sith.SithAPI;
 import com.sith.util.HTTPUtil;

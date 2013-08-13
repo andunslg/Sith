@@ -266,4 +266,36 @@ public class EventHandler{
 		return false;
 	}
 
+	public boolean addTimeVariantParameter(String eventID,HashMap<String,String> params){
+		HashMap<String,String> postParams=new HashMap<String,String>();
+		postParams.put("eventID",eventID);
+
+		JSONObject jsonObject=new JSONObject();
+
+		for(String key:params.keySet()){
+			try{
+				jsonObject.put(key,params.get(key));
+			}catch(JSONException e){
+				e.printStackTrace();
+			}
+		}
+
+		postParams.put("timeVariantParam",jsonObject.toString());
+
+		String result=null;
+		try{
+			result=httpUtil.doPost(SithAPI.ADD_TIME_VARIANT_PARAM,postParams);
+			if(!result.equals("")){
+				if("{\"response\":true}".equals(result)){
+					return true;
+				}
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 }

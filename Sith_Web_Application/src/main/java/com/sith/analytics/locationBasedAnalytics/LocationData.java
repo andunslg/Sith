@@ -1,4 +1,4 @@
-package com.sith.Analytics.LocationBasedAnalytics;
+package com.sith.analytics.locationBasedAnalytics;
 
 public class LocationData {
     private String longitude;

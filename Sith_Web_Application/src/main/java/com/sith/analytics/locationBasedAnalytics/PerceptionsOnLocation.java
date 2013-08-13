@@ -1,4 +1,4 @@
-package com.sith.Analytics.LocationBasedAnalytics;
+package com.sith.analytics.locationBasedAnalytics;
 
 public class PerceptionsOnLocation {
     private String latitude;

@@ -28,6 +28,7 @@ public class SithAPI{
 	public static String DELETE_EVENT=NODEAPI+"deleteEvent";
 	public static String UPDATE_EVENT=NODEAPI+"updateEvent";
 	public static String SET_COMMENT_ENABLED=NODEAPI+"setCommentEnabled";
+	public static String ADD_TIME_VARIANT_PARAM=NODEAPI+"addTimeVariantParam";
 
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";

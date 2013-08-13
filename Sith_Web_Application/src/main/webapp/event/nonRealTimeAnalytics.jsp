@@ -120,6 +120,15 @@
             </ul>
         </li>
         <li>
+            <%
+                if(currentEvent.getAdminID().equals(participant.getUserID())){
+            %>
+            <a href="timeVariantParameters.jsp"><span class="icon">&#128711;</span>Temporal Params</a>
+            <%
+                }
+            %>
+        </li>
+        <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
         <li>

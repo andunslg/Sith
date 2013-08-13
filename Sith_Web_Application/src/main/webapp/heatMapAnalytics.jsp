@@ -1,10 +1,7 @@
 <%@ page import="com.sith.SithAPI" %>
-<%@ page import="com.sith.event.EventHandler" %>
-<%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.analytics.locationBasedAnalytics.LocationBasedAnalytics" %>
+<%@ page import="com.sith.analytics.locationBasedAnalytics.LocationData" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.sith.Analytics.LocationBasedAnalytics.LocationBasedAnalytics" %>
-<%@ page import="com.sith.Analytics.LocationBasedAnalytics.PerceptionsOnLocation" %>
-<%@ page import="com.sith.Analytics.LocationBasedAnalytics.LocationData" %>
 <!DOCTYPE html>
 <html lang="">
 

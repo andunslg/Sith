@@ -56,19 +56,23 @@ app.get('/myPerception',routes.percep_event);
 app.get('/selfAnalyticDashboard',routes.getSelfAnalyticDashBoard);
 app.get('/webDashboard2',routes.getWebDashBoard2);
 app.get('/vote',routes.vote);
-//routing for real time analytic data
+
+//routing for real time analytic /home/andunslg/Documents/SithAPI.javadata
 app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
 app.get('/getAggregated',analyticRoutes.getAggregatedAnalyticsMapReduce);
+
 //routing for perception count data
 app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
 app.get('/countPerceptions2',analyticRoutes.sendPerceptionCount2);
 app.get('/countPerceptionsMapReduce',analyticRoutes.sendPerceptionCountMapReduce);
 app.get('/getTimeAnalysis',analyticRoutes.getTimeAnalysis);
 app.get('/getSelfAnalytics',analyticRoutes.getSelfAnalytics);
+
 //routing for get all the perceptions available in the platform
 app.get('/getMasterPerceptions',eventRoutes.getMasterPerceptions);
 app.get('/getColorSchema',eventRoutes.getColorSchema);
+
 //routing for event category
 app.post('/addEvent',eventRoutes.addEvent);
 app.get('/getEventById',eventRoutes.getEventByID);
@@ -82,6 +86,10 @@ app.post('/publishEventPerception', eventRoutes.publishEventPerception);
 app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
+app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
+
+
+
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/registerFBUser',userMgmtRoutes.registerFBUser);
@@ -92,10 +100,12 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
+
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 app.get('/getSelfMap',mapRouts.getSelfMap);
+
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 http.createServer(app).listen(app.get('port'), function(){

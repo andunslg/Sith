@@ -30,7 +30,7 @@ exports.aggregateLocationSelfData = function(collection,perception,fn){
         return reduced;
     };
 
-    Db('Sith', new Server('localhost', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
         if(err)
             throw err;
         else{

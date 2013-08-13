@@ -11,7 +11,7 @@ cepConnector = require("../cepConnector.js");
 exports.addEvent = function(req,res){
     //req.body.colors = '#A7FF4F:#3029FF:#FF3F0F';
     eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location,JSON.parse(req.body.latLng), req.body.startDate,
-        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.colors);
+        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.colors,req.body.timeVariantParams );
     userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
         if(error){
             console.log(error);
@@ -76,8 +76,9 @@ exports.setCommentEnabled = function(req,res){
 exports.updateEvent = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
     eventManager.updateEvent(req.body.oldEventID,req.body.eventID,req.body.eventName,req.body.eventAdmin,
-        req.body.desc, req.body.location, req.body.date,req.body.startTime, req.body.endTime,
-        req.body.perceptionSchema,req.body.commentEnabled,req.body.colors,function(result){
+        req.body.desc, req.body.location, JSON.parse(req.body.latLng), req.body.startDate,
+        req.body.endDate, req.body.startTime, req.body.endTime,
+        req.body.perceptionSchema,req.body.commentEnabled,req.body.colors,req.body.timeVariantParams,function(result){
             if(result){
                 res.write(JSON.stringify({response: true }));
             }else{
@@ -158,3 +159,11 @@ exports.getColorSchema = function(req,res){
     });
 
 }
+
+exports.addTimeVariantParam = function(req,res){
+    eventManager.insertTimeVariantParam(req.body.eventID , JSON.parse(req.body.timeVariantParam));
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var result = JSON.stringify({response: true });
+    res.write(result);
+    res.end();
+};

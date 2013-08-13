@@ -5,14 +5,15 @@
 bamConnector=require("./bamConnector.js");
 util=require("./util.js")
 
-exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors){
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors,timeVariantParams){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
-			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled, colors:colors};
+			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled, colors:colors,timeVariantParams:timeVariantParams };
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
     mongoAdapter.createCollection('EventComments_'+eventID);
 	mongoAdapter.createCollection('EventUser_'+eventID);
     mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
+    mongoAdapter.createCollection('EventTimeVariantParams_'+eventID);
 
     //unix timestamp
     var start=(util.parseDateTime(startDate,startTime)).getTime();
@@ -41,6 +42,7 @@ exports.deleteEvent = function(eventID){
     mongoAdapter.dropCollection('EventComments_'+eventID);
     mongoAdapter.dropCollection('EventUser_'+eventID);
     mongoAdapter.dropCollection('EventInstantPerceptions_'+eventID);
+    mongoAdapter.dropCollection('EventTimeVariantParams_'+eventID);
 };
 
 exports.setCommentEnabled = function(eventID,commentEnabled,fn){
@@ -60,9 +62,9 @@ exports.setCommentEnabled = function(eventID,commentEnabled,fn){
 //
 //}
 
-exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, date, startTime, endTime,perceptionSchema,commentEnabled,colors,fn){
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema,commentEnabled,colors,timeVariantParams,fn){
     var newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
-        date:date, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,colors:colors};
+        startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,colors:colors, timeVariantParams:timeVariantParams};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){
              mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);
@@ -92,4 +94,10 @@ exports.getColorSchema = function(eventID,fn){
             fn("Error");
         }
     });
+}
+
+exports.insertTimeVariantParam = function(eventID,timeVariantParam) {
+
+    mongoAdapter.insertDocument("EventTimeVariantParams_"+eventID, timeVariantParam);
+
 }

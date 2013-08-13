@@ -52,7 +52,15 @@ public class SithAPI{
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){
 				JSONObject jsonObject=jsonArray.getJSONObject(i);
-				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"));
+
+				ArrayList<String> timeVariantParams= new ArrayList<String>();
+				String arr[]=jsonObject.getString("timeVariantParams").split(":");
+
+				for(int j=0;j<arr.length;j++){
+					timeVariantParams.add(arr[j]);
+				}
+
+				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams);
 				events.add(event);
 			}
 

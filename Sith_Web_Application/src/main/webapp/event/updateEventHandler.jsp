@@ -17,6 +17,8 @@
     String start=request.getParameter("start");
     String end=request.getParameter("end");
     String colors = request.getParameter("colors");
+    String timeVariantParams = request.getParameter("timeVariantParams");
+    );
 
     String startDate=start.substring(0,10);
     String startTime=start.substring(11,16);
@@ -30,7 +32,7 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng,description,perceptionSchema,commentEnabled,colors);
+            boolean res=eventHandler.updateEvent(oldEventID,eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng,description,perceptionSchema,commentEnabled,colors,timeVariantParams);
             if(res){
                 message="The Event is successfully updated.";
             }else{

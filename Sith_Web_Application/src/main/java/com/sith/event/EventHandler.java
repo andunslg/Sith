@@ -4,9 +4,11 @@ import com.sith.SithAPI;
 import com.sith.perception.Perception;
 import com.sith.util.HTTPUtil;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,21 +16,23 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors, String timeVariantParams){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
 		parms.put("eventAdmin",eventAdmin);
 		parms.put("desc",description);
 		parms.put("location",location);
-        parms.put("latLng",latLng);
+		parms.put("latLng",latLng);
 		parms.put("startDate",startDate);
 		parms.put("startTime",startTime);
 		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 		parms.put("commentEnabled",commentEnabled);
-        parms.put("colors",colors);
+		parms.put("colors",colors);
+		parms.put("timeVariantParams",timeVariantParams);
+
 		String result=null;
 		try{
 			result=httpUtil.doPost(SithAPI.ADD_EVENT,parms);
@@ -45,7 +49,7 @@ public class EventHandler{
 		return false;
 	}
 
-	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location,String latLng, String description, String perceptionSchema, String commentEnabled,String colors){
+	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location,String latLng, String description, String perceptionSchema, String commentEnabled,String colors,String timeVariantParams){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("oldEventID",oldEventID);
 		parms.put("eventID",eventID);
@@ -53,14 +57,15 @@ public class EventHandler{
 		parms.put("eventAdmin",eventAdmin);
 		parms.put("desc",description);
 		parms.put("location",location);
-        parms.put("latLng",latLng);
+		parms.put("latLng",latLng);
 		parms.put("startDate",startDate);
 		parms.put("startTime",startTime);
 		parms.put("endDate",endDate);
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 		parms.put("commentEnabled",commentEnabled);
-        parms.put("colors",colors);
+		parms.put("colors",colors);
+		parms.put("timeVariantParams",timeVariantParams);
 
 		String result=null;
 		try{
@@ -169,7 +174,18 @@ public class EventHandler{
 		try{
 			result=httpUtil.doGet(SithAPI.GET_EVENT_BY_ID+"?eventID="+eventID);
 			JSONObject jsonObject=new JSONObject(result);
-			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"));
+
+			ArrayList<String> timeVariantParams= new ArrayList<String>();
+			try{
+				String arr[]=jsonObject.getString("timeVariantParams").split(":");
+				for(int i=0;i<arr.length;i++){
+					timeVariantParams.add(arr[i]);
+				}
+			}catch(JSONException e){
+			    //Ignoring the error
+			}
+
+			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams);
 			return event;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -199,18 +215,18 @@ public class EventHandler{
 	}
 
 	public Participant getParticipant(String name){
-        Participant participant=null;
+		Participant participant=null;
 
-        String result=null;
-        try{
-            result=httpUtil.doGet(SithAPI.GET_USER_BY_ID+"?userID="+name);
-            JSONObject jsonObject=new JSONObject(result);
-            participant= new Participant(jsonObject.getString("userName"));
-            return participant;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
+		String result=null;
+		try{
+			result=httpUtil.doGet(SithAPI.GET_USER_BY_ID+"?userID="+name);
+			JSONObject jsonObject=new JSONObject(result);
+			participant= new Participant(jsonObject.getString("userName"));
+			return participant;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public ArrayList<Participant> getParticipants(String eventID){

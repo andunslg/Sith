@@ -403,6 +403,27 @@
                             </div>
                         </td>
                     </tr>
+                    <%
+                    String timeVariantParams="";
+                        for(String param:currentEvent.getTimeVariantParams()){
+                            if(timeVariantParams.equals("")){
+                                timeVariantParams=param;
+                            }
+                            else{
+                                timeVariantParams+=":"+param;
+                            }
+                        }
+                    %>
+                    <tr>
+                        <td>
+                            <div>Time Variant Parameters</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="timeVariantParams" id="timeVariantParams" value="<%=timeVariantParams%>" type="text" readonly>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             &nbsp;
@@ -490,6 +511,7 @@
             }
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+
         $("#delete").click(function () {
             var datObj = {};
             datObj['eventID'] = '<%=currentEvent.getEventID()%>';
@@ -525,6 +547,7 @@
 
             });
         });
+
         $("#update").click(function () {
             var eventID = $('input[id=eventID]').val();
             var eventName = $('input[id=eventName]').val();
@@ -532,6 +555,8 @@
             var end = $('input[id=end]').val();
             var location = $('input[id=location]').val();
             var description = $('input[id=description]').val();
+            var timeVariantParams = $('input[id=timeVariantParams]').val();
+
             var c=document.getElementById('commentEnabled');
             var commentEnabled = false;
             if(c.checked){
@@ -579,6 +604,8 @@
                 datObj['perceptionSchema'] = perceptionSchema;
                 datObj['commentEnabled'] = commentEnabled;
                 datObj['colors'] = colors;
+                datObj['timeVariantParams'] = timeVariantParams;
+
 
                 $.ajax({
                     url: 'updateEventHandler.jsp',

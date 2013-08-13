@@ -2,6 +2,8 @@ package com.sith.event;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Event{
 	private String eventID;
 	private String eventName;
@@ -16,7 +18,10 @@ public class Event{
 	private String perceptionSchema;
 	private String commentEnabled;
     private String colors;
-	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location,JSONObject latlng, String perceptionSchema, String commentEnabled, String colors){
+
+	private ArrayList<String> timeVariantParams;
+
+	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location,JSONObject latlng, String perceptionSchema, String commentEnabled, String colors,ArrayList<String> timeVariantParams){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
@@ -31,6 +36,7 @@ public class Event{
 		this.perceptionSchema=perceptionSchema;
 		this.commentEnabled=commentEnabled;
         this.colors = colors;
+		this.timeVariantParams=timeVariantParams;
 	}
 
 	public String getEventName(){
@@ -82,4 +88,12 @@ public class Event{
     public String getColors(){
         return colors;
     }
+
+	public ArrayList<String> getTimeVariantParams(){
+		return timeVariantParams;
+	}
+
+	public void setTimeVariantParams(ArrayList<String> timeVariantParams){
+		this.timeVariantParams=timeVariantParams;
+	}
 }

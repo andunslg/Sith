@@ -311,6 +311,17 @@
                             <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" style="width: 10%">
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            <div>Time Variant Parameters</div>
+                        </td>
+                        <td>
+                            <div>
+                                <input name="timeVariantParams" id="timeVariantParams" value="" type="text">
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             &nbsp;
@@ -387,6 +398,7 @@
             }
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+
         $("#addEvent").click(function () {
             var eventID = $('input[id=eventID]').val();
             var eventName = $('input[id=eventName]').val();
@@ -394,6 +406,7 @@
             var end = $('input[id=end]').val();
             var location = $('input[id=location]').val();
             var description = $('input[id=description]').val();
+            var timeVariantParams = $('input[id=timeVariantParams]').val();
 
             var c=document.getElementById('commentEnabled');
             var commentEnabled = false;
@@ -444,6 +457,7 @@
                 datObj['perceptionSchema'] = perceptionSchema;
                 datObj['commentEnabled'] = commentEnabled;
                 datObj['colors'] = colors;
+                datObj['timeVariantParams'] = timeVariantParams;
 
                 $.ajax({
                     url: 'event/addEventHandler.jsp',

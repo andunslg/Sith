@@ -25,7 +25,7 @@ function sendStreamUpdate(jsonObject) {
 }
 
 function sendEventUpdate(jsonObject,streamPath) {
-    var auth = "Basic " + new Buffer('admin:admin').toString("base64");
+    var auth = "Basic " + new Buffer('admin:apst@sith').toString("base64");
 
     if(!streamPath){
         streamPath='';

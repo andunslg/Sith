@@ -11,7 +11,7 @@ cepConnector = require("../cepConnector.js");
 exports.addEvent = function(req,res){
     //req.body.colors = '#A7FF4F:#3029FF:#FF3F0F';
     eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location,JSON.parse(req.body.latLng), req.body.startDate,
-        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.colors,req.body.timeVariantParams );
+        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.fixedLocation, req.body.colors,req.body.timeVariantParams );
     userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
         if(error){
             console.log(error);
@@ -78,7 +78,7 @@ exports.updateEvent = function(req,res){
     eventManager.updateEvent(req.body.oldEventID,req.body.eventID,req.body.eventName,req.body.eventAdmin,
         req.body.desc, req.body.location, JSON.parse(req.body.latLng), req.body.startDate,
         req.body.endDate, req.body.startTime, req.body.endTime,
-        req.body.perceptionSchema,req.body.commentEnabled,req.body.colors,req.body.timeVariantParams,function(result){
+        req.body.perceptionSchema,req.body.commentEnabled,req.body.fixedLocation,req.body.colors,req.body.timeVariantParams,function(result){
             if(result){
                 res.write(JSON.stringify({response: true }));
             }else{

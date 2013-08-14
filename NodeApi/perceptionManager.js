@@ -7,7 +7,7 @@ bamConnector= require("./bamConnector.js");
 
 exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location) {
     var time= (new Date()).getTime();
-    bamConnector.sendPercept("dskd","kds","happy","dsn",89,56,'0.0.0.0');
+    bamConnector.sendPercept("jnnjn","knjk","jh","dsn",89,56,'0.0.0.0');
 
 	doc = { eventID: eventID, userID: userID, perceptionValue: perceptionVal, timeStamp: time,latLng:latLng,location:location};
 	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);

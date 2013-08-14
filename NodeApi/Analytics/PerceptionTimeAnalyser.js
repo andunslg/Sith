@@ -57,9 +57,10 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
         if(interval == 0){
             interval =10;
         }
-        var result = analyseTimePercep(docs,minimumTime,interval);
+
         if(eventID){
             dataAdapter.getSingleDocument({eventID:eventID},"EventDetails",function(data){
+                var result = analyseTimePercep(docs,minimumTime,interval);
                 var perceptions = data.perceptionSchema.split(":");
                 var result = sortPerceptions(result,perceptions)
                 for(var e in result){
@@ -80,6 +81,7 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
                 fn(result);
             });
         }else{
+            var result = analyseTimePercep(docs,minimumTime,interval);
             for(var e in result){
                 for(var i=0;i< result[e].length;i++){
                     if(!result[e][i]){

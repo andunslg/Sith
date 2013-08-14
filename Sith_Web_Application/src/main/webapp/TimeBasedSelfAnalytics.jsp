@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="">
-
 <%
     if(session.getAttribute("isLogged")!=null){
         if(!(Boolean)session.getAttribute("isLogged")){
@@ -8,7 +7,6 @@
         }
     }
 %>
-
 <head>
     <meta charset="utf-8">
     <title>SITH Dashboard</title>
@@ -18,9 +16,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
-
-
-    <script src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
@@ -32,7 +28,15 @@
     <script src="js/flot-time.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
-
+    <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/js/highCharts/highcharts.js"></script>
+    <script type="text/javascript" src="/js/highCharts/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            countTimeChart('http://localhost:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
+        })
+    </script>
+    <script type="text/javascript" src="/js/charts/countTimeAnalysis.js"></script>
 </head>
 <body>
 
@@ -49,16 +53,16 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
+            <%--<span class="button dropdown">--%>
+            <%--<a href="#">Notifications <span class="pip"></span></a>--%>
+            <%--<ul class="notice">--%>
+            <%--<li>--%>
+            <%--<hgroup>--%>
+            <%--<h1>You have no notifications</h1>--%>
+            <%--</hgroup>--%>
+            <%--</li>--%>
             <%--</ul>--%>
-		<%--</span>--%>
+            <%--</span>--%>
             <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
@@ -95,34 +99,33 @@
         </li>
     </ul>
 </nav>
-
-
-<section class="content" style="margin-top: 10px">
-
+<section class="alert">
+    <div class="green">
+        <%--<span>Current event is <strong><%=currentEvent.getEventName()%></strong>, Click here to <a href="../myEvents.jsp">change</a></span>--%>
+        <%--<span  id="current_perception"  style="margin: auto;float: right;display: none;">Current Perception is <strong></strong></span>--%>
+    </div>
+</section>
+<section class="content">
     <section class="widget">
         <header>
-            <span class="icon">&#128100;</span>
+            <span class="icon">&#128200;</span>
             <hgroup>
-                <h1>Welcome</h1>
+                <h1>Self Statistics</h1>
 
-                <h2>Sith - Crowdsourced perception capturing and analysis platform</h2>
+                <h2>This is how your perceptions changed with the time</h2>
             </hgroup>
+            <aside>
+                <button class="left-btn">&#59229;</button>
+                <button class="right-btn">&#59230;</button>
+            </aside>
         </header>
-        <br>
-        <div align="center">
-            <iframe width="480" height="360" src="http://www.youtube.com/embed/RA1WHjnLJEQ" frameborder="0" allowfullscreen></iframe>
+        <div class="content">
+            <p>Graph Type:</p><select id="perceptions"></select><br>
+            <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
         </div>
-
-        <br>
-        <div align="center">
-            <a href="https://twitter.com/sithplatform" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @sithplatform</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <br>
     </section>
 
+
 </section>
-
-
 </body>
 </html>

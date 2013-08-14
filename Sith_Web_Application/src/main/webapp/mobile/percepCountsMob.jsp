@@ -49,8 +49,8 @@
 <body>
 <div data-role="page">
     <div data-role="content">
-        Chart Type
-        <select id='chartType' data-mini="true">
+        <label for='chartType' class="select">Chart Type:</label>
+        <select name='chartType' id='chartType' data-mini="true">
             <option value="bar">Bar Chart</option>
             <option value="pie">Pie Chart</option>
         </select>

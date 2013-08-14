@@ -33,7 +33,7 @@
     <script type="text/javascript" src="/js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            countTimeChart('http://localhost:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
+            countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
         })
     </script>
     <script type="text/javascript" src="/js/charts/countTimeAnalysis.js"></script>

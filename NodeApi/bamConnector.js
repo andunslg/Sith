@@ -12,7 +12,7 @@ function sendStreamUpdate(jsonObject) {
 
 // the post options
     var optionspost = {
-        host: '127.0.0.1',
+        host: '192.248.8.246',
         port: '9444',
         path: '/datareceiver/1.0.0/streams/',
         method: 'POST',
@@ -25,7 +25,7 @@ function sendStreamUpdate(jsonObject) {
 }
 
 function sendEventUpdate(jsonObject,streamPath) {
-    var auth = "Basic " + new Buffer('admin:admin').toString("base64");
+    var auth = "Basic " + new Buffer('admin:apst@sith').toString("base64");
 
     if(!streamPath){
         streamPath='';
@@ -40,7 +40,7 @@ function sendEventUpdate(jsonObject,streamPath) {
 
 // the post options
     var optionspost = {
-        host: '127.0.0.1',
+        host: '192.248.8.246',
         port: '9444',
         path: '/datareceiver/1.0.0/stream/'+streamPath,
         method: 'POST',

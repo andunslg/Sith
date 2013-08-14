@@ -5,6 +5,16 @@ public class LocationData {
     private String latitude;
     private String perception;
     private int perceptionCount;
+    private String event;
+    private String locationName;
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
 
     public LocationData(String perception, String longitude, String latitude, int perceptionCount) {
         this.perception = perception;
@@ -17,6 +27,17 @@ public class LocationData {
         this.latitude = latitude;
     }
 
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public LocationData(){
+
+    }
     public String getLongitude() {
         return longitude;
     }

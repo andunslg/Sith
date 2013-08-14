@@ -40,6 +40,7 @@ public class SithAPI{
 	public static String DELETE_USER=NODEAPI+"deleteUser";
 
     public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
+    public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;

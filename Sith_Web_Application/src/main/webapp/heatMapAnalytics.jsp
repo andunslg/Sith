@@ -14,11 +14,12 @@
         }
     }
     LocationBasedAnalytics heatMapAnalytics = new LocationBasedAnalytics();
-    ArrayList<LocationData> happyData = heatMapAnalytics.getHappyCount();
-    ArrayList<LocationData> sadData = heatMapAnalytics.getSadCount();
-    ArrayList<LocationData> neutralData = heatMapAnalytics.getNeutralCount();
-    ArrayList<LocationData> horribleData = heatMapAnalytics.getHorribleCount();
-    ArrayList<LocationData> excitedData = heatMapAnalytics.getExcitingCount();
+
+    ArrayList<LocationData> happyData = heatMapAnalytics.getHappyCount("0","0","1000","1000");
+    ArrayList<LocationData> sadData = heatMapAnalytics.getSadCount("0","0","1000","1000");
+    ArrayList<LocationData> neutralData = heatMapAnalytics.getNeutralCount("0","0","1000","1000");
+    ArrayList<LocationData> horribleData = heatMapAnalytics.getHorribleCount("0","0","1000","1000");
+    ArrayList<LocationData> excitedData = heatMapAnalytics.getExcitingCount("0","0","1000","1000");
 
 %>
 
@@ -32,9 +33,6 @@
 
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
-    <%--<link rel="stylesheet" href="css/button_style.css" media="all"/>--%>
-    <%--<link href="http://code.google.com//apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css">--%>
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false&libraries=visualization"></script>
 </head>
 <body>
@@ -103,18 +101,28 @@
             </hgroup>
         </header>
         <div class="content">
+            <div>
+                <select name="options">
+                    <option value="1">Excited</option>
+                    <option value="2" selected="1">Happy</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Sad</option>
+                    <option value="5">Horrible</option>
+                </select>
+                <br>
+                <br>
+            </div>
+
             <div id="panel" style="background-color:transparent;float: right" align='left' >
                 <ul align='left'>
-                    <div style="background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Awesome</div>
-                    <div style="background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Good</div>
-                    <div style="background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>
-                    <div style="background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Bad</div>
+                    <div style="margin:10px;background-color:#F87217;width:70px;height:20px;border:1px solid #000;text-align:center">Excited</div>
+                    <div style="margin:10px;background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Happy</div>
+                    <div style="margin:10px;background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>
+                    <div style="margin:10px;background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Sad</div>
+                    <div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>
                 </ul>
-                <div><strong>Contestant No     : 1</strong></div>
-                <div><strong>Contestant Name : Ajith</strong></div>
             </div>
             <div id="map-canvas"></div>
-
         </div>
     </section>
 </section>
@@ -220,6 +228,73 @@
     horrible_point_array =  new google.maps.MVCArray(horrible_points);
     excited_point_array =  new google.maps.MVCArray(excited_points);
 
+    function drawHappyMap(map){
+
+        happy_map.setMap(map);
+        sad_map.setMap(null);
+        neutral_map.setMap(null);
+        horrible_map.setMap(null);
+        excited_map.setMap(null);
+
+    }
+    function drawSadMap(map){
+
+        sad_map.setMap(map);
+        happy_map.setMap(null);
+        neutral_map.setMap(null);
+        horrible_map.setMap(null);
+        excited_map.setMap(null);
+    }
+
+    function drawNeutralMap(map){
+
+        neutral_map.setMap(map);
+        happy_map.setMap(null);
+        sad_map.setMap(null);
+        horrible_map.setMap(null);
+        excited_map.setMap(null);
+    }
+
+    function drawHorribleMap(map){
+
+        horrible_map.setMap(map);
+        happy_map.setMap(null);
+        sad_map.setMap(null);
+        neutral_map.setMap(null);
+        excited_map.setMap(null);
+    }
+
+    function drawExcitedMap(map){
+
+        excited_map.setMap(map);
+        happy_map.setMap(null);
+        sad_map.setMap(null);
+        horrible_map.setMap(null);
+        neutral_map.setMap(null);
+    }
+    function defineMaps(){
+        happy_map = new google.maps.visualization.HeatmapLayer({
+            data: happy_point_array,
+            gradient:gradient_happy
+        });
+        sad_map = new google.maps.visualization.HeatmapLayer({
+            data: sad_point_array,
+            gradient:gradient_sad
+        });
+        neutral_map = new google.maps.visualization.HeatmapLayer({
+            data: neutral_point_array,
+            gradient:gradient_neutral
+        });
+        horrible_map = new google.maps.visualization.HeatmapLayer({
+            data: horrible_point_array,
+            gradient:gradient_horrible
+        });
+        excited_map = new google.maps.visualization.HeatmapLayer({
+            data: excited_point_array,
+            gradient:gradient_excited
+        });
+
+    }
 
     function initialize() {
         var mapOptions = {
@@ -231,39 +306,25 @@
 
         map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
+        defineMaps();
+        happy_map.setMap(map)
 
-        happy_map = new google.maps.visualization.HeatmapLayer({
-            data: happy_point_array,
-            gradient:gradient_happy
-        });
-
-        sad_map = new google.maps.visualization.HeatmapLayer({
-            data: sad_point_array,
-            gradient:gradient_sad
-        });
-
-        neutral_map = new google.maps.visualization.HeatmapLayer({
-            data: neutral_point_array,
-            gradient:gradient_neutral
-        });
-
-        horrible_map = new google.maps.visualization.HeatmapLayer({
-            data: horrible_point_array,
-            gradient:gradient_horrible
-        });
-
-        excited_map = new google.maps.visualization.HeatmapLayer({
-            data: excited_point_array,
-            gradient:gradient_excited
-        });
-
-        happy_map.setMap(map);
-        sad_map.setMap(map);
-        neutral_map.setMap(map);
-        excited_map.setMap(map);
-        horrible_map.setMap(map);
-
-
+        $( "select" )
+                .change(function () {
+                    $( "select option:selected" ).each(function() {
+                        if($( this ).text() == 'Happy') {
+                            drawHappyMap(map);
+                        }else if($( this ).text() == 'Sad'){
+                            drawSadMap(map)
+                        }else if($( this ).text() == 'Neutral'){
+                            drawNeutralMap(map);
+                        }else if($( this ).text() == 'Horrible'){
+                            drawHorribleMap(map);
+                        }else if($( this ).text() == 'Excited'){
+                            drawExcitedMap(map);
+                        }
+                    });
+                })
     }
 
     function getHappyCount() {
@@ -276,7 +337,6 @@
     function changeGradient() {
 
         heatmap.setOptions({data:none})
-//            heatmap3.setOptions({data:none})
 
     }
 

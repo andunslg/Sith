@@ -17,11 +17,12 @@ public class Event{
     private JSONObject latLang;
 	private String perceptionSchema;
 	private String commentEnabled;
+	private boolean fixedLocation;
     private String colors;
 
 	private ArrayList<String> timeVariantParams;
 
-	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location,JSONObject latlng, String perceptionSchema, String commentEnabled, String colors,ArrayList<String> timeVariantParams){
+	public Event(String eventID, String eventName, String adminID, String description, String startDate, String endDate, String startTime, String endTime, String location,JSONObject latlng, String perceptionSchema, String commentEnabled, String colors,ArrayList<String> timeVariantParams,boolean fixedLocation){
 
 		this.eventID=eventID;
 		this.eventName=eventName;
@@ -37,6 +38,7 @@ public class Event{
 		this.commentEnabled=commentEnabled;
         this.colors = colors;
 		this.timeVariantParams=timeVariantParams;
+		this.fixedLocation=fixedLocation;
 	}
 
 	public String getEventName(){
@@ -95,5 +97,13 @@ public class Event{
 
 	public void setTimeVariantParams(ArrayList<String> timeVariantParams){
 		this.timeVariantParams=timeVariantParams;
+	}
+
+	public boolean isFixedLocation(){
+		return fixedLocation;
+	}
+
+	public void setFixedLocation(boolean fixedLocation){
+		this.fixedLocation=fixedLocation;
 	}
 }

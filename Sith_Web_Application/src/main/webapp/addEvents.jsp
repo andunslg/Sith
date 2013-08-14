@@ -209,6 +209,14 @@
                     </tr>
                     <tr>
                         <td>
+                            <div>Fixed Location &nbsp</div>
+                        </td>
+                        <td >
+                            <input align="left"  name="fixedLocation" id="fixedLocation" type="checkbox" style="width: 10%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             &nbsp;
                         </td>
                     </tr>
@@ -414,6 +422,12 @@
                 commentEnabled=true;
             }
 
+            var d=document.getElementById('fixedLocation');
+            var fixedLocation = false;
+            if(d.checked){
+                fixedLocation=true;
+            }
+
             var perceptionSchema = "";
 
 
@@ -456,6 +470,7 @@
                 datObj['description'] = description;
                 datObj['perceptionSchema'] = perceptionSchema;
                 datObj['commentEnabled'] = commentEnabled;
+                datObj['fixedLocation'] = fixedLocation;
                 datObj['colors'] = colors;
                 datObj['timeVariantParams'] = timeVariantParams;
 

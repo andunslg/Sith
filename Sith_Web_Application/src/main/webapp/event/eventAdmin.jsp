@@ -268,6 +268,27 @@
                     </tr>
                     <tr>
                         <td>
+                            <div>Fixed Location &nbsp;</div>
+                        </td>
+                        <td>
+                            <div>
+                                <%
+                                    if(currentEvent.isFixedLocation()){
+                                %>
+                                <input name="fixedLocation" id="fixedLocation" type="checkbox" checked="true" style="width: 10%">
+                                <%
+                                }
+                                else{
+                                %>
+                                <input name="fixedLocation" id="fixedLocation" type="checkbox" style="width: 10%">
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             &nbsp;
                         </td>
                     </tr>
@@ -571,6 +592,13 @@
             if(c.checked){
                 commentEnabled=true;
             }
+
+            var d=document.getElementById('fixedLocation');
+            var fixedLocation = false;
+            if(d.checked){
+                fixedLocation=true;
+            }
+
             var perceptionSchema = "";
             $("#selectedPerceptionSchema>option").each(function () {
                 if(perceptionSchema!=""){
@@ -612,6 +640,7 @@
                 datObj['description'] = description;
                 datObj['perceptionSchema'] = perceptionSchema;
                 datObj['commentEnabled'] = commentEnabled;
+                datObj['fixedLocation'] = fixedLocation;
                 datObj['colors'] = colors;
                 datObj['timeVariantParams'] = timeVariantParams;
 

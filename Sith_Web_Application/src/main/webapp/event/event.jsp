@@ -27,6 +27,11 @@
             response.sendRedirect("index.jsp");
         }
     }
+
+    String location=currentEvent.getLatLng().toString();
+    if(!currentEvent.isFixedLocation()){
+        //TODO Have to find a way to predicat the client location
+    }
 %>
 
 <head>
@@ -133,6 +138,8 @@
                     }
                 %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
+                <li><a href="selfAnalytics.jsp"></span>Pi Chart Analytics</a></li>
+
             </ul>
         </li>
         <li>

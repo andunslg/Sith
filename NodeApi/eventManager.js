@@ -5,9 +5,9 @@
 bamConnector=require("./bamConnector.js");
 util=require("./util.js")
 
-exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,colors,timeVariantParams){
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,fixedLocation,colors,timeVariantParams){
 	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
-			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled, colors:colors,timeVariantParams:timeVariantParams };
+			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,fixedLocation:fixedLocation, colors:colors,timeVariantParams:timeVariantParams };
 	mongoAdapter.insertDocument('EventDetails',doc);
 	mongoAdapter.createCollection('EventPerceptions_'+eventID);
     mongoAdapter.createCollection('EventComments_'+eventID);
@@ -19,6 +19,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng
     var start=(util.parseDateTime(startDate,startTime)).getTime();
     var end=(util.parseDateTime(endDate,endTime)).getTime();
 
+    //TODO Prabhath : Add  fixedLocation,timeVariantParams to bam send
     bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,'false');
 };
 
@@ -62,9 +63,9 @@ exports.setCommentEnabled = function(eventID,commentEnabled,fn){
 //
 //}
 
-exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema,commentEnabled,colors,timeVariantParams,fn){
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema,commentEnabled,commentEnabled,colors,timeVariantParams,fn){
     var newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
-        startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,colors:colors, timeVariantParams:timeVariantParams};
+        startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,commentEnabled:commentEnabled,colors:colors, timeVariantParams:timeVariantParams};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){
              mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);
@@ -73,6 +74,7 @@ exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, l
              fn(false);
          }
      });
+    //TODO Prabhath : Add bam event update
 }
 exports.getParticipants = function(eventID,fn){
     mongoAdapter.getDocuments({}, 'EventUser_' + eventID, function (docs) {

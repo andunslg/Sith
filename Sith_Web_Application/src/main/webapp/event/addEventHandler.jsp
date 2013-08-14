@@ -12,6 +12,7 @@
     String description=request.getParameter("description");
     String perceptionSchema=request.getParameter("perceptionSchema");
     String commentEnabled=request.getParameter("commentEnabled");
+    String fixedLocation=request.getParameter("fixedLocation");
     String start=request.getParameter("start");
     String end=request.getParameter("end");
     String colors = request.getParameter("colors");
@@ -29,7 +30,7 @@
         if(!eventHandler.isEventAvailable(eventID)){
             message="Event ID is already taken use another one.";
         }else{
-            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng, description,perceptionSchema,commentEnabled,colors,timeVariantParams);
+            boolean res=eventHandler.addEvent(eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng, description,perceptionSchema,commentEnabled,colors,timeVariantParams,fixedLocation);
             if(res){
                 message="The Event is successfully added.";
             }else{

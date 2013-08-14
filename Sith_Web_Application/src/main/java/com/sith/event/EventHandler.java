@@ -16,7 +16,7 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors, String timeVariantParams){
+	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors, String timeVariantParams,String fixedLocation){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
@@ -30,6 +30,7 @@ public class EventHandler{
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 		parms.put("commentEnabled",commentEnabled);
+		parms.put("fixedLocation",fixedLocation);
 		parms.put("colors",colors);
 		parms.put("timeVariantParams",timeVariantParams);
 
@@ -49,7 +50,7 @@ public class EventHandler{
 		return false;
 	}
 
-	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location,String latLng, String description, String perceptionSchema, String commentEnabled,String colors,String timeVariantParams){
+	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location,String latLng, String description, String perceptionSchema, String commentEnabled,String colors,String timeVariantParams, String fixedLocation){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("oldEventID",oldEventID);
 		parms.put("eventID",eventID);
@@ -64,6 +65,7 @@ public class EventHandler{
 		parms.put("endTime",endTime);
 		parms.put("perceptionSchema",perceptionSchema);
 		parms.put("commentEnabled",commentEnabled);
+		parms.put("fixedLocation",fixedLocation);
 		parms.put("colors",colors);
 		parms.put("timeVariantParams",timeVariantParams);
 
@@ -185,7 +187,15 @@ public class EventHandler{
 			    //Ignoring the error
 			}
 
-			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams);
+			boolean fixedLocation=false;
+
+			try{
+				fixedLocation="true".equals(jsonObject.getString("fixedLocation"));
+			}
+			catch(JSONException e){
+
+			}
+			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams,fixedLocation);
 			return event;
 		}catch(Exception e){
 			e.printStackTrace();

@@ -27,6 +27,11 @@
             response.sendRedirect("index.jsp");
         }
     }
+
+    String location=currentEvent.getLatLng().toString();
+    if(!currentEvent.isFixedLocation()){
+        //TODO Have to find a way to predicat the client location
+    }
 %>
 
 <head>

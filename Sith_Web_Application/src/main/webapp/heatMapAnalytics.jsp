@@ -104,7 +104,7 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Heat Map Analytics</h1>
+                <h1>Location Based Analytics</h1>
             </hgroup>
         </header>
         <div class="content">
@@ -120,15 +120,15 @@
                 <br>
             </div>
 
-            <div id="panel" style="background-color:transparent;float: right" align='left' >
-                <ul align='left'>
-                    <div style="margin:10px;background-color:#F87217;width:70px;height:20px;border:1px solid #000;text-align:center">Excited</div>
-                    <div style="margin:10px;background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Happy</div>
-                    <div style="margin:10px;background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>
-                    <div style="margin:10px;background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Sad</div>
-                    <div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>
-                </ul>
-            </div>
+            <%--<div id="panel" style="background-color:transparent;float: right" align='left' >--%>
+                <%--<ul align='left'>--%>
+                    <%--<div style="margin:10px;background-color:#F87217;width:70px;height:20px;border:1px solid #000;text-align:center">Excited</div>--%>
+                    <%--<div style="margin:10px;background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Happy</div>--%>
+                    <%--<div style="margin:10px;background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>--%>
+                    <%--<div style="margin:10px;background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Sad</div>--%>
+                    <%--<div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
             <div id="map-canvas"></div>
         </div>
     </section>

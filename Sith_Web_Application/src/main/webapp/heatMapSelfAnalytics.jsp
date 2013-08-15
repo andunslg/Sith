@@ -81,17 +81,10 @@
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>How World Feels</a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
                 <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
-            <ul class="submenu">
-                <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
-                <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>
             </ul>
         </li>
     </ul>
@@ -104,7 +97,7 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Location Based Analytics</h1>
+                <h1>Heat Map Analytics</h1>
             </hgroup>
         </header>
         <div class="content">
@@ -120,15 +113,15 @@
                 <br>
             </div>
 
-            <%--<div id="panel" style="background-color:transparent;float: right" align='left' >--%>
-                <%--<ul align='left'>--%>
-                    <%--<div style="margin:10px;background-color:#F87217;width:70px;height:20px;border:1px solid #000;text-align:center">Excited</div>--%>
-                    <%--<div style="margin:10px;background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Happy</div>--%>
-                    <%--<div style="margin:10px;background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>--%>
-                    <%--<div style="margin:10px;background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Sad</div>--%>
-                    <%--<div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>--%>
-                <%--</ul>--%>
-            <%--</div>--%>
+            <div id="panel" style="background-color:transparent;float: right" align='left' >
+                <ul align='left'>
+                    <div style="margin:10px;background-color:#F87217;width:70px;height:20px;border:1px solid #000;text-align:center">Excited</div>
+                    <div style="margin:10px;background-color:#46a546;width:70px;height:20px;border:1px solid #000;text-align:center">Happy</div>
+                    <div style="margin:10px;background-color:#f09a2b;width:70px;height:20px;border:1px solid #000;text-align:center">Neutral</div>
+                    <div style="margin:10px;background-color:#111680;width:70px;height:20px;border:1px solid #000;text-align:center">Sad</div>
+                    <div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>
+                </ul>
+            </div>
             <div id="map-canvas"></div>
         </div>
     </section>

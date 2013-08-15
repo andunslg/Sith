@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class LocationBasedAnalytics {
 
@@ -40,113 +39,66 @@ public class LocationBasedAnalytics {
         return null;
     }
 
+    public ArrayList<LocationData> getPieChartPerceptionCount(String perception, String latmin,String longmin,String latmax, String longmax){
+        ArrayList<LocationData> locationData =null;
+        String result=null;
+        try{
+            result=httpUtil.doGet(SithAPI.GET_ALL_CURRENT_EVENT_MAP_DATA+"?emotion="+perception);
+            JSONArray jsonArray=new JSONArray(result);
+            locationData =new ArrayList<LocationData>();
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                LocationData perceptionOnLoc = new LocationData();
+                perceptionOnLoc.setEvent(jsonObject.getString("subid"));
+                perceptionOnLoc.setLatitude(jsonObject.getString("lat"));
+                perceptionOnLoc.setLongitude(jsonObject.getString("lo"));
+                perceptionOnLoc.setPerceptionCount(Integer.parseInt(jsonObject.getString("count")));
+                perceptionOnLoc.setPerception(perception);
+                perceptionOnLoc.setPerception(jsonObject.getString("location"));
+            }
+            return locationData;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<LocationData> getHappyCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("happy","0",latmin,longmin,latmax,longmax);
-
     }
-
-    public ArrayList<LocationData> getPieChartHappy() {
-        ArrayList<LocationData> t= new ArrayList<LocationData>();
-
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(6.8111 + (7.1234 - 6.8111) * r.nextDouble());
-            String longitude = String.valueOf(79.33 + (80.11 - 79.33) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            LocationData p = new LocationData(latitude,longitude);
-            p.setPerceptionCount(rm);
-            t.add(p);
-        }
-        return t;
-
-//        return getPerceptionCount("happy","1");
-    }
-
     public ArrayList<LocationData> getSadCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("sad","0",latmin,longmin,latmax,longmax);
     }
-
-    public ArrayList<LocationData> getPieChartSad() {
-        ArrayList<LocationData> t= new ArrayList<LocationData>();
-
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(6.9111 + (7.3 - 6.9111) * r.nextDouble());
-            String longitude = String.valueOf(79.4 + (81.11 - 79.4) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            LocationData p = new LocationData(latitude,longitude);
-            p.setPerceptionCount(rm);
-            t.add(p);
-
-        }
-        return t;
-//        return getPerceptionCount("sad","1");
-    }
-
     public ArrayList<LocationData> getNeutralCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("neutral","0",latmin,longmin,latmax,longmax);
     }
-
-    public ArrayList<LocationData> getPieChartNeutral() {
-        ArrayList<LocationData> t= new ArrayList<LocationData>();
-
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(7.1 + (7.5 - 7.1) * r.nextDouble());
-            String longitude = String.valueOf(80.7 + (82.7 - 79.33) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            LocationData p = new LocationData(latitude,longitude);
-            p.setPerceptionCount(rm);
-            t.add(p);
-
-        }
-        return t;
-//        return getPerceptionCount("neutral","1");
-    }
-
     public ArrayList<LocationData> getHorribleCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("horrible","0",latmin,longmin,latmax,longmax);
     }
-    public ArrayList<LocationData> getPieChartHorrible() {
-        ArrayList<LocationData> t= new ArrayList<LocationData>();
-
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(6.8111 + (7.1234 - 6.8111) * r.nextDouble());
-            String longitude = String.valueOf(79.33 + (80.11 - 79.33) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            LocationData p = new LocationData(latitude,longitude);
-            p.setPerceptionCount(rm);
-            t.add(p);
-        }
-        return t;
-//        return getPerceptionCount("horrible","1");
-    }
-
     public ArrayList<LocationData> getExcitingCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("exciting","0",latmin,longmin,latmax,longmax);
     }
-    public ArrayList<LocationData> getPieChartExciting() {
-        ArrayList<LocationData> t= new ArrayList<LocationData>();
 
-        for(int i=0;i<10;i++){
-            Random r = new Random();
-            String latitude = String.valueOf(6.9 + (7.1234 - 6.9) * r.nextDouble());
-            String longitude = String.valueOf(78.5 + (81.11 - 79.1) * r.nextDouble());
-            int rm = Math.abs(r.nextInt(100));
-            LocationData p = new LocationData(latitude,longitude);
-            p.setPerceptionCount(rm);
-            t.add(p);
-
-        }
-        return t;
-//        return getPerceptionCount("exciting","1");
+    public ArrayList<LocationData> getPieChartHappyCount(String latmin,String longmin,String latmax, String longmax) {
+        return getPieChartPerceptionCount("happy",latmin,longmin,latmax,longmax);
+    }
+    public ArrayList<LocationData> getPieChartSadCount(String latmin,String longmin,String latmax, String longmax) {
+        return getPieChartPerceptionCount("sad",latmin,longmin,latmax,longmax);
+    }
+    public ArrayList<LocationData> getPieChartNeutralCount(String latmin,String longmin,String latmax, String longmax) {
+        return getPieChartPerceptionCount("neutral",latmin,longmin,latmax,longmax);
+    }
+    public ArrayList<LocationData> getPieChartHorribleCount(String latmin,String longmin,String latmax, String longmax) {
+        return getPieChartPerceptionCount("horrible",latmin,longmin,latmax,longmax);
+    }
+    public ArrayList<LocationData> getPieChartExcitingCount(String latmin,String longmin,String latmax, String longmax) {
+        return getPieChartPerceptionCount("exciting",latmin,longmin,latmax,longmax);
     }
 
-    public HashMap<String,PerceptionsOnLocation>  getPerceptionsOnLocation(){
+    public HashMap<String,PerceptionsOnLocation>  getPerceptionsOnLocation(String latmin,String longmin,String latmax, String longmax){
         HashMap<String,PerceptionsOnLocation> locationListMap = new HashMap<String, PerceptionsOnLocation>();
-        for(LocationData p:getPieChartHappy()){
-            String key = p.getLongitude()+"/"+p.getLatitude();
+        for(LocationData p:getPieChartHappyCount(latmin,longmin,latmax,longmax)){
+            String key = p.getEvent();
 
             if(locationListMap.containsKey(key)){
                 int newCount = 0;
@@ -162,8 +114,8 @@ public class LocationBasedAnalytics {
                 locationListMap.put(key,newData);
             }
         }
-        for(LocationData p:getPieChartSad()){
-            String key = p.getLongitude()+"/"+p.getLatitude();
+        for(LocationData p:getPieChartSadCount(latmin,longmin,latmax,longmax)){
+            String key = p.getEvent();
 
             if(locationListMap.containsKey(key)){
                 int newCount = 0;
@@ -177,8 +129,8 @@ public class LocationBasedAnalytics {
                 locationListMap.put(key,newData);
             }
         }
-        for(LocationData p:getPieChartHorrible()){
-            String key = p.getLongitude()+"/"+p.getLatitude();
+        for(LocationData p:getPieChartHorribleCount(latmin,longmin,latmax,longmax)){
+            String key = p.getEvent();
 
             if(locationListMap.containsKey(key)){
                 int newCount = 0;
@@ -192,8 +144,8 @@ public class LocationBasedAnalytics {
                 locationListMap.put(key,newData);
             }
         }
-        for(LocationData p:getPieChartExciting()){
-            String key = p.getLongitude()+"/"+p.getLatitude();
+        for(LocationData p:getPieChartExcitingCount(latmin,longmin,latmax,longmax)){
+            String key = p.getEvent();
 
             if(locationListMap.containsKey(key)){
                 int newCount = 0;
@@ -207,8 +159,8 @@ public class LocationBasedAnalytics {
                 locationListMap.put(key,newData);
             }
         }
-        for(LocationData p:getPieChartNeutral()){
-            String key = p.getLongitude()+"/"+p.getLatitude();
+        for(LocationData p:getPieChartNeutralCount(latmin,longmin,latmax,longmax)){
+            String key = p.getEvent();
 
             if(locationListMap.containsKey(key)){
                 int newCount = 0;

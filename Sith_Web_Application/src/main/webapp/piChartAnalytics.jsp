@@ -14,7 +14,7 @@
         }
     }
     LocationBasedAnalytics pieChartAnalytics = new LocationBasedAnalytics();
-    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation();
+    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("0","1000","0","1000");
     int length = pieChartData.size();
 
 %>
@@ -29,8 +29,6 @@
 
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
-    <%--<link href="http://code.google.com//apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css">--%>
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false&.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?.js"></script>
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -91,7 +89,7 @@
         <li>
             <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
             <ul class="submenu">
-                <li><a href="heatMapAnalytics.jsp"></span>Location Based</a></li>
+                <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>
             </ul>
         </li>

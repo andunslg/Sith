@@ -198,7 +198,7 @@ public class EventHandler{
 			event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams,fixedLocation);
 			return event;
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}

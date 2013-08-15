@@ -112,8 +112,8 @@ exports.searchEventListByName = function(req,res){
 
 exports.publishEventPerception = function(req,res){
     var loc={};
-    loc.lat=req.body.lat;
-    loc.lng=req.body.lng;
+    loc.lat=parseFloat(req.body.lat);
+    loc.lng=parseFloat(req.body.lng);
     percepManager.insertPerception(req.body.userID , req.body.eventID , req.body.perceptionValue,loc,req.body.location);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });

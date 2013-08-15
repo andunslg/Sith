@@ -34,13 +34,13 @@ public class SithAPI{
 
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
 
-    public static String GET_USER_BY_ID=NODEAPI+"getUserById";
-    public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
+	public static String GET_USER_BY_ID=NODEAPI+"getUserById";
+	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
 	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
 	public static String DELETE_USER=NODEAPI+"deleteUser";
 
-    public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
-    public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
+	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
+	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;
@@ -51,18 +51,23 @@ public class SithAPI{
 		String result=null;
 		try{
 			result=httpUtil.doGet(GET_EVENT_LIST);
+
 			JSONArray jsonArray=new JSONArray(result);
+
 			events=new ArrayList<Event>();
 			for(int i=0;i<jsonArray.length();i++){
 				JSONObject jsonObject=jsonArray.getJSONObject(i);
-
 				ArrayList<String> timeVariantParams= new ArrayList<String>();
-				String arr[]=jsonObject.getString("timeVariantParams").split(":");
+				try{
+					String arr[]=jsonObject.getString("timeVariantParams").split(":");
 
-				for(int j=0;j<arr.length;j++){
-					timeVariantParams.add(arr[j]);
+					for(int j=0;j<arr.length;j++){
+						timeVariantParams.add(arr[j]);
+					}
 				}
+				catch(JSONException e){
 
+				}
 				boolean fixedLocation=false;
 
 				try{
@@ -71,8 +76,13 @@ public class SithAPI{
 				catch(JSONException e){
 
 				}
-				Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams,fixedLocation);
-				events.add(event);
+				try{
+					Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),jsonObject.getJSONObject("latLng"),jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams,fixedLocation);
+					events.add(event);
+				}	catch(JSONException e){
+					Event event= new Event(jsonObject.getString("eventID"),jsonObject.getString("eventName"),jsonObject.getString("eventAdmin"),jsonObject.getString("description"),jsonObject.getString("startDate"),jsonObject.getString("endDate"),jsonObject.getString("startTime"),jsonObject.getString("endTime"),jsonObject.getString("location"),null,jsonObject.getString("perceptionSchema"),jsonObject.getString("commentEnabled"),jsonObject.getString("colors"),timeVariantParams,fixedLocation);
+					events.add(event);
+				}
 			}
 
 		}catch(Exception e){

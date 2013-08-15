@@ -149,7 +149,7 @@ exports.getTimeAnalysis = function(req,res){
 
 //get self analytics of a user for all the events he participated
 exports.getSelfAnalytics= function(req,res){
-    analyser.getSelfTimeAnalysis(req.query.userID,null,function(result){
+    analyser.getSelfTimeAnalysis(req.query.userID,req.query.eventID,function(result){
         var dataString = JSON.stringify(result)
         res.writeHead(200, {
             'Content-Type' : 'application/json',

@@ -516,8 +516,8 @@
                 geocoder.geocode({'latLng': e.latLng}, function(results, status) {
                     if(status == google.maps.GeocoderStatus.OK) {
                         $("#Maplocation").html("<p>"+ e.latLng+"</p>");
-                        latLng.lat = e.latLng.jb;
-                        latLng.lng = e.latLng.kb;
+                        latLng.lat = e.latLng.lat();
+                        latLng.lng = e.latLng.lng();
                         $("#location").val(results[0]['formatted_address']);
                     }else{
                         $("#Maplocation").html("<p>No Address Found!</p>");

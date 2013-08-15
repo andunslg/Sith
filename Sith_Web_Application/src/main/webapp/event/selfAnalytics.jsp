@@ -34,7 +34,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-                countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=participant.getUserID()%>');
+                countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=participant.getUserID()%>&eventID=<%=currentEvent.getEventID()%>');
         })
     </script>
     <script type="text/javascript" src="../js/charts/countTimeAnalysis.js"></script>

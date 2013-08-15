@@ -21,6 +21,8 @@
     ArrayList<LocationData> horribleData = heatMapAnalytics.getHorribleCount("0","0","1000","1000");
     ArrayList<LocationData> excitedData = heatMapAnalytics.getExcitingCount("0","0","1000","1000");
 
+    heatMapAnalytics.getSelfAnalytics("sach","Happy");
+
 %>
 
 <head>

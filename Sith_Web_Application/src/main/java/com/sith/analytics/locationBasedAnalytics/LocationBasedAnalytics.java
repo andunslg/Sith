@@ -43,7 +43,8 @@ public class LocationBasedAnalytics {
         ArrayList<LocationData> locationData =null;
         String result=null;
         try{
-            result=httpUtil.doGet(SithAPI.GET_ALL_CURRENT_EVENT_MAP_DATA+"?emotion="+perception);
+            result=httpUtil.doGet(SithAPI.GET_ALL_CURRENT_EVENT_MAP_DATA+"?emotion="+perception+"&timelevel=0"
+                    +"&latmin="+latmin+"&lngmin="+longmin+"&latmax="+latmax+"&lngmx="+longmax);
             JSONArray jsonArray=new JSONArray(result);
             locationData =new ArrayList<LocationData>();
             for(int i=0;i<jsonArray.length();i++){
@@ -55,6 +56,28 @@ public class LocationBasedAnalytics {
                 perceptionOnLoc.setPerceptionCount(Integer.parseInt(jsonObject.getString("count")));
                 perceptionOnLoc.setPerception(perception);
                 perceptionOnLoc.setPerception(jsonObject.getString("location"));
+                locationData.add(perceptionOnLoc);
+
+            }
+            return locationData;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<LocationData> getSelfAnalytics(String userID,String perception){
+        ArrayList<LocationData> locationData =null;
+        String result=null;
+        try{
+            result=httpUtil.doGet(SithAPI.GET_SELF_MAP+"?userID="+userID+"?emotion="+perception);
+            JSONArray jsonArray=new JSONArray(result);
+            locationData =new ArrayList<LocationData>();
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                LocationData perceptionOnLoc = new LocationData();
+                perceptionOnLoc.setLatitude(jsonObject.getString("lat"));
+                perceptionOnLoc.setLongitude(jsonObject.getString("lo"));
+                perceptionOnLoc.setPerceptionCount(Integer.parseInt(jsonObject.getString("count")));
             }
             return locationData;
         }catch(Exception e){
@@ -111,6 +134,8 @@ public class LocationBasedAnalytics {
                 newData.setHappyCount(p.getPerceptionCount());
                 newData.setLatitude(p.getLatitude());
                 newData.setLongitude(p.getLongitude());
+                newData.setEventName(p.getEvent());
+                newData.setEventLocationName(p.getLocationName());
                 locationListMap.put(key,newData);
             }
         }
@@ -126,6 +151,8 @@ public class LocationBasedAnalytics {
             }else {
                 PerceptionsOnLocation newData = new PerceptionsOnLocation();
                 newData.setSadCount(p.getPerceptionCount());
+                newData.setEventName(p.getEvent());
+                newData.setEventLocationName(p.getLocationName());
                 locationListMap.put(key,newData);
             }
         }
@@ -141,6 +168,8 @@ public class LocationBasedAnalytics {
             }else {
                 PerceptionsOnLocation newData = new PerceptionsOnLocation();
                 newData.setHorribleCount(p.getPerceptionCount());
+                newData.setEventName(p.getEvent());
+                newData.setEventLocationName(p.getLocationName());
                 locationListMap.put(key,newData);
             }
         }
@@ -152,10 +181,13 @@ public class LocationBasedAnalytics {
                 PerceptionsOnLocation existingData = locationListMap.get(key);
                 newCount = existingData.getExcitedCount()+ p.getPerceptionCount();
                 existingData.setExcitedCount(newCount);
+
                 locationListMap.put(key, existingData);
             }else {
                 PerceptionsOnLocation newData = new PerceptionsOnLocation();
                 newData.setExcitedCount(p.getPerceptionCount());
+                newData.setEventName(p.getEvent());
+                newData.setEventLocationName(p.getLocationName());
                 locationListMap.put(key,newData);
             }
         }
@@ -171,6 +203,8 @@ public class LocationBasedAnalytics {
             }else {
                 PerceptionsOnLocation newData = new PerceptionsOnLocation();
                 newData.setNeutralCount(p.getPerceptionCount());
+                newData.setEventName(p.getEvent());
+                newData.setEventLocationName(p.getLocationName());
                 locationListMap.put(key,newData);
             }
         }

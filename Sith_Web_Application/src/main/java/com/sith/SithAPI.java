@@ -41,6 +41,7 @@ public class SithAPI{
 
 	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
+    public static String GET_SELF_MAP=NODEAPI+"getSelfMap";
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;

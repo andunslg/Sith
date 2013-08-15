@@ -8,6 +8,24 @@ public class PerceptionsOnLocation {
     private int sadCount;
     private int horribleCount;
     private int excitedCount;
+    private String eventName;
+    private String eventLocationName;
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventLocationName() {
+        return eventLocationName;
+    }
+
+    public void setEventLocationName(String eventLocationName) {
+        this.eventLocationName = eventLocationName;
+    }
 
     public String getLatitude() {
         return latitude;

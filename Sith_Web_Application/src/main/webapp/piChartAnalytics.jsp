@@ -14,7 +14,7 @@
         }
     }
     LocationBasedAnalytics pieChartAnalytics = new LocationBasedAnalytics();
-    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("0","1000","0","1000");
+    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("0","0","1000","1000");
     int length = pieChartData.size();
 
 %>
@@ -201,15 +201,15 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
-    function drawPieChartsOnMap(lat1,lat2,long1,long2){
+    function drawPieChartsOnMap(){
 
         <%
         for(String key:pieChartData.keySet()){
         PerceptionsOnLocation p = pieChartData.get(key);
-        String[] locationData = key.split("/");
+
         %>
-        if(lat1<=<%=locationData[0]%> && lat2>=<%=locationData[0]%> && long1<=<%=locationData[1]%> && long2>=<%=locationData[1]%>){
-        var pie_chart_latlng = new google.maps.LatLng(<%=locationData[0]%>,<%=locationData[1]%>)
+
+        var pie_chart_latlng = new google.maps.LatLng(<%=p.getLatitude()%>,<%=p.getLongitude()%>)
 
         var data = google.visualization.arrayToDataTable([
             [ 'Perception', '%' ],
@@ -219,7 +219,6 @@
             [ 'Sad',<%=p.getSadCount()%>],
             [ 'Horrible',<%=p.getHappyCount()%>]
         ]);
-
         var options = {
 
             fontSize: 8,
@@ -241,20 +240,19 @@
                 }
             }
         });
-
-        }
         <%
         }
         %>
     }
     function initialize() {
-        google.maps.event.addListener(map, 'bounds_changed', function() {
-            var bounds = map.getBounds();
-            var ne = bounds.getNorthEast(); // LatLng of the north-east corner
-            var sw = bounds.getSouthWest(); // LatLng of the south-west corder
-
-            drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
-        });
+        drawPieChartsOnMap();
+//        google.maps.event.addListener(map, 'bounds_changed', function() {
+//            var bounds = map.getBounds();
+//            var ne = bounds.getNorthEast(); // LatLng of the north-east corner
+//            var sw = bounds.getSouthWest(); // LatLng of the south-west corder
+//
+//            drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
+//        });
     };
     google.maps.event.addDomListener(window, 'load', initialize);
 

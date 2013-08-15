@@ -46,7 +46,7 @@ exports.getAllCurrentEventMap=function(emotion,latmin,lngmin,latmax,lngmx, fn){
     var dbName='test';
     var tableName=emotion+'_table';
 
-    var query='select * from '+tableName+'where la<='+latmax+' and la>='+latmin+' and lo>='+lngmin+' and lo<='+lngmx;
+    var query='select * from '+tableName+' where lat<='+latmax+' and lat>='+latmin+' and longi>='+lngmin+' and longi<='+lngmx;
 
     mySQLConnector.getQueryResults("test",query,function(rows){
 

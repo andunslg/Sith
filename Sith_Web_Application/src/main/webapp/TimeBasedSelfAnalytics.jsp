@@ -28,11 +28,11 @@
     <script src="js/flot-time.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="/js/highCharts/highcharts.js"></script>
-    <script type="text/javascript" src="/js/highCharts/modules/exporting.js"></script>
+    <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="js/highCharts/highcharts.js"></script>
+    <script type="text/javascript" src="js/highCharts/modules/exporting.js"></script>
 
-    <script type="text/javascript" src="/js/charts/countTimeAnalysis.js"></script>
+    <script type="text/javascript" src="js/charts/countTimeAnalysis.js"></script>
 </head>
 <body>
 <script type="text/javascript">

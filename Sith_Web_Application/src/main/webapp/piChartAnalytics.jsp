@@ -14,9 +14,9 @@
         }
     }
     LocationBasedAnalytics pieChartAnalytics = new LocationBasedAnalytics();
-    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("0","0","1000","1000");
-    int length = pieChartData.size();
 
+    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("6.608445","79.653625","7.446433","80.738525");
+    int length = pieChartData.size();
 %>
 
 <head>
@@ -190,11 +190,11 @@
     };
 
     var markers = new Array();
-    var latLng = new google.maps.LatLng(6.999, 80.101749)
+    var latLng = new google.maps.LatLng(6.656, 79.942017)
 
     var mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 

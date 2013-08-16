@@ -137,7 +137,6 @@
                     }
                 %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
-                <li><a href="selfAnalytics.jsp"></span>Pi Chart Analytics</a></li>
 
             </ul>
         </li>

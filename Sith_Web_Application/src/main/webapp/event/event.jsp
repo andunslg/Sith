@@ -33,7 +33,6 @@
         //TODO Have to find a way to predicat the client location
     }
 %>
-
 <head>
     <meta charset="utf-8">
     <title>SITH Dashboard</title>
@@ -69,7 +68,7 @@
         function postToAPI(eventID, userID, perceptionValue) {
             $.ajax({
                 url: 'http://192.248.8.246:3000/publishEventPerception',
-                data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue+'&latLng='+'<%=currentEvent.getLatLng().toString()%>'+'&location='+'<%=currentEvent.getLocation()%>',
+                data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue+'&lat='+'<%=currentEvent.getLatLng().getString("lat")%>'+'&lng='+'<%=currentEvent.getLatLng().getString("lng")%>'+'&location='+'<%=currentEvent.getLocation()%>',
                 type: 'POST',
                 success: function (data) {
                     console.log('Success: ')

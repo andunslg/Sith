@@ -31,15 +31,13 @@
     <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="/js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="/js/highCharts/modules/exporting.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
-        })
-    </script>
+
     <script type="text/javascript" src="/js/charts/countTimeAnalysis.js"></script>
 </head>
 <body>
-
+<script type="text/javascript">
+        countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
+</script>
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
@@ -84,14 +82,14 @@
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>How World Feels</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
                 <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
             </ul>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>How I Feel</a>
+            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Location Based</a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>

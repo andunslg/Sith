@@ -115,81 +115,148 @@
 </section>
 
 <script>
-    google.load( 'visualization', '1', { packages:['corechart'] });
-
-    function drawChart(marker, data) {
+google.load( 'visualization', '1', { packages:['corechart'] });
 
 
-        var options = {'title':'Perception Analysis ',
-            'width':400,
-            'height':150,
-            slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}};
+ChartMarker.prototype = new google.maps.OverlayView;
+ChartMarker.prototype.onAdd = function() {
+    $( this.getPanes().overlayMouseTarget ).append( this.$div );
+};
+ChartMarker.prototype.onRemove = function() {
+    this.$div.remove();
+};
 
-        var node        = document.createElement('div'),
-                infoWindow  = new google.maps.InfoWindow(),
-                chart       = new google.visualization.PieChart(node);
+ChartMarker.prototype.draw = function() {
+    var marker = this;
+    var projection = this.getProjection();
+    var position = projection.fromLatLngToDivPixel( this.get('position') );
 
-        chart.draw(data, options);
-        infoWindow.setContent(node);
-        infoWindow.open(marker.getMap(),marker);
+    this.$div.css({
+        left: position.x,
+        top: position.y,
+        display: 'block'
+    })
+
+    this.$inner
+            .html( '<img src="' + this.get('image') + '"/>' )
+            .click( function( event ) {
+                var events = marker.get('events');
+                events && events.click( event );
+            });
+
+    this.chart = new google.visualization.PieChart( this.$inner[0] );
+    this.chart.draw( this.get('chartData'), this.get('chartOptions') );
+};
+
+
+function drawChart(marker, data, event, location) {
+
+
+    var options = {'title':'Event : '+event+'  Location : '+location,
+        'width':400,
+        'height':150,
+        slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}};
+
+    var node        = document.createElement('div'),
+            infoWindow  = new google.maps.InfoWindow(),
+            chart       = new google.visualization.PieChart(node);
+
+    chart.draw(data, options);
+    infoWindow.setContent(node);
+    infoWindow.open(marker.getMap(),marker);
+}
+
+function ChartMarker( options ) {
+    this.setValues( options );
+
+    this.$inner = $('<div>').css({
+        position: 'relative',
+        left: '-50%', top: '-50%',
+        width: options.width,
+        height: options.height,
+        fontSize: '1px',
+        lineHeight: '1px',
+        padding: '2px',
+        backgroundColor: 'transparent',
+        cursor: 'default'
+    });
+
+    this.$div = $('<div>')
+            .append( this.$inner )
+            .css({
+                position: 'absolute',
+                display: 'none'
+            });
+};
+
+
+var master_perception = new Array("happy","excited","neutral","sad","horrible");
+/**
+ *
+ * @param emotion
+ * @param timelevel
+ * @param latmin  minimum latitude
+ * @param lngmin  mimimum longitude
+ * @param latmax
+ * @param lngmx
+ * @return {*}
+ *      the response from the 'getAllCurrentEventMapData'
+ */
+function getFromAPI(emotion, timelevel, latmin,lngmin,latmax,lngmx) {
+
+
+    return JSON.parse($.ajax({
+        url: 'http://192.248.8.246:3000/getAllCurrentEventMapData',
+        dataType:'json',
+        data: 'emotion=' + emotion + '&timelevel=' + timelevel + '&latmin=' + latmin+'&lngmin='+lngmin+"&latmax="+latmax+"&lngmx="+lngmx,
+        type: 'GET',
+        async:false,
+        success: function (result) {
+            return result;
+
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+            return null;
+        }
+    }).responseText);
+
+}
+
+var map = new Object();
+function drawPieChartsOnMap(){
+
+    for( var i=0;i<master_perception.length;i++){
+        var perception_on_event= getFromAPI(master_perception[i],"0","0","0","1000","1000");
+        var value = master_perception[i];
+        if(perception_on_event != null){
+
+            for(var j=0;j<perception_on_event.length;j++){
+                var key = perception_on_event[j].subid;
+                if(map[key] != null){
+                    var event = map[key];
+                    event[value] = perception_on_event[j].count;
+                    map[key] = event;
+                }
+                else{
+                    var new_event = {
+                        event_name: perception_on_event[j].subid,
+                        lat: perception_on_event[j].lat,
+                        lo: perception_on_event[j].lo,
+                        location: perception_on_event[j].location
+                    };
+                    new_event[value] = perception_on_event[j].count;
+                    map[perception_on_event[j].subid]= new_event;
+                }
+            }
+        }
+
     }
+    return map;
+}
 
-    function ChartMarker( options ) {
-        this.setValues( options );
+function initialize() {
 
-        this.$inner = $('<div>').css({
-            position: 'relative',
-            left: '-50%', top: '-50%',
-            width: options.width,
-            height: options.height,
-            fontSize: '1px',
-            lineHeight: '1px',
-            padding: '2px',
-            backgroundColor: 'transparent',
-            cursor: 'default'
-        });
-
-        this.$div = $('<div>')
-                .append( this.$inner )
-                .css({
-                    position: 'absolute',
-                    display: 'none'
-                });
-    };
-
-    ChartMarker.prototype = new google.maps.OverlayView;
-
-    ChartMarker.prototype.onAdd = function() {
-        $( this.getPanes().overlayMouseTarget ).append( this.$div );
-    };
-
-    ChartMarker.prototype.onRemove = function() {
-        this.$div.remove();
-    };
-
-    ChartMarker.prototype.draw = function() {
-        var marker = this;
-        var projection = this.getProjection();
-        var position = projection.fromLatLngToDivPixel( this.get('position') );
-
-        this.$div.css({
-            left: position.x,
-            top: position.y,
-            display: 'block'
-        })
-
-        this.$inner
-                .html( '<img src="' + this.get('image') + '"/>' )
-                .click( function( event ) {
-                    var events = marker.get('events');
-                    events && events.click( event );
-                });
-
-        this.chart = new google.visualization.PieChart( this.$inner[0] );
-        this.chart.draw( this.get('chartData'), this.get('chartOptions') );
-    };
-
-    var markers = new Array();
     var latLng = new google.maps.LatLng(6.656, 79.942017)
 
     var mapOptions = {
@@ -201,23 +268,19 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
-    function drawPieChartsOnMap(){
+    var mp = drawPieChartsOnMap();
 
-        <%
-        for(String key:pieChartData.keySet()){
-        PerceptionsOnLocation p = pieChartData.get(key);
-
-        %>
-
-        var pie_chart_latlng = new google.maps.LatLng(<%=p.getLatitude()%>,<%=p.getLongitude()%>)
+    for (var key in mp) {
+        var obj = mp[key];
+        var pie_chart_latlng = new google.maps.LatLng(obj.lat, obj.lo)
 
         var data = google.visualization.arrayToDataTable([
             [ 'Perception', '%' ],
-            [ 'Excited',<%=p.getExcitedCount()%>],
-            [ 'Happy',<%=p.getHappyCount()%>],
-            [ 'Neutral',<%=p.getNeutralCount()%>],
-            [ 'Sad',<%=p.getSadCount()%>],
-            [ 'Horrible',<%=p.getHappyCount()%>]
+            [ master_perception[0],obj[master_perception[0]]],
+            [ master_perception[1],obj[master_perception[1]]],
+            [ master_perception[2],obj[master_perception[3]]],
+            [ master_perception[3],obj[master_perception[3]]],
+            [ master_perception[4],obj[master_perception[4]]]
         ]);
         var options = {
 
@@ -235,28 +298,24 @@
             chartData: data,
             chartOptions: options,
             events: {
-                click: function( event ) {
-                    drawChart(marker,data)
-                }
+                click: function(mk,dt,name,location) {
+                    return function(){
+                        drawChart(mk,dt,name,location)
+                    };
+                }(marker,data,obj.event_name,obj.location)
             }
         });
-        <%
-        }
-        %>
+
     }
-    function initialize() {
-        drawPieChartsOnMap();
-//        google.maps.event.addListener(map, 'bounds_changed', function() {
-//            var bounds = map.getBounds();
-//            var ne = bounds.getNorthEast(); // LatLng of the north-east corner
-//            var sw = bounds.getSouthWest(); // LatLng of the south-west corder
+};
+google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addListener(map, 'bounds_changed', function() {
+//    var bounds = map.getBounds();
+//    var ne = bounds.getNorthEast(); // LatLng of the north-east corner
+//    var sw = bounds.getSouthWest(); // LatLng of the south-west corder
 //
-//            drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
-//        });
-    };
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-
+//    drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
+//});
 </script>
 
 <script src="js/jquery.wysiwyg.js"></script>

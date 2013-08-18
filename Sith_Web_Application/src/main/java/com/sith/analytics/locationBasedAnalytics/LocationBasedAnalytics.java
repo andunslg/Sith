@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LocationBasedAnalytics {
 
@@ -39,37 +38,12 @@ public class LocationBasedAnalytics {
         return null;
     }
 
-    public ArrayList<LocationData> getPieChartPerceptionCount(String perception, String latmin,String longmin,String latmax, String longmax){
-        ArrayList<LocationData> locationData =null;
-        String result=null;
-        try{
-            result=httpUtil.doGet(SithAPI.GET_ALL_CURRENT_EVENT_MAP_DATA+"?emotion="+perception+"&timelevel=0"
-                    +"&latmin="+latmin+"&lngmin="+longmin+"&latmax="+latmax+"&lngmx="+longmax);
-            JSONArray jsonArray=new JSONArray(result);
-            locationData =new ArrayList<LocationData>();
-            for(int i=0;i<jsonArray.length();i++){
-                JSONObject jsonObject=jsonArray.getJSONObject(i);
-                LocationData perceptionOnLoc = new LocationData();
-                perceptionOnLoc.setEvent(jsonObject.getString("subid"));
-                perceptionOnLoc.setLatitude(jsonObject.getString("lat"));
-                perceptionOnLoc.setLongitude(jsonObject.getString("lo"));
-                perceptionOnLoc.setPerceptionCount(Integer.parseInt(jsonObject.getString("count")));
-                perceptionOnLoc.setPerception(perception);
-                perceptionOnLoc.setPerception(jsonObject.getString("location"));
-                locationData.add(perceptionOnLoc);
 
-            }
-            return locationData;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
     public ArrayList<LocationData> getSelfAnalytics(String userID,String perception){
         ArrayList<LocationData> locationData =null;
         String result=null;
         try{
-            result=httpUtil.doGet(SithAPI.GET_SELF_MAP+"?userID="+userID+"?emotion="+perception);
+            result=httpUtil.doGet(SithAPI.GET_SELF_MAP+"?userID="+userID+"&emotion="+perception);
             JSONArray jsonArray=new JSONArray(result);
             locationData =new ArrayList<LocationData>();
             for(int i=0;i<jsonArray.length();i++){
@@ -78,6 +52,7 @@ public class LocationBasedAnalytics {
                 perceptionOnLoc.setLatitude(jsonObject.getString("lat"));
                 perceptionOnLoc.setLongitude(jsonObject.getString("lo"));
                 perceptionOnLoc.setPerceptionCount(Integer.parseInt(jsonObject.getString("count")));
+                locationData.add(perceptionOnLoc);
             }
             return locationData;
         }catch(Exception e){
@@ -101,114 +76,4 @@ public class LocationBasedAnalytics {
     public ArrayList<LocationData> getExcitingCount(String latmin,String longmin,String latmax, String longmax) {
         return getPerceptionCount("exciting","0",latmin,longmin,latmax,longmax);
     }
-
-    public ArrayList<LocationData> getPieChartHappyCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPieChartPerceptionCount("happy",latmin,longmin,latmax,longmax);
-    }
-    public ArrayList<LocationData> getPieChartSadCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPieChartPerceptionCount("sad",latmin,longmin,latmax,longmax);
-    }
-    public ArrayList<LocationData> getPieChartNeutralCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPieChartPerceptionCount("neutral",latmin,longmin,latmax,longmax);
-    }
-    public ArrayList<LocationData> getPieChartHorribleCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPieChartPerceptionCount("horrible",latmin,longmin,latmax,longmax);
-    }
-    public ArrayList<LocationData> getPieChartExcitingCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPieChartPerceptionCount("exciting",latmin,longmin,latmax,longmax);
-    }
-
-    public HashMap<String,PerceptionsOnLocation>  getPerceptionsOnLocation(String latmin,String longmin,String latmax, String longmax){
-        HashMap<String,PerceptionsOnLocation> locationListMap = new HashMap<String, PerceptionsOnLocation>();
-        for(LocationData p:getPieChartHappyCount(latmin,longmin,latmax,longmax)){
-            String key = p.getEvent();
-
-            if(locationListMap.containsKey(key)){
-                int newCount = 0;
-                PerceptionsOnLocation existingData = locationListMap.get(key);
-                newCount = existingData.getHappyCount()+ p.getPerceptionCount();
-                existingData.setHappyCount(newCount);
-                locationListMap.put(key, existingData);
-            }else {
-                PerceptionsOnLocation newData = new PerceptionsOnLocation();
-                newData.setHappyCount(p.getPerceptionCount());
-                newData.setLatitude(p.getLatitude());
-                newData.setLongitude(p.getLongitude());
-                newData.setEventName(p.getEvent());
-                newData.setEventLocationName(p.getLocationName());
-                locationListMap.put(key,newData);
-            }
-        }
-        for(LocationData p:getPieChartSadCount(latmin,longmin,latmax,longmax)){
-            String key = p.getEvent();
-
-            if(locationListMap.containsKey(key)){
-                int newCount = 0;
-                PerceptionsOnLocation existingData = locationListMap.get(key);
-                newCount = existingData.getSadCount()+ p.getPerceptionCount();
-                existingData.setSadCount(newCount);
-                locationListMap.put(key, existingData);
-            }else {
-                PerceptionsOnLocation newData = new PerceptionsOnLocation();
-                newData.setSadCount(p.getPerceptionCount());
-                newData.setEventName(p.getEvent());
-                newData.setEventLocationName(p.getLocationName());
-                locationListMap.put(key,newData);
-            }
-        }
-        for(LocationData p:getPieChartHorribleCount(latmin,longmin,latmax,longmax)){
-            String key = p.getEvent();
-
-            if(locationListMap.containsKey(key)){
-                int newCount = 0;
-                PerceptionsOnLocation existingData = locationListMap.get(key);
-                newCount = existingData.getHorribleCount()+ p.getPerceptionCount();
-                existingData.setHorribleCount(newCount);
-                locationListMap.put(key, existingData);
-            }else {
-                PerceptionsOnLocation newData = new PerceptionsOnLocation();
-                newData.setHorribleCount(p.getPerceptionCount());
-                newData.setEventName(p.getEvent());
-                newData.setEventLocationName(p.getLocationName());
-                locationListMap.put(key,newData);
-            }
-        }
-        for(LocationData p:getPieChartExcitingCount(latmin,longmin,latmax,longmax)){
-            String key = p.getEvent();
-
-            if(locationListMap.containsKey(key)){
-                int newCount = 0;
-                PerceptionsOnLocation existingData = locationListMap.get(key);
-                newCount = existingData.getExcitedCount()+ p.getPerceptionCount();
-                existingData.setExcitedCount(newCount);
-
-                locationListMap.put(key, existingData);
-            }else {
-                PerceptionsOnLocation newData = new PerceptionsOnLocation();
-                newData.setExcitedCount(p.getPerceptionCount());
-                newData.setEventName(p.getEvent());
-                newData.setEventLocationName(p.getLocationName());
-                locationListMap.put(key,newData);
-            }
-        }
-        for(LocationData p:getPieChartNeutralCount(latmin,longmin,latmax,longmax)){
-            String key = p.getEvent();
-
-            if(locationListMap.containsKey(key)){
-                int newCount = 0;
-                PerceptionsOnLocation existingData = locationListMap.get(key);
-                newCount = existingData.getNeutralCount()+ p.getPerceptionCount();
-                existingData.setNeutralCount(newCount);
-                locationListMap.put(key, existingData);
-            }else {
-                PerceptionsOnLocation newData = new PerceptionsOnLocation();
-                newData.setNeutralCount(p.getPerceptionCount());
-                newData.setEventName(p.getEvent());
-                newData.setEventLocationName(p.getLocationName());
-                locationListMap.put(key,newData);
-            }
-        }
-        return locationListMap;
-    }
-
 }

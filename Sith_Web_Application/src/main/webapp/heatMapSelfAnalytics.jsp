@@ -15,14 +15,11 @@
     }
     LocationBasedAnalytics heatMapAnalytics = new LocationBasedAnalytics();
 
-    ArrayList<LocationData> happyData = heatMapAnalytics.getHappyCount("0","0","1000","1000");
-    ArrayList<LocationData> sadData = heatMapAnalytics.getSadCount("0","0","1000","1000");
-    ArrayList<LocationData> neutralData = heatMapAnalytics.getNeutralCount("0","0","1000","1000");
-    ArrayList<LocationData> horribleData = heatMapAnalytics.getHorribleCount("0","0","1000","1000");
-    ArrayList<LocationData> excitedData = heatMapAnalytics.getExcitingCount("0","0","1000","1000");
-
-    heatMapAnalytics.getSelfAnalytics("sach","Happy");
-
+    ArrayList<LocationData> happyData =  heatMapAnalytics.getSelfAnalytics("sach","Happy");
+    ArrayList<LocationData> sadData = heatMapAnalytics.getSelfAnalytics("sach","Sad");
+    ArrayList<LocationData> neutralData = heatMapAnalytics.getSelfAnalytics("sach","Neutral");
+    ArrayList<LocationData> horribleData = heatMapAnalytics.getSelfAnalytics("sach","Horrible");
+    ArrayList<LocationData> excitedData = heatMapAnalytics.getSelfAnalytics("sach","Excited");
 %>
 
 <head>
@@ -301,8 +298,7 @@
     function initialize() {
         var mapOptions = {
             zoom: 15,
-            minZoom:7,
-            center: new google.maps.LatLng(6.796876999999999000, 79.901778100000000000),
+            center: new google.maps.LatLng(23.4523, 34.3432),
             mapTypeId: google.maps.MapTypeId.SATELLITE
         };
 

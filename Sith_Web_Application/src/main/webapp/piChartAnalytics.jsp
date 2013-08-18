@@ -15,8 +15,6 @@
     }
     LocationBasedAnalytics pieChartAnalytics = new LocationBasedAnalytics();
 
-    HashMap<String,PerceptionsOnLocation> pieChartData = pieChartAnalytics.getPerceptionsOnLocation("6.608445","79.653625","7.446433","80.738525");
-    int length = pieChartData.size();
 %>
 
 <head>

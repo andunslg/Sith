@@ -224,7 +224,7 @@ function getFromAPI(emotion, timelevel, latmin,lngmin,latmax,lngmx) {
 }
 
 var map = new Object();
-function drawPieChartsOnMap(){
+function getDataMap(){
 
     for( var i=0;i<master_perception.length;i++){
         var perception_on_event= getFromAPI(master_perception[i],"0","0","0","1000","1000");
@@ -254,21 +254,9 @@ function drawPieChartsOnMap(){
     }
     return map;
 }
+function drawPieCharts(map){
 
-function initialize() {
-
-    var latLng = new google.maps.LatLng(6.656, 79.942017)
-
-    var mapOptions = {
-        center: latLng,
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
-
-    var mp = drawPieChartsOnMap();
+    var mp = getDataMap();
 
     for (var key in mp) {
         var obj = mp[key];
@@ -305,8 +293,22 @@ function initialize() {
                 }(marker,data,obj.event_name,obj.location)
             }
         });
-
     }
+}
+
+function initialize() {
+
+    var latLng = new google.maps.LatLng(6.656, 79.942017)
+
+    var mapOptions = {
+        center: latLng,
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+    drawPieCharts(map)
+
 };
 google.maps.event.addDomListener(window, 'load', initialize);
 //google.maps.event.addListener(map, 'bounds_changed', function() {

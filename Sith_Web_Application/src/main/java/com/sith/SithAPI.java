@@ -24,6 +24,7 @@ public class SithAPI{
 	public static String REMOVE_USER_FROM_EVENT=NODEAPI+"unsubscribeFromEvent" ;
 	public static String GET_EVENT_BY_ID=NODEAPI+"getEventById";
 	public static String PUBLISH_COMMENT=NODEAPI+"publishComment";
+    public static String PUBLISH_PERCEPTION = NODEAPI+"publishEventPerception";
 	public static String GET_EVENT_COMMENTS=NODEAPI+"getEventComments";
 	public static String GET_PARTICIPANTS=NODEAPI+"getParticipants";
 	public static String DELETE_EVENT=NODEAPI+"deleteEvent";
@@ -43,6 +44,10 @@ public class SithAPI{
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
     public static String GET_SELF_MAP=NODEAPI+"getSelfMap";
 
+    public static String GET_COUNT_PERCEPTIONS = NODEAPI+"countPerceptions2";
+    public static String GET_TIME_ANALYSIS = NODEAPI+"getTimeAnalysis";
+    public static String GET_SELF_ANALYTICS = NODEAPI+"getSelfAnalytics";
+    public static String GET_REALTIME_PERCEP_COUNTS = NODEAPI+"countPeriodicPerceptions";
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;
 

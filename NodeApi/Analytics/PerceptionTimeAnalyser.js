@@ -32,7 +32,6 @@ exports.getEventTimeAnalysisData = function(eventID,fn){
                   sorted["startTime"] = minimumTime;
                   sorted["endTime"] = maxTime;
                   sorted["interval"] = interval;
-                  console.log(sorted);
                   fn(sorted);
           });
       });
@@ -77,7 +76,6 @@ exports.getSelfTimeAnalysis = function(userID,eventID,fn){
                 result["startTime"] = minimumTime;
                 result["endTime"] = maxTime;
                 result["interval"] = interval;
-                //console.log(sorted);
                 fn(result);
             });
         }else{

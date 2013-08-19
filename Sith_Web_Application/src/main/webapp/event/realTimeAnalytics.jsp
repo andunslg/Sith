@@ -1,6 +1,7 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.SithAPI"%>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -33,7 +34,7 @@
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
     <script type="text/javascript" src="../js/charts/realTimePercepGraph.js"></script>
     <script type="text/javascript">
-        $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+        $.get('<%=SithAPI.GET_EVENT_BY_ID%>?eventID=<%=currentEvent.getEventID()%>',function(event){
             if(typeof event=='string' || event instanceof String){
                 var schema1 = JSON.parse(event);
                 var schema = schema1.perceptionSchema;
@@ -47,7 +48,7 @@
             if(colors){
                 colorArray = colors.split(":");
             }
-            realTimeGraph('<%=currentEvent.getEventID()%>',perceptions,colorArray);
+            realTimeGraph('<%=SithAPI.GET_REALTIME_PERCEP_COUNTS%>','<%=currentEvent.getEventID()%>',perceptions,colorArray);
         });
     </script>
 </head>

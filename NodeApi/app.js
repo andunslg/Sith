@@ -44,11 +44,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-    console.log(err);
-});
+//process.on('uncaughtException', function(err) {
+//    // handle the error safely
+//    console.log(err);
+//});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -57,13 +56,12 @@ app.get('/selfAnalyticDashboard',routes.getSelfAnalyticDashBoard);
 app.get('/webDashboard2',routes.getWebDashBoard2);
 app.get('/vote',routes.vote);
 
-//routing for real time analytic /home/andunslg/Documents/SithAPI.javadata
-app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
+//routing for real time analytic
+//app.get('/getPeriodicAvgPerception',analyticRoutes.sendPeriodicAvgPerception);
 app.get('/countPeriodicPerceptions',analyticRoutes.sendPeriodicPerceptionCount);
-app.get('/getAggregated',analyticRoutes.getAggregatedAnalyticsMapReduce);
-
+//app.get('/getAggregated',analyticRoutes.getAggregatedAnalyticsMapReduce);
 //routing for perception count data
-app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //this will count perception for each categories
+app.get('/countPerceptions',analyticRoutes.sendPerceptionCount); //deprecated..not using
 app.get('/countPerceptions2',analyticRoutes.sendPerceptionCount2);
 app.get('/countPerceptionsMapReduce',analyticRoutes.sendPerceptionCountMapReduce);
 app.get('/getTimeAnalysis',analyticRoutes.getTimeAnalysis);
@@ -80,15 +78,13 @@ app.get('/getAllEvents',eventRoutes.getAllEvents);
 app.get('/getParticipants',eventRoutes.getParticipants);
 app.get('/deleteEvent',eventRoutes.deleteEvent);
 app.put('/updateEvent',eventRoutes.updateEvent);
-app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
-app.get('/searchEventListByName',eventRoutes.searchEventListByName);
+//app.get('/searchEventListByGps', eventRoutes.searchEventListByGps);
+//app.get('/searchEventListByName',eventRoutes.searchEventListByName);
 app.post('/publishEventPerception', eventRoutes.publishEventPerception);
 app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
 app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
-
-
 
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);

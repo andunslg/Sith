@@ -1,3 +1,4 @@
+<%@ page import="com.sith.SithAPI"%>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -36,7 +37,7 @@
 </head>
 <body>
 <script type="text/javascript">
-        countTimeChart('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=session.getAttribute("user").toString()%>');
+        countTimeChart('<%=SithAPI.GET_SELF_ANALYTICS%>?userID=<%=session.getAttribute("user").toString()%>');
 </script>
 <div class="testing">
     <header class="main">

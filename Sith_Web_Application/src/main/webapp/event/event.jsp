@@ -67,7 +67,7 @@
 
         function postToAPI(eventID, userID, perceptionValue) {
             $.ajax({
-                url: 'http://192.248.8.246:3000/publishEventPerception',
+                url: '<%=SithAPI.PUBLISH_PERCEPTION%>',
                 data: 'eventID=' + eventID + '&userID=' + userID + '&perceptionValue=' + perceptionValue+'&lat='+'<%=currentEvent.getLatLng().getString("lat")%>'+'&lng='+'<%=currentEvent.getLatLng().getString("lng")%>'+'&location='+'<%=currentEvent.getLocation()%>',
                 type: 'POST',
                 success: function (data) {

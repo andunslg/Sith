@@ -7,6 +7,7 @@
  */
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
+var config = require('../config.js');
 //var MongoClient = require('mongodb').MongoClient;
 
 exports.aggregateLocationSelfData = function(collection,perception,fn){
@@ -30,7 +31,7 @@ exports.aggregateLocationSelfData = function(collection,perception,fn){
         return reduced;
     };
 
-    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+    Db(config.mongodb.database, new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
         if(err)
             throw err;
         else{
@@ -66,7 +67,7 @@ exports.categorize = function(collection,fn){
         return reduced;
     };
 
-    Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+    Db(config.mongodb.database, new Server(config.mongodb.host,config.mongodb.port, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
         if(err)
             throw err;
         else{

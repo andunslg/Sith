@@ -1,6 +1,7 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
+<%@ page import="com.sith.SithAPI"%>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -35,7 +36,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.8.246:3000/getEventById?eventID=<%=currentEvent.getEventID()%>',function(event){
+            $.get('<%=SithAPI.GET_EVENT_BY_ID%>?eventID=<%=currentEvent.getEventID()%>',function(event){
                 if(typeof event=='string' || event instanceof String){
                     var schema1 = JSON.parse(event);
                     var schema = schema1.perceptionSchema;
@@ -50,13 +51,13 @@
                    colorArray = colors.split(":");
                 }
 
-                barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>',colorArray);
-                countTimeChart('http://192.248.8.246:3000/getTimeAnalysis?eventID=<%=currentEvent.getEventID()%>');
+                barChart(perceptions,'<%=SithAPI.GET_COUNT_PERCEPTIONS%>?eventID=<%=currentEvent.getEventID()%>',colorArray);
+                countTimeChart('<%=SithAPI.GET_TIME_ANALYSIS%>?eventID=<%=currentEvent.getEventID()%>');
                 $("#chartType").change(function () {
                     if ($('#chartType').val() == 'bar') {
-                        barChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>',colorArray);
+                        barChart(perceptions,'<%=SithAPI.GET_COUNT_PERCEPTIONS%>?eventID=<%=currentEvent.getEventID()%>',colorArray);
                     } else {
-                        pieChart(perceptions,'http://192.248.8.246:3000/countPerceptions2?eventID=<%=currentEvent.getEventID()%>',colorArray);
+                        pieChart(perceptions,'<%=SithAPI.GET_COUNT_PERCEPTIONS%>?eventID=<%=currentEvent.getEventID()%>',colorArray);
                     }
                 });
             })

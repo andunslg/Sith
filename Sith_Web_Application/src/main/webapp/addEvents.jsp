@@ -349,6 +349,15 @@
                     </tr>
                     <tr>
                         <td>
+
+                        <td>
+                            <div>
+                                Ex - Lecturer:Subject
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             &nbsp;
                         </td>
                     </tr>

@@ -63,9 +63,9 @@ exports.setCommentEnabled = function(eventID,commentEnabled,fn){
 //
 //}
 
-exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema,commentEnabled,commentEnabled,colors,timeVariantParams,fn){
+exports.updateEvent = function(oldEventID,eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema,commentEnabled,fixedLocation,colors,timeVariantParams,fn){
     var newdoc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
-        startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,commentEnabled:commentEnabled,colors:colors, timeVariantParams:timeVariantParams};
+        startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,fixedLocation:fixedLocation,colors:colors, timeVariantParams:timeVariantParams};
      this.getEventByID(eventID,function(result){
          if(!result || (oldEventID==eventID)){
              mongoAdapter.updateDocument('EventDetails',{eventID:oldEventID},newdoc);

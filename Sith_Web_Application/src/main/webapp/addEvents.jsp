@@ -2,6 +2,9 @@
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -17,6 +20,13 @@
     ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
     EventHandler eventHandler=new EventHandler();
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+
+    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    Date currentDate= new Date();
+    Date nextDate= new Date();
+    long time=nextDate.getTime();
+    time+=60*60*1000;
+    nextDate.setTime(time);
 %>
 
 <head>
@@ -157,7 +167,7 @@
                         </td>
                         <td>
                             <div>
-                                <input name="start" id="start" value="06/12/2013 00:00" type="text">
+                                <input name="start" id="start" value="<%=dateFormat.format(currentDate)%>" type="text">
                             </div>
                         </td>
                     </tr>
@@ -172,7 +182,7 @@
                         </td>
                         <td>
                             <div>
-                                <input name="end" id="end" value="06/12/2013 01:00" type="text">
+                                <input name="end" id="end" value="<%=dateFormat.format(nextDate)%>" type="text">
                             </div>
                         </td>
                     </tr>

@@ -106,7 +106,7 @@
         </header>
         <div class="content">
 
-            <div id="map_canvas" style="width: 900px; height: 500px;"></div>
+            <div id="map_canvas"></div>
 
         </div>
     </section>

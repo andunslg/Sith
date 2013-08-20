@@ -6,7 +6,7 @@ config.mysql = {};
 config.mongodb = {};
 
 //configuration for mysql database
-config.mysql.host = '192.248.8.246';
+config.mysql.host = 'localhost';
 config.mysql.username = 'root';
 config.mysql.password = '';
 

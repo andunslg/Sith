@@ -1,10 +1,11 @@
 <%@ page import="com.sith.event.Event" %>
 <%@ page import="com.sith.event.EventHandler" %>
 <%@ page import="com.sith.event.Participant" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.perception.Perception" %>
-<%@ page import="java.io.*" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -18,6 +19,11 @@
     Event currentEvent=eventHandler.getEvent(session.getAttribute("eventID").toString());
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
     String currentPerceptionOfEvent = currentEvent.getEventID()+"_currentPerception";
+
+    DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    Date currentDate = new Date();
+
+    Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
 %>
 <head>
     <meta charset="utf-8">
@@ -73,8 +79,12 @@
             <ul class="submenu">
                 <%
                     if(currentEvent.getAdminID().equals(participant.getUserID())){
+                        if(currentDate.compareTo(eventEndDate)<0){
                 %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
                 <%
                     }
@@ -82,15 +92,17 @@
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
+        <%
+            if(currentEvent.getAdminID().equals(participant.getUserID())){
+                if(currentDate.compareTo(eventEndDate)<0){
+        %>
         <li>
-            <%
-                if(currentEvent.getAdminID().equals(participant.getUserID())){
-            %>
             <a href="timeVariantParameters.jsp"><span class="icon">&#128711;</span>Temporal Params</a>
-            <%
-                }
-            %>
         </li>
+        <%
+                }
+            }
+        %>
         <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
@@ -119,6 +131,7 @@
 <section class="content">
     <%
         if(participant.getUserID().equals(currentEvent.getAdminID())){
+            if(currentDate.compareTo(eventEndDate)<0){
     %>
     <section class="widget" style="min-height: 100px">
         <header>
@@ -144,6 +157,7 @@
             <input type="button" class="button" id="commentDisable" value="Disable User Comments" style="width: 160px">
         </div>
         <%
+                }
             }
         %>
     </section>
@@ -152,6 +166,7 @@
     %>
     <%
         if("true".equals(currentEvent.getCommentEnabled())){
+            if(currentDate.compareTo(eventEndDate)<0){
     %>
 
     <section class="widget" style="min-height: 200px">
@@ -221,6 +236,7 @@
         </div>
     </section>
     <%
+            }
         }
     %>
     <%

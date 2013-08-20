@@ -32,6 +32,11 @@
     if(!currentEvent.isFixedLocation()){
         //TODO Have to find a way to predicat the client location
     }
+
+    DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    Date currentDate = new Date();
+
+    Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
 %>
 <head>
     <meta charset="utf-8">
@@ -130,8 +135,12 @@
             <ul class="submenu">
                 <%
                     if(currentEvent.getAdminID().equals(participant.getUserID())){
+                        if(currentDate.compareTo(eventEndDate)<0){
                 %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
                 <%
                     }
@@ -140,15 +149,17 @@
 
             </ul>
         </li>
+        <%
+            if(currentEvent.getAdminID().equals(participant.getUserID())){
+                if(currentDate.compareTo(eventEndDate)<0){
+        %>
         <li>
-            <%
-                if(currentEvent.getAdminID().equals(participant.getUserID())){
-            %>
             <a href="timeVariantParameters.jsp"><span class="icon">&#128711;</span>Temporal Params</a>
-            <%
-                }
-            %>
         </li>
+        <%
+                }
+            }
+        %>
         <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>
@@ -192,11 +203,6 @@
 
         <br>
         <%
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-            DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-            Date currentDate = new Date();
-
-            Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
             if(currentDate.compareTo(eventEndDate)<0){
 
         %>

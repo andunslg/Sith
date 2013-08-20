@@ -5,6 +5,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -47,6 +50,11 @@
     }
     perceptionList=temp;
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
+
+    DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    Date currentDate = new Date();
+
+    Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
 %>
 
 <head>
@@ -115,8 +123,12 @@
             <ul class="submenu">
                 <%
                     if(currentEvent.getAdminID().equals(participant.getUserID())){
+                        if(currentDate.compareTo(eventEndDate)<0){
                 %>
                 <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <%
+                    }
+                %>
                 <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
                 <%
                     }
@@ -124,15 +136,17 @@
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
             </ul>
         </li>
+        <%
+            if(currentEvent.getAdminID().equals(participant.getUserID())){
+                if(currentDate.compareTo(eventEndDate)<0){
+        %>
         <li>
-            <%
-                if(currentEvent.getAdminID().equals(participant.getUserID())){
-            %>
             <a href="timeVariantParameters.jsp"><span class="icon">&#128711;</span>Temporal Params</a>
-            <%
-                }
-            %>
         </li>
+        <%
+                }
+            }
+        %>
         <li>
             <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
         </li>

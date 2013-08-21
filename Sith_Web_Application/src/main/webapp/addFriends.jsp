@@ -84,80 +84,29 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Profile</h1>
-
-                <h2>Edit and Save the profile</h2>
+                <h1>Friends</h1>
             </hgroup>
+            <div class="buttons"><span class="button blue" style="float: right;"><a href="profile.jsp">Edit friends</a></span></div>
         </header>
         <div class="content">
             <table>
                 <tr>
                     <td>
-                        <div>User name</div>
+                        <div>Name:</div>
                     </td>
                     <td>
                         <div>
-                            <input id="username" readonly value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%>  <%} else{ %>Guest <%}%>
-                                    >
+                            <input id="username"  value="Enter name here"  >
                         </div>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Old Pasword</div>
-                    </td>
                     <td>
                         <div>
-                            <input id="oldPassword" type="password">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>New Pasword</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="newPassword" type="password">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Confirm New Pasword &nbsp;&nbsp;&nbsp;</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input id="newPasswordConfirm" type="password">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <input id="update" type="button" value="Update" class="button" style="text-align: center;width: 100px">
-                        </div>
-                    </td>
-
-                    <td>
-                        <div>
-                            <input id="unregister" type="button" value="Unregister" class="button" style="text-align: center;width: 100px">
+                            <input id="search" type="button" value="Search" class="button" style="text-align: center;width: 100px">
                         </div>
                     </td>
                 </tr>
             </table>
-
-        </div>
-    </section>
-    <section class="widget">
-        <header>
-            <span class="icon">&#128100;</span>
-            <hgroup>
-                <h1>Friends</h1>
-            </hgroup>
-            <div class="buttons"><span class="button blue" style="float: right;"><a href="addFriends.jsp">Add friend</a></span></div>
-        </header>
-        <div class="content">
+            <br/>
             <table id="myTable" border="0" width="100">
                 <thead>
                 <tr>
@@ -168,19 +117,19 @@
                 <tbody>
                 <tr>
                     <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Un-friend</a></span></td>
+                    <td><span class="button"><a href="">Add</a></span></td>
                 </tr>
                 <tr>
                     <td class="avatar"><img src="images/uiface2.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Un-friend</a></span></td>
+                    <td><span class="button"><a href="">Add</a></span></td>
                 </tr>
                 <tr>
                     <td class="avatar"><img src="images/uiface3.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Un-friend</a></span></td>
+                    <td><span class="button"><a href="">Add</a></span></td>
                 </tr>
                 <tr>
                     <td class="avatar"><img src="images/uiface4.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Un-friend</a></span></td>
+                    <td><span class="button"><a href="">Add</a></span></td>
                 </tr>
                 </tbody>
             </table>

@@ -1,3 +1,5 @@
+<%@ page import="com.sith.user.FriendHandler" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="">
 <% if(session.getAttribute("isLogged")!=null){
@@ -90,21 +92,23 @@
         </header>
         <div class="content">
             <table>
+                <form name="search" action="addFriends.jsp" method="post">
                 <tr>
                     <td>
                         <div>Name:</div>
                     </td>
                     <td>
                         <div>
-                            <input id="username"  value="Enter name here"  >
+                            <input id="query"  value="Enter name here"  >
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input id="search" type="button" value="Search" class="button" style="text-align: center;width: 100px">
+                            <input id="search" type="submit" value="Search" class="button" style="text-align: center;width: 100px">
                         </div>
                     </td>
                 </tr>
+                </form>
             </table>
             <br/>
             <table id="myTable" border="0" width="100">
@@ -115,22 +119,26 @@
                 </tr>
                 </thead>
                 <tbody>
+
+                <%
+                    FriendHandler friendHandler=new FriendHandler();
+                    List<String> friends=null;
+                    String userID=session.getAttribute("user").toString();
+                    String query=request.getParameter("query");
+                    if(userID!=null && query!=null){
+                        friends=friendHandler.getAllFriends(userID);
+                    }
+                    if(friends!=null){
+                        for(String s:friends){
+                %>
                 <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Add</a></span></td>
+                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> s</td>
+                    <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Add</a></span></td>
                 </tr>
-                <tr>
-                    <td class="avatar"><img src="images/uiface2.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Add</a></span></td>
-                </tr>
-                <tr>
-                    <td class="avatar"><img src="images/uiface3.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Add</a></span></td>
-                </tr>
-                <tr>
-                    <td class="avatar"><img src="images/uiface4.png" alt="" height="40" width="40" /> John Doe</td>
-                    <td><span class="button"><a href="">Add</a></span></td>
-                </tr>
+               <%
+                        }
+                   }
+               %>
                 </tbody>
             </table>
         </div>

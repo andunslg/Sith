@@ -13,7 +13,8 @@ var express = require('express')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
   , cacheAccess = require('./routes/cacheAccess')
-  , mapRouts=require('./routes/maps.js');
+  , mapRouts=require('./routes/maps.js')
+  ,friendRoutes=require('./routes/friend.js');
 
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -102,6 +103,12 @@ app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 app.get('/getSelfMap',mapRouts.getSelfMap);
 app.get('/getEventMap',mapRouts.getEventMap);
+
+//friends
+app.get('/getAllfriends',friendRoutes.getAllfriends);
+app.get('/searchFriendsToAdd',friendRoutes.searchFriendsToAdd);
+app.get('/removeFriend',friendRoutes.removeFriend)
+
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 http.createServer(app).listen(app.get('port'), function(){

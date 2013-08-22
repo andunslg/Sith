@@ -1,3 +1,6 @@
+<%@ page import="com.sith.user.FriendHandler" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
 <% if(session.getAttribute("isLogged")!=null){
@@ -147,6 +150,50 @@
                 </tr>
             </table>
 
+        </div>
+    </section>
+    <section class="widget">
+        <header>
+            <span class="icon">&#128100;</span>
+            <hgroup>
+                <h1>Friends</h1>
+            </hgroup>
+            <div class="buttons"><span class="button blue" style="float: right;"><a href="addFriends.jsp">Add friend</a></span></div>
+        </header>
+        <div class="content">
+            <table id="myTable" border="0" width="100">
+                <thead>
+                <tr>
+                    <th class="avatar">Name</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    FriendHandler friendHandler=new FriendHandler();
+                    List<String> friends=null;
+                    String userID=session.getAttribute("user").toString();
+                    if(userID!=null){
+                        friends=friendHandler.getAllFriends(userID);
+                    }
+                    if(friends!=null){
+                        for(String s:friends){
+
+
+                %>
+
+                <tr>
+                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=s%></td>
+                    <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Un-friend</a></span></td>
+                </tr>
+
+                <%
+                        }
+                    }
+                %>
+
+                </tbody>
+            </table>
         </div>
     </section>
 </section>

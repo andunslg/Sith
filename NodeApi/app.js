@@ -14,6 +14,8 @@ var express = require('express')
   , BearerStrategy =require('passport-http-bearer')
   , cacheAccess = require('./routes/cacheAccess')
   , mapRouts=require('./routes/maps.js')
+  ,friendRoutes=require('./routes/friend.js');
+  , mapRouts=require('./routes/maps.js')
   , notificationManger = require('./routes/notification.js');
 
 var app = express();
@@ -45,10 +47,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-//process.on('uncaughtException', function(err) {
-//    // handle the error safely
-//    console.log(err);
-//});
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    console.log(err);
+});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -91,15 +93,13 @@ app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/registerFBUser',userMgmtRoutes.registerFBUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
-app.get('/logOut',userMgmtRoutes.logOut);
 app.put('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
 app.get('/registerUserForEvent',userMgmtRoutes.registerUserForEvent);
 app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
-app.get('/getNotifications',notificationManger.getNotifications);
-app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
+
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
@@ -107,17 +107,6 @@ app.get('/getSelfMap',mapRouts.getSelfMap);
 app.get('/getEventMap',mapRouts.getEventMap);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
-var server = http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
-});
-GLOBAL.io = require('socket.io').listen(server);
-GLOBAL.onlineUsers = {};
-io.sockets.on('connection', function (socket) {
-    socket.on('login',function(userName){
-        GLOBAL.onlineUsers[userName] = {
-            "socket": socket.id
-        };
-        console.log(userName+"logged in");
-    });
-
 });

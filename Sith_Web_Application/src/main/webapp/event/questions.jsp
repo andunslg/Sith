@@ -24,6 +24,13 @@
     Date currentDate = new Date();
 
     Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
+
+    String colors="\"\"";
+
+    if(!currentEvent.getColors().equals("")){
+        colors=currentEvent.getColors();
+    }
+    String latLang=currentEvent.getLatLng().toString();
 %>
 <head>
     <meta charset="utf-8">
@@ -353,7 +360,6 @@
         var eventAdmin='<%=participant.getUserID()%>';
         var commentEnabled = 'true';
 
-
         var datObj = {};
 
         datObj['oldEventID'] =eventID;
@@ -366,6 +372,11 @@
         datObj['description'] = description;
         datObj['perceptionSchema'] = perceptionSchema;
         datObj['commentEnabled'] = commentEnabled;
+
+        datObj['latLng'] = JSON.stringify(<%=latLang%>);
+        datObj['fixedLocation'] = <%=currentEvent.isFixedLocation()%>;
+        datObj['colors'] = <%=colors%>;
+        datObj['timeVariantParams'] = "<%=currentEvent.getTimeVariantParamsAsString()%>";
 
 
         $.ajax({
@@ -409,6 +420,11 @@
         datObj['description'] = description;
         datObj['perceptionSchema'] = perceptionSchema;
         datObj['commentEnabled'] = commentEnabled;
+
+        datObj['latLng'] = JSON.stringify(<%=latLang%>);
+        datObj['fixedLocation'] = <%=currentEvent.isFixedLocation()%>;
+        datObj['colors'] = <%=colors%>;
+        datObj['timeVariantParams'] = "<%=currentEvent.getTimeVariantParamsAsString()%>";
 
 
         $.ajax({

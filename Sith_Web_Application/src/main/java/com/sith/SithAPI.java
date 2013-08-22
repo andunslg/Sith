@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class SithAPI{
 	public static SithAPI sithAPI=new SithAPI();
 	private HTTPUtil httpUtil=new HTTPUtil();
-	public static String NODEAPI="http://192.248.8.246:3000/";
+	public static String NODEAPI="http://localhost:3000/";
 	public static String LOGIN=NODEAPI+"authenticateUser";
 	public static String SIGNUP=NODEAPI+"registerAnnonymousUser";
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";
@@ -33,6 +33,11 @@ public class SithAPI{
 	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
 	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
 	public static String DELETE_USER=NODEAPI+"deleteUser";
+    public static String GET_FRIENDS_SUGGESTIONS = NODEAPI+"getFriendsSuggestions";
+    public static String GET_NOTIFICATIONS = NODEAPI+"getNotifications";
+    public static String GET_FRIENDS_LIST = NODEAPI+"getFriendList";
+    public static String REMOVE_FRIEND = NODEAPI+"removeFriend";
+    public static String ADD_FRIEND = NODEAPI+"addFriend";
 	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
     public static String GET_SELF_MAP=NODEAPI+"getSelfMap";

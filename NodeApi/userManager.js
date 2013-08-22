@@ -128,12 +128,7 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
 };
 
 exports.sendFriendRequest = function(sender,receiver){
-      if(isUserOnline(receiver)){
-          GLOBAL.io.sockets.socket(GLOBAL.onlineUsers[receiver].socket).emit("friendRequestNotif",sender+" wants to be friend of you!");
-          notificationManager2.addNotification("friendRequest","pending",generateFriendRequestMessage(sender),receiver);
-      }else{
-          notificationManager2.addNotification("friendRequest","pending",generateFriendRequestMessage(sender),receiver);
-      }
+    notificationManager2.notifyUser(receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
 }
 
 generateFriendRequestMessage = function(sender){

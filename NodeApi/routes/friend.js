@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-friendManager=require("../friendMngmnt.js");
+friendManager=require("../friendManager.js");
 
 
 exports.getAllfriends=function(req,res){

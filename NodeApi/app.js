@@ -46,10 +46,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-    console.log(err);
-});
+//process.on('uncaughtException', function(err) {
+//    // handle the error safely
+//    console.log(err);
+//});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -99,8 +99,10 @@ app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
-app.get('/getNotifications',notificationManger.getNotifications);
+app.get('/getFriendsSuggestions',friendRoutes.searchFriendsToAdd);
+app.get('/getNotifications', notificationManager.getNotifications);
 app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
+app.get('/getFriendList',friendRoutes.getAllfriends);
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);

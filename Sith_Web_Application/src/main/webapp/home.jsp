@@ -49,7 +49,7 @@
                     socket.emit('login', '<%=session.getAttribute("user").toString()%>');
                 });
             }
-            socket.on("friendRequestNotif",function(data){
+            socket.on("friendRequest",function(data){
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");

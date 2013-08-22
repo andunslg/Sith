@@ -1,3 +1,5 @@
+<%@ page import="com.sith.user.NotificationHandler" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -7,6 +9,9 @@
             response.sendRedirect("index.jsp");
         }
     }
+    NotificationHandler notifHandler = new NotificationHandler();
+    ArrayList<String> notifs = null;
+    notifs = notifHandler.getAllNotifications(session.getAttribute("user").toString());
 %>
 
 <head>
@@ -18,21 +23,45 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
-
-
-    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.checkbox.min.js"></script>
-    <script src="js/flot.js"></script>
-    <script src="js/flot.resize.js"></script>
-    <script src="js/flot-graphs.js"></script>
-    <script src="js/flot-time.js"></script>
-    <script src="js/cycle.js"></script>
+    <%--<script src="js/flot.js"></script>--%>
+    <%--<script src="js/flot.resize.js"></script>--%>
+    <%--<script src="js/flot-graphs.js"></script>--%>
+    <%--<script src="js/flot-time.js"></script>--%>
+    <%--<script src="js/cycle.js"></script>--%>
     <script src="js/jquery.tablesorter.min.js"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect('http://localhost:3000');
+            // on connection to server, ask for user's name with an anonymous callback
+            var previousPage = document.referrer;
+            var patt=/index.jsp/g;
+            var result=patt.test(previousPage);
+            if(result){
+                socket.on('connect', function(){
+                    // call the server-side function 'adduser' and send one parameter (value of prompt)
+                    socket.emit('login', '<%=session.getAttribute("user").toString()%>');
+                });
+            }
+            socket.on("friendRequestNotif",function(data){
+                var currentCount = parseInt($("#notificCount").text());
+                $("#notificCount").text(currentCount+1);
+                $("#notificCount").css("visibility","visible");
+            });
+            $("#notifButton").hover(
+                function(){
+                 $("#notificCount").text(0);
+                 $("#notificCount").css("visibility","hidden");
+                }
+            );
+        });
+    </script>
 </head>
 <body>
 
@@ -49,16 +78,31 @@
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
-		<%--<span class="button dropdown">--%>
-			<%--<a href="#">Notifications <span class="pip"></span></a>--%>
-			<%--<ul class="notice">--%>
-                <%--<li>--%>
-                    <%--<hgroup>--%>
-                        <%--<h1>You have no notifications</h1>--%>
-                    <%--</hgroup>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
-		<%--</span>--%>
+		<span id="notifButton" class="button dropdown">
+			<a href="#">Notifications
+            <% if(notifs.size()>0){%>
+                <span id="notificCount" class="pip"><%=notifs.size()%></span>
+            <%}else{%>
+                <span id="notificCount" class="pip" style="visibility: hidden">0</span>
+            <%}%>
+            </a>
+			<ul class="notice">
+                <% if(notifs.size()==0){%>
+                <li>
+                    <hgroup>
+                        <h1>You have no notifications</h1>
+                    </hgroup>
+                </li>
+                <%}else{
+                    for(String notif : notifs){%>
+                <li>
+                    <%=notif%>
+                </li>
+                <%}
+                }
+                %>
+            </ul>
+		</span>
             <span class="button"><a href="home.jsp">Home</a></span>
             <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
             <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
@@ -95,8 +139,6 @@
         </li>
     </ul>
 </nav>
-
-
 <section class="content" style="margin-top: 10px">
 
     <section class="widget">
@@ -120,9 +162,6 @@
         </div>
         <br>
     </section>
-
 </section>
-
-
 </body>
 </html>

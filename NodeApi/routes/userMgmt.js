@@ -27,6 +27,18 @@ exports.authenticateUser = function(req,res){
 	userManager.authenticateUser(req,res);
 };
 
+exports.logOut = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    userManager.logOut(req.query.userName,function(error){
+        if(error){
+            res.write(JSON.stringify({result:error}));
+        }else{
+            res.write(JSON.stringify({result:true}));
+        }
+        res.end();
+    });
+};
+
 exports.updateAnnonymousUser = function(req,res){
     res.writeHead(200, {'Content-Type': 'application/json'});
      userManager.updateAnnonymousUser(req.body.oldUserName,req.body.userName,req.body.password,function(result){
@@ -92,4 +104,11 @@ exports.getSubscribedEvents = function(req,res){
         res.write(JSON.stringify(docs));
         res.end();
     });
+}
+
+exports.sendFriendRequest = function(req,res){
+   userManager.sendFriendRequest(req.query.sender,req.query.receiver);
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   res.write(JSON.stringify({result:true}));
+   res.end();
 }

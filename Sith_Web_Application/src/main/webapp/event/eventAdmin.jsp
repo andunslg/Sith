@@ -730,7 +730,7 @@
     }
     loadColorSchema = function(eventID){
         $.ajax({
-            url: 'http://192.248.8.246:3000/getColorSchema',
+            url: '<%=SithAPI.GET_COLOR_SCHEMA%>',
             type: 'GET',
             data: {eventID:eventID},
             success: function (data) {

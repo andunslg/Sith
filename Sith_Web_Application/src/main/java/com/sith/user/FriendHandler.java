@@ -25,67 +25,59 @@ public class FriendHandler {
     private EventHandler eventHandler= new EventHandler();
 
     public List<String> search(String userID,String searchString){
-        ArrayList<String> friends=new ArrayList<String>();
+        ArrayList<String> friends=null;
         String result=null;
 
-//        try{
-//            result=httpUtil.doGet(SithAPI.GET_FRIENDS_LIST+"?userID="+userID+"&query="+searchString);
-//            JSONArray jsonArray=new JSONArray(result);
-//            friends=new ArrayList<String>();
-//            for(int i=0;i<jsonArray.length();i++){
-//                JSONObject jsonObject=jsonArray.getJSONObject(i);
-//                String friendID=jsonObject.getString("friendID");
-//
-//                if(friendID!=null){
-//                    friends.add(friendID);
-//                }
-//                else {
-//                    //Remove events from registration list
-//                }
-//            }
-//
-//            return friends;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
+        try{
+            result=httpUtil.doGet(SithAPI.GET_FRIENDS_LIST+"?userID="+userID+"&query="+searchString);
+            JSONArray jsonArray=new JSONArray(result);
+            friends=new ArrayList<String>();
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                String friendID=jsonObject.getString("userName");
 
-        friends.add("Andun");
-        friends.add("Sachintha");
+                if(friendID!=null){
+                    friends.add(friendID);
+                }
+                else {
+                    //Remove events from registration list
+                }
+            }
 
-        return friends;
+            return friends;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     public List<String> getAllFriends(String userID){
-        ArrayList<String> friends=new ArrayList<String>();
+        ArrayList<String> friends=null;
         String result=null;
 
-//        try{
-//            result=httpUtil.doGet(SithAPI.GET_FRIENDS_LIST+"?userID="+userID);
-//            JSONArray jsonArray=new JSONArray(result);
-//            friends=new ArrayList<String>();
-//            for(int i=0;i<jsonArray.length();i++){
-//                JSONObject jsonObject=jsonArray.getJSONObject(i);
-//                String friendID=jsonObject.getString("friendID");
-//
-//                if(friendID!=null){
-//                    friends.add(friendID);
-//                }
-//                else {
-//                    //Remove events from registration list
-//                }
-//            }
-//
-//            return friends;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
+        try{
+            result=httpUtil.doGet(SithAPI.GET_FRIENDS_LIST+"?userID="+userID);
+            JSONArray jsonArray=new JSONArray(result);
+            friends=new ArrayList<String>();
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                String friendID=jsonObject.getString("userName");
 
-        friends.add("Prabhath");
-        friends.add("Thilini");
+                if(friendID!=null){
+                    friends.add(friendID);
+                }
+                else {
+                    //Remove events from registration list
+                }
+            }
 
-        return friends;
+            return friends;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     public boolean removeFriend(String userID,String friendID){

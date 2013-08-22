@@ -1,5 +1,6 @@
 <%@ page import="com.sith.user.FriendHandler" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 <% if(session.getAttribute("isLogged")!=null){
@@ -86,13 +87,12 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Friends</h1>
+                <h1>Find friends</h1>
             </hgroup>
-            <div class="buttons"><span class="button blue" style="float: right;"><a href="profile.jsp">Edit friends</a></span></div>
         </header>
         <div class="content">
             <table>
-                <form name="search" action="addFriends.jsp" method="post">
+
                 <tr>
                     <td>
                         <div>Name:</div>
@@ -104,11 +104,11 @@
                     </td>
                     <td>
                         <div>
-                            <input id="search" type="submit" value="Search" class="button" style="text-align: center;width: 100px">
+                            <input id="search" type="button" value="Search" class="button" style="text-align: center;width: 100px">
                         </div>
                     </td>
                 </tr>
-                </form>
+
             </table>
             <br/>
             <table id="myTable" border="0" width="100">
@@ -120,25 +120,9 @@
                 </thead>
                 <tbody>
 
-                <%
-                    FriendHandler friendHandler=new FriendHandler();
-                    List<String> friends=null;
-                    String userID=session.getAttribute("user").toString();
-                    String query=request.getParameter("query");
-                    if(userID!=null && query!=null){
-                        friends=friendHandler.getAllFriends(userID);
-                    }
-                    if(friends!=null){
-                        for(String s:friends){
-                %>
-                <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> s</td>
-                    <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Add</a></span></td>
-                </tr>
-               <%
-                        }
-                   }
-               %>
+
+
+
                 </tbody>
             </table>
         </div>
@@ -160,77 +144,26 @@
 <script type="text/javascript">
 
 
-    $("#update").click(function () {
-        var username = $('input[id=username]').val();
-        var oldPassword = $('input[id=oldPassword]').val();
-        var newPassword = $('input[id=newPassword]').val();
-        var newPasswordConfirm = $('input[id=newPasswordConfirm]').val();
-
-
-        if(oldPassword.length==0 ||newPassword.length==0||newPasswordConfirm.length==0){
-//            alert("Please type a password")
-            apprise("Please type a password");
-        }
-        else{
-
-            var datObj = {};
-
-            datObj['oldUserName'] = username;
-            datObj['newUserName'] = username;
-            datObj['oldPassword'] = oldPassword;
-            datObj['newPassword'] = newPassword;
-            datObj['newPasswordConfirm'] = newPasswordConfirm;
-
+    $("#search").click(function () {
+        var username = '<%=session.getAttribute("user").toString()%>';
+        var query = $('input[id=query]').val();
 
 
             $.ajax({
-                url: 'user/updateUserHandler.jsp',
-                data: datObj,
-                type: 'POST',
+                url: '<%=SithAPI.GET_FRIENDS_SUGGESTIONS%>?userID'+username+'&query='+query,
+                type: 'GET',
                 success: function (data) {
-                    apprise(data)
-                    if (data.indexOf("User profile updated successfully") != -1 ) {
-                        window.location.href = 'home.jsp';
+                    var friends=JSON.parse(data);
+                    var s='';
+                    for(var i = 0; i < friends.length; i++){
+                         s+=' <tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID='+username +'&friendID='+ friends[i].userName+'">Add</a></span></td> </tr>';
                     }
-                    else if(data.indexOf("User not logged-in")!=-1){
-                        window.location.href = 'index.jsp';
-                    }
+                    $('#myTable tbody').html(s);
                 },
                 error: function (xhr, status, error) {
-                    apprise("Error updating user - " + error.message);
+                    apprise("Error : " + error.message);
                 }
             });
-        }
-    });
-
-    $("#unregister").click(function () {
-//        var conf = confirm("Are you sure want to unregister from Sith Platform ?");
-        apprise('Are you sure want to unregister from Sith Platform ?',{'verify':true},function(r){
-            if(r){
-                var username = $('input[id=username]').val();
-
-                var datObj = {};
-                datObj['userName'] = username;
-
-                $.ajax({
-                    url: 'user/unregisterUserHandler.jsp',
-                    data: datObj,
-                    type: 'POST',
-                    success: function (data) {
-                        apprise(data)
-                        if (data.indexOf("User profile deleted successfully") != -1 ) {
-                            window.location.href = 'index.jsp?state=loggedOut';
-                        }
-                        else if(data.indexOf("User not logged-in")!=-1){
-                            window.location.href = 'index.jsp?state=loggedOut';
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        apprise("Error updating user - " + error.message);
-                    }
-                });
-            }
-        });
     });
 </script>
 </body>

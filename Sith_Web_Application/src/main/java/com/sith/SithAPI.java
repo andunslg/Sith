@@ -49,9 +49,11 @@ public class SithAPI{
     public static String GET_SELF_ANALYTICS = NODEAPI+"getSelfAnalytics";
     public static String GET_REALTIME_PERCEP_COUNTS = NODEAPI+"countPeriodicPerceptions";
 
-    public static String GET_FRIENDS_LIST="";
-    public static String REMOVE_FRIEND="";
-    public static String ADD_FRIEND="";
+    public static String GET_FRIENDS_LIST=NODEAPI+"getAllfriends";
+    public static String GET_FRIENDS_SUGGESTIONS=NODEAPI+"searchFriendsToAdd";
+    public static String REMOVE_FRIEND=NODEAPI+"removeFriend";
+    public static String ADD_FRIEND=NODEAPI+"";
+
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;

@@ -13,8 +13,7 @@ var express = require('express')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
   , cacheAccess = require('./routes/cacheAccess')
-  , mapRouts=require('./routes/maps.js')
-  ,friendRoutes=require('./routes/friend.js');
+  ,friendRoutes=require('./routes/friend.js')
   , mapRouts=require('./routes/maps.js')
   , notificationManger = require('./routes/notification.js');
 

@@ -148,8 +148,6 @@ ChartMarker.prototype.draw = function() {
 
 
 function drawChart(marker, data, event, location) {
-
-
     var options = {'title':'Event : '+event+'  Location : '+location,
         'width':400,
         'height':150,
@@ -222,6 +220,7 @@ function getFromAPI(emotion, timelevel, latmin,lngmin,latmax,lngmx) {
 }
 
 var map = new Object();
+
 function getDataMap(){
 
     for( var i=0;i<master_perception.length;i++){
@@ -260,14 +259,12 @@ function drawPieCharts(map){
         var obj = mp[key];
         var pie_chart_latlng = new google.maps.LatLng(obj.lat, obj.lo)
 
-        var data = google.visualization.arrayToDataTable([
-            [ 'Perception', '%' ],
-            [ master_perception[0],obj[master_perception[0]]],
-            [ master_perception[1],obj[master_perception[1]]],
-            [ master_perception[2],obj[master_perception[3]]],
-            [ master_perception[3],obj[master_perception[3]]],
-            [ master_perception[4],obj[master_perception[4]]]
-        ]);
+        var data_table = new Array();
+        data_table[0] =  [ 'Perception', '%' ];
+        for(var k=0;k<master_perception.length;k++){
+            data_table[k+1]=[ master_perception[k],obj[master_perception[k]]];
+        }
+        var data = google.visualization.arrayToDataTable(data_table);
         var options = {
 
             fontSize: 8,
@@ -276,21 +273,22 @@ function drawPieCharts(map){
             slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}
         };
 
-        var marker = new ChartMarker({
-            map: map,
-            position: pie_chart_latlng,
-            width: '250px',
-            height: '100px',
-            chartData: data,
-            chartOptions: options,
-            events: {
-                click: function(mk,dt,name,location) {
-                    return function(){
-                        drawChart(mk,dt,name,location)
-                    };
-                }(marker,data,obj.event_name,obj.location)
-            }
-        });
+        (function(location,data){
+            var marker = new ChartMarker({
+                map: map,
+                position: location,
+                width: '250px',
+                height: '100px',
+                chartData: data,
+                chartOptions: options,
+                events: {
+                    click: function( event ) {
+                        drawChart(marker,data)
+                    }
+                }
+            });
+        })(pie_chart_latlng,data);
+
     }
 }
 

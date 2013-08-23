@@ -13,9 +13,8 @@ var express = require('express')
   , passport = require("passport")
   , BearerStrategy =require('passport-http-bearer')
   , cacheAccess = require('./routes/cacheAccess')
-  , friendRoutes=require('./routes/friend.js')
   , mapRouts=require('./routes/maps.js')
-  , notificationManager = require("./routes/notification.js");
+  ,friendRoutes=require('./routes/friend.js');
 
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -46,10 +45,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-//process.on('uncaughtException', function(err) {
-//    // handle the error safely
-//    console.log(err);
-//});
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    console.log(err);
+});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -92,35 +91,26 @@ app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
 app.post('/registerFBUser',userMgmtRoutes.registerFBUser);
 app.post('/authenticateUser',userMgmtRoutes.authenticateUser);
-app.get('/logOut',userMgmtRoutes.logOut);
 app.put('/updateAnnonymousUser',userMgmtRoutes.updateAnnonymousUser);
 app.get('/registerUserForEvent',userMgmtRoutes.registerUserForEvent);
 app.get('/getUserById',userMgmtRoutes.getUserById);
 app.get('/getSubscribedEvents',userMgmtRoutes.getSubscribedEvents);
 app.get('/unsubscribeFromEvent',userMgmtRoutes.removeUserFromEvent);
 app.get('/deleteUser',userMgmtRoutes.deleteUser);
-app.get('/getFriendsSuggestions',friendRoutes.searchFriendsToAdd);
-app.get('/getNotifications', notificationManager.getNotifications);
-app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
-app.get('/getFriendList',friendRoutes.getAllfriends);
+
 //maps
 app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 app.get('/getSelfMap',mapRouts.getSelfMap);
 app.get('/getEventMap',mapRouts.getEventMap);
+
+//friends
+app.get('/getAllfriends',friendRoutes.getAllfriends);
+app.get('/searchFriendsToAdd',friendRoutes.searchFriendsToAdd);
+app.post('/removeFriend',friendRoutes.removeFriend)
+
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
-var server = http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
-});
-GLOBAL.io = require('socket.io').listen(server);
-GLOBAL.onlineUsers = {};
-io.sockets.on('connection', function (socket) {
-    socket.on('login',function(userName){
-        GLOBAL.onlineUsers[userName] = {
-            "socket": socket.id
-        };
-        console.log(userName+"logged in");
-    });
-
 });

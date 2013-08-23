@@ -36,7 +36,7 @@ exports.addFriend=function(req,res){
 }
 
 exports.removeFriend=function(req,res){
-    friendManager.removeFriend(req.query.userID,req.query.friendID);
+    friendManager.removeFriend(req.body.userID,req.body.friendID);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });
     res.write(result);

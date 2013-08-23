@@ -103,3 +103,10 @@ exports.insertTimeVariantParam = function(eventID,timeVariantParam) {
     mongoAdapter.insertDocument("EventTimeVariantParams_"+eventID, timeVariantParam);
 
 }
+
+exports.retrieveTimeVariantParam=function(eventID,fn){
+    mongoAdapter.getDocuments({},"EventTimeVariantParams_" + eventID, function (docs) {
+        fn(docs);
+    });
+}
+

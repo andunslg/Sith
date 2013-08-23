@@ -236,7 +236,7 @@
             var timeVariantParamArray = JSON.parse('<%=timeVariantParamArray.toString()%>');
 
             for (var i = 0; i < timeVariantParamArray.length; i++) {
-                var elementID='input[id=param_'+timeVariantParamArray[1]+']';
+                var elementID='input[id=param_'+timeVariantParamArray[i]+']';
                 datObj[timeVariantParamArray[i]]= $(elementID).val();
             }
 

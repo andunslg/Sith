@@ -23,12 +23,11 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <link href="css/toastr.css" rel="stylesheet" />
     <!-- Include this file if you are using Pines Icons. -->
-    <link href="./css/jquery.pnotify.default.icons.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="./css/jquery.pnotify.default.css" media="all" rel="stylesheet" type="text/css" />
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.pnotify.js"></script>
+    <script type="text/javascript" src="js/toastr.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
@@ -36,6 +35,11 @@
     <script src="js/jquery.checkbox.min.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript">
+        toastr.options = {
+            positionClass: 'bottom-left',
+            timeOut: 0
+             // I position it properly already. not needed.
+        };
         $(document).ready(function(){
             var socket = io.connect('http://localhost:3000');
             // on connection to server, ask for user's name with an anonymous callback
@@ -52,16 +56,13 @@
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
-                var stack_bottomright = {"dir1": "up", "dir2": "left", "firstpos1": 25, "firstpos2": 25};
-                $.pnotify({
-                    type: "info",
-                    title: 'Friend Request',
-                    text: data,
-                    addclass: "stack-bottomright", // This is one of the included default classes.
-                    stack: stack_bottomright,
-                    hide: true,
-                    delay: 3500
-                });
+                toastr.info(data, 'Friend Request')
+            });
+            socket.on("cepNotification",function(data){
+                var currentCount = parseInt($("#notificCount").text());
+                $("#notificCount").text(currentCount+1);
+                $("#notificCount").css("visibility","visible");
+                toastr.info(data, 'Perception Pattern Detected')
             });
             $("#notifButton").hover(
                 function(){

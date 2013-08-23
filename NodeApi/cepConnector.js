@@ -1,5 +1,5 @@
 var restClient=  require('./RestClient.js');
-
+var cepNotificationManager= require("./notificationManager.js");
 function sendUpdate(jsonObject,streamPath,isData) {
     var auth = "Basic " + new Buffer('admin:apst@sith').toString("base64");
 
@@ -87,3 +87,14 @@ exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng
     sendUpdate(jsonObject,path,true);
 }
 
+exports.sendNotificationOnPatterns = function(eventID,msg){
+   mongoAdapter.getSingleDocument({eventID:eventID},"EventDetais",function(docs){
+       var isAdminOnline;
+       if(GLOBAL.onlineUsers[userName]){
+           isAdminOnline = true;
+       }else{
+           isAdminOnline = false;
+       }
+      cepNotificationManager.notifyUser(docs.eventAdmin,"cepNotification",msg,isAdminOnline)
+    })
+}

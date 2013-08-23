@@ -87,6 +87,7 @@ app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
 app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
+app.post('/getTimeVariantParamValues',eventRoutes.retrieveTimeVariantParam);
 
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);

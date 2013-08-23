@@ -23,18 +23,17 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <!-- Include this file if you are using Pines Icons. -->
+    <link href="./css/jquery.pnotify.default.icons.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./css/jquery.pnotify.default.css" media="all" rel="stylesheet" type="text/css" />
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.pnotify.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.checkbox.min.js"></script>
-    <%--<script src="js/flot.js"></script>--%>
-    <%--<script src="js/flot.resize.js"></script>--%>
-    <%--<script src="js/flot-graphs.js"></script>--%>
-    <%--<script src="js/flot-time.js"></script>--%>
-    <%--<script src="js/cycle.js"></script>--%>
     <script src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -53,6 +52,16 @@
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
+                var stack_bottomright = {"dir1": "up", "dir2": "left", "firstpos1": 25, "firstpos2": 25};
+                $.pnotify({
+                    type: "info",
+                    title: 'Friend Request',
+                    text: data,
+                    addclass: "stack-bottomright", // This is one of the included default classes.
+                    stack: stack_bottomright,
+                    hide: true,
+                    delay: 3500
+                });
             });
             $("#notifButton").hover(
                 function(){

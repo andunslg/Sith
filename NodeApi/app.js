@@ -107,7 +107,7 @@ app.get('/getEventMap',mapRouts.getEventMap);
 //friends
 app.get('/getAllfriends',friendRoutes.getAllfriends);
 app.get('/searchFriendsToAdd',friendRoutes.searchFriendsToAdd);
-app.get('/removeFriend',friendRoutes.removeFriend)
+app.post('/removeFriend',friendRoutes.removeFriend)
 
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);

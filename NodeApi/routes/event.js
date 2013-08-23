@@ -170,3 +170,11 @@ exports.addTimeVariantParam = function(req,res){
     res.write(result);
     res.end();
 };
+
+exports.retrieveTimeVariantParam= function(req,res){
+    eventManager.retrieveTimeVariantParam(req.body.eventID,function(doc){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(JSON.stringify(doc));
+        res.end();
+    })  ;
+}

@@ -12,12 +12,9 @@ import java.util.HashMap;
 public class SithAPI{
 	public static SithAPI sithAPI=new SithAPI();
 	private HTTPUtil httpUtil=new HTTPUtil();
-
-	public static String NODEAPI="http://192.248.8.246:3000/";
-
+	public static String NODEAPI="http://localhost:3000/";
 	public static String LOGIN=NODEAPI+"authenticateUser";
 	public static String SIGNUP=NODEAPI+"registerAnnonymousUser";
-
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";
 	public static String ADD_EVENT=NODEAPI+"addEvent";
 	public static String ADD_USER_TO_EVENT=NODEAPI+"registerUserForEvent";
@@ -31,30 +28,23 @@ public class SithAPI{
 	public static String UPDATE_EVENT=NODEAPI+"updateEvent";
 	public static String SET_COMMENT_ENABLED=NODEAPI+"setCommentEnabled";
 	public static String ADD_TIME_VARIANT_PARAM=NODEAPI+"addTimeVariantParam";
-
-
 	public static String GET_MASTER_PERCEPTIONS=NODEAPI+"getMasterPerceptions";
-
 	public static String GET_USER_BY_ID=NODEAPI+"getUserById";
 	public static String GET_USER_EVENT_LIST=NODEAPI+"getSubscribedEvents";
 	public static String UPDATE_USER=NODEAPI+"updateAnnonymousUser";
 	public static String DELETE_USER=NODEAPI+"deleteUser";
-
+    public static String GET_FRIENDS_SUGGESTIONS = NODEAPI+"getFriendsSuggestions";
+    public static String GET_NOTIFICATIONS = NODEAPI+"getNotifications";
+    public static String GET_FRIENDS_LIST = NODEAPI+"getFriendList";
+    public static String REMOVE_FRIEND = NODEAPI+"removeFriend";
+    public static String ADD_FRIEND = NODEAPI+"addFriend";
 	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
     public static String GET_SELF_MAP=NODEAPI+"getSelfMap";
-
     public static String GET_COUNT_PERCEPTIONS = NODEAPI+"countPerceptions2";
     public static String GET_TIME_ANALYSIS = NODEAPI+"getTimeAnalysis";
     public static String GET_SELF_ANALYTICS = NODEAPI+"getSelfAnalytics";
     public static String GET_REALTIME_PERCEP_COUNTS = NODEAPI+"countPeriodicPerceptions";
-
-    public static String GET_FRIENDS_LIST=NODEAPI+"getAllfriends";
-    public static String GET_FRIENDS_SUGGESTIONS=NODEAPI+"searchFriendsToAdd";
-    public static String REMOVE_FRIEND=NODEAPI+"removeFriend";
-    public static String ADD_FRIEND=NODEAPI+"";
-
-
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;
 

@@ -4,6 +4,7 @@
 mongoAdapter = require('./mongoAdapter.js');
 mySQLConnector= require("./mySQLConnector.js");
 bamConnector= require("./bamConnector.js");
+notificationManager2 = require("./notificationManager.js");
 var crypto = require('crypto');
 
 //annonymous users are registered without having any email verification...just collect username and password
@@ -85,8 +86,14 @@ exports.authenticateUser = function(req,res){
     var hash = crypto.createHash('md5').update(req.body.password).digest("hex");
     mongoAdapter.getSingleDocument({userName:req.body.userName , password: hash},'Users',function(doc){
         if(doc){
-            res.write(JSON.stringify({result:true}));
-            res.end();
+            mongoAdapter.getSingleDocument({userName:req.body.userName},"OnlineUsers",function(onlineUsers){
+             if(!onlineUsers){
+                 mongoAdapter.insertDocument("OnlineUsers",doc);
+             }
+                res.write(JSON.stringify({result:true}));
+                res.end();
+            })
+
         }else{
             res.write(JSON.stringify({result:false}));
             res.end();
@@ -94,6 +101,14 @@ exports.authenticateUser = function(req,res){
     });
 }
 
+exports.logOut = function(userID,fn){
+         mongoAdapter.deleteDocument("OnlineUsers",{userName:userID},function(error){
+          if(error){
+            fn(error);
+          }
+             fn(null);
+         });
+}
 //Register {userID} to {eventID}. status is whether the user is an admin or a participant
 exports.addUserToEvent = function(eventID,userID,status,fn){
     console.log(eventID+userID+status);
@@ -112,6 +127,20 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
     });
 };
 
+exports.sendFriendRequest = function(sender,receiver){
+    notificationManager2.notifyUser(receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
+}
+
+generateFriendRequestMessage = function(sender){
+    var msg = sender+" wants to be a friend of you!"
+    return msg;
+}
+isUserOnline = function(userName){
+     if(GLOBAL.onlineUsers[userName]){
+         return true;
+     }
+    return false;
+}
 exports.removeUserFromEvent = function(userID,eventID,fn){
     mongoAdapter.deleteDocument('EventUser_'+eventID,{userID:userID},function(err){
         if(err)

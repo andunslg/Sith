@@ -20,7 +20,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng
     var end=(util.parseDateTime(endDate,endTime)).getTime();
 
     //TODO Prabhath : Add  fixedLocation,timeVariantParams to bam send
-    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,'false');
+    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,fixedLocation);
 };
 
 exports.getEventByID = function(eventID,fn){
@@ -103,3 +103,10 @@ exports.insertTimeVariantParam = function(eventID,timeVariantParam) {
     mongoAdapter.insertDocument("EventTimeVariantParams_"+eventID, timeVariantParam);
 
 }
+
+exports.retrieveTimeVariantParam=function(eventID,fn){
+    mongoAdapter.getDocuments({},"EventTimeVariantParams_" + eventID, function (docs) {
+        fn(docs);
+    });
+}
+

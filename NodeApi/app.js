@@ -14,7 +14,8 @@ var express = require('express')
   , BearerStrategy =require('passport-http-bearer')
   , cacheAccess = require('./routes/cacheAccess')
   , mapRouts=require('./routes/maps.js')
-  ,friendRoutes=require('./routes/friend.js');
+  ,friendRoutes=require('./routes/friend.js')
+  ,notificationManager = require('./routes/notification.js');
 
 var app = express();
 app.engine('html', require('hjs').renderFile);
@@ -86,6 +87,7 @@ app.post('/publishComment',eventRoutes.publishComment);
 app.get('/getEventComments',eventRoutes.getEventComments);
 app.put('/setCommentEnabled',eventRoutes.setCommentEnabled);
 app.post('/addTimeVariantParam',eventRoutes.addTimeVariantParam);
+app.post('/getTimeVariantParamValues',eventRoutes.retrieveTimeVariantParam);
 
 //routing for user mangement
 app.post('/registerAnnonymousUser',userMgmtRoutes.registerAnnonymousUser);
@@ -103,14 +105,27 @@ app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 app.get('/getSelfMap',mapRouts.getSelfMap);
 app.get('/getEventMap',mapRouts.getEventMap);
-
+//notifs
+app.get('/getNotifications',notificationManager.getNotifications);
+app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
 //friends
 app.get('/getAllfriends',friendRoutes.getAllfriends);
 app.get('/searchFriendsToAdd',friendRoutes.searchFriendsToAdd);
-app.get('/removeFriend',friendRoutes.removeFriend)
+app.post('/removeFriend',friendRoutes.removeFriend)
 
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+});
+GLOBAL.io = require('socket.io').listen(server);
+GLOBAL.onlineUsers = {};
+GLOBAL.io.sockets.on('connection', function (socket) {
+    socket.on('login', function (userName) {
+        GLOBAL.onlineUsers[userName] = {
+            "socket":socket.id
+        }
+        console.log(userName+" logged in!");
+    });
+
 });

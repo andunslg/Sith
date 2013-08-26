@@ -164,13 +164,14 @@
 
         $("#addFriend").live('click',function () {
             var sender = '<%=session.getAttribute("user").toString()%>';
-            var receiver =$(this).closest("tr").find(".avatar").text()
+            var receiver =$(this).closest("tr").find(".avatar").text();
+            var selectedButton = $(this);
             console.log(receiver);
             $.ajax({
             url: '<%=SithAPI.SEND_FRIEND_REQUEST%>?sender='+sender+'&receiver='+receiver,
             type: 'GET',
             success: function (data) {
-                apprise("request sent");
+                selectedButton.removeClass("button").html("Request Sent")
             },
             error: function (xhr, status, error) {
             apprise("Error : " + error.message);

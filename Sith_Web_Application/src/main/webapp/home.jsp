@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
     <link href="css/toastr.css" rel="stylesheet" />
     <!-- Include this file if you are using Pines Icons. -->
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src='<%=SithAPI.SOCKET_API%>/socket.io/socket.io.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/toastr.min.js"></script>
     <script src="js/jquery-ui.js"></script>

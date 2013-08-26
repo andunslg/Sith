@@ -38,6 +38,7 @@ public class SithAPI{
     public static String GET_FRIENDS_LIST = NODEAPI+"getFriendList";
     public static String REMOVE_FRIEND = NODEAPI+"removeFriend";
     public static String ADD_FRIEND = NODEAPI+"addFriend";
+    public static String SEND_FRIEND_REQUEST = NODEAPI+"sendFriendRequest";
 	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
     public static String GET_SELF_MAP=NODEAPI+"getSelfMap";

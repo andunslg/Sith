@@ -110,7 +110,7 @@ app.get('/getNotifications',notificationManager.getNotifications);
 app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
 //friends
 app.get('/getAllfriends',friendRoutes.getAllfriends);
-app.get('/searchFriendsToAdd',friendRoutes.searchFriendsToAdd);
+app.get('/getFriendsSuggestions',friendRoutes.searchFriendsToAdd);
 app.post('/removeFriend',friendRoutes.removeFriend)
 
 //analytics

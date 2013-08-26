@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="org.json.JSONArray" %>
 <%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -43,7 +44,7 @@
                 timeOut: 2500
                 // I position it properly already. not needed.
             };
-            var socket = io.connect('http://localhost:3000');
+            var socket = io.connect('<%=SithAPI.SOCKET_API%>');
             // on connection to server, ask for user's name with an anonymous callback
             //var previousPage = document.referrer;
             //var patt=/index.jsp/g;
@@ -139,7 +140,7 @@
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
                 <li><a href="myEvents.jsp"></span>My Events</a></li>
                 <li><a href="joinEvents.jsp"></span>Join Events</a></li>
@@ -150,14 +151,14 @@
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
                 <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
             </ul>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
             <ul class="submenu">
                 <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>

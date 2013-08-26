@@ -30,7 +30,7 @@
     <!-- Include this file if you are using Pines Icons. -->
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/toastr.min.js"></script>
+    <script type="text/javascript" src="js/toastr.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>

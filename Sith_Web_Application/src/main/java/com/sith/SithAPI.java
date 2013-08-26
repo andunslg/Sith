@@ -46,6 +46,7 @@ public class SithAPI{
     public static String GET_TIME_ANALYSIS = NODEAPI+"getTimeAnalysis";
     public static String GET_SELF_ANALYTICS = NODEAPI+"getSelfAnalytics";
     public static String GET_REALTIME_PERCEP_COUNTS = NODEAPI+"countPeriodicPerceptions";
+    public static String GET_COLOR_SCHEMA = NODEAPI+"getColorSchema";
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;
 

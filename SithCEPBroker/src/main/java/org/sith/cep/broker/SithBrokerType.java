@@ -68,6 +68,19 @@ public final class SithBrokerType implements BrokerType {
 
 			sendToNode(nodeMethodUri,parmMap);
 		}
+		else if(message instanceof String){
+			String nodeMethodUri=topicName;
+			String tempArr[]=((String)message).split(":");
+			String eventID=tempArr[0];
+			String msg=tempArr[1];
+
+			Map<String,String> parmMap= new HashMap<String,String>();
+
+			parmMap.put("eventID",eventID);
+			parmMap.put("msg",msg);
+
+			sendToNode(nodeMethodUri,parmMap);
+		}
 		else{
 			log.info("Message is not in the correct format");
 		}

@@ -187,7 +187,7 @@ exports.sendPercept=function(userID,subcriptionID,emotion,location,latitude,long
     jsonObject = JSON.stringify(
        [ {
             "payloadData":[subcriptionID,userID,emotion,location,latitude,longitude,time]
-        }  ]
+        } ]
     );
     //TODO change below line
     var path="perception_stream2"+'/1.0.0/' ;

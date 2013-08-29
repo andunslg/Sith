@@ -5,6 +5,7 @@ var stats = require('../stats'),
 analyser = require('../Analytics/PerceptionTimeAnalyser');
 mapreduceAnalyser = require('../Analytics/mapReduce');
 eventManager2 = require('../eventManager');
+cepConnectorForPatterns = require("../cepConnector");
 //send perception totals in each catelog
 exports.sendPerceptionCount = function(req,res){
     eventID = req.query.eventID;
@@ -162,7 +163,7 @@ exports.getSelfAnalytics= function(req,res){
 }
 
 exports.receiveCEPAnalytics = function(req,res){
-    cep
+    cepConnectorForPatterns.sendNotificationOnPatterns(req.body.eventID,req.body.msg);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });
     res.write(result);

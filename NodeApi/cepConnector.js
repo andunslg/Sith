@@ -88,7 +88,7 @@ exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng
 }
 
 exports.sendNotificationOnPatterns = function(eventID,msg){
-   mongoAdapter.getSingleDocument({eventID:eventID},"EventDetais",function(docs){
+   mongoAdapter.getSingleDocument({eventID:eventID},"EventDetails",function(docs){
        var isAdminOnline;
        if(GLOBAL.onlineUsers[docs.eventAdmin]){
            isAdminOnline = true;

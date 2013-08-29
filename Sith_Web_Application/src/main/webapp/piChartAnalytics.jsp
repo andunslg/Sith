@@ -113,6 +113,10 @@
 </section>
 
 <script>
+
+google.maps.visualRefresh=true;
+
+zIndex=100;//used to bring the last infowindow into front
 google.load( 'visualization', '1', { packages:['corechart'] });
 
 
@@ -120,23 +124,22 @@ ChartMarker.prototype = new google.maps.OverlayView;
 ChartMarker.prototype.onAdd = function() {
     $( this.getPanes().overlayMouseTarget ).append( this.$div );
 };
+
 ChartMarker.prototype.onRemove = function() {
     this.$div.remove();
 };
 
 ChartMarker.prototype.draw = function() {
-    var marker = this;
-    var projection = this.getProjection();
-    var position = projection.fromLatLngToDivPixel( this.get('position') );
+    var marker = this,
+            projection = this.getProjection(),
+            position = projection.fromLatLngToDivPixel( this.get('position') );
 
     this.$div.css({
         left: position.x,
         top: position.y,
         display: 'block'
     })
-
     this.$inner
-            .html( '<img src="' + this.get('image') + '"/>' )
             .click( function( event ) {
                 var events = marker.get('events');
                 events && events.click( event );
@@ -146,22 +149,29 @@ ChartMarker.prototype.draw = function() {
     this.chart.draw( this.get('chartData'), this.get('chartOptions') );
 };
 
+function drawChart(marker, event) {
+    if(!marker.get('infowindow')){//create only 1 infowindow per marker
+        var node        = document.createElement('div'),
+                chart       = new google.visualization.PieChart(node),
+                options = { title:'Event : '+event.type+'  Location : '+marker.position,
+                    width:400,
+                    height:150,
+                    slices: {0: {color: 'orange'},
+                        1:{color: 'green'},
+                        2:{color: 'yellow'},
+                        3: {color: 'blue'},
+                        4:{color: 'red'}}
+                };
+        chart.draw(marker.chartData, options);
+        marker.set('infowindow',new google.maps.InfoWindow({content:node,
+            position:marker.position,
+            map:marker.getMap()}));
+        $(node).click(function(){marker.infowindow.setZIndex(zIndex++);})
 
-function drawChart(marker, data, event, location) {
+    }
 
-
-    var options = {'title':'Event : '+event+'  Location : '+location,
-        'width':400,
-        'height':150,
-        slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}};
-
-    var node        = document.createElement('div'),
-            infoWindow  = new google.maps.InfoWindow(),
-            chart       = new google.visualization.PieChart(node);
-
-    chart.draw(data, options);
-    infoWindow.setContent(node);
-    infoWindow.open(marker.getMap(),marker);
+    marker.infowindow.setZIndex(zIndex++);
+    marker.infowindow.open(marker.getMap());
 }
 
 function ChartMarker( options ) {
@@ -222,6 +232,7 @@ function getFromAPI(emotion, timelevel, latmin,lngmin,latmax,lngmx) {
 }
 
 var map = new Object();
+
 function getDataMap(){
 
     for( var i=0;i<master_perception.length;i++){
@@ -260,14 +271,12 @@ function drawPieCharts(map){
         var obj = mp[key];
         var pie_chart_latlng = new google.maps.LatLng(obj.lat, obj.lo)
 
-        var data = google.visualization.arrayToDataTable([
-            [ 'Perception', '%' ],
-            [ master_perception[0],obj[master_perception[0]]],
-            [ master_perception[1],obj[master_perception[1]]],
-            [ master_perception[2],obj[master_perception[3]]],
-            [ master_perception[3],obj[master_perception[3]]],
-            [ master_perception[4],obj[master_perception[4]]]
-        ]);
+        var data_table = new Array();
+        data_table[0] =  [ 'Perception', '%' ];
+        for(var k=0;k<master_perception.length;k++){
+            data_table[k+1]=[ master_perception[k],obj[master_perception[k]]];
+        }
+        var data = google.visualization.arrayToDataTable(data_table);
         var options = {
 
             fontSize: 8,
@@ -276,21 +285,22 @@ function drawPieCharts(map){
             slices: {0: {color: 'orange'}, 1:{color: 'green'}, 2:{color: 'yellow'}, 3: {color: 'blue'}, 4:{color: 'red'}}
         };
 
-        var marker = new ChartMarker({
-            map: map,
-            position: pie_chart_latlng,
-            width: '250px',
-            height: '100px',
-            chartData: data,
-            chartOptions: options,
-            events: {
-                click: function(mk,dt,name,location) {
-                    return function(){
-                        drawChart(mk,dt,name,location)
-                    };
-                }(marker,data,obj.event_name,obj.location)
-            }
-        });
+        (function(location,data){
+            var marker = new ChartMarker({
+                map: map,
+                position: location,
+                width: '250px',
+                height: '100px',
+                chartData: data,
+                chartOptions: options,
+                events: {
+                    click: function( event ) {
+                        drawChart(marker,event)
+                    }
+                }
+            });
+        })(pie_chart_latlng,data,options);
+
     }
 }
 

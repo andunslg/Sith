@@ -90,7 +90,7 @@ exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng
 exports.sendNotificationOnPatterns = function(eventID,msg){
    mongoAdapter.getSingleDocument({eventID:eventID},"EventDetais",function(docs){
        var isAdminOnline;
-       if(GLOBAL.onlineUsers[userName]){
+       if(GLOBAL.onlineUsers[docs.eventAdmin]){
            isAdminOnline = true;
        }else{
            isAdminOnline = false;

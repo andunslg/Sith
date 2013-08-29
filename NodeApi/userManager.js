@@ -128,7 +128,13 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
 };
 
 exports.sendFriendRequest = function(sender,receiver){
-    notificationManager2.notifyUser(receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
+    notificationManager2.notifyUser(sender,receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
+}
+
+exports.acceptsFriendRequest = function(sender,receiver){
+   mongoAdapter.insertDocument("UserFriends_"+sender,{UserName:receiver});
+   mongoAdapter.insertDocument("UserFriends_"+receiver,{UserName:sender});
+   mongoAdapter.updateDocument("UserNotifications_"+receiver,{sender:sender,type:"friendRequest"},{"status":"friended"});
 }
 
 generateFriendRequestMessage = function(sender){

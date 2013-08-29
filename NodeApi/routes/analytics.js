@@ -162,7 +162,7 @@ exports.getSelfAnalytics= function(req,res){
 }
 
 exports.receiveCEPAnalytics = function(req,res){
-    console.log(req.body);
+    cep
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });
     res.write(result);

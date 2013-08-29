@@ -14,8 +14,8 @@ exports.getAllFriends=function(userID,fn){
 }
 
 exports.searchFriendsToAdd=function(userID,searchString,fn){
-    var re = new RegExp(searchString);
-    mongoAdapter.getDocuments({userName:re}, 'Users', function (docs) {
+    var regex = new RegExp(searchString);
+    mongoAdapter.getProjection('Users',{userName:regex},{password:0,_id:0}, function (docs) {
         fn(docs);
     });
 }

@@ -213,7 +213,8 @@ exports.addEventInfo=function(userID,subscriptionID,subscriptionName,subscriptio
     jsonObject = JSON.stringify(
         [ {
             "payloadData":[subscriptionID,subscriptionName,startTime,endTime,subscriptionLocation,latitude,longitude,isDistributed]
-        } ]
+          }
+        ]
     );
     var path="event_stream"+'/1.0.0/' ;
     sendEventUpdate(jsonObject,path);

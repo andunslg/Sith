@@ -112,3 +112,10 @@ exports.sendFriendRequest = function(req,res){
    res.write(JSON.stringify({result:true}));
    res.end();
 }
+
+exports.acceptFriendRequest = function(req,res){
+    userManager.acceptsFriendRequest(req.query.sender,req.query.receiver);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write(JSON.stringify({result:true}));
+    res.end();
+}

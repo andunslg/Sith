@@ -59,13 +59,26 @@
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
-                toastr.info(data, 'Friend Request')
+                toastr.info(data, 'Friend Request');
+                console.log($('ul#notifList > li:first').text());
+                //remove the existing "No notifications" message
+                if($('ul#notifList > li:first').text()=="You have no notifications"){
+                    $('ul#notifList > li:first').remove();
+                };
+                //append new notification to the top
+                $("#notifList").prepend('<li><table><tr><td class="sender" style="visibility: hidden;font-size: 1px">'+data.split(" ")[0]+'</td><td><h1>'+data+'</h1></td><td><div class="buttons"><span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; "><a id="confirm" href="#">Confirm</a></span></div></td></tr></table></li>');
             });
             socket.on("cepNotification",function(data){
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
-                toastr.info(data, 'Perception Pattern Detected')
+                toastr.info(data, 'Perception Pattern Detected');
+                //remove the existing "No notifications" message
+                if($('ul#notifList > li:first').text()=="You have no notifications"){
+                    $('ul#notifList > li:first').remove();
+                };
+                //append new notification to the top
+                $("#notifList").prepend('<li><table><tr><td class="sender" style="visibility: hidden;font-size: 1px">'+data.split(" ")[0]+'</td><td><h1>'+data+'</h1></td><td><div class="buttons"><span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; "><a id="confirm" href="#">Confirm</a></span></div></td></tr></table></li>');
             });
             $("#notifButton").hover(
                 function(){
@@ -73,6 +86,23 @@
                  $("#notificCount").css("visibility","hidden");
                 }
             );
+            $("#confirm").live("click",function(){
+                var sender =$(this).closest("tr").find(".sender").text();
+                var receiver = '<%=session.getAttribute("user").toString()%>';
+                var button = $(this);
+                console.log(sender);
+                $.ajax({
+                    url: '<%=SithAPI.CONFIRM_FRIEND_REQUEST%>?sender='+sender+'&receiver='+receiver,
+                    type: 'GET',
+                    success: function (data) {
+                        button.html("Confirmed");
+                        toastr.info('You are now friend with '+sender);
+                    },
+                    error: function (xhr, status, error) {
+                        apprise("Error : " + error.message);
+                    }
+                });
+            })
         });
     </script>
 </head>
@@ -98,32 +128,29 @@
                 <span id="notificCount" class="pip" style="visibility: hidden">0</span>
             <%}%>
             </a>
-			<ul class="notice" style="width: 300px">
+			<ul id="notifList"class="notice" style="width: 300px">
                 <% if(notifs.length()==0){%>
-                <li>
-                    <hgroup>
-                        <h1>You have no notifications</h1>
-                    </hgroup>
-                </li>
+                <li><hgroup><h1>You have no notifications</h1></hgroup></li>
                 <%}else{
                     for(int i=0;i<notifs.length();i++){%>
                 <li style="white-space: nowrap">
                     <table>
                         <tr>
+                            <td class="sender" style="visibility: hidden;font-size: 1px"><%=notifs.getJSONObject(i).getString("sender")%></td>
                             <td>
                                 <h1>
                                     <%=notifs.getJSONObject(i).getString("text")%>
                                 </h1>
                             </td>
-                <% if(notifs.getJSONObject(i).getString("type").equals("friendRequest")){%>
+                                <% if(notifs.getJSONObject(i).getString("type").equals("friendRequest")){%>
                             <td>
                                 <div class="buttons">
                                     <span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; ">
-                                        <a href="#">Confirm</a>
+                                        <a id="confirm" href="#">Confirm</a>
                                     </span>
                                 </div>
                             </td>
-                <% }%>
+                        <% }%>
                         </tr>
                     </table>
                 </li>

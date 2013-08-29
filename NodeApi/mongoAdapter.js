@@ -89,7 +89,7 @@ exports.getProjection = function(collection,query,projection,fn){
             throw err;
         else{
             db.collection(collection, function(err, collection) {
-                collection.findOne(query,projection,function(err, doc) {
+                collection.find(query,{fields:projection}).toArray(function(err, doc) {
                     if(err)
                         throw err;
                     fn(doc);

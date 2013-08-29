@@ -29,16 +29,16 @@ exports.getNotifications = function(type,status,userID,fn){
 }
 
 //add a notification to the db
-addNotification = function(type,status,text,userID){
-    var doc = {type:type,status:status,text:text}
+addNotification = function(sender,type,status,text,userID){
+    var doc = {sender:sender,type:type,status:status,text:text}
     notifyMongoAdapter.insertDocument("UserNotifications_"+userID,doc);
 }
 
-exports.notifyUser = function(receiver,type,msg,isReceiverOnline){
+exports.notifyUser = function(sender,receiver,type,msg,isReceiverOnline){
     if(isReceiverOnline){
         GLOBAL.io.sockets.socket(GLOBAL.onlineUsers[receiver].socket).emit(type,msg);
-        addNotification(type,"pending",msg,receiver);
+        addNotification(sender,type,"pending",msg,receiver);
     }else{
-        addNotification(type,"pending",msg,receiver);
+        addNotification(sender,type,"pending",msg,receiver);
     }
 }

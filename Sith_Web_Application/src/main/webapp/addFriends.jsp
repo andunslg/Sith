@@ -80,8 +80,6 @@
         </li>
     </ul>
 </nav>
-
-
 <section class="content" style="margin-top: 10px">
     <section class="widget">
         <header>
@@ -119,10 +117,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
-
-
-
                 </tbody>
             </table>
         </div>
@@ -133,30 +127,32 @@
 <script src="js/custom.js"></script>
 <script src="js/cycle.js"></script>
 <script src="js/jquery.checkbox.min.js"></script>
-<script src="js/flot.js"></script>
-<script src="js/flot.resize.js"></script>
-<script src="js/flot-graphs.js"></script>
-<script src="js/flot-time.js"></script>
+<%--<script src="js/flot.js"></script>--%>
+<%--<script src="js/flot.resize.js"></script>--%>
+<%--<script src="js/flot-graphs.js"></script>--%>
+<%--<script src="js/flot-time.js"></script>--%>
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <script src="js/apprise-1.5.min.js"></script>
 
 <script type="text/javascript">
-
-
-    $("#search").click(function () {
-        var username = '<%=session.getAttribute("user").toString()%>';
-        var query = $('input[id=query]').val();
-
-
+    $(document).ready(function(){
+        $("#search").click(function () {
+            var username = '<%=session.getAttribute("user").toString()%>';
+            var query = $('input[id=query]').val();
+            var friends;
             $.ajax({
-                url: '<%=SithAPI.GET_FRIENDS_SUGGESTIONS%>?userID'+username+'&query='+query,
+                url: '<%=SithAPI.GET_FRIENDS_SUGGESTIONS%>?userID='+username+'&query='+query,
                 type: 'GET',
                 success: function (data) {
-                    var friends=JSON.parse(data);
+                    if(typeof data=='string' || data instanceof String){
+                        friends = JSON.parse(data);
+                    }else{
+                        friends = data;
+                    }
                     var s='';
                     for(var i = 0; i < friends.length; i++){
-                         s+=' <tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID='+username +'&friendID='+ friends[i].userName+'">Add</a></span></td> </tr>';
+                        s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="addFriend">Add</span></td> </tr>';
                     }
                     $('#myTable tbody').html(s);
                 },
@@ -164,7 +160,25 @@
                     apprise("Error : " + error.message);
                 }
             });
-    });
+        });
+
+        $("#addFriend").live('click',function () {
+            var sender = '<%=session.getAttribute("user").toString()%>';
+            var receiver =$(this).closest("tr").find(".avatar").text();
+            var selectedButton = $(this);
+            console.log(receiver);
+            $.ajax({
+            url: '<%=SithAPI.SEND_FRIEND_REQUEST%>?sender='+sender+'&receiver='+receiver,
+            type: 'GET',
+            success: function (data) {
+                selectedButton.removeClass("button").html("Request Sent")
+            },
+            error: function (xhr, status, error) {
+            apprise("Error : " + error.message);
+            }
+            });
+        });
+    })
 </script>
 </body>
 </html>

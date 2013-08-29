@@ -16,17 +16,17 @@ import java.util.ArrayList;
 public class NotificationHandler {
    HTTPUtil httpUtil = new HTTPUtil();
 
-   public ArrayList<String> getAllNotifications(String userID){
-       ArrayList<String> notifs=null;
+   public JSONArray getAllNotifications(String userID){
+     //  ArrayList<String> notifs=null;
        String result = "";
        try {
            result = httpUtil.doGet(SithAPI.GET_NOTIFICATIONS+"?userID="+userID+"&status=pending");
-           JSONArray jsonArray=new JSONArray(result);
-           notifs = new ArrayList<String>();
-           for (int i=0;i<jsonArray.length();i++){
-               JSONObject obj = jsonArray.getJSONObject(i);
-               notifs.add(obj.getString("text"));
-           }
+           JSONArray notifs=new JSONArray(result);
+//           notifs = new ArrayList<String>();
+//           for (int i=0;i<jsonArray.length();i++){
+//               JSONObject obj = jsonArray.getJSONObject(i);
+//               notifs.add(obj.getString("text"));
+//           }
            return notifs;
        } catch (Exception e) {
            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

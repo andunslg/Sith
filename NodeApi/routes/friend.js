@@ -12,6 +12,7 @@ friendManager=require("../friendManager.js");
 exports.getAllfriends=function(req,res){
    friendManager.getAllFriends(req.query.userID,function(doc){
        if(doc){
+           res.writeHead(200, {'Content-Type': 'application/json'});
            res.write(JSON.stringify(doc));
            res.end();
        }else{
@@ -23,6 +24,7 @@ exports.getAllfriends=function(req,res){
 exports.searchFriendsToAdd=function(req,res){
     friendManager.searchFriendsToAdd(req.query.userID,req.query.query,function(doc){
         if(doc){
+            res.writeHead(200, {'Content-Type': 'application/json'});
             res.write(JSON.stringify(doc));
             res.end();
         }else{

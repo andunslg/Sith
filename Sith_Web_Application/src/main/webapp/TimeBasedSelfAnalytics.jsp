@@ -23,13 +23,12 @@
     <script src="js/custom.js"></script>
     <script src="js/cycle.js"></script>
     <script src="js/jquery.checkbox.min.js"></script>
-    <script src="js/flot.js"></script>
-    <script src="js/flot.resize.js"></script>
-    <script src="js/flot-graphs.js"></script>
-    <script src="js/flot-time.js"></script>
-    <script src="js/cycle.js"></script>
+    <%--<script src="js/flot.js"></script>--%>
+    <%--<script src="js/flot.resize.js"></script>--%>
+    <%--<script src="js/flot-graphs.js"></script>--%>
+    <%--<script src="js/flot-time.js"></script>--%>
     <script src="js/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+    <%--<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>--%>
     <script type="text/javascript" src="js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="js/highCharts/modules/exporting.js"></script>
 
@@ -123,8 +122,6 @@
             <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
         </div>
     </section>
-
-
 </section>
 </body>
 </html>

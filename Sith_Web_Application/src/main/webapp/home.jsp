@@ -1,5 +1,8 @@
 <%@ page import="com.sith.user.NotificationHandler" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="org.json.JSONArray" %>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE html>
 <html lang="">
 
@@ -10,8 +13,8 @@
         }
     }
     NotificationHandler notifHandler = new NotificationHandler();
-    ArrayList<String> notifs = null;
-    notifs = notifHandler.getAllNotifications(session.getAttribute("user").toString());
+    //ArrayList<String> notifs = null;
+    JSONArray notifs = notifHandler.getAllNotifications(session.getAttribute("user").toString());
 %>
 
 <head>
@@ -25,7 +28,7 @@
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
     <link href="css/toastr.css" rel="stylesheet" />
     <!-- Include this file if you are using Pines Icons. -->
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src='<%=SithAPI.SOCKET_API%>/socket.io/socket.io.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/toastr.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -35,23 +38,23 @@
     <script src="js/jquery.checkbox.min.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript">
-        toastr.options = {
-            positionClass: 'bottom-left',
-            timeOut: 0
-             // I position it properly already. not needed.
-        };
         $(document).ready(function(){
-            var socket = io.connect('http://localhost:3000');
+            toastr.options = {
+                positionClass: 'toast-bottom-left',
+                timeOut: 2500
+                // I position it properly already. not needed.
+            };
+            var socket = io.connect('<%=SithAPI.SOCKET_API%>');
             // on connection to server, ask for user's name with an anonymous callback
-            var previousPage = document.referrer;
-            var patt=/index.jsp/g;
-            var result=patt.test(previousPage);
-            if(result){
+            //var previousPage = document.referrer;
+            //var patt=/index.jsp/g;
+            //var result=patt.test(previousPage);
+            //if(result){
                 socket.on('connect', function(){
                     // call the server-side function 'adduser' and send one parameter (value of prompt)
                     socket.emit('login', '<%=session.getAttribute("user").toString()%>');
                 });
-            }
+            //}
             socket.on("friendRequest",function(data){
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
@@ -74,7 +77,6 @@
     </script>
 </head>
 <body>
-
 <div class="testing">
     <header class="main">
         <h1><strong>Sith </strong>Dashboard</h1>
@@ -90,27 +92,42 @@
             <button class="ico-font">&#9206;</button>
 		<span id="notifButton" class="button dropdown">
 			<a href="#">Notifications
-            <% if(notifs.size()>0){%>
-                <span id="notificCount" class="pip"><%=notifs.size()%></span>
+            <% if(notifs.length()>0){%>
+                <span id="notificCount" class="pip"><%=notifs.length()%></span>
             <%}else{%>
                 <span id="notificCount" class="pip" style="visibility: hidden">0</span>
             <%}%>
             </a>
-			<ul class="notice">
-                <% if(notifs.size()==0){%>
+			<ul class="notice" style="width: 300px">
+                <% if(notifs.length()==0){%>
                 <li>
                     <hgroup>
                         <h1>You have no notifications</h1>
                     </hgroup>
                 </li>
                 <%}else{
-                    for(String notif : notifs){%>
-                <li>
-                    <%=notif%>
+                    for(int i=0;i<notifs.length();i++){%>
+                <li style="white-space: nowrap">
+                    <table>
+                        <tr>
+                            <td>
+                                <h1>
+                                    <%=notifs.getJSONObject(i).getString("text")%>
+                                </h1>
+                            </td>
+                <% if(notifs.getJSONObject(i).getString("type").equals("friendRequest")){%>
+                            <td>
+                                <div class="buttons">
+                                    <span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; ">
+                                        <a href="#">Confirm</a>
+                                    </span>
+                                </div>
+                            </td>
+                <% }%>
+                        </tr>
+                    </table>
                 </li>
-                <%}
-                }
-                %>
+                <%}}%>
             </ul>
 		</span>
             <span class="button"><a href="home.jsp">Home</a></span>
@@ -123,7 +140,7 @@
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
                 <li><a href="myEvents.jsp"></span>My Events</a></li>
                 <li><a href="joinEvents.jsp"></span>Join Events</a></li>
@@ -134,14 +151,14 @@
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
                 <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
             </ul>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
             <ul class="submenu">
                 <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>

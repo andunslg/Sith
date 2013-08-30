@@ -68,6 +68,18 @@
                 //append new notification to the top
                 $("#notifList").prepend('<li><table><tr><td class="sender" style="visibility: hidden;font-size: 1px">'+data.split(" ")[0]+'</td><td><h1>'+data+'</h1></td><td><div class="buttons"><span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; "><a id="confirm" href="#">Confirm</a></span></div></td></tr></table></li>');
             });
+            socket.on("requestAccepted",function(data){
+                var currentCount = parseInt($("#notificCount").text());
+                $("#notificCount").text(currentCount+1);
+                $("#notificCount").css("visibility","visible");
+                toastr.info(data, 'Friend Request Accepted!');
+                //remove the existing "No notifications" message
+                if($('ul#notifList > li:first').text()=="You have no notifications"){
+                    $('ul#notifList > li:first').remove();
+                };
+                //append new notification to the top
+                $("#notifList").prepend('<li><table><tr><td><h1>'+data+'ffafdafdffsfdvdfgdfhrtyhthgfnfggrgfjdbfsda bfshfcuidsfhsfbsdifbisaebfdibjhdsfbsad</h1></td></tr></table></li>');
+            });
             socket.on("cepNotification",function(data){
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
@@ -78,7 +90,7 @@
                     $('ul#notifList > li:first').remove();
                 };
                 //append new notification to the top
-                $("#notifList").prepend('<li><table><tr><td class="sender" style="visibility: hidden;font-size: 1px">'+data.split(" ")[0]+'</td><td><h1>'+data+'</h1></td><td><div class="buttons"><span class="button blue" style=" top: 0px; right: 0px; left:10px; position: relative; "><a id="confirm" href="#">Confirm</a></span></div></td></tr></table></li>');
+                $("#notifList").prepend('<li><table><tr><td><h1>'+data+'</h1></td></tr></table></li>');
             });
             $("#notifButton").hover(
                 function(){

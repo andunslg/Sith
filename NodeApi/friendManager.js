@@ -16,8 +16,26 @@ exports.getAllFriends=function(userID,fn){
 exports.searchFriendsToAdd=function(userID,searchString,fn){
     var regex = new RegExp(searchString);
     mongoAdapter.getProjection('Users',{userName:regex},{password:0,_id:0}, function (docs) {
-        mongoAdapter.getDocuments();
-        fn(docs);
+        mongoAdapter.getDocuments({$or:[{type:"friendRequest"},{type:"requestAccepted"},{type: "friendRequestToOther"}]},'UserNotifications_'+userID,function(notifs){
+                for(i=0;i<docs.length;i++){
+                    //remove the self data from the suggesions
+                    if(docs[i].userName == userID){
+                        docs.splice(i,1);
+                        i--;
+                        continue;
+                    }
+                    //annotate the suggested list
+                    for(j=0;j<notifs.length;j++){
+                        if(docs[i].userName==notifs[j].sender){
+                            if(notifs[j].status == "pending" && notifs[j].type== "friendRequest"){docs[i].type = "pendingRequest";}
+                            else if((notifs[j].status == "friended" && notifs[j].type== "friendRequest") ||notifs[j].type == "requestAccepted"){docs[i].type = "friend";}
+                            else if(notifs[j].type== "friendRequestToOther"){docs[i].type = "requestSent"}
+                        }
+                    }
+                }
+            fn(docs);
+        });
+
     });
 }
 

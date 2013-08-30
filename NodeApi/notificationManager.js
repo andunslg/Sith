@@ -27,9 +27,14 @@ exports.getNotifications = function(type,status,userID,fn){
        fn(docs);
    });
 }
-
+exports.removeNotification = function(userID,query){
+   notifyMongoAdapter.deleteDocument("UserNotifications_"+userID,query,function(err){
+       if(err)
+        throw err;
+   })
+}
 //add a notification to the db
-addNotification = function(sender,type,status,text,userID){
+exports.addNotification = function(sender,type,status,text,userID){
     var doc = {sender:sender,type:type,status:status,text:text}
     notifyMongoAdapter.insertDocument("UserNotifications_"+userID,doc);
 }
@@ -37,8 +42,8 @@ addNotification = function(sender,type,status,text,userID){
 exports.notifyUser = function(sender,receiver,type,msg,isReceiverOnline){
     if(isReceiverOnline){
         GLOBAL.io.sockets.socket(GLOBAL.onlineUsers[receiver].socket).emit(type,msg);
-        addNotification(sender,type,"pending",msg,receiver);
+        this.addNotification(sender,type,"pending",msg,receiver);
     }else{
-        addNotification(sender,type,"pending",msg,receiver);
+        this.addNotification(sender,type,"pending",msg,receiver);
     }
 }

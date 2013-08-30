@@ -152,8 +152,16 @@
                     }
                     var s='';
                     for(var i = 0; i < friends.length; i++){
-                        s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="addFriend">Add</span></td> </tr>';
-                    }
+                        if(friends[i].type=="pendingRequest"){
+                            s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="confirm">Confirm</span></td></tr>';
+                        }else if(friends[i].type=="friend"){
+                        s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td class="avatar"><img src="images/tick_green_big.gif" alt="" style="margin: 6px 5px 0 0"/>Friend</td></tr>';
+                        }else if(friends[i].type == "requestSent"){
+                            s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span>Request Sent</span></td></tr>';
+                        }else if(!friends[i].type){
+                            s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="addFriend">Add</span></td></tr>';
+                        }
+                        }
                     $('#myTable tbody').html(s);
                 },
                 error: function (xhr, status, error) {

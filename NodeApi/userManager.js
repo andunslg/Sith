@@ -128,13 +128,18 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
 };
 
 exports.sendFriendRequest = function(sender,receiver){
+    //add firend request entry in the senders table for annotate friend list in searching. To identify the users to whom the sender have sent the message
+    notificationManager2.addNotification(receiver,"friendRequestToOther","pending","friend request to "+receiver,sender);
+    //send notification to the receiver
     notificationManager2.notifyUser(sender,receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
 }
-
+//sender is the one who has sent the requestand receiver is the one who accept the notification
 exports.acceptsFriendRequest = function(sender,receiver){
    mongoAdapter.insertDocument("UserFriends_"+sender,{UserName:receiver});
    mongoAdapter.insertDocument("UserFriends_"+receiver,{UserName:sender});
    mongoAdapter.updateDocument("UserNotifications_"+receiver,{sender:sender,type:"friendRequest"},{"status":"friended"});
+   notificationManager2.notifyUser(receiver,sender,"requestAccepted",receiver+" has accepted your friend request",isUserOnline(sender));
+   notificationManager2.removeNotification(sender,{sender:receiver,type:"friendRequestToOther"});
 }
 
 generateFriendRequestMessage = function(sender){

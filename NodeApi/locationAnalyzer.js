@@ -110,3 +110,9 @@ exports.getEventMap=function(eventID,emotion,fn){
 }
 
 
+exports.getLocationPerception=function(lat,longi,fn){
+
+
+    fn();
+}
+

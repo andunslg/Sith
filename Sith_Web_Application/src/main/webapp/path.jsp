@@ -1,3 +1,4 @@
+<%@ page import="com.sith.SithAPI" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,7 +102,7 @@
         }
 
         function calCost(routes) {
-            var pathCosts = new Array();
+
             var points;
             for (var i = 0; i < routes.length; i++) {
                 points = routes[i].legs[0].steps;
@@ -109,7 +110,7 @@
                 for (var j = 0; j < points.length; j++) {
                     cost += getCost(points[j].start_location.lat, points[j].start_location.lng);
                 }
-                pathCosts[i] = cost;
+                cost=cost/j;
                 routes[i].summary += ", Perception rating=" + cost + ",";
                 routes[i].rating=cost;
             }
@@ -126,8 +127,25 @@
             return 0;
         }
 
-        function getCost(lat, longi) {
-            return Math.floor((Math.random()*10)+1);;
+        function getCost(lat, lng) {
+           var temp;
+            $.ajax({
+                url: '<%=SithAPI.GET_LOCATION_RATING%>?lat='+lat+'&lng='+lng,
+                type: 'GET',
+                async: false,
+                success: function (data) {
+                    if(typeof data=='string' || data instanceof String){
+                        temp = JSON.parse(data);
+                    }else{
+                        temp= data;
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    apprise("Error : " + error.message);
+                }
+            });
+            return temp.rating;
         }
 
     </script>

@@ -1,0 +1,81 @@
+    # Sith Platform auto-start
+    #
+    # description: Auto-starts sith
+    # processname: sith
+    # pidfile: /var/run/sith.pid
+
+    case $1 in
+    start)
+            /etc/init.d/mongodb start
+	    until nc -z localhost 27017
+		do
+    			sleep 1
+			echo Waiting until mongodb starts...
+		done
+            /etc/init.d/cep start
+            until nc -z localhost 9443
+                do
+                        sleep 1
+                        echo Waiting until cep starts...
+                done
+            /etc/init.d/bam start
+            until nc -z localhost 9444
+                do
+                        sleep 1
+                        echo Waiting until bam starts...
+                done
+            /etc/init.d/apim start
+            until nc -z localhost 9445
+                do
+                        sleep 1
+                        echo Waiting until apim starts...
+                done
+	    /etc/init.d/nodejs start
+	    /etc/init.d/tomcat start
+	    echo ...........Sith Platform Started...........
+            ;;
+    stop)
+            echo Sith Platform shutting down....
+            /etc/init.d/mongodb stop
+            /etc/init.d/nodejs stop
+	    /etc/init.d/cep stop
+            /etc/init.d/bam stop
+            /etc/init.d/apim stop
+	    /etc/init.d/tomcat stop
+            ;;
+    restart)
+            echo Sith Platform shutting down....
+	    /etc/init.d/mongodb stop
+            /etc/init.d/nodejs stop
+	    /etc/init.d/tomcat stop
+            /etc/init.d/cep stop
+	    /etc/init.d/mongodb start
+	    until nc -z localhost 27017
+		do
+    			sleep 1
+			echo Waiting until mongodb starts...
+		done
+	    /etc/init.d/cep start
+            until nc -z localhost 9443
+                do
+                        sleep 1
+                        echo Waiting until cep starts...
+                done
+            /etc/init.d/bam start
+            until nc -z localhost 9444
+                do
+                        sleep 1
+                        echo Waiting until bam starts...
+                done
+            /etc/init.d/apim start
+            until nc -z localhost 9445
+                do
+                        sleep 1
+                        echo Waiting until apim starts...
+                done
+            /etc/init.d/nodejs start
+	    /etc/init.d/tomcat start
+            echo ...........Sith Platform Started...........
+            ;;
+    esac
+    exit 0

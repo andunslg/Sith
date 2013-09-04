@@ -1,0 +1,25 @@
+# Tomcat auto-start
+#
+# description: Auto-starts tomcat
+# processname: tomcat
+# pidfile: /var/run/tomcat.pid
+
+export JAVA_HOME=/home/sith/Sith/jdk1.7.0_17
+
+    case $1 in
+    start)
+	    echo Sith web server is starting on Port 80....
+            sh /home/sith/Sith/apache-tomcat-7.0.39/bin/startup.sh
+            ;;
+    stop)
+            echo Sith web server is shutting down....
+            sh /home/sith/Sith/apache-tomcat-7.0.39/bin/shutdown.sh
+            ;;
+    restart)
+            echo Sith web server is shutting down....
+	    sh /home/sith/Sith/apache-tomcat-7.0.39/bin/shutdown.sh
+            echo Sith web server is starting on Port 80....
+            sh /home/sith/Sith/apache-tomcat-7.0.39/bin/startup.sh
+            ;;
+    esac
+    exit 0

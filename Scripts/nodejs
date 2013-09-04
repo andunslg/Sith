@@ -1,0 +1,23 @@
+    # NodeJS auto-start
+    #
+    # description: Auto-starts nodejs
+    # processname: nodejs
+    # pidfile: /var/run/nodejs.pid
+
+    case $1 in
+    start)
+	    echo Sith NodeJS API is starting on Port 3000.... 
+            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js &
+            ;;
+    stop)
+	    echo Sith NodeJS API shutting down....
+            killall node
+            ;;
+    restart)
+            echo Sith NodeJS API shutting down....
+	    killall node
+	    echo Sith NodeJS API is starting on Port 3000.... 
+            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js &
+            ;;
+    esac
+    exit 0

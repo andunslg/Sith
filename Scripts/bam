@@ -1,0 +1,23 @@
+# WSO2 BAM
+#
+# description: Auto-starts WSO2 BAM
+# processname: bam
+# pidfile: /var/run/bam.pid
+
+export JAVA_HOME=/home/sith/Sith/jdk1.7.0_17
+
+    case $1 in
+    start)
+	    echo WSO2 BAM is starting on Port 9444....
+            nohup sh /home/sith/Sith/BAM/wso2bam-2.3.0/bin/wso2server.sh &
+            ;;
+    stop)
+            echo WSO2 BAM is shutting down....
+            nohup sh /home/sith/Sith/BAM/wso2bam-2.3.0/bin/wso2server.sh stop &
+            ;;
+    restart)
+            echo WSO2 BAM is restarting....
+	    nohup sh /home/sith/Sith/BAM/wso2bam-2.3.0/bin/wso2server.sh restart &
+            ;;
+    esac
+    exit 0

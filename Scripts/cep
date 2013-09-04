@@ -1,0 +1,23 @@
+# WSO2 CEP
+#
+# description: Auto-starts WSO2 CEP
+# processname: cep
+# pidfile: /var/run/cep.pid
+
+export JAVA_HOME=/home/sith/Sith/jdk1.7.0_17
+
+    case $1 in
+    start)
+	    echo WSO2 CEP is starting on Port 9443....
+            nohup sh /home/sith/Sith/CEP/wso2cep-2.1.0/bin/wso2server.sh &
+            ;;
+    stop)
+            echo WSO2 CEP is shutting down....
+            nohup sh /home/sith/Sith/CEP/wso2cep-2.1.0/bin/wso2server.sh stop &
+            ;;
+    restart)
+            echo WSO2 CEP is restarting....
+	    nohup sh /home/sith/Sith/CEP/wso2cep-2.1.0/bin/wso2server.sh restart &
+            ;;
+    esac
+    exit 0

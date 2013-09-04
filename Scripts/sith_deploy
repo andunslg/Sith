@@ -1,0 +1,33 @@
+    # Sith Platform deploy auto-start
+    #
+    # description: Auto-starts sith
+    # processname: sith_deploy
+    # pidfile: /var/run/sith_deploy.pid
+
+    case $1 in
+    start)
+            echo Sith Platform deploy started....
+            cd /home/sith/Sith/Sith_Code/Sith
+            git pull
+            cd /home/sith/Sith/Sith_Code/Sith/Sith_Web_Application
+            mvn clean install
+            cp -r /home/sith/Sith/Sith_Code/Sith/Sith_Web_Application/target/Sith_Web_App-1.0.0/* /home/sith/Sith/apache-tomcat-7.0.39/webapps/Sith/
+            echo Sith Platform deployment finish....
+            ;;
+    stop)
+            echo Sith Platform deploy stop....
+            kill sith_deploy
+            ;;
+    restart)
+            echo Sith Platform deploy stop....
+            kill sith_deploy
+            echo Sith Platform deploy started....
+            cd /home/sith/Sith/Sith_Code/Sith
+            git pull
+            cd /home/sith/Sith/Sith_Code/Sith/Sith_Web_Application
+            mvn clean install
+            cp -r /home/sith/Sith/Sith_Code/Sith/Sith_Web_Application/target/Sith_Web_App-1.0.0/* /home/sith/Sith/apache-tomcat-7.0.39/webapps/Sith/
+            echo Sith Platform deployment finish....
+            ;;
+    esac
+    exit 0

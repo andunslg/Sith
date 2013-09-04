@@ -1,0 +1,23 @@
+# WSO2 APIM
+#
+# description: Auto-starts WSO2 APIM
+# processname: apim
+# pidfile: /var/run/apim.pid
+
+export JAVA_HOME=/home/sith/Sith/jdk1.7.0_17
+
+    case $1 in
+    start)
+	    echo WSO2 APIM is starting on Port 9445....
+            nohup sh /home/sith/Sith/APIManager/wso2am-1.4.0/bin/wso2server.sh &
+            ;;
+    stop)
+            echo WSO2 APIM is shutting down....
+            nohup sh /home/sith/Sith/APIManager/wso2am-1.4.0/bin/wso2server.sh stop &
+            ;;
+    restart)
+            echo WSO2 APIM is restarting....
+	    nohup sh /home/sith/Sith/APIManager/wso2am-1.4.0/bin/wso2server.sh restart &
+            ;;
+    esac
+    exit 0

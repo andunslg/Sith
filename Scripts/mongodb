@@ -1,0 +1,23 @@
+    # MongoDB auto-start
+    #
+    # description: Auto-starts mongodb
+    # processname: mongodb
+    # pidfile: /var/run/mongodb.pid
+
+    case $1 in
+    start)
+            nohup /home/sith/Sith/MongoDB/mongodb-linux-x86_64-2.4.3/bin/mongod --config /home/sith/Sith/MongoDB/mongodb.conf &
+            echo Sith Backend Data Store is starting on Port 27017.... 
+            ;;
+    stop)
+	    echo Sith Backend Data Store shutting down....
+            pkill mongod
+            ;;
+    restart)
+            echo Sith Backend Data Store shutting down....
+	    pkill mongod
+            nohup /home/sith/Sith/MongoDB/mongodb-linux-x86_64-2.4.3/bin/mongod --config /home/sith/Sith/MongoDB/mongodb.conf &
+	    echo Sith Backend Data Store is starting on Port 27017.... 
+            ;;
+    esac
+    exit 0

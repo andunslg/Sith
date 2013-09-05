@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cep:bucket name="SithPerceptionAnalysis_Map_Test_Event_Bucket" xmlns:cep="http://wso2.org/carbon/cep">
+  <cep:description>Analyses Perception Status Which are coming from Sith API</cep:description>
+  <cep:engineProviderConfiguration engineProvider="SiddhiCEPRuntime">
+    <cep:property name="siddhi.persistence.snapshot.time.interval.minutes">0</cep:property>
+    <cep:property name="siddhi.enable.distributed.processing">false</cep:property>
+  </cep:engineProviderConfiguration>
+  <cep:input brokerName="localAgentBroker" topic="map_test_event_stream">
+    <cep:tupleMapping queryEventType="Tuple" stream="map_test_event_perception_stream">
+      <cep:property inputDataType="payloadData" inputName="eventID"
+        name="eventID" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData"
+        inputName="perceptionValue" name="perceptionValue" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData" inputName="lat"
+        name="latitude" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData" inputName="userID"
+        name="userID" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData" inputName="lng"
+        name="longitude" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData" inputName="location"
+        name="location" type="java.lang.String"/>
+      <cep:property inputDataType="payloadData" inputName="comment"
+        name="comment" type="java.lang.String"/>
+    </cep:tupleMapping>
+  </cep:input>
+  <cep:query name="AwesomePerceptionFilterQueryEmail">
+    <cep:expression><![CDATA[from map_test_event_perception_stream[perceptionValue=='Awesome']
+insert into map_test_event_Out_Stream
+eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
+    <cep:output brokerName="emailBroker" topic="sithplatform@gmail.com/Awesome Feeling Ditected">
+      <cep:textMapping>This mail is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}. Event Location is {location}. Longitude is {longitude} and Latitude is {latitude}.</cep:textMapping>
+    </cep:output>
+  </cep:query>
+</cep:bucket>

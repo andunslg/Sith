@@ -105,6 +105,7 @@ app.get('/getAllMapData',mapRouts.getAverageLocationPerceptions);
 app.get('/getAllCurrentEventMapData',mapRouts.getAllCurrentEventMap);
 app.get('/getSelfMap',mapRouts.getSelfMap);
 app.get('/getEventMap',mapRouts.getEventMap);
+app.get('/getLocationRating',mapRouts.getLocationValue);
 //notifs
 app.get('/getNotifications',notificationManager.getNotifications);
 app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);

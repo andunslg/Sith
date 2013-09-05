@@ -110,3 +110,11 @@ exports.getEventMap=function(eventID,emotion,fn){
 }
 
 
+exports.getLocationPerception=function(lat,longi,fn){
+
+    //TODO implement
+    var temp=new Object();
+    temp.rating= Math.floor((Math.random()*10)+1);
+    fn(temp);
+}
+

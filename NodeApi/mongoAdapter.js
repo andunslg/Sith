@@ -121,7 +121,7 @@ exports.createCollection = function(name){
 	});
 }
 exports.updateSelectedFields = function(collection,selector,fieldSelector){
-    Db(config.mongodb.database, new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+    Db(config.mongodb.database, new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 7}), {w:0, native_parser: false}).open(function(err,db){
         db.collection(collection,function(err,collection){
             collection.update(selector,{$set:fieldSelector},function(err,result){
                 if(err)

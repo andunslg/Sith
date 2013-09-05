@@ -1,0 +1,517 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS perceptions
+    (messageID STRING, emotion STRING,locname STRING, lat DOUBLE, longi DOUBLE, time DOUBLE, userid STRING,subid STRING)
+    STORED BY 'org.apache.hadoop.hive.cassandra.CassandraStorageHandler'
+    WITH SERDEPROPERTIES (
+    "cassandra.host" = "127.0.0.1",
+"cassandra.port" = "9161","cassandra.ks.name" = "EVENT_KS",
+"cassandra.ks.username" = "admin","cassandra.ks.password" = "apst@sith",
+"cassandra.cf.name" = "perception_stream2",
+    "cassandra.columns.mapping" =
+    ":key, payload_emotion,payload_locationName, payload_latitude, payload_longitude, payload_time, payload_userID,payload_subcriptionID" ); 
+
+
+DROP TABLE z0happy;    
+CREATE EXTERNAL TABLE z0happy
+    (la DOUBLE,lo DOUBLE,count bigint)
+     STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0happy (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1happy;    
+CREATE EXTERNAL TABLE z1happy
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1happy (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP  TABLE z2happy;    
+CREATE EXTERNAL TABLE z2happy
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2happy (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP  TABLE z3happy;    
+CREATE EXTERNAL TABLE z3happy
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3happy (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+    
+    
+    
+    
+    
+DROP TABLE z0sad;    
+CREATE  EXTERNAL TABLE z0sad
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0sad (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1sad;    
+CREATE EXTERNAL TABLE z1sad
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1sad (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z2sad;    
+CREATE EXTERNAL TABLE z2sad
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2sad (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z3sad;    
+CREATE EXTERNAL TABLE z3sad
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3sad (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+    
+ 
+ 
+    
+DROP TABLE z0horrible;    
+CREATE EXTERNAL TABLE z0horrible
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0horrible (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1horrible;    
+CREATE EXTERNAL TABLE z1horrible
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1horrible (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z2horrible;    
+CREATE EXTERNAL TABLE z2horrible
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2horrible (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z3horrible;    
+CREATE EXTERNAL TABLE z3horrible
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3horrible (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+   
+   
+   
+DROP TABLE z0nutral;    
+CREATE EXTERNAL TABLE z0nutral
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0neutral (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1nutral;    
+CREATE EXTERNAL TABLE z1nutral
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1neutral (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z2nutral;    
+CREATE EXTERNAL TABLE z2nutral
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2neutral (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z3nutral;    
+CREATE EXTERNAL TABLE z3nutral
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3neutral (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+    
+    
+    
+DROP TABLE z0exciting;    
+CREATE EXTERNAL TABLE z0exciting
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0excited (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1exciting;    
+CREATE EXTERNAL  TABLE z1exciting
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1excited (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z2exciting;    
+CREATE EXTERNAL TABLE z2exciting
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2excited (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z3exciting;    
+CREATE EXTERNAL TABLE z3exciting
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3excited (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+
+
+
+
+
+
+DROP TABLE z0angry;    
+CREATE EXTERNAL TABLE z0angry
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z0angry (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z1angry;    
+CREATE EXTERNAL  TABLE z1angry
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z1angry (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z2angry;    
+CREATE EXTERNAL TABLE z2angry
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z2angry (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+DROP TABLE z3angry;    
+CREATE EXTERNAL TABLE z3angry
+    (la DOUBLE,lo DOUBLE,count bigint)
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'la' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE z3angry (la DOUBLE NOT NULL PRIMARY KEY,
+     lo DOUBLE,count INT)' );
+    
+    
+
+DROP TABLE temp;    
+CREATE TABLE temp
+    (la DOUBLE,lo DOUBLE,time DOUBLE);
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Happy\"';
+insert overwrite table z0happy
+select la,lo,count(la) from temp group by la,lo;
+DROP TABLE temp1;    
+CREATE TABLE temp1
+    (la DOUBLE,lo DOUBLE,time DOUBLE);
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1happy
+select la,lo,count(la) from temp1 group by la,lo;
+DROP TABLE temp2;
+CREATE TABLE temp2
+    (la DOUBLE,lo DOUBLE,time DOUBLE);
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2happy
+select la,lo,count(la) from temp2 group by la,lo;
+DROP TABLE temp3;
+CREATE TABLE temp3
+    (la DOUBLE,lo DOUBLE,time DOUBLE);
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3happy
+select la,lo,count(la) from temp3 group by la,lo;
+
+
+
+
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Sad\"';
+insert overwrite table z0sad
+select la,lo,count(la) from temp group by la,lo;
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1sad
+select la,lo,count(la) from temp1 group by la,lo;
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2sad
+select la,lo,count(la) from temp2 group by la,lo;
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3sad
+select la,lo,count(la) from temp3 group by la,lo;
+
+
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Neutral\"';
+insert overwrite table z0nutral
+select la,lo,count(la) from temp group by la,lo;
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1nutral
+select la,lo,count(la) from temp1 group by la,lo;
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2nutral
+select la,lo,count(la) from temp2 group by la,lo;
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3nutral
+select la,lo,count(la) from temp3 group by la,lo;
+
+
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Excited\"';
+insert overwrite table z0exciting
+select la,lo,count(la) from temp group by la,lo;
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1exciting
+select la,lo,count(la) from temp1 group by la,lo;
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2exciting
+select la,lo,count(la) from temp2 group by la,lo;
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3exciting
+select la,lo,count(la) from temp3 group by la,lo;
+
+
+
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Horrible\"';
+insert overwrite table z0horrible
+select la,lo,count(la) from temp group by la,lo;
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1horrible
+select la,lo,count(la) from temp1 group by la,lo;
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2horrible
+select la,lo,count(la) from temp2 group by la,lo;
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3horrible
+select la,lo,count(la) from temp3 group by la,lo;
+
+
+insert overwrite table temp
+select round(lat,4) as la,round(longi,4) as lo,time from perceptions where emotion='\"Angry\"';
+insert overwrite table z0angry
+select la,lo,count(la) from temp group by la,lo;
+insert overwrite table temp1
+select * from temp where (unix_timestamp()-time)>2000000 ; 
+insert overwrite table z1angry
+select la,lo,count(la) from temp1 group by la,lo;
+insert overwrite table temp2
+select * from temp1 where (unix_timestamp()-time)>20000 ; 
+insert overwrite table z2angry
+select la,lo,count(la) from temp2 group by la,lo;
+insert overwrite table temp3
+select * from temp2 where (unix_timestamp()-time)>2000 ; 
+insert overwrite table z3angry
+select la,lo,count(la) from temp3 group by la,lo;
+
+                                    

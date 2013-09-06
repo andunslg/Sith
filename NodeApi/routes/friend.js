@@ -33,10 +33,18 @@ exports.searchFriendsToAdd=function(req,res){
     });
 }
 
-exports.addFriend=function(req,res){
+exports.addFriend = function(req,res){
 
 }
 
+exports.getUserNews = function(req,res){
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    friendManager.getUserNews(req.body.userID,function(news){
+        var result = JSON.stringify(news);
+        res.write(result);
+        res.end();
+    });
+}
 exports.removeFriend=function(req,res){
     friendManager.removeFriend(req.body.userID,req.body.friendID);
     res.writeHead(200, {'Content-Type': 'application/json'});

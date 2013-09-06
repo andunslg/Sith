@@ -39,6 +39,25 @@ exports.searchFriendsToAdd=function(userID,searchString,fn){
     });
 }
 
+exports.getUserNews = function(userID,fn){
+     var news = [];
+     mongoAdapter.getDocuments({},'UserFriends_'+userID,function(friends){
+        var j=0;
+        friends.forEach(function(friend){
+            mongoAdapter.getDocuments({},'UserPerceptions_'+friend.UserName,function(perceps){
+                var latestPercep = perceps[perceps.length-1];
+                if(latestPercep){
+                news.push({friendName:friend.UserName,perception:latestPercep.perceptionValue,event:latestPercep.eventID,loc:latestPercep.location});
+                }
+                j++;
+                if(j==friends.length){fn(news)}
+            });
+        });
+         if(friends.length ==0){
+             fn([])
+         }
+     });
+ }
 exports.addFriend=function(userID,friendID){
 
 }

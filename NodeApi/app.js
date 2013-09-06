@@ -46,10 +46,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-    console.log(err);
-});
+//process.on('uncaughtException', function(err) {
+//    // handle the error safely
+//    console.log(err);
+//});
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);
@@ -114,7 +114,8 @@ app.get('/confirmFriendRequest',userMgmtRoutes.acceptFriendRequest);
 app.get('/getAllfriends',friendRoutes.getAllfriends);
 app.get('/getFriendsSuggestions',friendRoutes.searchFriendsToAdd);
 app.post('/removeFriend',friendRoutes.removeFriend)
-
+//news feed
+app.post('/getUserNews',friendRoutes.getUserNews);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
 var server = http.createServer(app).listen(app.get('port'), function(){

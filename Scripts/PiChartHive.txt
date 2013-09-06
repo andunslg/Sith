@@ -1,0 +1,167 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS perceptions
+    (messageID STRING, emotion STRING,locname STRING, lat DOUBLE, longi DOUBLE, time DOUBLE, userid STRING,subid STRING)
+    STORED BY 'org.apache.hadoop.hive.cassandra.CassandraStorageHandler'
+    WITH SERDEPROPERTIES (
+    "cassandra.host" = "127.0.0.1",
+"cassandra.port" = "9161","cassandra.ks.name" = "EVENT_KS",
+"cassandra.ks.username" = "admin","cassandra.ks.password" = "apst@sith",
+"cassandra.cf.name" = "perception_stream2",
+    "cassandra.columns.mapping" =
+    ":key, payload_emotion,payload_locationName, payload_latitude, payload_longitude, payload_time, payload_userID,payload_subcriptionID" );  
+  
+drop table events;  
+CREATE EXTERNAL TABLE IF NOT EXISTS events
+    (messageID STRING,subcriptionID STRING, subcriptionName STRING,startTime DOUBLE, endtime DOUBLE, isDistributed STRING,lat DOUBLE,longi DOUBLE,locationName STRING)
+    STORED BY 'org.apache.hadoop.hive.cassandra.CassandraStorageHandler'
+    WITH SERDEPROPERTIES (
+    "cassandra.host" = "127.0.0.1",
+"cassandra.port" = "9161","cassandra.ks.name" = "EVENT_KS",
+"cassandra.ks.username" = "admin","cassandra.ks.password" = "apst@sith",
+"cassandra.cf.name" = "event_stream",
+    "cassandra.columns.mapping" =
+    ":key, payload_subcriptionID,payload_subcriptionName, payload_startTime, payload_endtime, payload_isDistributed, payload_lat, payload_longi, payload_locationName" );    
+   
+
+DROP TABLE happy_table;
+DROP TABLE sad_table;
+DROP TABLE nutral_table;
+DROP TABLE angry_table;
+DROP TABLE horrible_table;
+DROP TABLE excited_table;
+
+
+CREATE EXTERNAL TABLE IF NOT EXISTS happy_table(
+    name STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE happy_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+     count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+CREATE EXTERNAL TABLE IF NOT EXISTS sad_table(
+    name STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE sad_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+     count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+CREATE EXTERNAL TABLE IF NOT EXISTS nutral_table(
+    name STRING, count  INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE neutral_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+     count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+CREATE EXTERNAL TABLE IF NOT EXISTS angry_table(
+    name STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE angry_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+    count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+CREATE EXTERNAL TABLE IF NOT EXISTS horrible_table(
+    name STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE horrible_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+     count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+CREATE EXTERNAL TABLE IF NOT EXISTS excited_table(
+    name STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING) 
+    STORED BY 'org.wso2.carbon.hadoop.hive.jdbc.storage.JDBCStorageHandler'
+    TBLPROPERTIES ( 
+    'mapred.jdbc.driver.class' = 'com.mysql.jdbc.Driver' ,
+    'mapred.jdbc.url' = 'jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2' ,
+    'mapred.jdbc.username' = 'sithuser' ,
+    'mapred.jdbc.password' = 'mysqlsith2', 
+    'hive.jdbc.update.on.duplicate' = 'true' , 
+    'hive.jdbc.primary.key.fields' = 'name' , 
+    'hive.jdbc.table.create.query' = 
+    'CREATE TABLE excited_table (name VARCHAR(100) NOT NULL PRIMARY KEY,
+     count  INT,lat DOUBLE,longi DOUBLE,locationName VARCHAR(100))' );
+     
+
+
+DROP TABLE temp;    
+CREATE TABLE IF NOT EXISTS temp(subid STRING, count INT); 
+
+
+DROP TABLE temp2;    
+CREATE TABLE IF NOT EXISTS temp2(subid STRING, count INT,lat DOUBLE,longi DOUBLE,locationName STRING);
+
+
+     
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Happy\"' group by subid;
+insert overwrite table happy_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+
+
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Sad\"' group by subid;
+insert overwrite table sad_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Neutral\"' group by subid;
+insert overwrite table nutral_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Angry\"' group by subid;
+insert overwrite table angry_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Horrible\"' group by subid;
+insert overwrite table horrible_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+insert overwrite table temp
+select subid,count(emotion) as count from perceptions where emotion='\"Excited\"' group by subid;
+insert overwrite table excited_table
+SELECT t.subid,t.count,d.lat,d.longi,d.locationName from temp t JOIN events d  ON (t.subid = d.subcriptionID)
+WHERE d.isDistributed ='\"true\"';
+
+                                    

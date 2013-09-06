@@ -13,7 +13,7 @@
         }
     }
     UserNewsHandler newsHandler = new UserNewsHandler();
-    JSONArray notifs = newsHandler.getUserNews(session.getAttribute("user").toString());
+    JSONArray news = newsHandler.getUserNews(session.getAttribute("user").toString());
 %>
 <head>
     <meta charset="utf-8">
@@ -102,10 +102,21 @@
                 <h1>Your News Feed</h1>
                 <h2>Connect With Your Friends Through the SITH News Feed</h2>
             </hgroup>
-            <aside>
-                <button class="left-btn">&#59229;</button>
-                <button class="right-btn">&#59230;</button>
-            </aside>
+            <div class="content no-padding timeline">
+                <div class="tl-post comments">
+                    <%
+                        int i;
+                        for(i=0;i<news.length();i++){
+                    %>
+                    <span class="icon">&#59168;</span>
+                    <p>
+                        <strong>
+                            <%=news.getJSONObject(i).getString("friendName")%> is feeling <%=news.getJSONObject(i).getString("perception")%> about <%=news.getJSONObject(i).getString("event") %> in  <%=news.getJSONObject(i).getString("location")%>
+                        </strong>
+                    </p>
+                    <%}%>
+                </div>
+            </div>
         </header>
         <div class="content">
         </div>

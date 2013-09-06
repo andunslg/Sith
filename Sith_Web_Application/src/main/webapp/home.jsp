@@ -19,7 +19,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>SITH Dashboard</title>
+    <title>Home</title>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="robots" content=""/>
@@ -188,6 +188,9 @@
         </li>
         <li>
             <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
+        </li>
+        <li>
+            <a href="newsFeed.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>News Feed</a>
         </li>
         <li>
             <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>

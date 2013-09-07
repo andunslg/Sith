@@ -16,7 +16,7 @@
     <script src="../mobile/js/percepTimeAnalysisMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            countTimeChartMob('http://192.248.8.246:3000/getSelfAnalytics?userID=<%=subsciberID%>');
+            countTimeChartMob('http://192.248.15.236:3000/getSelfAnalytics?userID=<%=subsciberID%>');
         });
     </script>
 </head>

@@ -29,6 +29,7 @@
     <script src="js/jquery.wysiwyg.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/cycle.js"></script>
+    <script src="../js/jquery.checkbox.min.js"></script>
     <script src="js/jquery.tablesorter.min.js"></script>
 </head>
 <body>
@@ -102,23 +103,21 @@
                 <h1>Your News Feed</h1>
                 <h2>Connect With Your Friends Through the SITH News Feed</h2>
             </hgroup>
-            <div class="content no-padding timeline">
-                <div class="tl-post comments">
-                    <%
-                        int i;
-                        for(i=0;i<news.length();i++){
-                    %>
-                    <span class="icon">&#59168;</span>
-                    <p>
-                        <strong>
-                            <%=news.getJSONObject(i).getString("friendName")%> is feeling <%=news.getJSONObject(i).getString("perception")%> about <%=news.getJSONObject(i).getString("event") %> in  <%=news.getJSONObject(i).getString("location")%>
-                        </strong>
-                    </p>
-                    <%}%>
-                </div>
-            </div>
         </header>
-        <div class="content">
+        <div class="content no-padding timeline">
+            <div class="tl-post comments">
+                <%
+                    int i;
+                    for(i=0;i<news.length();i++){
+                %>
+                <span class="icon">&#59168;</span>
+                <p style="width:90%">
+                    <strong>
+                        <%=news.getJSONObject(i).getString("friendName")%> is feeling <%=news.getJSONObject(i).getString("perception")%> about <%=news.getJSONObject(i).getString("event") %>
+                    </strong>
+                </p>
+                <%}%>
+            </div>
         </div>
     </section>
 </section>

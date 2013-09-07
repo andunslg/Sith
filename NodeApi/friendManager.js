@@ -47,7 +47,7 @@ exports.getUserNews = function(userID,fn){
             mongoAdapter.getDocuments({},'UserPerceptions_'+friend.UserName,function(perceps){
                 var latestPercep = perceps[perceps.length-1];
                 if(latestPercep){
-                news.push({friendName:friend.UserName,perception:latestPercep.perceptionValue,event:latestPercep.eventID,loc:latestPercep.location});
+                news.push({friendName:friend.UserName,perception:latestPercep.perceptionValue,event:latestPercep.eventID});
                 }
                 j++;
                 if(j==friends.length){fn(news)}

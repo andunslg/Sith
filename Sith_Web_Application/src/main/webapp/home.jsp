@@ -78,7 +78,7 @@
                     $('ul#notifList > li:first').remove();
                 };
                 //append new notification to the top
-                $("#notifList").prepend('<li><table><tr><td><h1>'+data+'ffafdafdffsfdvdfgdfhrtyhthgfnfggrgfjdbfsda bfshfcuidsfhsfbsdifbisaebfdibjhdsfbsad</h1></td></tr></table></li>');
+                $("#notifList").prepend('<li><table><tr><td><h1>'+data+'</h1></td></tr></table></li>');
             });
             socket.on("cepNotification",function(data){
                 var currentCount = parseInt($("#notificCount").text());

@@ -3,6 +3,14 @@
 <%@ page import="org.json.JSONArray" %>
 <%@ page import="org.json.simple.JSONObject" %>
 <%@ page import="com.sith.SithAPI" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.lang" />
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -19,7 +27,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title><fmt:message key="sith.dashboard.topic" /></title>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="robots" content=""/>
@@ -121,19 +129,19 @@
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong>Sith </strong>Dashboard</h1>
+        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/><fmt:message key="sith.dashboard.home.loggedAs" />
+                <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
             <button class="ico-font">&#9206;</button>
 		<span id="notifButton" class="button dropdown">
-			<a href="#">Notifications
+			<a href="#"><fmt:message key="sith.dashboard.home.notifications" />
             <% if(notifs.length()>0){%>
                 <span id="notificCount" class="pip"><%=notifs.length()%></span>
             <%}else{%>
@@ -142,7 +150,7 @@
             </a>
 			<ul id="notifList"class="notice" style="width: 300px">
                 <% if(notifs.length()==0){%>
-                <li><hgroup><h1>You have no notifications</h1></hgroup></li>
+                <li><hgroup><h1><fmt:message key="sith.dashboard.home.NoNotificationsMsg" /></h1></hgroup></li>
                 <%}else{
                     for(int i=0;i<notifs.length();i++){%>
                 <li style="white-space: nowrap">
@@ -169,9 +177,9 @@
                 <%}}%>
             </ul>
 		</span>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -181,29 +189,29 @@
         <li>
             <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
             <ul class="submenu">
-                <li><a href="myEvents.jsp"></span>My Events</a></li>
-                <li><a href="joinEvents.jsp"></span>Join Events</a></li>
-                <li><a href="addEvents.jsp"></span>Add Events</a></li>
+                <li><a href="myEvents.jsp"></span><fmt:message key="sith.dashboard.menu.myEvents" /></a></li>
+                <li><a href="joinEvents.jsp"></span><fmt:message key="sith.dashboard.menu.joinEvents" /></a></li>
+                <li><a href="addEvents.jsp"></span><fmt:message key="sith.dashboard.menu.addEvents" /></a></li>
             </ul>
         </li>
         <li>
-            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
+            <a href="profile.jsp"><span class="icon">&#128101;</span><fmt:message key="sith.dashboard.menu.profile" /></a>
         </li>
         <li>
-            <a href="newsFeed.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>News Feed</a>
+            <a href="newsFeed.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span><fmt:message key="sith.dashboard.menu.newsfeed" /></a>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
             <ul class="submenu">
-                <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
-                <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
+                <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
+                <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
             </ul>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span><fmt:message key="sith.dashboard.event.menu.selfAnalytics" /></a>
             <ul class="submenu">
-                <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
-                <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>
+                <li><a href="heatMapSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.locationBased" /></a></li>
+                <li><a href="TimeBasedSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.timeBased" /></a></li>
             </ul>
         </li>
     </ul>
@@ -216,7 +224,7 @@
             <hgroup>
                 <h1>Welcome</h1>
 
-                <h2>Sith - Crowdsourced perception capturing and analysis platform</h2>
+                <h2><fmt:message key="sith.dashboard.home.description" /></h2>
             </hgroup>
         </header>
         <br>

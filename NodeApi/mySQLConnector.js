@@ -7,15 +7,15 @@
  */
 
 
-var MySQLRootURL ="jdbc:mysql://192.248.15.236:3306/test?user=sithuser&password=mysqlsith2";
-var MySQLDomain ="192.248.15.236";
+var MySQLRootURL ="jdbc:mysql://192.248.8.246:3306/test?user=sithuser&password=mysqlsith2";
+var MySQLDomain ="192.248.8.246";
 
 var MySQLRootPassword="mysqlsith2";
 
 var mysql = require('mysql');
 
 var client = mysql.createConnection({
-    host: '192.248.15.236',
+    host: '192.248.8.246',
     user: 'sithuser',
     password: 'mysqlsith2',
     port: 3306

@@ -12,8 +12,9 @@ import java.util.HashMap;
 public class SithAPI{
 	public static SithAPI sithAPI=new SithAPI();
 	private HTTPUtil httpUtil=new HTTPUtil();
-    public static String SOCKET_API = "http://192.248.15.236:3000";
+
 	public static String NODEAPI="http://192.248.15.236:3000/";
+	public static String SOCKET_API = NODEAPI;
 	public static String LOGIN=NODEAPI+"authenticateUser";
 	public static String SIGNUP=NODEAPI+"registerAnnonymousUser";
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";
@@ -51,6 +52,9 @@ public class SithAPI{
     public static String GET_COLOR_SCHEMA = NODEAPI+"getColorSchema";
     public static String GET_LOCATION_RATING = NODEAPI+"getLocationRating";
     public static String GET_USER_NEWS = NODEAPI+"getUserNews";
+	public static String GET_COUNT_All_PERCEPTIONS=NODEAPI+"countTotalPerceptions";
+	public static String GET_COUNT__PERCEPTIONS_MAP_REDUCE=NODEAPI+"countPerceptionsMapReduce";
+
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;
 

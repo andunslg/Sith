@@ -214,7 +214,7 @@ function getFromAPI(emotion, timelevel, latmin,lngmin,latmax,lngmx) {
 
 
     return JSON.parse($.ajax({
-        url: 'http://192.248.15.236:3000/getAllCurrentEventMapData',
+        url: '<%=SithAPI.GET_ALL_CURRENT_EVENT_MAP_DATA%>',
         dataType:'json',
         data: 'emotion=' + emotion + '&timelevel=' + timelevel + '&latmin=' + latmin+'&lngmin='+lngmin+"&latmax="+latmax+"&lngmx="+lngmx,
         type: 'GET',

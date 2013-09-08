@@ -1,3 +1,4 @@
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,7 +17,8 @@
     <script src="../mobile/js/percepTimeAnalysisMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            countTimeChartMob('http://192.248.15.236:3000/getSelfAnalytics?userID=<%=subsciberID%>');
+            var url=<%=SithAPI.GET_SELF_ANALYTICS%>+'?userID=<%=subsciberID%>';
+            countTimeChartMob(url);
         });
     </script>
 </head>

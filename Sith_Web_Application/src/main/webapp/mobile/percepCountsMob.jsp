@@ -1,3 +1,4 @@
+<%@ page import="com.sith.SithAPI" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,7 +17,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            $.get('http://192.248.15.236:3000/countPerceptionsMapReduce?eventID=<%=subcriptionID%>', function (data) {
+            var url=<%=SithAPI.GET_COUNT__PERCEPTIONS_MAP_REDUCE%>+'?eventID=<%=subcriptionID%>';
+            $.get(url, function (data) {
                 if(typeof data=='string' || data instanceof String){
                     var dataparsed = JSON.parse(data);
 

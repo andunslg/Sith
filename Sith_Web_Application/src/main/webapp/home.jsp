@@ -187,7 +187,7 @@
 <nav>
     <ul>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span><fmt:message key="sith.dashboard.menu.events" /></a>
             <ul class="submenu">
                 <li><a href="myEvents.jsp"></span><fmt:message key="sith.dashboard.menu.myEvents" /></a></li>
                 <li><a href="joinEvents.jsp"></span><fmt:message key="sith.dashboard.menu.joinEvents" /></a></li>
@@ -201,14 +201,14 @@
             <a href="newsFeed.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span><fmt:message key="sith.dashboard.menu.newsfeed" /></a>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
+            <a href="#"><span class="icon" style="font-size: 40px;text-align:center ">&#128711;&thinsp;</span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
             </ul>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span><fmt:message key="sith.dashboard.event.menu.selfAnalytics" /></a>
+            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span><fmt:message key="sith.dashboard.menu.myAnalytics" /></a>
             <ul class="submenu">
                 <li><a href="heatMapSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.locationBased" /></a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.timeBased" /></a></li>
@@ -222,7 +222,8 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Welcome</h1>
+                <h1><fmt:message key="sith.dashboard.home.welcome" /></h1>
+
 
                 <h2><fmt:message key="sith.dashboard.home.description" /></h2>
             </hgroup>

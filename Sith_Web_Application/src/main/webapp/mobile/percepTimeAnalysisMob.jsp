@@ -16,7 +16,7 @@
     <script src="../mobile/js/percepTimeAnalysisMob.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-                var url=<%=SithAPI.GET_TIME_ANALYSIS%>+'?eventID=<%=subcriptionID%>';
+                var url='<%=SithAPI.GET_TIME_ANALYSIS%>'+'?eventID=<%=subcriptionID%>';
                 countTimeChartMob(url);
         });
     </script>

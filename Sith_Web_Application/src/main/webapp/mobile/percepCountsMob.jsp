@@ -17,7 +17,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var perceptions;
-            var url=<%=SithAPI.GET_COUNT__PERCEPTIONS_MAP_REDUCE%>+'?eventID=<%=subcriptionID%>';
+            var url='<%=SithAPI.GET_COUNT__PERCEPTIONS_MAP_REDUCE%>'+'?eventID=<%=subcriptionID%>';
             $.get(url, function (data) {
                 if(typeof data=='string' || data instanceof String){
                     var dataparsed = JSON.parse(data);

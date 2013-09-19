@@ -3,7 +3,7 @@
  */
 $(function () {
     $(document).ready(function () {
-        var source = new EventSource('http://192.248.15.236:3000/countTotalPerceptions');
+        var source = new EventSource('http://localhost:3000/countTotalPerceptions');
         source.onopen = function () {
             console.log('open')
         };

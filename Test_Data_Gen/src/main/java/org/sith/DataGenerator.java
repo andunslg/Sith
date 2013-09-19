@@ -14,14 +14,15 @@ public class DataGenerator extends Thread{
 
 	public static void main(String[] args) throws InterruptedException{
 		Random randomGenerator = new Random();
-		for(int i=0;i<10;i++){
-			int requestCount=randomGenerator.nextInt(5-1)+1;
+		for(int i=0;i<1000;i++){
+			int requestCount=randomGenerator.nextInt(2-1)+1;
 			new DataGenerator(requestCount).start();
 		}
 	}
 
 	@Override
 	public void run(){
+
 		String eventID="test";
 		String userIDMain="test_user_";
 
@@ -39,6 +40,7 @@ public class DataGenerator extends Thread{
 		int timeLimit_one=2000;
 		int timeLimit_two=1000;
 
+		int successfulCount=0;
 		for(int i=0;i<requestCount;i++){
 
 			int tempLat=randomGenerator.nextInt(latitude_one -latitude_two)+latitude_two;
@@ -119,28 +121,33 @@ public class DataGenerator extends Thread{
 			int userIDVal=randomGenerator.nextInt(5-1)+1;
 			String userID=userIDMain+String.valueOf(userIDVal);
 
-			System.out.println("----------------------------------"+Thread.currentThread()+"----------------------------------");
-			System.out.println(i);
-			System.out.println("Latitude -"+lat);
-			System.out.println("Longitude -"+longt);
-			System.out.println("Perception -"+perception);
-			System.out.println("UserID -"+userID);
-			System.out.println("EventID -"+eventID);
-			System.out.println("Sleep Time -"+time);
-			System.out.println("----------------------------------------------------------------------------------------------");
+//			System.out.println("----------------------------------"+Thread.currentThread()+"----------------------------------");
+//			System.out.println(i);
+//			System.out.println("Latitude -"+lat);
+//			System.out.println("Longitude -"+longt);
+//			System.out.println("Perception -"+perception);
+//			System.out.println("UserID -"+userID);
+//			System.out.println("EventID -"+eventID);
+//			System.out.println("Sleep Time -"+time);
+//			System.out.println("----------------------------------------------------------------------------------------------");
 
 			String url="http://localhost:3000/publishEventPerception";
 			//String url="http://192.248.8.246:3000/publishEventPerception";
 			//String url=("http://192.248.15.236:3000/publishEventPerception";
-			postPerception(url,eventID,userID,perception,lat,longt,"TestLocation");
 
-			try{
-				Thread.sleep(time);
-			}catch(InterruptedException e){
-				e.printStackTrace();
+			boolean result=postPerception(url,eventID,userID,perception,lat,longt,"TestLocation");
+			if(result){
+				successfulCount++;
 			}
 
+//			try{
+//				Thread.sleep(time);
+//			}catch(InterruptedException e){
+//				e.printStackTrace();
+//			}
+
 		}
+		System.out.println(Thread.currentThread()+" - Out of "+requestCount+" requests, "+successfulCount+" are successful");
 	}
 
 	private boolean postPerception(String url,String eventID, String userID,String perceptionValue, String lat,String lang,String location){

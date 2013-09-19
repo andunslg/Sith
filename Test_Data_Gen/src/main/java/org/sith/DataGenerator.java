@@ -4,13 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class DataGenerator{
-	HTTPUtil httpUtil=new HTTPUtil();
+public class DataGenerator extends Thread{
+	private HTTPUtil httpUtil=new HTTPUtil();
+	private int requestCount;
+
+	public DataGenerator(int requestCount){
+		this.requestCount=requestCount;
+	}
 
 	public static void main(String[] args) throws InterruptedException{
-		String eventID="nbqsa_demo_2";
-		//String eventID="asas";
-		//String eventID="e1";
+		Random randomGenerator = new Random();
+		for(int i=0;i<10;i++){
+			int requestCount=randomGenerator.nextInt(5-1)+1;
+			new DataGenerator(requestCount).start();
+		}
+	}
+
+	@Override
+	public void run(){
+		String eventID="test";
 		String userIDMain="test_user_";
 
 		Random randomGenerator = new Random();
@@ -27,74 +39,87 @@ public class DataGenerator{
 		int timeLimit_one=2000;
 		int timeLimit_two=1000;
 
-		for(int i=0;i<300;i++){
+		for(int i=0;i<requestCount;i++){
 
 			int tempLat=randomGenerator.nextInt(latitude_one -latitude_two)+latitude_two;
 			int tempLong=randomGenerator.nextInt(longitude_one-longitude_two)+longitude_two;
 
-//			String lat=String.valueOf(latitude)+"."+String.valueOf(tempLat);
-//			String longt=String.valueOf(longitude)+"."+String.valueOf(tempLong);
+			String lat=String.valueOf(latitude)+"."+String.valueOf(tempLat);
+			String longt=String.valueOf(longitude)+"."+String.valueOf(tempLong);
 
-			String lat="";
-			String longt="";
+//			String lat="";
+//			String longt="";
+//
+//			int event=randomGenerator.nextInt(4);
+//
+//			switch(event){
+//				case 0:
+//					eventID="test_event_2";
+//					lat = "6.991859181483692";
+//					longt="79.98046875";
+//					break;
+//				case 1:
+//					eventID="test_event_3";
+//					lat = "6.863712339483681";
+//					longt="79.95849609375";
+//					break;
+//				case 2:
+//					eventID="test_event_4";
+//					lat = "6.926426847059551";
+//					longt="79.903564453125";
+//					break;
+//				case 3:
+//					eventID="test_event_5";
+//					lat = "6.926426847059551";
+//					longt="79.969482421875";
+//					break;
+//			}
 
-			int event=randomGenerator.nextInt(4);
-
-			switch(event){
-				case 0:
-					eventID="nbqsa_1";
-					lat = "6.902664905294386";
-					longt="79.86482799053192";
-					break;
-				case 1:
-					eventID="nbqsa_2";
-					lat = "6.9027714159904647";
-					longt="79.860724210739136";
-					break;
-				case 2:
-					eventID="nbqsa_3";
-					lat = "6.8933398009786018";
-					longt="79.8547214269638";
-					break;
-				case 3:
-					eventID="nbqsa_4";
-					lat = "6.893749875101383";
-					longt="79.86346006393433";
-					break;
-			}
-
-			int perceptionValue=randomGenerator.nextInt(7);
+			int perceptionValue=randomGenerator.nextInt(11);
 			String perception="";
 
 			switch(perceptionValue){
 				case 0:
-					perception = "Excited";
+					perception = "Awesome";
 					break;
 				case 1:
-					perception = "Excited";
+					perception = "Wonderful";
 					break;
 				case 2:
-					perception = "Happy";
+					perception = "Interested";
 					break;
 				case 3:
-					perception = "Neutral";
+					perception = "Excited";
 					break;
 				case 4:
-					perception = "Sad";
+					perception = "Happy";
 					break;
 				case 5:
-					perception = "Horrible";
+					perception = "Neutral";
 					break;
 				case 6:
+					perception = "Bored";
+					break;
+				case 7:
+					perception = "Sleepy";
+					break;
+				case 8:
+					perception = "Sad";
+					break;
+				case 9:
+					perception = "Angry";
+					break;
+				case 10:
 					perception = "Horrible";
 					break;
 			}
 
 			int time=randomGenerator.nextInt(timeLimit_one-timeLimit_two);
 
-			int userIDVal=randomGenerator.nextInt(11-1)+1;
+			int userIDVal=randomGenerator.nextInt(5-1)+1;
 			String userID=userIDMain+String.valueOf(userIDVal);
 
+			System.out.println("----------------------------------"+Thread.currentThread()+"----------------------------------");
 			System.out.println(i);
 			System.out.println("Latitude -"+lat);
 			System.out.println("Longitude -"+longt);
@@ -102,16 +127,23 @@ public class DataGenerator{
 			System.out.println("UserID -"+userID);
 			System.out.println("EventID -"+eventID);
 			System.out.println("Sleep Time -"+time);
+			System.out.println("----------------------------------------------------------------------------------------------");
 
-			DataGenerator dataGenerator=new DataGenerator();
-			dataGenerator.postPerception(eventID,userID,perception,lat,longt,"TestLocation");
+			String url="http://localhost:3000/publishEventPerception";
+			//String url="http://192.248.8.246:3000/publishEventPerception";
+			//String url=("http://192.248.15.236:3000/publishEventPerception";
+			postPerception(url,eventID,userID,perception,lat,longt,"TestLocation");
 
-			Thread.sleep(time);
+			try{
+				Thread.sleep(time);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
 
 		}
 	}
 
-	public boolean postPerception(String eventID, String userID,String perceptionValue, String lat,String lang,String location){
+	private boolean postPerception(String url,String eventID, String userID,String perceptionValue, String lat,String lang,String location){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("userID",userID);
@@ -122,8 +154,7 @@ public class DataGenerator{
 
 		String result=null;
 		try{
-			//result=httpUtil.doPost("http://localhost:3000/publishEventPerception",parms);
-			result=httpUtil.doPost("http://192.248.8.246:3000/publishEventPerception",parms);
+			result=httpUtil.doPost(url,parms);
 			if(!result.equals("")){
 				if("{\"response\":true}".equals(result)){
 					return true;
@@ -136,5 +167,4 @@ public class DataGenerator{
 
 		return false;
 	}
-
 }

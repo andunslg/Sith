@@ -4,20 +4,26 @@
     # processname: nodejs
     # pidfile: /var/run/nodejs.pid
 
+    NOW=$(date)
+    LOGFILE="sithNodeAPI-$NOW.log"
+    ERROR_LOGFILE="sithNodeAPI_Error-$NOW.log"
+
+
     case $1 in
     start)
-	    echo Sith NodeJS API is starting on Port 3000.... 
-            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js &
+            echo Sith NodeJS API is starting on Port 3000....
+            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js > /home/sith/Sith/Sith_Code/Sith/NodeApi/logs/$LOGFILE 2> /home/sith/Sith/Sith_Code/Sith/NodeApi/logs/$ERROR_LOGFILE &
             ;;
     stop)
-	    echo Sith NodeJS API shutting down....
+            echo Sith NodeJS API shutting down....
             killall node
             ;;
     restart)
             echo Sith NodeJS API shutting down....
-	    killall node
-	    echo Sith NodeJS API is starting on Port 3000.... 
-            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js &
+            killall node
+            echo Sith NodeJS API is starting on Port 3000....
+            nohup node /home/sith/Sith/Sith_Code/Sith/NodeApi/app.js > /home/sith/Sith/Sith_Code/Sith/NodeApi/logs/$LOGFILE 2> /home/sith/Sith/Sith_Code/Sith/NodeApi/logs/$ERROR_LOGFILE &
             ;;
     esac
     exit 0
+

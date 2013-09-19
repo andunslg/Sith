@@ -35,7 +35,6 @@ exports.getSingleDocument = function(query,collection,fn){
             if(err)
                 throw err;
             fn(doc);
-            db.close();
         });
     });
 //        }
@@ -76,7 +75,6 @@ exports.deleteDocument = function(collection,query,errorFunc){
             if(err)
                 errorFunc(new Error(err.message));
             errorFunc(null);
-            db.close();
         });
     });
 //        }
@@ -93,7 +91,6 @@ exports.getProjection = function(collection,query,projection,fn){
             if(err)
                 throw err;
             fn(doc);
-            db.close();
         });
     });
 //        }
@@ -106,7 +103,6 @@ exports.dropCollection = function(name){
     db1.dropCollection(name,function(err,collection){
         if(err)
             throw err;
-        db.close();
     });
     //  });
 }
@@ -116,7 +112,6 @@ exports.createCollection = function(name){
     db1.createCollection(name,function(err,collection){
         if(err)
             throw err;
-        db.close();
     });
 //	});
 }

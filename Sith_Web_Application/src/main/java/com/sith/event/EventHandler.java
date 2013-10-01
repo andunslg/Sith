@@ -305,23 +305,37 @@ public class EventHandler{
 		return false;
 	}
 
-    public List<TimeVarientPM> getTimeVarientPMs(String eventID){
-        ArrayList<TimeVarientPM> timeVarientPMs=new ArrayList<TimeVarientPM>();
-        HashMap<String,String> postParams=new HashMap<String,String>();
-        postParams.put("eventID",eventID);
+    public List<TimeVarientPM> getTimeVarientPMs(String eventID) {
+        //TODO remove
+        eventID="nbqsa_demo";
+        ArrayList<TimeVarientPM> timeVarientPMs = new ArrayList<TimeVarientPM>();
+        HashMap<String, String> postParams = new HashMap<String, String>();
+        postParams.put("eventID", eventID);
 
-        String result=null;
-        try{
-            result=httpUtil.doPost(SithAPI.GET_TIMEVARIENTPM_VALUES,postParams);
-            if(!result.equals("")){
-                JSONArray jsonArray=new JSONArray(result);
-                for(int i=0;i<jsonArray.length();i++){
-                    JSONObject jsonObject=jsonArray.getJSONObject(i);
-                    TimeVarientPM pm=null;
-                    timeVarientPMs.add(pm);
+        String result = null;
+        try {
+            result = httpUtil.doPost(SithAPI.GET_TIMEVARIENTPM_VALUES, postParams);
+            if (!result.equals("")) {
+                JSONArray jsonArray = new JSONArray(result);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    for (String s : JSONObject.getNames(jsonObject)) {
+                        if (!s.equalsIgnoreCase("_id") && !s.equalsIgnoreCase("timeStamp")) {
+                            TimeVarientPM temp = null;
+                            for (int j = timeVarientPMs.size() - 1; j >= 0; j--) {
+                                if (timeVarientPMs.get(j).getName().equals(s)) {
+                                    temp = timeVarientPMs.get(j);
+                                    break;
+                                }
+                            }
+                            if (temp == null || !temp.getValue().equals(jsonObject.getString(s))) {
+                                timeVarientPMs.add(new TimeVarientPM(s, jsonObject.getString(s), jsonObject.getLong("timeStamp")));
+                            }
+                        }
+                    }
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

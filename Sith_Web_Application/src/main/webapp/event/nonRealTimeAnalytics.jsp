@@ -7,6 +7,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.sith.event.TimeVarientPM" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -26,7 +27,7 @@
 
     Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
 
-    ArrayList<TimeVarientPM> timeVarientPm=null;
+    List<TimeVarientPM> timeVarientPm=eventHandler.getTimeVarientPMs(session.getAttribute("eventID").toString());
 %>
 <head>
     <meta charset="utf-8">
@@ -73,7 +74,7 @@
 
             data.addRows([
                 <%for (TimeVarientPM pm:timeVarientPm){%>
-                [new Date(<%=pm.getTimeStamp()%>*1000), , 'Conversation<br>' ],
+                [new Date(<%=pm.getTimeStamp()%>), , '<%=pm.getName()+":"+pm.getValue()%><br>' ],
                <%} %>
 
             ]);
@@ -236,7 +237,7 @@
             <p>Graph Type:</p><select id="perceptions"></select><br>
             <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
             <br/><br/>
-            <div id="mytimeline"></div>
+            <div id="mytimeline" <%if(timeVarientPm==null || timeVarientPm.size()==0){%> style='display: none;' <%} %> ></div>
             <br/><br/>
             <p>
                 Chart Type

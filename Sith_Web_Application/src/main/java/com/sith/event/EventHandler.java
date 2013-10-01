@@ -7,10 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
@@ -307,5 +304,28 @@ public class EventHandler{
 
 		return false;
 	}
+
+    public List<TimeVarientPM> getTimeVarientPMs(String eventID){
+        ArrayList<TimeVarientPM> timeVarientPMs=new ArrayList<TimeVarientPM>();
+        HashMap<String,String> postParams=new HashMap<String,String>();
+        postParams.put("eventID",eventID);
+
+        String result=null;
+        try{
+            result=httpUtil.doPost(SithAPI.GET_TIMEVARIENTPM_VALUES,postParams);
+            if(!result.equals("")){
+                JSONArray jsonArray=new JSONArray(result);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    TimeVarientPM pm=null;
+                    timeVarientPMs.add(pm);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return timeVarientPMs;
+    }
 
 }

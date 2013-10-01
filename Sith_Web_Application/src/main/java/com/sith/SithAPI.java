@@ -54,6 +54,7 @@ public class SithAPI{
     public static String GET_USER_NEWS = NODEAPI+"getUserNews";
 	public static String GET_COUNT_All_PERCEPTIONS=NODEAPI+"countTotalPerceptions";
 	public static String GET_COUNT__PERCEPTIONS_MAP_REDUCE=NODEAPI+"countPerceptionsMapReduce";
+    public static String GET_TIMEVARIENTPM_VALUES=NODEAPI+"getTimeVariantParamValues";
 
 	private ArrayList<String> masterPerceptionCollection;
 	private HashMap<String,Integer>  masterPerceptionCollectionMap;

@@ -5,6 +5,8 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sith.event.TimeVarientPM" %>
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -23,6 +25,8 @@
     Date currentDate = new Date();
 
     Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
+
+    ArrayList<TimeVarientPM> timeVarientPm=null;
 %>
 <head>
     <meta charset="utf-8">
@@ -41,7 +45,55 @@
     <script type="text/javascript" src="../js/highCharts/highcharts.js"></script>
     <script type="text/javascript" src="../js/highCharts/modules/exporting.js"></script>
 
+    <%--timeline--%>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="../js/timeline.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/timeline.css">
+
     <script type="text/javascript">
+
+       ///////////////////////////////////////////////////////////////////
+        /*
+        TimeLine
+         */
+        var timeline;
+
+        google.load("visualization", "1");
+
+        // Set callback to run when API is loaded
+        google.setOnLoadCallback(drawVisualization);
+
+        // Called when the Visualization API is loaded.
+        function drawVisualization() {
+            // Create and populate a data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'start');
+            data.addColumn('datetime', 'end');
+            data.addColumn('string', 'content');
+
+            data.addRows([
+                <%for (TimeVarientPM pm:timeVarientPm){%>
+                [new Date(<%=pm.getTimeStamp()%>*1000), , 'Conversation<br>' ],
+               <%} %>
+
+            ]);
+
+            // specify options
+            var options = {
+                "width":  "100%",
+                "height": "200px",
+                "style": "box"
+            };
+
+            // Instantiate our timeline object.
+            timeline = new links.Timeline(document.getElementById('mytimeline'));
+
+            // Draw our timeline with the created data and options
+            timeline.draw(data, options);
+        }
+
+        ////////////////////////////////////////////////////////////
+
         $(document).ready(function () {
             var perceptions;
             $.get('<%=SithAPI.GET_EVENT_BY_ID%>?eventID=<%=currentEvent.getEventID()%>',function(event){
@@ -183,6 +235,8 @@
         <div class="content">
             <p>Graph Type:</p><select id="perceptions"></select><br>
             <div id="TimeAnalysis" style="min-width: 400px; height: 400px;"></div>
+            <br/><br/>
+            <div id="mytimeline"></div>
             <br/><br/>
             <p>
                 Chart Type

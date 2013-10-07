@@ -34,7 +34,7 @@
     try {
         //Loading Jasper Report File from Local file system
 
-        InputStream input = new URL("http://192.248.15.236/Sith/event/SithEventComments.jrxml").openStream();
+        InputStream input = new URL("http://192.248.15.234/Sith/event/SithEventComments.jrxml").openStream();
 
         //Generating the report
         JasperReport jasperReport = JasperCompileManager.compileReport(input);

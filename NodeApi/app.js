@@ -50,6 +50,7 @@ process.on('uncaughtException', function(err) {
     // handle the error safely
     console.log(err);
 });
+
 //routes for web pages
 app.get('/',routes.index);
 app.get('/webDashboard',routes.getWebDashboard);

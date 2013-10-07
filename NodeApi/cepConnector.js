@@ -17,7 +17,7 @@ function sendUpdate(jsonObject,streamPath,isData) {
     if(!isData) {
         // the stream definition post options
         var optionsDefPost = {
-            host: '127.0.0.1',
+            host: '192.248.15.232',
             port: '9443',
             path: '/datareceiver/1.0.0/streams/'+streamPath,
             method: 'POST',
@@ -29,7 +29,7 @@ function sendUpdate(jsonObject,streamPath,isData) {
     } else{
         // the stream definition post options
         var optionsDataPost = {
-            host: '127.0.0.1',
+            host: '192.248.15.232',
             port: '9443',
             path: '/datareceiver/1.0.0/stream/'+streamPath,
             method: 'POST',

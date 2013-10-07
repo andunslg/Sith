@@ -12,8 +12,8 @@ function sendStreamUpdate(jsonObject) {
 
 // the post options
     var optionspost = {
-        host: 'localhost',
-        port: '9444',
+        host: '192.248.15.233',
+        port: '9443',
         path: '/datareceiver/1.0.0/streams/',
         method: 'POST',
         rejectUnauthorized: 'false',
@@ -40,8 +40,8 @@ function sendEventUpdate(jsonObject,streamPath) {
 
 // the post options
     var optionspost = {
-        host: 'localhost',
-        port: '9444',
+        host: '192.248.15.233',
+        port: '9443',
         path: '/datareceiver/1.0.0/stream/'+streamPath,
         method: 'POST',
         rejectUnauthorized: 'false',

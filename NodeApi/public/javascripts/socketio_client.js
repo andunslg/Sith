@@ -4,7 +4,7 @@
 $(document).ready(function(){
 	
 	var messages = [];
-    var socket = io.connect('http://192.248.15.236:3000');
+    var socket = io.connect('http://localhost:3000');
    
     socket.on('message', function (data) {
         if(data.message) {

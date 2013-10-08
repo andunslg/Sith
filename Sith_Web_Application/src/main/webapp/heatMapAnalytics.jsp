@@ -85,6 +85,8 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
                 <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+
             </ul>
         </li>
         <li>

@@ -64,19 +64,16 @@
     <meta name="keywords" content=""/>
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-
     <link rel="stylesheet" href="../css/style.css" media="all"/>
     <link rel="stylesheet" href="../css/button_style.css" media="all"/>
     <link rel="stylesheet" href="../css/apprise.min.css" media="all"/>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="../css/jquery-ui-timepicker-addon.css" />
-
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="../js/jquery-ui-timepicker-addon.js"></script>
     <script src="../js/apprise-1.5.min.js"></script>
     <script src="../js/jquery-migrate-1.0.0.js"></script>
-
 </head>
 <body>
 
@@ -353,149 +350,28 @@
 </section>
 
 <script type="text/javascript">
-    var colorSchema;
-    $(document).ready(function () {
-        $( "#datepicker" ).datepicker();
-        $('#start').datetimepicker();
-        $('#end').datetimepicker();
-
-        $("#update").click(function () {
-            var eventID = $('input[id=eventID]').val();
-            var eventName = $('input[id=eventName]').val();
-            var start = $('input[id=start]').val();
-            var end = $('input[id=end]').val();
-            var location = $('input[id=location]').val();
-            var description = $('input[id=description]').val();
-            var timeVariantParams = $('input[id=timeVariantParams]').val();
-
-            var c=document.getElementById('commentEnabled');
-            var commentEnabled = false;
-            if(c.checked){
-                commentEnabled=true;
-            }
-
-            var d=document.getElementById('fixedLocation');
-            var fixedLocation = false;
-            if(d.checked){
-                fixedLocation=true;
-            }
-
-            var perceptionSchema = "";
-            $("#selectedPerceptionSchema>option").each(function () {
-                if(perceptionSchema!=""){
-                    perceptionSchema += ":"+$(this).text();
-                }else{
-                    perceptionSchema+= $(this).text();
-                }
-            });
-
-            var colors = ""
-            $("#colors").find("td:nth-child(2)").each(function () {
-                if(colors!=""){
-                    colors += ":"+$(this)[0].firstChild.style.backgroundColor;
-                }else{
-                    colors+= $(this)[0].firstChild.style.backgroundColor;
-                }
-            });
-            if(colors == ""){
-                colors = null;
-            }
-            if(start.length!=16  ||end.length!=16){
-                apprise("Please select correct Start and End values")
-            }
-            else if(perceptionSchema==""){
-                apprise("Please select perception schema")
-            }
-            else{
-
-                var datObj = {};
-
-                datObj['oldEventID'] ='<%=currentEvent.getEventID()%>';
-                datObj['eventID'] = eventID;
-                datObj['eventName'] = eventName;
-                datObj['eventAdmin'] = '<%=participant.getUserID()%>';
-                datObj['start'] = start;
-                datObj['end'] = end;
-                datObj['location'] = location;
-                datObj['latLng'] = JSON.stringify(latLng);
-                datObj['description'] = description;
-                datObj['perceptionSchema'] = perceptionSchema;
-                datObj['commentEnabled'] = commentEnabled;
-                datObj['fixedLocation'] = fixedLocation;
-                datObj['colors'] = colors;
-                datObj['timeVariantParams'] = timeVariantParams;
-
-
-                $.ajax({
-                    url: 'updateEventHandler.jsp',
-                    data: datObj,
-                    type: 'POST',
-                    success: function (data) {
-                        apprise(data)
-                        if (data.indexOf("The Event is successfully updated.") != -1) {
-                            window.location.reload();
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        apprise("Error updating event - " + error.message);
-                    }
-                });
+    $("#update").click(function(){
+        var topic = $("#topic").val();
+        var start = $("#start").val();
+        var end = $("#end").val();
+        var eventID = '<%=currentEvent.getEventID()%>';
+        var schema = $("#perceptionPositive").find(':selected').text()+":"+$("#perceptionNeutral").find(':selected').text()+":"+$("#perceptionNegative").find(':selected').text();
+        console.log(topic+' '+schema);
+        $.ajax({
+            url: 'test.url',
+            data: 'topic='+topic+'&start='+start+'&end='+end+'&id='+eventID+'&schema'+schema,
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'text',
+            success: function (data) {
+                apprise("Successfully integrated with twitter!");
+            },
+            error: function (xhr, status, error) {
+                apprise("Error updating event - " + error.message);
             }
         });
-
     });
-    function SecListBox(ListBox,text,value)
-    {
-        try
-        {
-            var option=document.createElement("OPTION");
-            option.value=value;
-            option.text=text;
-            ListBox.options.add(option)
-        }
-        catch(er)
-        {
-            apprise(er)
-        }
-    }
-    function FirstListBox()
-    {
-        try
-        {
-            var count=document.getElementById("perceptionSchema").options.length;
-            for(i=0;i<count;i++)
-            {
-                if(document.getElementById("perceptionSchema").options[i].selected)
-                {
-                    SecListBox(document.getElementById("selectedPerceptionSchema"),document.getElementById("perceptionSchema").options[i].value,document.getElementById("perceptionSchema").options[i].value);document.getElementById("perceptionSchema").remove(i);
-                    break;
-                }
-            }
-        }
-        catch(er)
-        {
-            apprise(er)
-        }
-    }
-    function SecondListBox()
-    {
-        try
-        {
-            var count=document.getElementById("selectedPerceptionSchema").options.length;
-            for(i=0;i<count;i++)
-            {
-                if(document.getElementById("selectedPerceptionSchema").options[i].selected){SecListBox(document.getElementById("perceptionSchema"),document.getElementById("selectedPerceptionSchema").options[i].value,document.getElementById("selectedPerceptionSchema").options[i].value);document.getElementById("selectedPerceptionSchema").remove(i);
-                    break
-                }
-            }
 
-        }
-        catch(er)
-        {
-            apprise(er)
-        }
-
-    }
 </script>
 
 <script src="../js/jquery.wysiwyg.js"></script>

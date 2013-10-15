@@ -172,6 +172,9 @@
         <li>
             <a href="eventAdmin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
         </li>
+        <li>
+            <a href="social.jsp"><span class="icon">&#57394;</span>Social Media Integration</a>
+        </li>
         <%
             }
         %>

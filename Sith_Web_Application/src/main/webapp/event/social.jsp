@@ -358,7 +358,7 @@
         var schema = $("#perceptionPositive").find(':selected').text()+":"+$("#perceptionNeutral").find(':selected').text()+":"+$("#perceptionNegative").find(':selected').text();
         console.log(topic+' '+schema);
         $.ajax({
-            url: 'test.url',
+            url: 'http://sithplatform.cse.mrt.ac.lk/TwitterSith/webresources/service',
             data: 'topic='+topic+'&start='+start+'&end='+end+'&id='+eventID+'&schema='+schema,
             type: 'POST',
             contentType: 'application/x-www-form-urlencoded',

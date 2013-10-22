@@ -25,7 +25,7 @@ public class EmotionsModel {
 		} else if (emotion.equalsIgnoreCase("Bored")) {
 			return R.drawable.bored;
 		} else if (emotion.equalsIgnoreCase("Sleepy")) {
-			return R.drawable.happy1;
+			return R.drawable.sleepy;
 		} else if (emotion.equalsIgnoreCase("Sad")) {
 			return R.drawable.crying;
 		} else if (emotion.equalsIgnoreCase("Angry")) {
@@ -57,7 +57,7 @@ public class EmotionsModel {
 		} else if (emotion.equalsIgnoreCase("Bored")) {
 			return SithAPI.IMAGE_HOST+"bored.png";
 		} else if (emotion.equalsIgnoreCase("Sleepy")) {
-			return SithAPI.IMAGE_HOST+"happy1.png";
+			return SithAPI.IMAGE_HOST+"sleepy.png";
 		} else if (emotion.equalsIgnoreCase("Sad")) {
 			return SithAPI.IMAGE_HOST+"crying.png";
 		} else if (emotion.equalsIgnoreCase("Angry")) {

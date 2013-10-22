@@ -123,7 +123,7 @@ public class FacebookPostActivity extends Activity {
 		postParams.putString("message", comment);
 		postParams.putString("name",
 				"I am " + sithApplication.getCurrentFeeling());
-		postParams.putString("caption", "@ " + context);
+		postParams.putString("caption", "@ " + sithApplication.getCurrentSubcription().getSubscriptionName());
 		postParams.putString("description", "Expressed via Sith Platform");
 		// postParams.putString("link",
 		// "https://developers.facebook.com/android");

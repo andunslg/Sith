@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.sith.main.MainActivity;
 import com.sith.main.R;
 import com.sith.main.SithAPI;
 import com.sith.main.SithApplication;
+import com.sith.main.SubscriptionInfoActivity;
 import com.sith.main.util.UIutil;
 import com.sith.model.Subscription;
 
@@ -55,13 +58,13 @@ public class DashbordActivity extends Activity {
 			intent.putExtra("url", SithAPI.NONREALTIME_GRAPH);
 			break;
 
-		case R.id.main_btn_gingerbread:
-			intent.putExtra("url", SithAPI.COUNT_GRAPH);
-			break;
-
-		case R.id.main_btn_honeycomb:
-			intent.putExtra("url", SithAPI.SELF_GRAPH);
-			break;
+//		case R.id.main_btn_gingerbread:
+//			intent.putExtra("url", SithAPI.COUNT_GRAPH);
+//			break;
+//
+//		case R.id.main_btn_honeycomb:
+//			intent.putExtra("url", SithAPI.SELF_GRAPH);
+//			break;
 			
 		default:
 			break;
@@ -79,6 +82,18 @@ public class DashbordActivity extends Activity {
 
 					}
 				});
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(DashbordActivity.this, MainActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return true;
+		}
+		return true;
 	}
 
 }

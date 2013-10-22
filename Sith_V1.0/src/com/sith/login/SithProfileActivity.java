@@ -46,7 +46,7 @@ public class SithProfileActivity extends Activity {
 	}
 
 	public void onClickLogout(View view) {
-		Intent intent = new Intent(this, SithSignUpActivity.class);
+		Intent intent = new Intent(this, SithLoginActivity.class);
 		startActivity(intent);
 
 		pref.edit().putString("userID", "none").commit();

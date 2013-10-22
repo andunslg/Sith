@@ -11,6 +11,7 @@ import org.json.JSONException;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -41,21 +43,31 @@ import com.carousel.controls.CarouselAdapter.OnItemClickListener;
 import com.carousel.controls.CarouselAdapter.OnItemSelectedListener;
 import com.carousel.controls.CarouselItem;
 import com.carousel.controls.ImageAdapter;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sith.dashbord.DashbordActivity;
+import com.sith.location.LocationService;
 import com.sith.login.FBLoginActivity;
 import com.sith.login.SithLoginActivity;
 import com.sith.login.SithProfileActivity;
 import com.sith.main.util.AsyncHTTPHandler;
 import com.sith.main.util.UIutil;
 import com.sith.model.EmotionsModel;
+import com.sith.model.Event;
 import com.sith.model.Parser;
 import com.sith.model.Subscription;
 import com.slidingmenu.lib.SlidingMenu;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements
+		GooglePlayServicesClient.ConnectionCallbacks,
+		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 
 	private ArrayList<Subscription> subscriptions = new ArrayList<Subscription>();
 	private List<String> subscriptionIDs = new ArrayList<String>();
@@ -76,11 +88,23 @@ public class MainActivity extends Activity {
 	private ProgressDialog progress;
 	private boolean firstLaunch = true;
 
+	private LocationClient locationclient;
+	private LocationRequest locationrequest;
+	private Intent mIntentService;
+	private PendingIntent mPendingIntent;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+			initializeLocationClient();
+		} else {
+			UIutil.showAlert(this, "Error",
+					"This application needs Google play services to work well.");
+		}
 
 		sithApplication = (SithApplication) this.getApplication();
 
@@ -93,17 +117,17 @@ public class MainActivity extends Activity {
 		// pref = this.getSharedPreferences("SITH_PREF", Context.MODE_PRIVATE);
 		// pref.edit().commit();
 
-		try {
-			PackageInfo info = getPackageManager().getPackageInfo(
-					"com.sith.main", PackageManager.GET_SIGNATURES);
-			for (Signature signature : info.signatures) {
-				MessageDigest md = MessageDigest.getInstance("SHA");
-				md.update(signature.toByteArray());
-				Log.d("KeyHash:",
-						Base64.encodeToString(md.digest(), Base64.DEFAULT));
-			}
-		} catch (Exception e) {
-		}
+//		try {
+//			PackageInfo info = getPackageManager().getPackageInfo(
+//					"com.sith.main", PackageManager.GET_SIGNATURES);
+//			for (Signature signature : info.signatures) {
+//				MessageDigest md = MessageDigest.getInstance("SHA");
+//				md.update(signature.toByteArray());
+//				Log.d("KeyHash:","hash "+
+//						Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//			}
+//		} catch (Exception e) {			
+//		}
 
 		init();
 
@@ -148,6 +172,8 @@ public class MainActivity extends Activity {
 				final TextView txt = (TextView) (findViewById(R.id.selected_item));
 				txt.setText(s);
 				updateWidget();
+
+				sendStatus(s);
 			}
 		});
 
@@ -194,8 +220,8 @@ public class MainActivity extends Activity {
 	private void checkLoginStatus() {
 		if (sithApplication.getUserID() == null
 				|| sithApplication.getUserID().equalsIgnoreCase("none")) {
-			Toast.makeText(getBaseContext(), "Please Login",
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Please Login", Toast.LENGTH_LONG)
+					.show();
 			Intent intent = new Intent(MainActivity.this,
 					SithLoginActivity.class);
 			MainActivity.this.startActivity(intent);
@@ -318,8 +344,12 @@ public class MainActivity extends Activity {
 						@Override
 						public void onSuccess(String response) {
 							try {
-								subscriptions.add(Parser
-										.parseSubscription(response));
+								if (!response.equalsIgnoreCase("null")) {
+									subscriptions.add(Parser
+											.parseSubscription(response));
+								}else{
+									subscriptions.add(new Event());
+								}							
 							} catch (JSONException e) {
 								// TODO
 								progress.dismiss();
@@ -401,12 +431,11 @@ public class MainActivity extends Activity {
 			MainActivity.this.startActivity(myIntent);
 			return true;
 		case R.id.itemDashboard:
-			myIntent = new Intent(MainActivity.this, DashbordActivity.class);
-			MainActivity.this.startActivity(myIntent);
+//			UIutil.showAlert(MainActivity.this, "Not available",
+//					"Currently this feature has disabled by admins");
+			 myIntent = new Intent(MainActivity.this, DashbordActivity.class);
+			 MainActivity.this.startActivity(myIntent);
 			return true;
-			// case R.id.:
-			// //do something when this button is pressed
-			// return true;
 		case android.R.id.home:
 			menu.toggle();
 			return true;
@@ -424,26 +453,24 @@ public class MainActivity extends Activity {
 		} else {
 			int i = 0;
 			for (; i < subscriptions.size(); i++) {
-				if (subscriptions
-						.get(i)
-						.getSubscriptionID()
-						.equals(sithApplication.currentSubcription
-								.getSubscriptionID())) {
+				String s = subscriptions.get(i).getSubscriptionID();
+				String s1 = sithApplication.currentSubcription
+						.getSubscriptionID();
+				if (s.equals(s1)) {
 					break;
 				}
 			}
-			getActionBar().setSelectedNavigationItem(i);
+			getActionBar().setSelectedNavigationItem(i + 1);
 		}
 	}
 
 	public void onClickProfile(View v) {
 		if (!sithApplication.isFB) {
-			Intent intent=new Intent(MainActivity.this,
+			Intent intent = new Intent(MainActivity.this,
 					SithProfileActivity.class);
 			MainActivity.this.startActivity(intent);
 		} else {
-			Intent intent=new Intent(MainActivity.this,
-					FBLoginActivity.class);
+			Intent intent = new Intent(MainActivity.this, FBLoginActivity.class);
 			intent.putExtra("isConnect", true);
 			MainActivity.this.startActivity(intent);
 		}
@@ -488,10 +515,25 @@ public class MainActivity extends Activity {
 			MainActivity.this.startActivity(new Intent(MainActivity.this,
 					FBLoginActivity.class));
 		}
+		if (sithApplication.getCurrentSubcription() != null) {
+			parameters.put("eventID", sithApplication.getCurrentSubcription()
+					.getSubscriptionID());
+		} else {
+			parameters.put("eventID", "none");
+		}
 
-		parameters.put("eventID", sithApplication.getCurrentSubcription()
-				.getSubscriptionID());
 		parameters.put("perceptionValue", s);
+		if (sithApplication.getLocation() != null) {
+			parameters
+					.put("lat", String.valueOf(sithApplication.getLocation()
+							.getLatitude()));
+			parameters.put("lng", String.valueOf(sithApplication.getLocation()
+					.getLongitude()));
+		}
+
+		if (sithApplication.getLocation() != null) {
+			parameters.put("locationName", sithApplication.getLocationName());
+		}
 
 		try {
 			httpHandler.post(SithAPI.EVENT_STATUS_POST, parameters);
@@ -510,15 +552,65 @@ public class MainActivity extends Activity {
 		}
 		return true;
 	}
-	
-	private void updateWidget(){
-		Intent intent = new Intent(this,SithWidgetProvider.class);
+
+	private void updateWidget() {
+		Intent intent = new Intent(this, SithWidgetProvider.class);
 		intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-		// Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+		// Use an array and EXTRA_APPWIDGET_IDS instead of
+		// AppWidgetManager.EXTRA_APPWIDGET_ID,
 		// since it seems the onUpdate() is only fired on that:
-		int[] ids = {R.xml.sith_widget_provider};
-		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+		int[] ids = { R.xml.sith_widget_provider };
+		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 		intent.putExtra("currentFeeling", sithApplication.getCurrentFeeling());
 		sendBroadcast(intent);
 	}
+
+	private void initializeLocationClient() {
+
+		locationclient = new LocationClient(this, this, this);
+		locationclient.connect();
+
+		mIntentService = new Intent(this, LocationService.class);
+		mPendingIntent = PendingIntent.getService(this, 1, mIntentService, 0);
+
+	}
+
+	public void getCurrentLocation() {
+		if (locationclient != null && locationclient.isConnected()) {
+			Location loc = locationclient.getLastLocation();
+			sithApplication.setLocation(loc);
+		}
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		if (location != null) {
+			sithApplication.setLocation(location);
+		}
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		UIutil.showAlert(MainActivity.this, "Alert",
+				"Could not retriew location info");
+	}
+
+	@Override
+	public void onConnected(Bundle arg0) {
+		locationrequest = LocationRequest.create();
+		locationrequest.setInterval(300000);
+		locationrequest
+				.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+		locationclient.requestLocationUpdates(locationrequest, this);
+
+		getCurrentLocation();
+	}
+
+	@Override
+	public void onDisconnected() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

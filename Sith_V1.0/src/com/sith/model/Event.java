@@ -1,5 +1,6 @@
 package com.sith.model;
 
+
 public class Event extends Subscription {
 
 	private String location;
@@ -11,6 +12,36 @@ public class Event extends Subscription {
 	private String startDate;
 	
 	private String endDate;
+	
+	private double lat=-1;
+	
+	private double lng=-1;
+	
+	private boolean isDistributed=false;
+
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+	public boolean isDistributed() {
+		return isDistributed;
+	}
+
+	public void setDistributed(boolean isDistributed) {
+		this.isDistributed = isDistributed;
+	}
 
 	public String getEndDate() {
 		return endDate;

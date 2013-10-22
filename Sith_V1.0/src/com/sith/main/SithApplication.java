@@ -6,6 +6,7 @@ import java.util.List;
 import com.sith.model.Subscription;
 
 import android.app.Application;
+import android.location.Location;
 
 public class SithApplication extends Application {
 
@@ -18,6 +19,10 @@ public class SithApplication extends Application {
 	Subscription currentSubcription;
 	
 	boolean isFB=false;
+	
+	Location location;
+	
+	String locationName="none";
 	
 	
 
@@ -69,6 +74,26 @@ public class SithApplication extends Application {
 
 	public void setSubscriptions(List<Subscription> subscriptions) {
 		this.subscriptions = subscriptions;
+	}
+
+	public String getLocationName() {
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.locationName = location;
 	}
 
 	

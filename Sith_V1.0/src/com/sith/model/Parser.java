@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.JsonObject;
+
 
 
 public class Parser {
@@ -32,6 +34,13 @@ public class Parser {
 		e.setMoods(Arrays.asList(jObject.getString("perceptionSchema").split(":")));
 		e.setStartDate(jObject.getString("startDate"));
 		e.setEndDate(jObject.getString("endDate"));
+		
+		String temp=jObject.getString("latLng");
+		JSONObject temp2=new JSONObject(temp);
+		
+		e.setLat(temp2.getDouble("lat"));
+		e.setLat(temp2.getDouble("lng"));
+		
 		return e;
 
 	}

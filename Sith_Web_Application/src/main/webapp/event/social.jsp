@@ -30,30 +30,9 @@
 
     String arr[]=currentEvent.getPerceptionSchema().split(":");
     List<String> perceptionListSelected=Arrays.asList(arr);
-
-    List<String> colors = null;
-    if(!currentEvent.getColors().equals("")){
-        String arr2[] = currentEvent.getColors().split(":");
-        colors=Arrays.asList(arr2);
-    }
-    ArrayList<String> perceptionList=sithAPI.getMasterPerceptions();
-    ArrayList<String> temp=perceptionList;
-    for(int i=0;i<perceptionList.size();i++){
-        if(perceptionListSelected.contains(perceptionList.get(i))){
-            for(int j=0;j<temp.size();j++){
-                if(perceptionList.get(i).equals(temp.get(j))){
-                    temp.remove(j);
-                    break;
-                }
-            }
-        }
-    }
-    perceptionList=temp;
     Participant participant=eventHandler.getParticipant(session.getAttribute("user").toString());
-
     DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
     Date currentDate = new Date();
-
     Date eventEndDate=dateFormat1.parse(currentEvent.getEndDate()+" "+currentEvent.getEndTime());
 %>
 
@@ -239,19 +218,13 @@
                             <select multiple="single" name="perceptionSchema" id="perceptionPositive"
                                     style="width: 400px;height:120px;vertical-align: middle">
                                 <%
-                                    for(String perception : perceptionList){
-                                        if(perception.equals("Happy")){
-                                %>
-                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
-                                <%
-                                }else{
+                                    for(String perception : perceptionListSelected){
+
                                 %>
                                 <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
-                                        }
                                     }
                                 %>
-
                             </select>
                             <div style="padding-top: 8px">If you change perception schema, make sure to define the color schema</div>
                         </td>
@@ -271,19 +244,13 @@
                             <select multiple="single" name="perceptionSchema" id="perceptionNeutral"
                                     style="width: 400px;height:120px;vertical-align: middle">
                                 <%
-                                    for(String perception : perceptionList){
-                                        if(perception.equals("Happy")){
-                                %>
-                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
-                                <%
-                                }else{
+                                    for(String perception : perceptionListSelected){
+
                                 %>
                                 <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
-                                        }
                                     }
                                 %>
-
                             </select>
                             <div style="padding-top: 8px">If you change perception schema, make sure to define the color schema</div>
                         </td>
@@ -302,19 +269,13 @@
                             <select multiple="single" name="perceptionSchema" id="perceptionNegative"
                                     style="width: 400px;height:120px;vertical-align: middle">
                                 <%
-                                    for(String perception : perceptionList){
-                                        if(perception.equals("Happy")){
-                                %>
-                                <option name="<%=perception%>" value="<%=perception%>" selected="selected"><%=perception%></option>
-                                <%
-                                }else{
+                                    for(String perception : perceptionListSelected){
+
                                 %>
                                 <option name="<%=perception%>" value="<%=perception%>"><%=perception%></option>
                                 <%
-                                        }
                                     }
                                 %>
-
                             </select>
                             <div style="padding-top: 8px">If you change perception schema, make sure to define the color schema</div>
                         </td>

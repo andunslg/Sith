@@ -169,6 +169,13 @@ exports.receiveCEPAnalytics = function(req,res){
     res.write(result);
     res.end();
 };
+exports.receiveCEPMapAnalytics = function(req,res){
+    cepConnectorForPatterns.sendMapNotificationOnPatterns(req.body.lat,req.body.long,req.body.perception);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var result = JSON.stringify({response: true });
+    res.write(result);
+    res.end();
+};
 
 /*
 function constructTotPerceptionMessage(res){

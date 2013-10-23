@@ -26,6 +26,50 @@
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false&libraries=visualization"></script>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src='<%=SithAPI.SOCKET_API%>/socket.io/socket.io.js'></script>
+    <script type="text/javascript">
+        var map;
+        var master_perception = new Array("happy","excited","neutral","sad","horrible");
+        var perception_marker_map = new Object();
+        perception_marker_map["happy"]= 'images/markers/green.ico';
+        perception_marker_map["excited"]= 'images/markers/orange.ico';
+        perception_marker_map["neutral"]= 'images/markers/yellow.ico';
+        perception_marker_map["sad"]= 'images/markers/blue.ico';
+        perception_marker_map["horrible"]= 'images/markers/red.ico';
+
+        function initialize() {
+            var srilanka = new google.maps.LatLng(7.87305,79.8612);
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: srilanka,
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+        }
+        function drawRealTimePerception(perception, longitude, latitude){
+            var location = new google.maps.LatLng(latitude, longitude);
+            var markerImage = perception_marker_map[perception];
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                icon: markerImage,
+                title: 'Hello World!',
+                animation:google.maps.Animation.DROP
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        $(document).ready(function(){
+            var socket = io.connect('<%=SithAPI.SOCKET_API%>');
+            socket.on('connect', function(){
+                socket.emit('realtimeMap', '<%=session.getAttribute("user").toString()%>');
+            });
+            socket.on('cepMapNotification', function(data){
+                drawRealTimePerception(data.perception,data.long,data.lat);
+            });
+        });
+     </script>
 </head>
 <body>
 
@@ -110,57 +154,19 @@
                     <div style="margin:10px;background-color:#cd0a0a;width:70px;height:20px;border:1px solid #000;text-align:center">Horrible</div>
                 </ul>
             </div>
-            <div id="panel1">
-                <button onclick="drawRealTimePerception('happy',41.850033,-87.6500523)">Draw</button>
-                <button onclick="drawRealTimePerception('sad',41.860133,-87.6402523)">Draw</button>
-                <button onclick="drawRealTimePerception('neutral',41.872033,-87.6600623)">Draw</button>
-                <button onclick="drawRealTimePerception('horrible',41.870133,-87.6302523)">Draw</button>
-                <button onclick="drawRealTimePerception('excited',41.842033,-87.6400623)">Draw</button>
+            <%--<div id="panel1">--%>
+                <%--<button onclick="drawRealTimePerception('happy',41.850033,-87.6500523)">Draw</button>--%>
+                <%--<button onclick="drawRealTimePerception('sad',41.860133,-87.6402523)">Draw</button>--%>
+                <%--<button onclick="drawRealTimePerception('neutral',41.872033,-87.6600623)">Draw</button>--%>
+                <%--<button onclick="drawRealTimePerception('horrible',41.870133,-87.6302523)">Draw</button>--%>
+                <%--<button onclick="drawRealTimePerception('excited',41.842033,-87.6400623)">Draw</button>--%>
 
-            </div>
+            <%--</div>--%>
             <div id="map-canvas"></div>
         </div>
     </section>
 </section>
 
-<script>
-    var map;
-    var master_perception = new Array("happy","excited","neutral","sad","horrible");
-    var perception_marker_map = new Object();
-    perception_marker_map["happy"]= 'images/markers/green.ico';
-    perception_marker_map["excited"]= 'images/markers/orange.ico';
-    perception_marker_map["neutral"]= 'images/markers/yellow.ico';
-    perception_marker_map["sad"]= 'images/markers/blue.ico';
-    perception_marker_map["horrible"]= 'images/markers/red.ico';
-
-    function initialize() {
-        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
-            center: chicago,
-            zoom: 11,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-    }
-    function drawRealTimePerception(perception, longitude, latitude){
-        var location = new google.maps.LatLng(longitude, latitude);
-        var markerImage = perception_marker_map[perception];
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            icon: markerImage,
-            title: 'Hello World!',
-            animation:google.maps.Animation.DROP
-        });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-
-</script>
-
-
-<script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/jquery.wysiwyg.js"></script>
 <script src="js/custom.js"></script>
@@ -172,7 +178,5 @@
 <script src="js/flot-time.js"></script>
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
-
-
 </body>
 </html>

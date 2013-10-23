@@ -46,10 +46,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-    console.log(err);
-});
+//process.on('uncaughtException', function(err) {
+//    // handle the error safely
+//    console.log(err);
+//});
 
 //routes for web pages
 app.get('/',routes.index);
@@ -119,11 +119,13 @@ app.post('/removeFriend',friendRoutes.removeFriend)
 app.post('/getUserNews',friendRoutes.getUserNews);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
+app.post('/receiveCEPMapAnalytics',analyticRoutes.receiveCEPMapAnalytics)
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 GLOBAL.io = require('socket.io').listen(server);
 GLOBAL.onlineUsers = {};
+GLOBAL.realTimeMapUser = [];
 GLOBAL.io.sockets.on('connection', function (socket) {
     socket.on('login', function (userName) {
         GLOBAL.onlineUsers[userName] = {
@@ -131,5 +133,13 @@ GLOBAL.io.sockets.on('connection', function (socket) {
         }
         console.log(userName+" logged in!");
     });
-
+    socket.on('realtimeMap', function (userName) {
+        GLOBAL.realTimeMapUser.push(socket);
+        console.log(userName+" Entered to realtime map");
+    });
+    socket.on('disconnect', function () {
+        var index = GLOBAL.realTimeMapUser.indexOf(socket);
+        GLOBAL.realTimeMapUser.splice(index,1);
+        console.log("disconnected");
+    });
 });

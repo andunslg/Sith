@@ -38,7 +38,7 @@ exports.addNotification = function(sender,type,status,text,userID){
     var doc = {sender:sender,type:type,status:status,text:text}
     notifyMongoAdapter.insertDocument("UserNotifications_"+userID,doc);
 }
-
+//send notifications to users
 exports.notifyUser = function(sender,receiver,type,msg,isReceiverOnline){
     if(isReceiverOnline){
         GLOBAL.io.sockets.socket(GLOBAL.onlineUsers[receiver].socket).emit(type,msg);
@@ -46,4 +46,11 @@ exports.notifyUser = function(sender,receiver,type,msg,isReceiverOnline){
     }else{
         this.addNotification(sender,type,"pending",msg,receiver);
     }
+}
+//send Map notifications on patterns
+exports.notifyUser = function(type,msgdata){
+    for(i=0;i<GLOBAL.realTimeMapUser.length;i++){
+       GLOBAL.io.sockets.socket(GLOBAL.realTimeMapUser[i].id).emit(type,msgdata);
+    }
+
 }

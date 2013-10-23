@@ -99,3 +99,12 @@ exports.sendNotificationOnPatterns = function(eventID,msg){
       cepNotificationManager.notifyUser("cep",docs.eventAdmin,"cepNotification",msg,isAdminOnline)
     })
 }
+
+exports.sendMapNotificationOnPatterns = function(lat,long,perception){
+//    lat ="6.932871";
+//    long ="79.8431396";
+    lat = parseFloat(lat);
+    long =parseFloat(long);
+    var msgdata = {lat:lat , long:long , perception:perception};
+    cepNotificationManager.notifyUser("cepMapNotification",msgdata);
+}

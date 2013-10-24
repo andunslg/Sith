@@ -32,11 +32,11 @@
         var map;
         var master_perception = new Array("happy","excited","neutral","sad","horrible");
         var perception_marker_map = new Object();
-        perception_marker_map["happy"]= 'images/markers/green.ico';
-        perception_marker_map["excited"]= 'images/markers/orange.ico';
-        perception_marker_map["neutral"]= 'images/markers/yellow.ico';
-        perception_marker_map["sad"]= 'images/markers/blue.ico';
-        perception_marker_map["horrible"]= 'images/markers/red.ico';
+        perception_marker_map["Happy"]= 'images/markers/green.ico';
+        perception_marker_map["Excited"]= 'images/markers/orange.ico';
+        perception_marker_map["Neutral"]= 'images/markers/yellow.ico';
+        perception_marker_map["Sad"]= 'images/markers/blue.ico';
+        perception_marker_map["Horrible"]= 'images/markers/red.ico';
 
         function initialize() {
             var srilanka = new google.maps.LatLng(7.87305,79.8612);

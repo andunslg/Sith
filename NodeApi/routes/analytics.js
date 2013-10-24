@@ -170,6 +170,7 @@ exports.receiveCEPAnalytics = function(req,res){
     res.end();
 };
 exports.receiveCEPMapAnalytics = function(req,res){
+    console.log(req.body);
     cepConnectorForPatterns.sendMapNotificationOnPatterns(req.body.lat,req.body.long,req.body.perception);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });

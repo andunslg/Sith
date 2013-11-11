@@ -1,6 +1,10 @@
 <%@ page import="com.sith.user.FriendHandler" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.sith.SithAPI" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 <html lang="">
 <% if(session.getAttribute("isLogged")!=null){
@@ -24,7 +28,7 @@
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong>Sith</strong></h1>
+        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
@@ -102,7 +106,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="search" type="button" value="Search" class="button" style="text-align: center;width: 100px">
+                            <span class="button" id="search">Search</span>
                         </div>
                     </td>
                 </tr>

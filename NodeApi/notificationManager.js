@@ -39,7 +39,7 @@ exports.addNotification = function(sender,type,status,text,userID){
     notifyMongoAdapter.insertDocument("UserNotifications_"+userID,doc);
 }
 //send notifications to users
-exports.notifyUser = function(sender,receiver,type,msg,isReceiverOnline){
+exports.notifyUserByOtherUser = function(sender,receiver,type,msg,isReceiverOnline){
     if(isReceiverOnline){
         GLOBAL.io.sockets.socket(GLOBAL.onlineUsers[receiver].socket).emit(type,msg);
         this.addNotification(sender,type,"pending",msg,receiver);

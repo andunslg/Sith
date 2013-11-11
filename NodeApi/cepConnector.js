@@ -96,7 +96,7 @@ exports.sendNotificationOnPatterns = function(eventID,msg){
        }else{
            isAdminOnline = false;
        }
-      cepNotificationManager.notifyUser("cep",docs.eventAdmin,"cepNotification",msg,isAdminOnline)
+      cepNotificationManager.notifyUserByOtherUser("cep",docs.eventAdmin,"cepNotification",msg,isAdminOnline)
     })
 }
 

@@ -6,6 +6,10 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 <html lang="">
 
@@ -91,11 +95,10 @@
 
     </script>
 </head>
-<body onload="">
-
+<body>
 <div class="testing">
     <header class="main">
-        <h1><fmt:message key="sith.dashboard.sith" /></h1>
+        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
@@ -193,7 +196,6 @@
 
 
 <section class="content" height="250">
-
     <section class="widget" height="100">
         <header>
             <span class="icon">&#128100;</span>
@@ -203,7 +205,7 @@
                 <h2>Current Perception</h2>
             </hgroup>
         </header>
-
+        <div class="content">
         <br>
         <%
             if(currentDate.compareTo(eventEndDate)<0){
@@ -267,10 +269,8 @@
         <%
             }
         %>
-
+            </div>
     </section>
-
-
 </section>
 <script>
 var clickTime = 0;

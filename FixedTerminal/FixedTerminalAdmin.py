@@ -2,7 +2,7 @@ from Tkinter import *
 import ttk
 import datetime
 import serial
-from threading import Thread
+import threading
 import time
 import urllib
 import urllib2
@@ -18,6 +18,7 @@ portNames={}
 portLocations={}
 eventID=""
 started=False
+averagePerception="None"
 
 
 def addNewClient():
@@ -46,30 +47,21 @@ def configureEvent():
     configureModes=list()
     buttonLabelEventID=Label(eventConfig,text="EventID:")
     butonEventID=Entry(eventConfig)
-    buttonLabel1=Label(eventConfig,text="Button 1:")
+    buttonLabel1=Label(eventConfig,text="Perception 1:")
     butonMode1=Entry(eventConfig)
     configureModes.append(butonMode1)
-    buttonLabel2=Label(eventConfig,text="Button 2:")
+    buttonLabel2=Label(eventConfig,text="Perception 2:")
     butonMode2=Entry(eventConfig)
     configureModes.append(butonMode2)
-    buttonLabel3=Label(eventConfig,text="Button 3:")
+    buttonLabel3=Label(eventConfig,text="Perception 3:")
     butonMode3=Entry(eventConfig)
     configureModes.append(butonMode3)
-    buttonLabel4=Label(eventConfig,text="Button 4:")
+    buttonLabel4=Label(eventConfig,text="Perception 4:")
     butonMode4=Entry(eventConfig)
     configureModes.append(butonMode4)
-    buttonLabel5=Label(eventConfig,text="Button 5:")
+    buttonLabel5=Label(eventConfig,text="Perception 5:")
     butonMode5=Entry(eventConfig)
     configureModes.append(butonMode5)
-    buttonLabel6=Label(eventConfig,text="Button 6:")
-    butonMode6=Entry(eventConfig)
-    configureModes.append(butonMode6)
-    buttonLabel7=Label(eventConfig,text="Button 7:")
-    butonMode7=Entry(eventConfig)
-    configureModes.append(butonMode7)
-    buttonLabel8=Label(eventConfig,text="Button 8:")
-    butonMode8=Entry(eventConfig)
-    configureModes.append(butonMode8)
     buttonLabelEventID.pack()
     butonEventID.pack()
     buttonLabel1.pack()
@@ -82,12 +74,6 @@ def configureEvent():
     butonMode4.pack()
     buttonLabel5.pack()
     butonMode5.pack()
-    buttonLabel6.pack()
-    butonMode6.pack()
-    buttonLabel7.pack()
-    butonMode7.pack()
-    buttonLabel8.pack()
-    butonMode8.pack()
     button1=Button(eventConfig,
     text="Ok",command=lambda: configureEventOkPressed(eventConfig,butonEventID,configureModes))
     button1.pack()
@@ -103,16 +89,33 @@ def configureEventOkPressed(eventConfig,butoneventID,configureModes):
 
 
 
-def sendPercetion(userID,perception,location):
+def sendPerception(userID,perception,location):
     global eventID   
     url = 'http://192.248.15.232:3000/publishEventPerception'
     params = urllib.urlencode({
       'eventID': eventID,
       'userID':userID,
-      'perceptionVal':perception,
-      'location':location
+      'perceptionValue':perception,
+      'location':location,
+      'lat': '8.352823015039602',
+      'lng': '80.738525390625',
+
     })
-    response = urllib2.urlopen(url, params).read()
+    response = urllib2.urlopen(url,params).read()
+    
+
+def getAveragePerception():
+    #global eventID
+##    change the URL
+    #url = 'http://192.248.15.232:3000/publishEventPerception'
+    #params = urllib.urlencode({
+    #  'eventID': eventID
+    #})
+    #response = urllib2.urlopen(url, params).read()
+##    perception has to be extracted from json string currently always sends None
+    return "Happy"
+    
+    
 
         
 
@@ -135,10 +138,10 @@ def addNewClientT(name,port,location):
 
 
 
-class SummingThread(Thread):
+class SummingThread(threading.Thread):
          
      def __init__(self,port):
-         Thread.__init__(self)
+         threading.Thread.__init__(self)
          self.port=port
 
      def run(self):
@@ -148,27 +151,68 @@ class SummingThread(Thread):
          global moods
          global portNames
          global started
+         global eventID
+         global averagePerception
+         temp1=eventID+";"+getAveragePerception()+";"
+         for s in moods:
+             temp1+=s+";"
          name=portNames[self.port]
          location=portLocations[self.port]
-         while started:
+
+         intitRequest=""
+         while True:
+            c = arduino.read()
+            if c != ";":
+                intitRequest+=c
+            else:
+                break
+                 
+         print("Initilizing Request Recived")
+         print("Sending Initilizing Message : "+temp1)
+         arduino.write(temp1)
+
+         intitCompleted=""
+         while True:
+             c = arduino.read()
+             if c != ";":
+                 intitCompleted+=c
+             else:
+                 break
+                 
+         print("Initilizing Completed Message Recived")
+         
+         temp2=""
+         p="None"
+         while started:            
              bChar = arduino.read()
-             if bChar == "1":
-                 perception=moods[0]             
-             elif bChar == "2":
-                 perception=moods[1]
-             elif bChar == "3":
-                 perception=moods[2]
-             elif bChar == "4":
-                 perception=moods[3]
-             elif bChar == "5":
-                 perception=moods[4]
-             elif bChar == "6":
-                 perception=moods[5]
-             elif bChar == "7":
-                 perception=moods[6]
-             elif bChar == "8":
-                 perception=moods[7]
-             sendPerception(name,perception,location)
+             if bChar != ";" and bChar!='\n'and bChar!='\r':
+                 temp2+=bChar            
+             elif bChar == ";" :
+                 sendPerception(name,temp2,location)
+                 print("Sending Perception to API : "+name+","+temp2+","+location)
+                 temp2=""
+             if p !=averagePerception:
+                 p=averagePerception
+                 print("Sending Average Perception to Client : "+p)
+                 arduino.write(p+";");
+             
+
+
+class SchedularThread(threading.Thread):
+         
+     def __init__(self):
+         threading.Thread.__init__(self)
+
+     def run(self):
+         global averagePerception
+         global started
+         while started:
+             time.sleep(60)
+             p=getAveragePerception()
+             if p!=averagePerception:
+                 print("Average Perception Change Recived : "+averagePerception+" to "+p)
+                 averagePerception=p
+                            
              
 def startClicked():
     global ports
@@ -179,15 +223,15 @@ def startClicked():
         t1 = SummingThread(str(item))
         t1.start()
         threads.append(t1)
+    t2=SchedularThread()
+    t2.start()
+     
 
 def stopClicked():
     global started
     started=False
     print temp
     
-
-
-
 
 menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
@@ -242,4 +286,3 @@ t.heading("sixth",text="Timestamp")
 t.tag_configure("ttk")
 t.pack()
 root.mainloop()
-

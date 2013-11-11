@@ -58,10 +58,10 @@
             //var patt=/index.jsp/g;
             //var result=patt.test(previousPage);
             //if(result){
-                socket.on('connect', function(){
+            socket.on('connect', function(){
                     // call the server-side function 'adduser' and send one parameter (value of prompt)
-                    socket.emit('login', '<%=session.getAttribute("user").toString()%>');
-                });
+                  socket.emit('login', '<%=session.getAttribute("user").toString()%>');
+            });
             //}
             socket.on("friendRequest",function(data){
                 var currentCount = parseInt($("#notificCount").text());
@@ -239,7 +239,6 @@
             <a href="https://twitter.com/sithplatform" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @sithplatform</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
-        <br>
     </section>
 </section>
 </body>

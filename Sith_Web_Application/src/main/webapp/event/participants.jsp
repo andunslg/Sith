@@ -6,6 +6,10 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 <html lang="">
 <%
@@ -41,7 +45,7 @@
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong>Sith</strong></h1>
+        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">

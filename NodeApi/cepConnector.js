@@ -96,7 +96,7 @@ exports.sendNotificationOnPatterns = function(eventID,msg){
        }else{
            isAdminOnline = false;
        }
-      cepNotificationManager.notifyUserByOtherUser("cep",docs.eventAdmin,"cepNotification",msg,isAdminOnline)
+      cepNotificationManager.notifySingleUser("cep",docs.eventAdmin,"cepNotification",msg,isAdminOnline)
     })
 }
 
@@ -106,5 +106,5 @@ exports.sendMapNotificationOnPatterns = function(lat,long,perception){
     lat = parseFloat(lat);
     long =parseFloat(long);
     var msgdata = {lat:lat , long:long , perception:perception};
-    cepNotificationManager.notifyUser("cepMapNotification",msgdata);
+    cepNotificationManager.notifyManyUsers("cepMapNotification",msgdata);
 }

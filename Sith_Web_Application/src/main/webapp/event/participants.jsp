@@ -39,13 +39,14 @@
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" media="all"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!--[if IE]>
     <link rel="stylesheet" href="../css/ie.css" media="all"/><![endif]-->
 </head>
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
+        <h1><i class="fa fa-globe fa-2x" style="padding-right: 8px;"></i><strong><fmt:message key="sith.dashboard.sith" /></strong> <fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
@@ -75,13 +76,13 @@
 <nav>
     <ul>
         <li>
-            <a href="../home.jsp"><span class="icon" style="font-size: 40px">&#8962;&thinsp;</span>Home</a>
+            <a href="../home.jsp"><span class="icon"><i class="fa fa-home fa-2x" style="font-size: 30px"></i></span>Home</a>
         </li>
         <li>
-            <a href="event.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>My Perception</a>
+            <a href="event.jsp"><span class="icon"><i class="fa fa-thumbs-up fa-2x" style="font-size: 30px"></i></span>My Perception</a>
         </li>
         <li>
-            <a href="#"><span class="icon">&#128711;</span>Analytics</a>
+            <a href="#"><span class="icon"><i class="fa fa-dashboard fa-2x" style="font-size: 30px"></i></span>Analytics</a>
             <ul class="submenu">
                 <%
                     if(currentEvent.getAdminID().equals(participant.getUserID())){
@@ -91,11 +92,12 @@
                 <%
                     }
                 %>
-                <li><a href="nonRealTimeAnalytics.jsp"></span>Non Realtime Analytics</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span>Post Analytics</a></li>
                 <%
                     }
                 %>
                 <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
+
             </ul>
         </li>
         <%
@@ -103,30 +105,32 @@
                 if(currentDate.compareTo(eventEndDate)<0){
         %>
         <li>
-            <a href="timeVariantParameters.jsp"><span class="icon">&#128711;</span>Temporal Params</a>
+            <a href="timeVariantParameters.jsp"><span class="icon"><i class="fa fa-clock-o fa-2x" style="font-size: 30px"></i></span>Temporal Params</a>
         </li>
         <%
                 }
             }
         %>
         <li>
-            <a href="questions.jsp"><span class="icon">&#59160;</span>Questions</a>
+            <a href="questions.jsp"><span class="icon"><i class="fa fa-comments fa-2x" style="font-size: 30px"></i></span>Comments</a>
         </li>
         <li>
-            <a href="participants.jsp"><span class="icon">&#128101;</span>Participants</a>
+            <a href="participants.jsp"><span class="icon"><i class="fa fa-users fa-2x" style="font-size: 30px"></i></span>Participants</a>
         </li>
         <%
             if(currentEvent.getAdminID().equals(participant.getUserID())){
         %>
         <li>
-            <a href="eventAdmin.jsp"><span class="icon">&#128100;</span>Event Admin</a>
+            <a href="eventAdmin.jsp"><span class="icon"><i class="fa fa-cogs fa-2x" style="font-size: 30px"></i></span>Settings</a>
+        </li>
+        <li>
+            <a href="social.jsp"><span class="icon"><i class="fa fa-twitter fa-2x" style="font-size: 30px"></i></span>Social Media Integration</a>
         </li>
         <%
             }
         %>
     </ul>
 </nav>
-
 <section class="alert">
     <div class="green">
         <p>Current event is <a href="#"><%=currentEvent.getEventName()%></a> , Click here to <a href="../myEvents.jsp">change</a></p>

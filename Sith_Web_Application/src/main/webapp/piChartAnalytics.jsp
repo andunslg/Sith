@@ -2,6 +2,10 @@
 <%@ page import="com.sith.analytics.locationBasedAnalytics.LocationBasedAnalytics" %>
 <%@ page import="com.sith.analytics.locationBasedAnalytics.PerceptionsOnLocation" %>
 <%@ page import="java.util.HashMap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 <html lang="">
 
@@ -24,9 +28,9 @@
     <meta name="keywords" content=""/>
     <meta name="robots" content=""/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false&.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?.js"></script>
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -36,7 +40,7 @@
 
 <div class="testing">
     <header class="main">
-        <h1><strong>Sith </strong>Dashboard</h1>
+        <h1><i class="fa fa-globe fa-2x" style="padding-right: 15px;"></i><strong><fmt:message key="sith.dashboard.sith" /></strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
@@ -63,40 +67,39 @@
         </div>
     </section>
 </div>
-
 <nav>
     <ul>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span>Events</a>
+            <a href="#"><span class="icon"><i class="fa fa-sign-in fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.events" /></a>
             <ul class="submenu">
-                <li><a href="myEvents.jsp"></span>My Events</a></li>
-                <li><a href="joinEvents.jsp"></span>Join Events</a></li>
-                <li><a href="addEvents.jsp"></span>Add Events</a></li>
+                <li><a href="myEvents.jsp"></span><fmt:message key="sith.dashboard.menu.myEvents" /></a></li>
+                <li><a href="joinEvents.jsp"></span><fmt:message key="sith.dashboard.menu.joinEvents" /></a></li>
+                <li><a href="addEvents.jsp"></span><fmt:message key="sith.dashboard.menu.addEvents" /></a></li>
             </ul>
         </li>
         <li>
-            <a href="profile.jsp"><span class="icon">&#128101;</span>Profile</a>
+            <a href="profile.jsp"><span class="icon"><i class="fa fa-user fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.profile" /></a>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#128711;&thinsp;</span>How World Feels</a>
+            <a href="newsFeed.jsp"><span class="icon"><i class="fa fa-file-text-o fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.newsfeed" /></a>
+        </li>
+        <li>
+            <a href="#"><span class="icon"><i class="fa fa-globe fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
             <ul class="submenu">
-                <li><a href="heatMapAnalytics.jsp"></span>Heat Map</a></li>
-                <li><a href="piChartAnalytics.jsp"></span>Pi Chart</a></li>
+                <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
+                <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
                 <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
-
             </ul>
         </li>
         <li>
-            <a href="home.jsp"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span>How I Feel</a>
+            <a href="#"><span class="icon"><i class="fa fa-smile-o fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.myAnalytics" /></a>
             <ul class="submenu">
-                <li><a href="heatMapSelfAnalytics.jsp"></span>Location Based</a></li>
-                <li><a href="TimeBasedSelfAnalytics.jsp"></span>Time Based</a></li>
+                <li><a href="heatMapSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.locationBased" /></a></li>
+                <li><a href="TimeBasedSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.timeBased" /></a></li>
             </ul>
         </li>
     </ul>
 </nav>
-
-
 <section class="content" style="margin-top: 10px">
 
     <section class="widget" height="100">

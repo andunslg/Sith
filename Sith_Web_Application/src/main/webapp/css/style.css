@@ -154,7 +154,7 @@ header.main {
     background: -o-linear-gradient(top, #208ed3 0%, #0272bd 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #208ed3 0%, #0272bd 100%); /* IE10+ */
     background: linear-gradient(to bottom, #208ed3 0%, #0272bd 100%); /* W3C */
-    padding: 15px 25px;
+    padding: 7px 25px;
     height: 30px;
     overflow: hidden;
     border-bottom: 1px solid #5daced;
@@ -676,7 +676,7 @@ section.widget .content.no-padding {
 nav {
     height: 100%;
     min-height: 100%;
-    width: 210px;
+    width: 230px;
     background: #3B3E40;
     float: left;
     position: relative;
@@ -2106,7 +2106,7 @@ div.wysiwyg iframe {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 
     nav {
-        width: 230px;
+        width: 210px;
         overflow: visible;
 
         transition: all .5s ease-in-out;

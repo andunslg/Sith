@@ -7,7 +7,6 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 
@@ -35,6 +34,7 @@
     <link rel="stylesheet" href="css/style.css" media="all"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css" media="all"/>
     <link href="css/toastr.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!-- Include this file if you are using Pines Icons. -->
     <script src='<%=SithAPI.SOCKET_API%>/socket.io/socket.io.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
@@ -129,7 +129,7 @@
 <body>
 <div class="testing">
     <header class="main">
-        <h1><strong><fmt:message key="sith.dashboard.sith" /> </strong><fmt:message key="sith.dashboard.dashboard" /></h1>
+        <h1><i class="fa fa-globe fa-2x" style="padding-right: 15px;"></i><strong><fmt:message key="sith.dashboard.sith" /></strong><fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">
@@ -183,11 +183,10 @@
         </div>
     </section>
 </div>
-
 <nav>
     <ul>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span><fmt:message key="sith.dashboard.menu.events" /></a>
+            <a href="#"><span class="icon"><i class="fa fa-sign-in fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.events" /></a>
             <ul class="submenu">
                 <li><a href="myEvents.jsp"></span><fmt:message key="sith.dashboard.menu.myEvents" /></a></li>
                 <li><a href="joinEvents.jsp"></span><fmt:message key="sith.dashboard.menu.joinEvents" /></a></li>
@@ -195,13 +194,13 @@
             </ul>
         </li>
         <li>
-            <a href="profile.jsp"><span class="icon">&#128101;</span><fmt:message key="sith.dashboard.menu.profile" /></a>
+            <a href="profile.jsp"><span class="icon"><i class="fa fa-user fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.profile" /></a>
         </li>
         <li>
-            <a href="newsFeed.jsp"><span class="icon" style="font-size: 40px">&#9780;&thinsp;</span><fmt:message key="sith.dashboard.menu.newsfeed" /></a>
+            <a href="newsFeed.jsp"><span class="icon"><i class="fa fa-file-text-o fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.newsfeed" /></a>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px;text-align:center ">&#128711;&thinsp;</span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
+            <a href="#"><span class="icon"><i class="fa fa-globe fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.worldAnalytics" /></a>
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
@@ -209,7 +208,7 @@
             </ul>
         </li>
         <li>
-            <a href="#"><span class="icon" style="font-size: 40px">&#9787;&thinsp;</span><fmt:message key="sith.dashboard.menu.myAnalytics" /></a>
+            <a href="#"><span class="icon"><i class="fa fa-smile-o fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.menu.myAnalytics" /></a>
             <ul class="submenu">
                 <li><a href="heatMapSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.locationBased" /></a></li>
                 <li><a href="TimeBasedSelfAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.timeBased" /></a></li>

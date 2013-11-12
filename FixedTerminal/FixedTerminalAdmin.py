@@ -92,14 +92,14 @@ def configureEventOkPressed(eventConfig,butoneventID,configureModes):
 def sendPerception(userID,perception,location):
     global eventID   
     url = 'http://192.248.15.232:3000/publishEventPerception'
+    s=location.split(",")
     params = urllib.urlencode({
       'eventID': eventID,
       'userID':userID,
       'perceptionValue':perception,
-      'location':location,
-      'lat': '8.352823015039602',
-      'lng': '80.738525390625',
-
+      'location':s[0],
+      'lat': s[1],
+      'lng': s[2],
     })
     response = urllib2.urlopen(url,params).read()
     

@@ -185,6 +185,10 @@
                                        style="width: 400px" >
                             </div>
                         </td>
+
+                    </tr>
+                    <tr>
+                        <br>
                     </tr>
                     <%
                         }
@@ -211,7 +215,7 @@
                         </td>
                         <td>
                             <div align="center">
-                                <input id="add" value="Add Parameters" type="button" class="button" style="text-align: center;width: 100px">
+                                <input id="add" value="Update" type="button" class="button" style="text-align: center;width: 100px">
                             </div>
 
                         </td>

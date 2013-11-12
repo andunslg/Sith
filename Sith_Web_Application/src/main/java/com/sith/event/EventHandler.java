@@ -306,8 +306,7 @@ public class EventHandler{
 	}
 
     public List<TimeVarientPM> getTimeVarientPMs(String eventID) {
-        //TODO remove
-        eventID="nbqsa_demo";
+
         ArrayList<TimeVarientPM> timeVarientPMs = new ArrayList<TimeVarientPM>();
         HashMap<String, String> postParams = new HashMap<String, String>();
         postParams.put("eventID", eventID);

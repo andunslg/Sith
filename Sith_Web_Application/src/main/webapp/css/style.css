@@ -715,8 +715,8 @@ nav ul li a {
     color: #fff !important;
     display: block;
     text-decoration: none;
-    padding: 20px 15px 20px 5px;
-    width: 190px;
+    padding: 5px 15px 20px 5px;
+    width: 201px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
     -moz-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
     -webkit-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
@@ -2106,7 +2106,7 @@ div.wysiwyg iframe {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 
     nav {
-        width: 210px;
+        width: 230px;
         overflow: visible;
 
         transition: all .5s ease-in-out;

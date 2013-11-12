@@ -297,7 +297,7 @@
                         </td>
                         <td>
                             <div align="center">
-                                <input id="update" value="Update" type="button" class="button" style="text-align: center;width: 100px">
+                                <span class="button" id="update">Update</span>
                             </div>
 
                         </td>

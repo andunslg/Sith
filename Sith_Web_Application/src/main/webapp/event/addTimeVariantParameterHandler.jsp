@@ -12,6 +12,8 @@
         for(String param:timeVariantParams){
             params.put(param,request.getParameter(param));
         }
+        long timeStamp = System.currentTimeMillis();
+        params.put("timeStamp",String.valueOf(timeStamp));
 
         boolean res=eventHandler.addTimeVariantParameter(request.getParameter("eventID"),params);
 

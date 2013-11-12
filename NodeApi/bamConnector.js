@@ -190,7 +190,7 @@ exports.sendPercept=function(userID,subcriptionID,emotion,location,latitude,long
         } ]
     );
     //TODO change below line
-    var path="perception_stream2"+'/1.0.0/' ;
+    var path="perceptions"+'/1.0.0/' ;
     sendEventUpdate(jsonObject,path);
 }
 

@@ -129,7 +129,7 @@
 <body>
 <div class="testing">
     <header class="main">
-        <h1><i class="fa fa-globe fa-2x" style="padding-right: 15px;"></i><strong><fmt:message key="sith.dashboard.sith" /></strong><fmt:message key="sith.dashboard.dashboard" /></h1>
+        <h1><i class="fa fa-globe fa-2x" style="padding-right: 8px;"></i><strong><fmt:message key="sith.dashboard.sith" /></strong> <fmt:message key="sith.dashboard.dashboard" /></h1>
         <%--<input type="text" value="search"/>--%>
     </header>
     <section class="user">

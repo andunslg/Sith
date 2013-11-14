@@ -74,6 +74,6 @@ public class LocationBasedAnalytics {
         return getPerceptionCount("horrible","0",latmin,longmin,latmax,longmax);
     }
     public ArrayList<LocationData> getExcitingCount(String latmin,String longmin,String latmax, String longmax) {
-        return getPerceptionCount("exciting","0",latmin,longmin,latmax,longmax);
+        return getPerceptionCount("excited","0",latmin,longmin,latmax,longmax);
     }
 }

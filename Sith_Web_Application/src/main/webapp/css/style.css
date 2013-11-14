@@ -154,7 +154,7 @@ header.main {
     background: -o-linear-gradient(top, #208ed3 0%, #0272bd 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #208ed3 0%, #0272bd 100%); /* IE10+ */
     background: linear-gradient(to bottom, #208ed3 0%, #0272bd 100%); /* W3C */
-    padding: 15px 25px;
+    padding: 7px 25px;
     height: 30px;
     overflow: hidden;
     border-bottom: 1px solid #5daced;
@@ -676,7 +676,7 @@ section.widget .content.no-padding {
 nav {
     height: 100%;
     min-height: 100%;
-    width: 210px;
+    width: 230px;
     background: #3B3E40;
     float: left;
     position: relative;
@@ -715,8 +715,8 @@ nav ul li a {
     color: #fff !important;
     display: block;
     text-decoration: none;
-    padding: 20px 15px 20px 5px;
-    width: 190px;
+    padding: 5px 15px 20px 5px;
+    width: 201px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
     -moz-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
     -webkit-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);

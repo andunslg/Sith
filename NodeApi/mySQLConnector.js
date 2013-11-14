@@ -15,7 +15,7 @@ var MySQLRootPassword="mysqlsith2";
 var mysql = require('mysql');
 
 var client = mysql.createConnection({
-    host: '192.248.15.236',
+    host: '127.0.0.1',
     user: 'sithuser',
     password: 'mysqlsith2',
     port: 3306

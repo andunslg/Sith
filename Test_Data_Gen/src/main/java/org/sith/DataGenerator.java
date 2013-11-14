@@ -14,7 +14,7 @@ public class DataGenerator extends Thread{
 
 	public static void main(String[] args) throws InterruptedException{
 		Random randomGenerator = new Random();
-		for(int i=0;i<2;i++){
+		for(int i=0;i<200;i++){
 			int requestCount=randomGenerator.nextInt(2-1)+1;
 			new DataGenerator(requestCount).start();
 		}

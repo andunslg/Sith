@@ -19,7 +19,7 @@ exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng
     var start=(util.parseDateTime(startDate,startTime)).getTime();
     var end=(util.parseDateTime(endDate,endTime)).getTime();
 
-    //TODO Prabhath : Add  fixedLocation,timeVariantParams to bam send
+    //TODO Prabhath : Add stimeVariantParams to bam send
     bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,fixedLocation);
 };
 

@@ -99,17 +99,20 @@ exports.sendPeriodicAvgPerception = function(req,res){
 };
 
 exports.sendPeriodicPerceptionCount = function(req,res){
-    eventID = req.query.eventID;
-    console.log(eventID);
+    var eventID = req.query.eventID;
 	res.writeHead(200, {
 		'Content-Type' : 'text/event-stream',
 		'Cache-Control' : 'no-cache',
 		'Connection' : 'keep-alive'
-		});	
-		setInterval(function() {
-		constructCountMessage(eventID, res);
-		},3000);
+		});
+
+		(function(event){
+            setInterval(function() {
+		    constructCountMessage(eventID, res);
+		    },3000);
+        })(eventID);
 }
+
 
 /*
 function constructAvgPerceptionMessage(res,id,time){
@@ -128,7 +131,7 @@ function constructCountMessage(eventID,res){
 //	var perceptions;
 	stats.countInstantPerceptions(eventID,function(perceptions){
         perceps = JSON.stringify(perceptions);
-		res.write('event: graph\n');
+		res.write('event: graph'+eventID+'\n');
     	res.write('data: '+perceps+'\n\n');
 });
 	

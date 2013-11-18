@@ -31,7 +31,7 @@ realTimeGraph = function (url,eventID,perceptions,colors) {
         };
 
         //Event listners for page stats
-        source.addEventListener('graph', updateChart, false);
+        source.addEventListener('graph'+eventID, updateChart, false);
         var i = 0;
         var oldVal=0;
         var newVal;

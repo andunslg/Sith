@@ -84,7 +84,10 @@ void loop(){
   showCurrentPerception(context,avgPerception);
   
   checkInputs();
-  if (buttonState1) {   
+  if (buttonState8 && buttonState8) {
+    firstTime=true;
+  }
+  else if (buttonState1) {
     showPerceptionQuery("");   
     char *selectedPerception; 
     while(true){  

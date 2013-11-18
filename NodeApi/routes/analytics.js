@@ -107,9 +107,14 @@ exports.sendPeriodicPerceptionCount = function(req,res){
 		});
 
 		(function(event){
-            setInterval(function() {
+            console.log(event);
+            var timerId = setInterval(function() {
 		    constructCountMessage(eventID, res);
 		    },3000);
+            res.socket.on('close', function () {
+                console.log(event+" Real Time Analytics over!")
+                clearInterval(timerId);
+            });
         })(eventID);
 }
 

@@ -1,8 +1,10 @@
-
 /**
  * Module dependencies.
  */
-
+var nodeTime = require('nodetime').profile({
+    accountKey: 'a5bcfa5a57546865bf60f9d44e27af4cf5d0074b', 
+    appName: 'Node.js Application'
+  });
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')

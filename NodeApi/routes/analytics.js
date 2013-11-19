@@ -27,7 +27,7 @@ exports.sendPerceptionCount2 = function(req,res){
     console.log(eventID);
     stats.countPerceptions2(eventID,function(perceptions){
         //send perceptions as a json abject
-        var reply = JSON.stringify({data:perceptions});
+        var reply = JSON.stringify(perceptions);
         res.writeHead(200, {
             'Content-Type' : 'application/json',
             'Cache-Control' : 'no-cache',
@@ -99,17 +99,25 @@ exports.sendPeriodicAvgPerception = function(req,res){
 };
 
 exports.sendPeriodicPerceptionCount = function(req,res){
-    eventID = req.query.eventID;
-    console.log(eventID);
+    var eventID = req.query.eventID;
 	res.writeHead(200, {
 		'Content-Type' : 'text/event-stream',
 		'Cache-Control' : 'no-cache',
 		'Connection' : 'keep-alive'
-		});	
-		setInterval(function() {
-		constructCountMessage(eventID, res);
-		},3000);
+		});
+
+		(function(event){
+            console.log(event);
+            var timerId = setInterval(function() {
+		    constructCountMessage(eventID, res);
+		    },3000);
+            res.socket.on('close', function () {
+                console.log(event+" Real Time Analytics over!")
+                clearInterval(timerId);
+            });
+        })(eventID);
 }
+
 
 /*
 function constructAvgPerceptionMessage(res,id,time){
@@ -128,7 +136,7 @@ function constructCountMessage(eventID,res){
 //	var perceptions;
 	stats.countInstantPerceptions(eventID,function(perceptions){
         perceps = JSON.stringify(perceptions);
-		res.write('event: graph\n');
+		res.write('event: graph'+eventID+'\n');
     	res.write('data: '+perceps+'\n\n');
 });
 	

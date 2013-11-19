@@ -45,7 +45,7 @@ public class SithAPI{
 	public static String GET_ALL_MAP_DATA=NODEAPI+"getAllMapData";
 	public static String GET_ALL_CURRENT_EVENT_MAP_DATA=NODEAPI+"getAllCurrentEventMapData";
     public static String GET_SELF_MAP=NODEAPI+"getSelfMap";
-    public static String GET_COUNT_PERCEPTIONS = NODEAPI+"countPerceptions2";
+    public static String GET_COUNT_PERCEPTIONS = NODEAPI+"countPerceptionsMapReduce";
     public static String GET_TIME_ANALYSIS = NODEAPI+"getTimeAnalysis";
     public static String GET_SELF_ANALYTICS = NODEAPI+"getSelfAnalytics";
     public static String GET_REALTIME_PERCEP_COUNTS = NODEAPI+"countPeriodicPerceptions";

@@ -27,7 +27,7 @@ exports.sendPerceptionCount2 = function(req,res){
     console.log(eventID);
     stats.countPerceptions2(eventID,function(perceptions){
         //send perceptions as a json abject
-        var reply = JSON.stringify({data:perceptions});
+        var reply = JSON.stringify(perceptions);
         res.writeHead(200, {
             'Content-Type' : 'application/json',
             'Cache-Control' : 'no-cache',

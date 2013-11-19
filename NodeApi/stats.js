@@ -52,6 +52,7 @@ exports.countPerceptions =function(EventID,fn){
 }
 
 exports.countPerceptions2 = function(eventID,fn){
+    var start = new Date().getTime();
    percepManager.getEventPerception(eventID,function(docs){
        var count = docs.length;
        var perceptions  = new Object();
@@ -62,11 +63,15 @@ exports.countPerceptions2 = function(eventID,fn){
                perceptions[docs[i].perceptionValue]=1;
            }
        }
+       var end = new Date().getTime();
+       var time = end - start;
+       console.log('Execution time post perception categorization algo ' + time);
        fn(perceptions);
    })
 };
 
 exports.countInstantPerceptions = function(eventID,fn){
+    var start = new Date().getTime();
     percepManager.getInstantPerception(eventID,function(docs){
         var count = docs.length;
         var perceptions  = new Object();
@@ -79,10 +84,14 @@ exports.countInstantPerceptions = function(eventID,fn){
         }
         percepManager.getPerceptionCount(eventID,function(count){
               perceptions['total'] = count;
-                fn(perceptions);
-        });
+              var end = new Date().getTime();
+              var time = end - start;
+              console.log('Execution time real time graph ' + time);
+              fn(perceptions);
 
+        });
     })
+
 };
 function debugHeaders(req) {
 	sys.puts('URL: ' + req.url);

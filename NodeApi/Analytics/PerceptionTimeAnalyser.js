@@ -1,6 +1,7 @@
 dataAdapter = require('../mongoAdapter');
 
 exports.getEventTimeAnalysisData = function(eventID,fn){
+      var start = new Date().getTime();
       dataAdapter.getDocuments({},"EventPerceptions_"+eventID,function(docs){
           if(docs.length==0){
               var result = new Object();
@@ -32,6 +33,9 @@ exports.getEventTimeAnalysisData = function(eventID,fn){
                   sorted["startTime"] = minimumTime;
                   sorted["endTime"] = maxTime;
                   sorted["interval"] = interval;
+                  var end = new Date().getTime();
+                  var time = end - start;
+                  console.log('Execution time post time analytic graph ' + time);
                   fn(sorted);
           });
       });

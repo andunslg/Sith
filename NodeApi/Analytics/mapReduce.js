@@ -48,6 +48,7 @@ exports.aggregateLocationSelfData = function(collection,perception,fn){
     });
 }
 exports.categorize = function(collection,fn){
+    var start = new Date().getTime();
     // Map function
     var map = function() {
                             emit(
@@ -77,7 +78,10 @@ exports.categorize = function(collection,fn){
                 collection.mapReduce(map,reduce,{out : {inline: 1}, verbose:true},function(err, results, stats){
                     if(err)
                         throw err;
-                  fn(results);
+                    var end = new Date().getTime();
+                    var time = end - start;
+                    console.log('Execution time post perception categorization algo ' + time);
+                    fn(results);
                 });
             });
         }

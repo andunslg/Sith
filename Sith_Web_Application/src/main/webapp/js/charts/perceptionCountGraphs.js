@@ -11,7 +11,7 @@ barChart = function (perceptions, url,colors) {
             e = JSON.parse(e);
         }
         for(var i=0; i<perceptions.length;i++){
-            perception = e.data[perceptions[i]];
+            perception = e[perceptions[i]];
             data[i] = new Object();
             if(perception){
                 data[i].y =  perception;
@@ -86,7 +86,7 @@ pieChart = function (perceptions,url,colors) {
             e = JSON.parse(e);
         }
         for(var i=0; i<perceptions.length;i++){
-            perception = e.data[perceptions[i]];
+            perception = e[perceptions[i]];
             if(perception){
                 data[i] =  [perceptions[i], perception];
                 console.log(data[i]);

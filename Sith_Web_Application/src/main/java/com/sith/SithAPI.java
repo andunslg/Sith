@@ -13,8 +13,8 @@ public class SithAPI{
 	public static SithAPI sithAPI=new SithAPI();
 	private HTTPUtil httpUtil=new HTTPUtil();
 
-	public static String NODEAPI="http://localhost:3000/";
-	public static String SOCKET_API = "http://localhost:3000";
+	public static String NODEAPI="http://192.248.15.232:3000/";
+	public static String SOCKET_API = "http://192.248.15.232:3000";
 	public static String LOGIN=NODEAPI+"authenticateUser";
 	public static String SIGNUP=NODEAPI+"registerAnnonymousUser";
 	public static String GET_EVENT_LIST=NODEAPI+"getAllEvents";

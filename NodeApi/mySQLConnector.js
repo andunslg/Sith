@@ -16,8 +16,8 @@ var mysql = require('mysql');
 
 var client = mysql.createConnection({
     host: '127.0.0.1',
-    user: 'sithuser',
-    password: 'mysqlsith2',
+    user: 'root',
+    password: 'Andun@90',
     port: 3306
 });
 

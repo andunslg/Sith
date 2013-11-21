@@ -12,8 +12,8 @@ var config = require('../config.js');
 
 exports.aggregateLocationSelfData = function(collection,perception,fn){
     var map = function() {
-        roundlat = this.latLngLocation.lat.toFixed(4);
-        roundlng = this.latLngLocation.lng.toFixed(4);
+        roundlat = this.latLng.lat.toFixed(4);
+        roundlng = this.latLng.lng.toFixed(4);
         emit(
             {lat: roundlat, lng: roundlng},					// how to group
             {count: 1}	// associated data point (document)

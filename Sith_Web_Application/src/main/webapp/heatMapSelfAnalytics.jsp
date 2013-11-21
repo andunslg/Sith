@@ -19,11 +19,11 @@
     }
     LocationBasedAnalytics heatMapAnalytics = new LocationBasedAnalytics();
 
-    ArrayList<LocationData> happyData =  heatMapAnalytics.getSelfAnalytics("sach","Happy");
-    ArrayList<LocationData> sadData = heatMapAnalytics.getSelfAnalytics("sach","Sad");
-    ArrayList<LocationData> neutralData = heatMapAnalytics.getSelfAnalytics("sach","Neutral");
-    ArrayList<LocationData> horribleData = heatMapAnalytics.getSelfAnalytics("sach","Horrible");
-    ArrayList<LocationData> excitedData = heatMapAnalytics.getSelfAnalytics("sach","Excited");
+    ArrayList<LocationData> happyData =  heatMapAnalytics.getSelfAnalytics(session.getAttribute("user").toString(),"Happy");
+    ArrayList<LocationData> sadData = heatMapAnalytics.getSelfAnalytics(session.getAttribute("user").toString(),"Sad");
+    ArrayList<LocationData> neutralData = heatMapAnalytics.getSelfAnalytics(session.getAttribute("user").toString(),"Neutral");
+    ArrayList<LocationData> horribleData = heatMapAnalytics.getSelfAnalytics(session.getAttribute("user").toString(),"Horrible");
+    ArrayList<LocationData> excitedData = heatMapAnalytics.getSelfAnalytics(session.getAttribute("user").toString(),"Excited");
 %>
 
 <head>
@@ -156,7 +156,7 @@
        String lo = happyData.get(i).getLongitude();
        String lat = happyData.get(i).getLatitude();
        %>
-    happy_points[<%=i%>] =  new google.maps.LatLng(<%=lo%>, <%=lat%>);
+    happy_points[<%=i%>] =  new google.maps.LatLng(<%=lat%>,<%=lo%>);
     <%
        }
     %>
@@ -166,7 +166,7 @@
        String lo = sadData.get(i).getLongitude();
        String lat = sadData.get(i).getLatitude();
        %>
-    sad_points[<%=i%>] =  new google.maps.LatLng(<%=lo%>, <%=lat%>);
+    sad_points[<%=i%>] =  new google.maps.LatLng(<%=lat%>,<%=lo%>);
     <%
        }
     %>
@@ -176,7 +176,7 @@
        String lo = neutralData.get(i).getLongitude();
        String lat = neutralData.get(i).getLatitude();
        %>
-    neutral_points[<%=i%>] =  new google.maps.LatLng(<%=lo%>, <%=lat%>);
+    neutral_points[<%=i%>] =  new google.maps.LatLng(<%=lat%>,<%=lo%>);
     <%
        }
     %>
@@ -186,7 +186,7 @@
        String lo = horribleData.get(i).getLongitude();
        String lat = horribleData.get(i).getLatitude();
        %>
-    horrible_points[<%=i%>] =  new google.maps.LatLng(<%=lo%>, <%=lat%>);
+    horrible_points[<%=i%>] =  new google.maps.LatLng(<%=lat%>,<%=lo%>);
     <%
        }
     %>
@@ -196,7 +196,7 @@
        String lo = excitedData.get(i).getLongitude();
        String lat = excitedData.get(i).getLatitude();
        %>
-    excited_points[<%=i%>] =  new google.maps.LatLng(<%=lo%>, <%=lat%>);
+    excited_points[<%=i%>] =  new google.maps.LatLng(<%=lat%>,<%=lo%>);
     <%
        }
     %>

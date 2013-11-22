@@ -129,7 +129,7 @@ exports.addUserToEvent = function(eventID,userID,status,fn){
 
 exports.sendFriendRequest = function(sender,receiver){
     //add firend request entry in the senders table for annotate friend list in searching. To identify the users to whom the sender have sent the message
-    notificationManager2.addNotification(receiver,"friendRequestToOther","pending","friend request to "+receiver,sender);
+    notificationManager2.addNotification(receiver,"friendRequestToOther","ignore","friend request to "+receiver,sender);
     //send notification to the receiver
     notificationManager2.notifySingleUser(sender,receiver,"friendRequest",generateFriendRequestMessage(sender),isUserOnline(receiver));
 }

@@ -143,6 +143,8 @@
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <script src="js/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="js/toastr.min.js"></script>
+<link href="css/toastr.css" rel="stylesheet" />
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -179,6 +181,23 @@
             });
         });
 
+        $("#confirm").live("click",function(){
+            var sender =$(this).closest("tr").find(".avatar").text();
+            var receiver = '<%=session.getAttribute("user").toString()%>';
+            var selectedButton = $(this);
+            console.log(sender);
+            $.ajax({
+                url: '<%=SithAPI.CONFIRM_FRIEND_REQUEST%>?sender='+sender+'&receiver='+receiver,
+                type: 'GET',
+                success: function (data) {
+                    selectedButton.removeClass("button").html('<img src="images/tick_green_big.gif" alt="" style="margin: 6px 5px 0 0"/>Friend')
+                    toastr.info('You are now friend with '+sender);
+                },
+                error: function (xhr, status, error) {
+                    apprise("Error : " + error.message);
+                }
+            });
+        })
         $("#addFriend").live('click',function () {
             var sender = '<%=session.getAttribute("user").toString()%>';
             var receiver =$(this).closest("tr").find(".avatar").text();

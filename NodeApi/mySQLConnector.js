@@ -35,14 +35,21 @@ exports.createMySQLDB=function(userID,password){
 
 
 exports.getQueryResults=function(dbName,query,fn){
+    var client = mysql.createConnection({
+        host: '127.0.0.1',
+        user: 'root',
+        password: 'Andun@90',
+        port: 3306
+    });
     client.query('USE '+dbName);
     client.query(query, function(err, rows, fields) {
         if (err) {
             var array = new Array();
             fn(array);
+            client.destroy();
         };
         fn(rows);
-
+        closeConnection(client)
     });
 }
 
@@ -53,6 +60,11 @@ exports.getEventPerceptionCurrent =function(){
 
 exports.createUserTable=function(){
 
+}
+function closeConnection(connection){
+    connection.end(function(err) {
+        // The connection is terminated now
+    });
 }
 
 

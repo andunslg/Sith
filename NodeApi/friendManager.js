@@ -44,10 +44,10 @@ exports.getUserNews = function(userID,fn){
      mongoAdapter.getDocuments({},'UserFriends_'+userID,function(friends){
         var j=0;
         friends.forEach(function(friend){
-            mongoAdapter.getDocuments({},'UserPerceptions_'+friend.UserName,function(perceps){
+            mongoAdapter.getDocuments({},'UserPerceptions_'+friend.userName,function(perceps){
                 var latestPercep = perceps[perceps.length-1];
                 if(latestPercep){
-                news.push({friendName:friend.UserName,perception:latestPercep.perceptionValue,event:latestPercep.eventID});
+                news.push({friendName:friend.userName,perception:latestPercep.perceptionValue,event:latestPercep.eventID});
                 }
                 j++;
                 if(j==friends.length){fn(news)}
@@ -64,6 +64,10 @@ exports.addFriend=function(userID,friendID){
 
 exports.removeFriend=function(userID,friendID){
     mongoAdapter.deleteDocument('UserFriends_'+userID, {userName:friendID},function(err){
+        if(err)
+            console.log(err.message);
+    });
+    mongoAdapter.deleteDocument('UserFriends_'+friendID, {userName:userID},function(err){
         if(err)
             console.log(err.message);
     });

@@ -49,7 +49,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            alert('<%=message%>');
+            apprise('<%=message%>');
             window.location.href = <%=url%>;
         });
     </script>

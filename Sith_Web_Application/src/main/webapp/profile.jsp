@@ -159,7 +159,7 @@
 
         </div>
     </section>
-    <section class="widget">
+    <section class="widget" style="min-height: 0px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -168,14 +168,6 @@
             <div class="buttons"><span class="button blue" style="float: right;"><a href="addFriends.jsp">Add friend</a></span></div>
         </header>
         <div class="content">
-            <table id="myTable" border="0" width="100">
-                <thead>
-                <tr>
-                    <th class="avatar">Name</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
                 <%
                     FriendHandler friendHandler=new FriendHandler();
                     List<String> friends=null;
@@ -184,21 +176,27 @@
                         friends=friendHandler.getAllFriends(userID);
                     }
                     if(friends!=null){
-                        for(String s:friends){
-
-
-                %>
-
-                <tr>
-                    <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=s%></td>
-                    <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Un-friend</a></span></td>
-                </tr>
-
-                <%
-                        }
+                        if(!friends.isEmpty()){ %>
+                            <table id="myTable" border="0" width="100">
+                            <thead>
+                            <tr>
+                            <th class="avatar">Name</th>
+                            <th>Edit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                        <% for(String s:friends){%>
+                        <tr>
+                            <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=s%></td>
+                            <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Un-friend</a></span></td>
+                        </tr>
+                        <%
+                            }
+                        }else{ %>
+                            <p style="text-align: center;">You don't have added any friends</p>
+                        <%}
                     }
                 %>
-
                 </tbody>
             </table>
         </div>

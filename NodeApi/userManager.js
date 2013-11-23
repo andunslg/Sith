@@ -135,8 +135,8 @@ exports.sendFriendRequest = function(sender,receiver){
 }
 //sender is the one who has sent the requestand receiver is the one who accept the notification
 exports.acceptsFriendRequest = function(sender,receiver){
-   mongoAdapter.insertDocument("UserFriends_"+sender,{UserName:receiver});
-   mongoAdapter.insertDocument("UserFriends_"+receiver,{UserName:sender});
+   mongoAdapter.insertDocument("UserFriends_"+sender,{userName:receiver});
+   mongoAdapter.insertDocument("UserFriends_"+receiver,{userName:sender});
    mongoAdapter.updateDocument("UserNotifications_"+receiver,{sender:sender,type:"friendRequest"},{"status":"friended"});
    notificationManager2.notifySingleUser(receiver,sender,"requestAccepted",receiver+" has accepted your friend request",isUserOnline(sender));
    notificationManager2.removeNotification(sender,{sender:receiver,type:"friendRequestToOther"});

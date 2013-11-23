@@ -178,7 +178,7 @@
             </ul>
 		</span>
             <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
             <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>

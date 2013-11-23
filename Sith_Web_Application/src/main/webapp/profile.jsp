@@ -78,7 +78,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.event.menu.realTimeAnalitics" /></a></li>
             </ul>
         </li>
         <li>

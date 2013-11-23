@@ -1,4 +1,4 @@
 Sith
 ====
 
-Sith - Perception Capturing and Analysis Platform Repo 
+Sith - Perception Capturing and Analysis Platform

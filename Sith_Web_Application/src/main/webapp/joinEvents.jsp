@@ -7,6 +7,8 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${language}" />
@@ -90,8 +92,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> <fmt:message key="sith.dashboard.home.loggedAs" /><% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -106,9 +107,9 @@
                 <%--</li>--%>
             <%--</ul>--%>
 		<%--</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -133,7 +134,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.realTime" /></a></li>
             </ul>
         </li>
         <li>
@@ -151,9 +152,9 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Available Events</h1>
+                <h1><fmt:message key="sith.dashboard.joinEvents.topic" /></h1>
 
-                <h2>Click to register</h2>
+                <h2><fmt:message key="sith.dashboard.joinEvents.description" /></h2>
             </hgroup>
 
         </header>
@@ -163,10 +164,10 @@
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
-                        <th class="avatar">Name</th>
-                        <th>Description</th>
-                        <th>Duration</th>
-                        <th>Location</th>
+                        <th class="avatar"><fmt:message key="sith.dashboard.joinEvents.name" /></th>
+                        <th><fmt:message key="sith.dashboard.joinEvents.eventDescription" /></th>
+                        <th><fmt:message key="sith.dashboard.joinEvents.duration" /></th>
+                        <th><fmt:message key="sith.dashboard.joinEvents.location" /></th>
                         <th></th>
 
                     </tr>

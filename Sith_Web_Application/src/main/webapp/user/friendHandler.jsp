@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<script src="../js/apprise-1.5.min.js"></script>
 
 <%@ page import="com.sith.user.FriendHandler" %>
 

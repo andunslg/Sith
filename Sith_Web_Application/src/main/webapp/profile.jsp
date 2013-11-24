@@ -3,6 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -34,8 +36,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>Logged in
-                as <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/><fmt:message key="sith.dashboard.home.loggedAs" /> <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -50,9 +51,9 @@
             <%--</li>--%>
             <%--</ul>--%>
             <%--</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -77,7 +78,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.event.menu.realTimeAnalitics" /></a></li>
             </ul>
         </li>
         <li>
@@ -94,16 +95,16 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Profile</h1>
+                <h1><fmt:message key="sith.dashboard.myProfile.topic" /></h1>
 
-                <h2>Edit and Save the profile</h2>
+                <h2><fmt:message key="sith.dashboard.myProfile.description" /></h2>
             </hgroup>
         </header>
         <div class="content">
             <table>
                 <tr>
                     <td>
-                        <div>User name</div>
+                        <div><fmt:message key="sith.dashboard.myProfile.userName" /></div>
                     </td>
                     <td>
                         <div>
@@ -114,7 +115,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>Old Pasword</div>
+                        <div><fmt:message key="sith.dashboard.myProfile.oldPassWord" /></div>
                     </td>
                     <td>
                         <div>
@@ -124,7 +125,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>New Pasword</div>
+                        <div><fmt:message key="sith.dashboard.myProfile.newPassWord" /></div>
                     </td>
                     <td>
                         <div>
@@ -134,7 +135,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>Confirm New Pasword &nbsp;&nbsp;&nbsp;</div>
+                        <div><fmt:message key="sith.dashboard.myProfile.confirmNewPassWord" /> &nbsp;&nbsp;&nbsp;</div>
                     </td>
                     <td>
                         <div>
@@ -145,13 +146,13 @@
                 <tr>
                     <td>
                         <div>
-                            <input id="update" type="button" value="Update" class="button" style="text-align: center;width: 100px">
+                            <input id="update" type="button" value="<fmt:message key="sith.dashboard.myProfile.update" />" class="button" style="text-align: center;width: 140px">
                         </div>
                     </td>
 
                     <td>
                         <div>
-                            <input id="unregister" type="button" value="Unregister" class="button" style="text-align: center;width: 100px">
+                            <input id="unregister" type="button" value="<fmt:message key="sith.dashboard.myProfile.unRegister" />" class="button" style="text-align: center;width: 140px">
                         </div>
                     </td>
                 </tr>
@@ -163,9 +164,9 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Friends</h1>
+                <h1><fmt:message key="sith.dashboard.myProfile.friends" /></h1>
             </hgroup>
-            <div class="buttons"><span class="button blue" style="float: right;"><a href="addFriends.jsp">Add friend</a></span></div>
+            <div class="buttons"><span class="button blue" style="float: right;"><a href="addFriends.jsp"><fmt:message key="sith.dashboard.myProfile.addFriend" /></a></span></div>
         </header>
         <div class="content">
                 <%
@@ -188,7 +189,7 @@
                         <% for(String s:friends){%>
                         <tr>
                             <td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" /> <%=s%></td>
-                            <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>">Un-friend</a></span></td>
+                            <td><span class="button"><a href="/user/friendHandler.jsp?type=remove&userID=<%=userID%>&friendID=<%=s%>"><fmt:message key="sith.dashboard.myProfile.unFriend" /></a></span></td>
                         </tr>
                         <%
                             }

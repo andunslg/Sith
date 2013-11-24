@@ -8,6 +8,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -100,8 +102,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="../images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> <fmt:message key="sith.dashboard.home.loggedAs" /><% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -116,36 +117,36 @@
             <%--</li>--%>
             <%--</ul>--%>
             <%--</span>--%>
-            <span class="button"><a href="../home.jsp">Home</a></span>
-            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="../index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
 <nav>
     <ul>
         <li>
-            <a href="../home.jsp"><span class="icon"><i class="fa fa-home fa-2x" style="font-size: 30px"></i></span>Home</a>
+            <a href="../home.jsp"><span class="icon"><i class="fa fa-home fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.home" /></a>
         </li>
         <li>
-            <a href="event.jsp"><span class="icon"><i class="fa fa-thumbs-up fa-2x" style="font-size: 30px"></i></span>My Perception</a>
+            <a href="event.jsp"><span class="icon"><i class="fa fa-thumbs-up fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.myPerception" /></a>
         </li>
         <li>
-            <a href="#"><span class="icon"><i class="fa fa-dashboard fa-2x" style="font-size: 30px"></i></span>Analytics</a>
+            <a href="#"><span class="icon"><i class="fa fa-dashboard fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.analytics" /></a>
             <ul class="submenu">
                 <%
                     if(currentEvent.getAdminID().equals(participant.getUserID())){
                         if(currentDate.compareTo(eventEndDate)<0){
                 %>
-                <li><a href="realTimeAnalytics.jsp"></span>Realtime Analytics</a></li>
+                <li><a href="realTimeAnalytics.jsp"></span><fmt:message key="sith.dashboard.event.menu.realTimeAnalitics" /></a></li>
                 <%
                     }
                 %>
-                <li><a href="nonRealTimeAnalytics.jsp"></span>Post Analytics</a></li>
+                <li><a href="nonRealTimeAnalytics.jsp"></span><fmt:message key="sith.dashboard.event.menu.postAnalitics" /></a></li>
                 <%
                     }
                 %>
-                <li><a href="selfAnalytics.jsp"></span>Self Analytics</a></li>
+                <li><a href="selfAnalytics.jsp"></span><fmt:message key="sith.dashboard.event.menu.selfAnalytics" /></a></li>
 
             </ul>
         </li>
@@ -154,26 +155,26 @@
                 if(currentDate.compareTo(eventEndDate)<0){
         %>
         <li>
-            <a href="timeVariantParameters.jsp"><span class="icon"><i class="fa fa-clock-o fa-2x" style="font-size: 30px"></i></span>Temporal Params</a>
+            <a href="timeVariantParameters.jsp"><span class="icon"><i class="fa fa-clock-o fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.temporalParams" /></a>
         </li>
         <%
                 }
             }
         %>
         <li>
-            <a href="questions.jsp"><span class="icon"><i class="fa fa-comments fa-2x" style="font-size: 30px"></i></span>Comments</a>
+            <a href="questions.jsp"><span class="icon"><i class="fa fa-comments fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.comments" /></a>
         </li>
         <li>
-            <a href="participants.jsp"><span class="icon"><i class="fa fa-users fa-2x" style="font-size: 30px"></i></span>Participants</a>
+            <a href="participants.jsp"><span class="icon"><i class="fa fa-users fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.participants" /></a>
         </li>
         <%
             if(currentEvent.getAdminID().equals(participant.getUserID())){
         %>
         <li>
-            <a href="eventAdmin.jsp"><span class="icon"><i class="fa fa-cogs fa-2x" style="font-size: 30px"></i></span>Settings</a>
+            <a href="eventAdmin.jsp"><span class="icon"><i class="fa fa-cogs fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.settings" /></a>
         </li>
         <li>
-            <a href="social.jsp"><span class="icon"><i class="fa fa-twitter fa-2x" style="font-size: 30px"></i></span>Social Media Integration</a>
+            <a href="social.jsp"><span class="icon"><i class="fa fa-twitter fa-2x" style="font-size: 30px"></i></span><fmt:message key="sith.dashboard.event.menu.socilaMediaInt" /></a>
         </li>
         <%
             }
@@ -183,8 +184,8 @@
 <section class="alert">
     <div class="green">
 
-        <span>Current event is <strong><%=currentEvent.getEventName()%></strong>, Click here to <a href="../myEvents.jsp">change</a></span>
-        <span  id="current_perception"  style="margin: auto;float: right;display: none;">Current Perception is <strong></strong></span>
+        <span><fmt:message key="sith.dashboard.event.CurrentEventIs" /> <strong><%=currentEvent.getEventName()%></strong>, <fmt:message key="sith.dashboard.event.clickToChange" /><a href="../myEvents.jsp"><fmt:message key="sith.dashboard.myEvents.Change" /></a></span>
+        <span  id="current_perception"  style="margin: auto;float: right;display: none;"><fmt:message key="sith.dashboard.event.CurrentPerceptionIs" /> <strong></strong></span>
 
     </div>
 </section>
@@ -195,9 +196,9 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Perceptions</h1>
+                <h1><fmt:message key="sith.dashboard.event.topic" /></h1>
 
-                <h2>Current Perception</h2>
+                <h2><fmt:message key="sith.dashboard.event.CurrentPerceptionIs" /></h2>
             </hgroup>
         </header>
         <div class="content">
@@ -206,7 +207,7 @@
             if(currentDate.compareTo(eventEndDate)<0){
 
         %>
-        <h4 id="h42" align="center">Select your Perception</h4>
+        <h4 id="h42" align="center"><fmt:message key="sith.dashboard.event.selectPerception" /></h4>
 
         <div id="wrapper2" style="width:100%; text-align:center;visibility:hidden">
             <img id="selected_image2" src="../images/perceptions/default.png" alt="Smiley face" align="center">
@@ -259,7 +260,7 @@
         else{
         %>
         <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This event has finished. Please <a href="selfAnalytics.jsp">click here</a> to view your self analytics.
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fmt:message key="sith.dashboard.event.finished" /> <a href="selfAnalytics.jsp"><fmt:message key="sith.dashboard.event.clickToChange" /> &nbsp; &nbsp; &nbsp; &nbsp; </a> <fmt:message key="sith.dashboard.event.view" />
         </div>
         <%
             }
@@ -296,7 +297,7 @@ $("#awesome").click(function () {
     if(timeVariance >15 || clicked==true){
 
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Awesome";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.awesome" />";
         edit_save.src = "../images/perceptions/awesome.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Awesome");
@@ -322,7 +323,7 @@ $("#wonderful").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Wonderful";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.wonderful" />";
         edit_save.src = "../images/perceptions/wonderful.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Wonderful");
@@ -348,7 +349,7 @@ $("#excited").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Excited";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.excited" />";
         edit_save.src = "../images/perceptions/excited.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Excited");
@@ -375,7 +376,7 @@ $("#happy").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Happy";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.happy" />";
         edit_save.src = "../images/perceptions/happy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Happy");
@@ -402,7 +403,7 @@ $("#interested").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Interested";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.interested" />";
         edit_save.src = "../images/perceptions/interested.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Interested");
@@ -429,7 +430,7 @@ $("#neutral").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Neutral";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.neutral" />";
         edit_save.src = "../images/perceptions/neutral.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Neutral");
@@ -457,7 +458,7 @@ $("#bored").click(function () {
     if(timeVariance >15 || clicked==true){
 
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Bored";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.neutral" />";
         edit_save.src = "../images/perceptions/bored.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Bored");
@@ -484,7 +485,7 @@ $("#sleepy").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Sleepy";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.sleepy" />";
         edit_save.src = "../images/perceptions/sleepy.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Sleepy");
@@ -511,7 +512,7 @@ $("#sad").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Sad";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.sad" />";
         edit_save.src = "../images/perceptions/sad.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Sad");
@@ -537,7 +538,7 @@ $("#angry").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Angry";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.angry" />";
         edit_save.src = "../images/perceptions/angry.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>','<%=session.getAttribute("user").toString()%>', "Angry");
@@ -563,7 +564,7 @@ $("#horrible").click(function () {
 
     if(timeVariance >15 || clicked==true){
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel Horrible";
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> <fmt:message key="sith.dashboard.perceptionSchema.horrible" />";
         edit_save.src = "../images/perceptions/horrible.png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         postToAPI('<%=currentEvent.getEventID()%>', '<%=session.getAttribute("user").toString()%>', "Horrible");
@@ -581,7 +582,7 @@ function persistCurrentPerception(){
     if(sessionStorage.getItem("<%=currentPerceptionOfEvent%>")!= null ){
         var currentPerception = sessionStorage.getItem("<%=currentPerceptionOfEvent%>");
         var edit_save = document.getElementById("selected_image2");
-        document.getElementById("h42").innerHTML = "I Feel "+currentPerception;
+        document.getElementById("h42").innerHTML = "<fmt:message key="sith.dashboard.event.iFeel" /> "+currentPerception;
         edit_save.src = "../images/perceptions/"+currentPerception+".png";
         document.getElementById('selected_image2').style.visibility = 'visible';
         $('#current_perception strong').html(currentPerception);

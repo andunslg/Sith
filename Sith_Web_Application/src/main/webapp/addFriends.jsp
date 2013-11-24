@@ -92,7 +92,7 @@
     </ul>
 </nav>
 <section class="content" style="margin-top: 10px">
-    <section class="widget">
+    <section class="widget" style="min-height: 450px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -120,18 +120,12 @@
                         <img src="images/loading-new.gif" id="searchGif" style="display:none; padding-left: 10px;position: absolute;padding-top: 5px" />
                     </td>
                 </tr>
-
             </table>
+            <div id="noResults" style="display: none"><span><p>No Results Found!</p></span></div>
             <br/>
             <table id="myTable" border="0" width="100">
-                <thead>
-                <tr>
-                    <th class="avatar">Name</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
+                <thead></thead>
+                <tbody></tbody>
             </table>
         </div>
     </section>
@@ -155,6 +149,9 @@
     $(document).ready(function(){
         $("#search").click(function () {
             $("#searchGif").show();
+            $("#noResults").hide();
+            $('#myTable tbody').html('');
+            $('#myTable thead').html('');
             var username = '<%=session.getAttribute("user").toString()%>';
             var query = $('input[id=query]').val();
             var friends;
@@ -163,12 +160,21 @@
                 type: 'GET',
                 success: function (data) {
                     $("#searchGif").hide();
+                    $("#noResults").hide();
                     if(typeof data=='string' || data instanceof String){
                         friends = JSON.parse(data);
                     }else{
                         friends = data;
                     }
                     var s='';
+                    if(friends.length == 0){
+                        $("#noResults").show();
+                        return;
+                    }
+                    $('#myTable thead').html('<tr>' +
+                                                '<th class="avatar">Name</th>' +
+                                                '<th>Edit</th>' +
+                                                '</tr>');
                     for(var i = 0; i < friends.length; i++){
                         if(friends[i].type=="pendingRequest"){
                             s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="confirm">Confirm</span></td></tr>';

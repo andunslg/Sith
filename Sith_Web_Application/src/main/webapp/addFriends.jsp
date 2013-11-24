@@ -114,6 +114,9 @@
                             <span class="button" id="search">Search</span>
                         </div>
                     </td>
+                    <td>
+                        <img src="images/loading-new.gif" id="searchGif" style="display:none; padding-left: 10px;position: absolute;padding-top: 5px" />
+                    </td>
                 </tr>
 
             </table>
@@ -149,6 +152,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $("#search").click(function () {
+            $("#searchGif").show();
             var username = '<%=session.getAttribute("user").toString()%>';
             var query = $('input[id=query]').val();
             var friends;
@@ -156,6 +160,7 @@
                 url: '<%=SithAPI.GET_FRIENDS_SUGGESTIONS%>?userID='+username+'&query='+query,
                 type: 'GET',
                 success: function (data) {
+                    $("#searchGif").hide();
                     if(typeof data=='string' || data instanceof String){
                         friends = JSON.parse(data);
                     }else{
@@ -176,6 +181,7 @@
                     $('#myTable tbody').html(s);
                 },
                 error: function (xhr, status, error) {
+                    $("#searchGif").hide();
                     apprise("Error : " + error.message);
                 }
             });

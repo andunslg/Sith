@@ -71,4 +71,12 @@ exports.removeFriend=function(userID,friendID){
         if(err)
             console.log(err.message);
     });
+    mongoAdapter.deleteDocument('UserNotifications_'+userID, {sender:friendID,$or: [ { type:"friendRequest"}, {type: "requestAccepted"} ]},function(err){
+        if(err)
+            console.log(err.message);
+    });
+    mongoAdapter.deleteDocument('UserNotifications_'+friendID, {sender:userID,$or: [ { type:"friendRequest"}, {type: "requestAccepted"} ]},function(err){
+        if(err)
+            console.log(err.message);
+    });
 }

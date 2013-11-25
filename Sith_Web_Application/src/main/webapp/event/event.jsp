@@ -184,7 +184,7 @@
 <section class="alert">
     <div class="green">
 
-        <span><fmt:message key="sith.dashboard.event.CurrentEventIs" /> <strong><%=currentEvent.getEventName()%></strong>, <fmt:message key="sith.dashboard.event.clickToChange" /><a href="../myEvents.jsp"><fmt:message key="sith.dashboard.myEvents.Change" /></a></span>
+        <span><fmt:message key="sith.dashboard.event.CurrentEventIs" /> <strong><%=currentEvent.getEventName()%></strong>, <fmt:message key="sith.dashboard.event.clickToChange" />    <a href="../myEvents.jsp"><fmt:message key="sith.dashboard.myEvents.Change" /></a></span>
         <span  id="current_perception"  style="margin: auto;float: right;display: none;"><fmt:message key="sith.dashboard.event.CurrentPerceptionIs" /> <strong></strong></span>
 
     </div>

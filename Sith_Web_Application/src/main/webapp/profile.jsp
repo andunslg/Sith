@@ -217,31 +217,22 @@
 <script src="js/apprise-1.5.min.js"></script>
 
 <script type="text/javascript">
-
-
     $("#update").click(function () {
         var username = $('input[id=username]').val();
         var oldPassword = $('input[id=oldPassword]').val();
         var newPassword = $('input[id=newPassword]').val();
         var newPasswordConfirm = $('input[id=newPasswordConfirm]').val();
-
-
         if(oldPassword.length==0 ||newPassword.length==0||newPasswordConfirm.length==0){
 //            alert("Please type a password")
             apprise("Please type a password");
         }
         else{
-
             var datObj = {};
-
             datObj['oldUserName'] = username;
             datObj['newUserName'] = username;
             datObj['oldPassword'] = oldPassword;
             datObj['newPassword'] = newPassword;
             datObj['newPasswordConfirm'] = newPasswordConfirm;
-
-
-
             $.ajax({
                 url: 'user/updateUserHandler.jsp',
                 data: datObj,

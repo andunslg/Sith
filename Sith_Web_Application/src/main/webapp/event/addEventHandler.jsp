@@ -14,7 +14,7 @@
     String end=request.getParameter("end");
     String colors = request.getParameter("colors");
     String timeVariantParams = request.getParameter("timeVariantParams");
-    if("".equals(eventID)||"".equals(eventName)||"".equals(location) || "".equals(perceptionSchema)||"".equals(start)||"".equals(end)||"".equals(latLng)){
+    if("".equals(eventID)||"".equals(eventName)||"".equals(location) || "".equals(perceptionSchema)||"".equals(start)||"".equals(end)||"{}".equals(latLng)){
         message="Please fill the required fields with suitable values.";
     }else{
         String startDate=start.substring(0,10);

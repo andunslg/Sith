@@ -5,6 +5,7 @@
 cepConnector = require("./cepConnector.js");
 bamConnector= require("./bamConnector.js");
 
+
 exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location) {
     var time= (new Date()).getTime();
 

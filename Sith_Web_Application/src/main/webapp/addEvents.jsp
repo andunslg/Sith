@@ -494,15 +494,13 @@
             if(colors == ""){
                 colors = null;
             }
-            console.log(colors);
-            if(start.length!=16  ||end.length!=16){
-                apprise("Please select correct Start and End values")
-            }
+//            console.log(colors);
+//            if(start.length!=16  ||end.length!=16){
+//                apprise("Please select correct Start and End values")
+//            }
 //            else if(perceptionSchema==""){
 //                apprise("Please select perception schema")
 //            }
-            else{
-
                 var datObj = {};
 
                 datObj['eventID'] = eventID;
@@ -533,10 +531,8 @@
                         apprise("Error adding event - " + error.message);
                     }
                 });
-            }
         });
-    })
-
+    });
 
     function SecListBox(ListBox,text,value)
     {

@@ -512,7 +512,7 @@
                     type: 'POST',
                     success: function (data) {
                         apprise(data)
-                        if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
+                        if ((data.indexOf("The Event is successfully added.") != -1)) {
                             window.location.href = 'myEvents.jsp';
                         }
                     },

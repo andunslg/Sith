@@ -11,20 +11,29 @@ cepConnector = require("../cepConnector.js");
 exports.addEvent = function(req,res){
     //req.body.colors = '#A7FF4F:#3029FF:#FF3F0F';
     eventManager.addEvent(req.body.eventID,req.body.eventName,req.body.eventAdmin, req.body.desc, req.body.location,JSON.parse(req.body.latLng), req.body.startDate,
-        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.fixedLocation, req.body.colors,req.body.timeVariantParams );
-    userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
-        if(error){
-            console.log(error);
-            res.write(JSON.stringify({result:error.message}));
-            res.end();
-        }else{
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            var result = JSON.stringify({response: true });
-            res.write(result);
-            res.end();
-        }
-    });
+        req.body.endDate, req.body.startTime,req.body.endTime, req.body.perceptionSchema, req.body.commentEnabled, req.body.fixedLocation, req.body.colors,req.body.timeVariantParams,function(error1){
+             if(error1){
+                 res.writeHead(500, {'Content-Type': 'application/json'});
+                 var result = JSON.stringify({response:error1.message});
+                 res.write(result);
+                 res.end();
+             }else{
+                 userManager.addUserToEvent(req.body.eventID,req.body.eventAdmin,'admin',function(error){
+                     if(error){
+                         console.log(error);
+                         res.writeHead(500, {'Content-Type': 'application/json'});
+                         res.write(JSON.stringify({response:error.message}));
+                         res.end();
+                     }else{
+                         res.writeHead(200, {'Content-Type': 'application/json'});
+                         var result = JSON.stringify({response: true });
+                         res.write(result);
+                         res.end();
+                     }
+                 });
+             }
 
+        });
 };
 
 exports.getEventByID = function(req,res){

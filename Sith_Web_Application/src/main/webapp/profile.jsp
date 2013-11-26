@@ -108,8 +108,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="username" readonly value=<% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%>  <%} else{ %>Guest <%}%>
-                                    >
+                            <p><% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%>  <%} else{ %>Guest <%}%></p>
                         </div>
                     </td>
                 </tr>

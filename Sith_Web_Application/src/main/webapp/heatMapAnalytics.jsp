@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -48,8 +50,8 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/>
+                <fmt:message key="sith.dashboard.home.loggedAs" /> <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -64,9 +66,9 @@
             <%--</li>--%>
             <%--</ul>--%>
             <%--</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -91,7 +93,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.realTime" /></a></li>
             </ul>
         </li>
         <li>
@@ -109,7 +111,7 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Location Based Analytics</h1>
+                <h1><fmt:message key="sith.dashboard.world.heatMap.topic" /></h1>
             </hgroup>
         </header>
         <div class="content">
@@ -203,44 +205,121 @@
     %>
 
     var gradient_sad = [
-        'rgba(0, 0, 255, 0)',
-        'rgba(0, 0, 128, 1)',
-        'rgba(9, 0, 255, 1)',
-        'rgba(8, 0, 255, 1)',
-        'rgba(25, 25, 112, 1)',
-        'rgba(25, 25, 112, 1)'
+        'rgba(10, 1, 50, 0)',
+        'rgba(10, 1, 200, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 50, 255, 1)',
+        'rgba(10, 60, 255, 1)',
+        'rgba(10, 60, 255, 1)',
+        'rgba(10, 100, 255, 1)',
+        'rgba(10, 100, 255, 1)',
+        'rgba(10, 120, 255, 1)',
+        'rgba(10, 170, 255, 1)',
+        'rgba(10, 220, 255, 1)'
     ]
     var gradient_happy = [
-        'rgba(0, 100, 0, 0)',
-        'rgba(11, 76, 0, 1)',
-        'rgba(25, 153, 44, 1)',
-        'rgba(0, 255, 0, 1)',
-        'rgba(0, 255, 1, 1)',
-        'rgba(45, 255, 10, 1)',
-        'rgba(23, 200, 60, 1)',
-        'rgba(50, 200, 45, 1)',
-        'rgba(124, 255, 0, 1)'
+        'rgba(0,0,255,0)',
+        'rgba(1,60,10,1)',
+        'rgba(100,255,10,1)',
+        'rgba(100,255,10,1)',
+        'rgba(100,255,10,1)',
+        'rgba(100,255,10,1)',
+        'rgba(100,255,10,1)',
+        'rgba(20,255,1,1)',
+        'rgba(20,255,1,1)',
+        'rgba(20,255,1,1)',
+        'rgba(50,255,1,1)',
+        'rgba(50,255,1,1)',
+        'rgba(50,255,1,1)',
+        'rgba(70,255,1,1)',
+        'rgba(70,255,1,1)',
+        'rgba(90,255,1,1)',
+        'rgba(120,255,1,1)',
+        'rgba(255,255,2,1)'
+
     ]
+
     var gradient_horrible = [
 
-        'rgba(255, 0, 0, 0)',
-        'rgba(88, 0, 0, 0)',
-        'rgba(76, 0, 2, 1)',
-        'rgba(255, 0, 0, 1)'
+        'rgba(0, 0, 255, 0)',
+        'rgba(255, 0, 0, 1)',
+        'rgba(255, 0, 0, 1)',
+        'rgba(255, 0, 0, 1)',
+        'rgba(255, 0, 0, 1)',
+        'rgba(255, 10, 0, 1)',
+        'rgba(255, 10, 0, 1)',
+        'rgba(255, 10, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)',
+        'rgba(255, 150, 0, 1)'
     ]
     var gradient_neutral = [
-        'rgba(255, 0, 0, 0)',
-        'rgba(255, 255, 0, 1)',
-        'rgba(255, 215, 0, 1)',
-        'rgba(255, 255, 0, 1)',
-        'rgba(255, 200, 0, 1)'
+        'rgba(255,0,0,0)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,255,0,1)'
+
     ]
     var gradient_excited = [
-        'rgba(255, 69, 0, 0)',
-        'rgba(255, 140, 0, 1)',
-        'rgba(255, 0, 0, 1)',
-        'rgba(255, 120, 0, 1)',
-        'rgba(255, 100, 0, 1)'
+
+        'rgba(10, 1, 50, 0)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)',
+        'rgba(255, 0, 255, 1)'
     ]
 
     happy_point_array =  new google.maps.MVCArray(happy_points);
@@ -320,7 +399,6 @@
     function initialize() {
         var mapOptions = {
             zoom: 15,
-            minZoom:7,
             center: new google.maps.LatLng(6.796876999999999000, 79.901778100000000000),
             mapTypeId: google.maps.MapTypeId.SATELLITE
         };

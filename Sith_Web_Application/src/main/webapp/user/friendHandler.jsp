@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<script src="../js/apprise-1.5.min.js"></script>
 
 <%@ page import="com.sith.user.FriendHandler" %>
 
@@ -49,7 +49,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            alert('<%=message%>');
+            apprise('<%=message%>');
             window.location.href = <%=url%>;
         });
     </script>

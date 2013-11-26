@@ -3,6 +3,8 @@
 <%@ page import="com.sith.SithAPI" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -51,7 +53,7 @@
             <%--</ul>--%>
             <%--</span>--%>
             <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/">Help</a></span>
             <span class="button blue"><a href="index.jsp?state=loggedOut">Logout</a></span>
         </div>
     </section>
@@ -90,7 +92,7 @@
     </ul>
 </nav>
 <section class="content" style="margin-top: 10px">
-    <section class="widget">
+    <section class="widget" style="min-height: 450px">
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
@@ -114,19 +116,16 @@
                             <span class="button" id="search">Search</span>
                         </div>
                     </td>
+                    <td>
+                        <img src="images/loading-new.gif" id="searchGif" style="display:none; padding-left: 10px;position: absolute;padding-top: 5px" />
+                    </td>
                 </tr>
-
             </table>
+            <div id="noResults" style="display: none"><span><p>No Results Found!</p></span></div>
             <br/>
             <table id="myTable" border="0" width="100">
-                <thead>
-                <tr>
-                    <th class="avatar">Name</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
+                <thead></thead>
+                <tbody></tbody>
             </table>
         </div>
     </section>
@@ -143,10 +142,16 @@
 <script src="js/cycle.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <script src="js/apprise-1.5.min.js"></script>
+<script type="text/javascript" src="js/toastr.min.js"></script>
+<link href="css/toastr.css" rel="stylesheet" />
 
 <script type="text/javascript">
     $(document).ready(function(){
         $("#search").click(function () {
+            $("#searchGif").show();
+            $("#noResults").hide();
+            $('#myTable tbody').html('');
+            $('#myTable thead').html('');
             var username = '<%=session.getAttribute("user").toString()%>';
             var query = $('input[id=query]').val();
             var friends;
@@ -154,12 +159,22 @@
                 url: '<%=SithAPI.GET_FRIENDS_SUGGESTIONS%>?userID='+username+'&query='+query,
                 type: 'GET',
                 success: function (data) {
+                    $("#searchGif").hide();
+                    $("#noResults").hide();
                     if(typeof data=='string' || data instanceof String){
                         friends = JSON.parse(data);
                     }else{
                         friends = data;
                     }
                     var s='';
+                    if(friends.length == 0){
+                        $("#noResults").show();
+                        return;
+                    }
+                    $('#myTable thead').html('<tr>' +
+                                                '<th class="avatar">Name</th>' +
+                                                '<th>Edit</th>' +
+                                                '</tr>');
                     for(var i = 0; i < friends.length; i++){
                         if(friends[i].type=="pendingRequest"){
                             s+='<tr><td class="avatar"><img src="images/uiface1.png" alt="" height="40" width="40" />'+ friends[i].userName+'</td><td><span class="button" id="confirm">Confirm</span></td></tr>';
@@ -174,11 +189,29 @@
                     $('#myTable tbody').html(s);
                 },
                 error: function (xhr, status, error) {
+                    $("#searchGif").hide();
                     apprise("Error : " + error.message);
                 }
             });
         });
 
+        $("#confirm").live("click",function(){
+            var sender =$(this).closest("tr").find(".avatar").text();
+            var receiver = '<%=session.getAttribute("user").toString()%>';
+            var selectedButton = $(this);
+            console.log(sender);
+            $.ajax({
+                url: '<%=SithAPI.CONFIRM_FRIEND_REQUEST%>?sender='+sender+'&receiver='+receiver,
+                type: 'GET',
+                success: function (data) {
+                    selectedButton.removeClass("button").html('<img src="images/tick_green_big.gif" alt="" style="margin: 6px 5px 0 0"/>Friend')
+                    toastr.info('You are now friend with '+sender);
+                },
+                error: function (xhr, status, error) {
+                    apprise("Error : " + error.message);
+                }
+            });
+        })
         $("#addFriend").live('click',function () {
             var sender = '<%=session.getAttribute("user").toString()%>';
             var receiver =$(this).closest("tr").find(".avatar").text();

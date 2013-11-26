@@ -5,22 +5,29 @@
 bamConnector=require("./bamConnector.js");
 util=require("./util.js")
 
-exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,fixedLocation,colors,timeVariantParams){
-	doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
+exports.addEvent = function(eventID, eventName,eventAdmin, desc, location,latLng, startDate,endDate, startTime, endTime,perceptionSchema, commentEnabled,fixedLocation,colors,timeVariantParams,fn){
+    mongoAdapter.getSingleDocument({eventID:eventID},'EventDetails',function(doc){
+    if(doc){
+       fn(new Error('event already registered'));
+    }else{
+	   doc = {eventID:eventID,eventName:eventName,eventAdmin:eventAdmin, description:desc, location:location,latLng:latLng,
 			startDate:startDate,endDate:endDate, startTime:startTime, endTime:endTime, perceptionSchema:perceptionSchema, commentEnabled:commentEnabled,fixedLocation:fixedLocation, colors:colors,timeVariantParams:timeVariantParams };
-	mongoAdapter.insertDocument('EventDetails',doc);
-	mongoAdapter.createCollection('EventPerceptions_'+eventID);
-    mongoAdapter.createCollection('EventComments_'+eventID);
-	mongoAdapter.createCollection('EventUser_'+eventID);
-    mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
-    mongoAdapter.createCollection('EventTimeVariantParams_'+eventID);
+	    mongoAdapter.insertDocument('EventDetails',doc);
+//	    mongoAdapter.createCollection('EventPerceptions_'+eventID);
+//        mongoAdapter.createCollection('EventComments_'+eventID);
+//	    mongoAdapter.createCollection('EventUser_'+eventID);
+//        mongoAdapter.createCollection('EventInstantPerceptions_'+eventID);
+//        mongoAdapter.createCollection('EventTimeVariantParams_'+eventID);
 
-    //unix timestamp
-    var start=(util.parseDateTime(startDate,startTime)).getTime();
-    var end=(util.parseDateTime(endDate,endTime)).getTime();
+        //unix timestamp
+        var start=(util.parseDateTime(startDate,startTime)).getTime();
+        var end=(util.parseDateTime(endDate,endTime)).getTime();
 
-    //TODO Prabhath : Add stimeVariantParams to bam send
-    bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,fixedLocation);
+        //TODO Prabhath : Add stimeVariantParams to bam send
+        bamConnector.addEventInfo(eventAdmin,eventID,eventName,location,latLng.lat,latLng.lng,start,end,fixedLocation);
+        fn();
+    }
+  });
 };
 
 exports.getEventByID = function(eventID,fn){

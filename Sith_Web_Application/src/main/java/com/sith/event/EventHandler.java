@@ -13,7 +13,7 @@ public class EventHandler{
 	HTTPUtil httpUtil=new HTTPUtil();
 
 
-	public boolean addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors, String timeVariantParams,String fixedLocation){
+	public String addEvent(String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location, String latLng, String description, String perceptionSchema, String commentEnabled,String colors, String timeVariantParams,String fixedLocation){
 		Map<String,String> parms=new HashMap<String,String>();
 		parms.put("eventID",eventID);
 		parms.put("eventName",eventName);
@@ -36,15 +36,17 @@ public class EventHandler{
 			result=httpUtil.doPost(SithAPI.ADD_EVENT,parms);
 			if(!result.equals("")){
 				if("{\"response\":true}".equals(result)){
-					return true;
-				}
-				return false;
+					return "success";
+				}else if("{\"response\":\"event already registered\"}".equals(result)){
+                   return "alreadyRegistered";
+                }
+				return "";
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
-		return false;
+		return "";
 	}
 
 	public boolean updateEvent(String oldEventID,String eventID, String eventName,String eventAdmin, String startDate,String startTime,String endDate, String endTime, String location,String latLng, String description, String perceptionSchema, String commentEnabled,String colors,String timeVariantParams, String fixedLocation){

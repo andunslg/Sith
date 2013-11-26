@@ -121,7 +121,8 @@ app.post('/removeFriend',friendRoutes.removeFriend)
 app.post('/getUserNews',friendRoutes.getUserNews);
 //analytics
 app.post('/receiveCEPAnalytics',analyticRoutes.receiveCEPAnalytics);
-app.post('/receiveCEPMapAnalytics',analyticRoutes.receiveCEPMapAnalytics)
+app.post('/receiveCEPMapAnalytics',analyticRoutes.receiveCEPMapAnalytics);
+app.get('/getHigestPerceptionOfEvent',analyticRoutes.getHigestPerceptionOfEvent);
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

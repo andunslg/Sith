@@ -7,6 +7,8 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -66,8 +68,7 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> <fmt:message key="sith.dashboard.home.loggedAs" /> <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -82,9 +83,9 @@
             <%--</li>--%>
             <%--</ul>--%>
             <%--</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -109,7 +110,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.realTime" /></a></li>
             </ul>
         </li>
         <li>
@@ -127,9 +128,9 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>Add new event</h1>
+                <h1><fmt:message key="sith.dashboard.addEvents.topic" /></h1>
 
-                <h2>Enter Event Details</h2>
+                <h2><fmt:message key="sith.dashboard.addEvents.description" /></h2>
             </hgroup>
         </header>
         <div class="content">
@@ -137,11 +138,11 @@
                 <table>
                     <tr>
                         <td style="width: 160px">
-                            <div>Event ID</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.eventId" /></div>
                         </td>
                         <td>
                             <div>
-                                <input name="eventID" id="eventID" value="Unique event ID" type="text"
+                                <input name="eventID" id="eventID" value="<fmt:message key="sith.dashboard.addEvents.eventId" />" type="text"
                                        style="width: 400px">
                             </div>
                         </td>
@@ -153,11 +154,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Event Name</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.eventName" /></div>
                         </td>
                         <td>
                             <div>
-                                <input name="eventName" id="eventName" value="Event Name" type="text">
+                                <input name="eventName" id="eventName" value="<fmt:message key="sith.dashboard.addEvents.eventName" />" type="text">
                             </div>
                         </td>
                     </tr>
@@ -168,7 +169,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Start</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.start" /></div>
                         </td>
                         <td>
                             <div>
@@ -183,7 +184,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>End</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.end" /></div>
                         </td>
                         <td>
                             <div>
@@ -198,7 +199,7 @@
                     </tr>
                     <tr>
                         <td style="vertical-align: top">
-                           Location
+                            <fmt:message key="sith.dashboard.addEvents.location" />
                         </td>
                         <td>
                             <div>
@@ -220,18 +221,18 @@
                     </tr>
                     <tr>
                         <td>
-                            <p style="margin-bottom: 0px">Location Address</p>
-                            <p>(change Accordingly)</p>
+                            <p style="margin-bottom: 0px"><fmt:message key="sith.dashboard.addEvents.locationAddress" /></p>
+                            <p><fmt:message key="sith.dashboard.addEvents.changeAccordingly" /></p>
                         </td>
                         <td>
                             <div>
-                                <input name="location" id="location" value="Event Location" type="text">
+                                <input name="location" id="location" value="<fmt:message key="sith.dashboard.addEvents.location" />" type="text">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div>Fixed Location &nbsp</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.fixedLocation" /> &nbsp</div>
                         </td>
                         <td >
                             <input align="left"  name="fixedLocation" id="fixedLocation" type="checkbox" style="width: 10%">
@@ -244,11 +245,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Description</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.eventDescription" /></div>
                         </td>
                         <td>
                             <div>
-                                <input name="description" id="description" value="Description" type="text">
+                                <input name="description" id="description" value="<fmt:message key="sith.dashboard.addEvents.eventDescription" />" type="text">
                             </div>
                         </td>
                     </tr>
@@ -261,7 +262,7 @@
                     <tr>
 
                         <td>
-                            <div  >Perception Schema &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div  ><fmt:message key="sith.dashboard.addEvents.addPerceptionSchema" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
@@ -308,9 +309,9 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input id="addColors" value="Add Color Schema" type="button" class="button" style="text-align: center;width: 150px">
+                            <input id="addColors" value="<fmt:message key="sith.dashboard.addEvents.addColorSchema" />" type="button" class="button" style="text-align: center;width: 150px">
                             <div style="padding-top: 10px">
-                             If you do not set the color schema, random colors will be set
+                                <fmt:message key="sith.dashboard.addEvents.addColorSchemaDescription" />
                             </div>
                         </td>
                     </tr>
@@ -335,7 +336,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <div>Enable User Comments</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.enableUserCmnt" /></div>
                         </td>
                         <td >
                             <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" style="width: 10%">
@@ -344,7 +345,7 @@
 
                     <tr>
                         <td>
-                            <div>Time Variant Parameters</div>
+                            <div><fmt:message key="sith.dashboard.addEvents.timeVariantParameters" /></div>
                         </td>
                         <td>
                             <div>
@@ -357,7 +358,7 @@
 
                         <td>
                             <div>
-                                Ex - Lecturer:Subject
+                                <fmt:message key="sith.dashboard.addEvents.eg" />
                             </div>
                         </td>
                     </tr>
@@ -377,7 +378,7 @@
                         </td>
                         <td>
                             <div style="display: inline-block">
-                                <input id="addEvent" value="Add" type="button" class="button" style="text-align: center;width: 100px">
+                                <input id="addEvent" value="<fmt:message key="sith.dashboard.addEvents.add" />" type="button" class="button" style="text-align: center;width: 150px">
                             </div>
                         </td>
                     </tr>
@@ -511,7 +512,7 @@
                     type: 'POST',
                     success: function (data) {
                         apprise(data)
-                        if ((data.indexOf("The Event is successfully added.") != -1) || (data.indexOf("Please fill the ")!= -1)) {
+                        if ((data.indexOf("The Event is successfully added.") != -1)) {
                             window.location.href = 'myEvents.jsp';
                         }
                     },

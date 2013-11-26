@@ -59,7 +59,7 @@ public class FriendHandler {
         try{
             result=httpUtil.doGet(SithAPI.GET_FRIENDS_LIST+"?userID="+userID);
             JSONArray jsonArray=new JSONArray(result);
-            friends=new ArrayList<String>();
+            friends = new ArrayList<String>();
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
                 String friendID=jsonObject.getString("userName");

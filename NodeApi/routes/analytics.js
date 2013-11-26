@@ -59,15 +59,39 @@ exports.sendPerceptionCountMapReduce = function(req,res){
                      }
                  }
              };
-
              res.write(JSON.stringify(perceptions));
              res.end();
          });
-
-
      });
 }
 
+exports.getHigestPerceptionOfEvent = function(req,res){
+    mapreduceAnalyser.categorize("EventPerceptions_"+req.query.eventID,function(results){
+        res.writeHead(200, {
+            'Content-Type' : 'application/json',
+            'Cache-Control' : 'no-cache',
+            'Connection' : 'keep-alive'
+        });
+        var perceptions = [];
+        var maxPercep = {count:0,perceptions:perceptions};
+        for(var i=0;i<results.length;i++){
+            if(maxPercep.count<=results[i].value.count){
+                if(maxPercep.count<results[i].value.count){
+                    maxPercep["perceptions"].length = 0;
+                    maxPercep["perceptions"].push(results[i]._id);
+                }else if(maxPercep.count==results[i].value.count){
+                    maxPercep["perceptions"].push(results[i]._id);
+                }
+                maxPercep.count = results[i].value.count;
+            }
+        }
+        res.write(JSON.stringify(maxPercep));
+        res.end();
+    });
+}
+makeOutputResultsForPerceptionAggregation = function(){
+
+}
 exports.getAggregatedAnalyticsMapReduce = function(req,res){
    mapreduceAnalyser.aggregateLocationSelfData("UserPerceptions_sach","Happy",function(docs){
                 console.log(docs);

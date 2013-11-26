@@ -5,6 +5,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
@@ -30,7 +32,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>SITH Dashboard</title>
+    <title><fmt:message key="sith.dashboard.topic" /></title>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="robots" content=""/>
@@ -61,8 +63,8 @@
     </header>
     <section class="user">
         <div class="profile-img">
-            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> Welcome
-                back <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
+            <p><img src="images/moods-emotions-faces-many-variety-feelin.png" alt="" height="40" width="40"/> <fmt:message key="sith.dashboard.home.loggedAs" />
+                <% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%> <%}else{ %>
                 Guest <%}%></p>
         </div>
         <div class="buttons">
@@ -77,9 +79,9 @@
                 <%--</li>--%>
             <%--</ul>--%>
 		<%--</span>--%>
-            <span class="button"><a href="home.jsp">Home</a></span>
-            <span class="button"><a href="http://proj16.cse.mrt.ac.lk/">Help</a></span>
-            <span class="button"><a href="index.jsp?state=loggedOut">Logout</a></span>
+            <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
+            <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>
+            <span class="button"><a href="index.jsp?state=loggedOut"><fmt:message key="sith.dashboard.home.logout" /></a></span>
         </div>
     </section>
 </div>
@@ -104,7 +106,7 @@
             <ul class="submenu">
                 <li><a href="heatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.heatMap" /></a></li>
                 <li><a href="piChartAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.piChart" /></a></li>
-                <li><a href="realtimeHeatMapAnalytics.jsp"></span>Real Time Analytics</a></li>
+                <li><a href="realtimeHeatMapAnalytics.jsp"></span><fmt:message key="sith.dashboard.menu.realTime" /></a></li>
             </ul>
         </li>
         <li>
@@ -122,18 +124,18 @@
         <header>
             <span class="icon">&#128100;</span>
             <hgroup>
-                <h1>My Events</h1>
+                <h1><fmt:message key="sith.dashboard.menu.myEvents" /></h1>
 
-                <h2>Events I am administrating and registered</h2>
+                <h2><fmt:message key="sith.dashboard.myEvents.description" /></h2>
             </hgroup>
         </header>
             <div class="content">
                 <table id="myTable" border="0" width="100">
                     <thead>
                     <tr>
-                        <th class="avatar">Name</th>
-                        <th>Type</th>
-                        <th>Change</th>
+                        <th class="avatar"><fmt:message key="sith.dashboard.myEvents.name" /></th>
+                        <th><fmt:message key="sith.dashboard.myEvents.type" /></th>
+                        <th><fmt:message key="sith.dashboard.myEvents.Change" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -146,19 +148,19 @@
                         <%
                             if(event.getAdminID().equals(session.getAttribute("user").toString())){ %>
                         <td>
-                            Admin
+                            <fmt:message key="sith.dashboard.myEvents.admin" />
                         </td>
                         <td>
-                            <span class="button"><a href="event/eventAdmin.jsp?eventID=<%=event.getEventID()%>">Admin Panel</a></span>
+                            <span class="button"><a href="event/eventAdmin.jsp?eventID=<%=event.getEventID()%>"><fmt:message key="sith.dashboard.myEvents.adminPanelBtn" /></a></span>
                         </td>
                         <%
                         }else{
                         %>
                         <td>
-                            Participant
+                            <fmt:message key="sith.dashboard.myEvents.participant" />
                         </td>
                         <td>
-                            <span class="button"><a href="event/removeUserFromEventHandler.jsp?eventID=<%=event.getEventID()%>&userID=<%=participant.getUserID()%>">Un-register</a></span>
+                            <span class="button"><a href="event/removeUserFromEventHandler.jsp?eventID=<%=event.getEventID()%>&userID=<%=participant.getUserID()%>"><fmt:message key="sith.dashboard.myEvents.unRegisterBtn" /></a></span>
                         </td>
                         <%
                             }
@@ -177,7 +179,7 @@
                 <br>
                 <br>
                 <div>
-                    Following events have been deleted by there admins. So they have been removed form your registration list. There event ID's are <%=deletedEvents%>
+                    <fmt:message key="sith.dashboard.myEvents.deletedEventDescription" /><%=deletedEvents%>
                 </div>
                 <%
                     }

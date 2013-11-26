@@ -14,7 +14,8 @@
     "passport" : "*",
     "passport-http-bearer" : "*",
     "memory-cache": "*",
-    "socket.io": ""
+    "socket.io": "",
+    "nodetime": "*"
   },
   "subdomain": "sachintha-sith",
   "engines": {

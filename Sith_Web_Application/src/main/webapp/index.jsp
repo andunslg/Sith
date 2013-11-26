@@ -51,7 +51,7 @@
     </form>
     <p><a href="signup.jsp"><fmt:message key="sith.dashboard.signup" /></a></p>
 
-    <p><a href="#"><fmt:message key="sith.dashboard.forgotPassword" /></a></p>
+    <%--<p><a href="#"><fmt:message key="sith.dashboard.forgotPassword" /></a></p>--%>
     <p style="color: #ffffff">-----------------------------------------------------------------------------</p>
     <p style="font-size: large;color: #ffffff"><fmt:message key="sith.dashboard.selectLanguage" /></p>
     <p style="font-size: large"><a id="englishLang" href="index.jsp?lang=english">English</a> / <a id="sinhalaLang" href="index.jsp?lang=sinhala">සිංහල</a> / <a id="tamilLang" href="index.jsp?lang=tamil">தமிழ்</a></p>

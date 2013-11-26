@@ -108,7 +108,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="query"  value="Enter name here"  >
+                            <input id="query"  placeholder="Enter Name"  >
                         </div>
                     </td>
                     <td>

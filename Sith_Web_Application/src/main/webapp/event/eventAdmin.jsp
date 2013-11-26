@@ -201,8 +201,7 @@
                         </td>
                         <td>
                             <div>
-                                <input name="eventID" id="eventID" value="<%=currentEvent.getEventID()%>" type="text"
-                                       style="width: 400px" readonly>
+                                <p><%=currentEvent.getEventID()%></p>
                             </div>
                         </td>
                     </tr>

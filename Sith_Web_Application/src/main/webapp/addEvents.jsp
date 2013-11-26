@@ -136,14 +136,18 @@
         <div class="content">
             <form>
                 <table>
+                <tr>
+                    <td>
+                        <div><p style="color: red">* Required Fields</p></div>
+                    </td>
+                </tr>
                     <tr>
                         <td style="width: 160px">
-                            <div><fmt:message key="sith.dashboard.addEvents.eventId" /></div>
+                            <div><fmt:message key="sith.dashboard.addEvents.eventId" />*</div>
                         </td>
                         <td>
                             <div>
-                                <input name="eventID" id="eventID" value="<fmt:message key="sith.dashboard.addEvents.eventId" />" type="text"
-                                       style="width: 400px">
+                                <input name="eventID" id="eventID" type="text" style="width: 400px" placeholder="Event ID">
                             </div>
                         </td>
                     </tr>
@@ -154,11 +158,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div><fmt:message key="sith.dashboard.addEvents.eventName" /></div>
+                            <div><fmt:message key="sith.dashboard.addEvents.eventName" />*</div>
                         </td>
                         <td>
                             <div>
-                                <input name="eventName" id="eventName" value="<fmt:message key="sith.dashboard.addEvents.eventName" />" type="text">
+                                <input name="eventName" id="eventName" type="text" placeholder="Event Name">
                             </div>
                         </td>
                     </tr>
@@ -169,11 +173,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div><fmt:message key="sith.dashboard.addEvents.start" /></div>
+                            <div><fmt:message key="sith.dashboard.addEvents.start" />*</div>
                         </td>
                         <td>
                             <div>
-                                <input name="start" id="start" value="<%=dateFormat.format(currentDate)%>" type="text">
+                                <input name="start" id="start" type="text" placeholder="Start Date And Time">
                             </div>
                         </td>
                     </tr>
@@ -184,11 +188,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div><fmt:message key="sith.dashboard.addEvents.end" /></div>
+                            <div><fmt:message key="sith.dashboard.addEvents.end" />*</div>
                         </td>
                         <td>
                             <div>
-                                <input name="end" id="end" value="<%=dateFormat.format(nextDate)%>" type="text">
+                                <input name="end" id="end" type="text" placeholder="End Date And Time">
                             </div>
                         </td>
                     </tr>
@@ -199,7 +203,7 @@
                     </tr>
                     <tr>
                         <td style="vertical-align: top">
-                            <fmt:message key="sith.dashboard.addEvents.location" />
+                            <fmt:message key="sith.dashboard.addEvents.location" />*
                         </td>
                         <td>
                             <div>
@@ -220,14 +224,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <p style="margin-bottom: 0px"><fmt:message key="sith.dashboard.addEvents.locationAddress" /></p>
+                        <td style="vertical-align: top">
+                            <p style="margin-bottom: 0px"><fmt:message key="sith.dashboard.addEvents.locationAddress" />*</p>
                             <p><fmt:message key="sith.dashboard.addEvents.changeAccordingly" /></p>
                         </td>
                         <td>
                             <div>
-                                <input name="location" id="location" value="<fmt:message key="sith.dashboard.addEvents.location" />" type="text">
+                                <input name="location" id="location" type="text" placeholder="Location">
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -249,7 +258,7 @@
                         </td>
                         <td>
                             <div>
-                                <input name="description" id="description" value="<fmt:message key="sith.dashboard.addEvents.eventDescription" />" type="text">
+                                <input name="description" id="description" type="text" placeholder="Description">
                             </div>
                         </td>
                     </tr>
@@ -258,11 +267,15 @@
                             &nbsp;
                         </td>
                     </tr>
-
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
                     <tr>
 
                         <td>
-                            <div  ><fmt:message key="sith.dashboard.addEvents.addPerceptionSchema" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div  ><fmt:message key="sith.dashboard.addEvents.addPerceptionSchema" />*</div>
                         </td>
                         <td>
                             <select multiple="multiple" name="perceptionSchema" id="perceptionSchema"
@@ -342,23 +355,23 @@
                             <input align="left"  name="commentEnabled" id="commentEnabled" type="checkbox" style="width: 10%">
                         </td>
                     </tr>
-
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <div><fmt:message key="sith.dashboard.addEvents.timeVariantParameters" /></div>
                         </td>
                         <td>
                             <div>
-                                <input name="timeVariantParams" id="timeVariantParams" value="" type="text">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                        <td>
-                            <div>
-                                <fmt:message key="sith.dashboard.addEvents.eg" />
+                                <input name="timeVariantParams" id="timeVariantParams"  type="text" placeholder="E:g: Lecturer:Subject">
                             </div>
                         </td>
                     </tr>
@@ -485,9 +498,9 @@
             if(start.length!=16  ||end.length!=16){
                 apprise("Please select correct Start and End values")
             }
-            else if(perceptionSchema==""){
-                apprise("Please select perception schema")
-            }
+//            else if(perceptionSchema==""){
+//                apprise("Please select perception schema")
+//            }
             else{
 
                 var datObj = {};

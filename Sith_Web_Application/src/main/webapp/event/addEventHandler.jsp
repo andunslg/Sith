@@ -18,7 +18,7 @@
     String startTime=start.substring(11,16);
     String endDate=end.substring(0,10);
     String endTime=end.substring(11,16);
-    if("Unique event ID".equals(eventID)||"Event Name".equals(eventName)||"Location".equals(location)){
+    if("".equals(eventID)||"".equals(eventName)||"".equals(location) || "".equals(perceptionSchema)){
         message="Please fill the required fields with suitable values.";
     }else{
         String res=eventHandler.addEvent(eventID,eventName,eventAdmin,startDate,startTime,endDate,endTime,location,latLng, description,perceptionSchema,commentEnabled,colors,timeVariantParams,fixedLocation);

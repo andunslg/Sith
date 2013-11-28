@@ -138,6 +138,18 @@ exports.updateDocument = function(collection,selector,newDoc){
     });
 //    });
 }
+exports.updateAllDocuments = function(collection,selector,field,fn){
+    //Db(config.mongodb.database, new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false}).open(function(err,db){
+    db1.collection(collection,function(err,collection){
+        collection.update(selector,{$set:field},{multi: true},function(err,result){
+            if(err)
+                fn(false);
+            fn(true);
+            console.log('update All Collections as'+result);
+        });
+    });
+//    });
+}
 
 //aggregated self analytics using lng and lat
 exports.getLocationAggregatedSelfAnalytics = function(collection,perception,fn){

@@ -15,3 +15,16 @@ exports.getNotifications = function(req,res){
          res.end();
      });
 }
+
+exports.setCurrentNotifsAsRead = function(req,res){
+    notificationManager.setCurrentNotifsAsRead(req.query.userID,function(error){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        if(!error){
+            var result = JSON.stringify(true);
+        }else{
+            var result = JSON.stringify(false);
+        }
+        res.write(result);
+        res.end();
+    });
+}

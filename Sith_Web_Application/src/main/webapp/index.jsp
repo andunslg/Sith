@@ -6,7 +6,9 @@
 <c:set var="language" value="${not empty param.lang ? param.lang :'english' }" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
-
+<script type="text/javascript">
+    localStorage.clear();
+</script>
 <html lang="">
 <%
     String state=request.getParameter("state");

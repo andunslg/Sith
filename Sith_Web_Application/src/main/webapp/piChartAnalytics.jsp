@@ -112,7 +112,7 @@
         </header>
         <div class="content">
 
-            <div id="map_canvas" style="width: 970px; height: 500px;"></div>
+            <div id="map-canvas"></div>
 
         </div>
     </section>
@@ -156,7 +156,7 @@ ChartMarker.prototype.draw = function() {
 };
 
 function drawChart(marker, event) {
-    if(!marker.get('infowindow')){//create only 1 infowindow per marker
+    if(!marker.get('infowindow')){          //create only 1 infowindow per marker
         var node        = document.createElement('div'),
                 chart       = new google.visualization.PieChart(node),
                 options = { title:'Event : '+event.type+'  Location : '+marker.position,
@@ -316,22 +316,16 @@ function initialize() {
 
     var mapOptions = {
         center: latLng,
-        zoom: 12,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
     drawPieCharts(map)
 
 };
 google.maps.event.addDomListener(window, 'load', initialize);
-//google.maps.event.addListener(map, 'bounds_changed', function() {
-//    var bounds = map.getBounds();
-//    var ne = bounds.getNorthEast(); // LatLng of the north-east corner
-//    var sw = bounds.getSouthWest(); // LatLng of the south-west corder
-//
-//    drawPieChartsOnMap(sw.lat(),ne.lat(),sw.lng(),ne.lng());
-//});
+
 </script>
 
 <script src="js/jquery.wysiwyg.js"></script>

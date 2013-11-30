@@ -47,6 +47,9 @@
     <script src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            if(localStorage["notifications"]=="seen"){
+                $("#notificCount").css("visibility","hidden");
+            }
             toastr.options = {
                 positionClass: 'toast-bottom-left',
                 timeOut: 2500
@@ -102,8 +105,16 @@
             });
             $("#notifButton").hover(
                 function(){
-                 $("#notificCount").text(0);
-                 $("#notificCount").css("visibility","hidden");
+                    $("#notificCount").text(0);
+                    $("#notificCount").css("visibility","hidden");
+                    if(typeof(Storage)!=="undefined") {
+                            localStorage["notifications"] = "seen"
+                            console.log("available");
+                    } else {
+                            console.log("not available");
+                        // no native support for HTML5 storage :(
+                        // maybe try dojox.storage or a third-party solution
+                    }
                 }
             );
             $("#confirm").live("click",function(){

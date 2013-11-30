@@ -77,11 +77,13 @@ exports.categorize = function(collection,fn){
                     throw err;
                 collection.mapReduce(map,reduce,{out : {inline: 1}, verbose:true},function(err, results, stats){
                     if(err)
-                        throw err;
+                        fn({});
+                    else{
                     var end = new Date().getTime();
                     var time = end - start;
                     console.log('Execution time post perception categorization algo ' + time);
                     fn(results);
+                    }
                 });
             });
         }

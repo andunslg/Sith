@@ -13,10 +13,19 @@ import android.view.WindowManager;
 public class UIutil {
 	
 	public static void showExceptionAlert(Context context,Exception e){
+//		new AlertDialog.Builder(context)
+//	    .setTitle("Exception Occured")
+//	    .setMessage(e.toString())
+//	    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//	           public void onClick(DialogInterface dialog, int id) {
+//	                //do things
+//	           }
+//	       })
+//	     .show();
 		new AlertDialog.Builder(context)
-	    .setTitle("Exception Occured")
+	    .setTitle("Something went wrong!")
 	    .setMessage(e.toString())
-	    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	    .setPositiveButton("Try restarting the apllication if the problem persists.", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	                //do things
 	           }

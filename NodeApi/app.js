@@ -111,6 +111,7 @@ app.get('/getEventMap',mapRouts.getEventMap);
 app.get('/getLocationRating',mapRouts.getLocationValue);
 //notifs
 app.get('/getNotifications',notificationManager.getNotifications);
+app.get('/setCurrentNotifsAsRead',notificationManager.setCurrentNotifsAsRead);
 app.get('/sendFriendRequest',userMgmtRoutes.sendFriendRequest);
 app.get('/confirmFriendRequest',userMgmtRoutes.acceptFriendRequest);
 //friends

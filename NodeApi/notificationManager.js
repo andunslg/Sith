@@ -54,3 +54,13 @@ exports.notifyManyUsers = function(type,msgdata){
     }
 
 }
+
+exports.setCurrentNotifsAsRead = function(userID,fn){
+    notifyMongoAdapter.updateAllDocuments("UserNotifications_"+userID,{status:"pending"},{status:"seen"},function(error){
+        if(!error){
+            fn(true);
+        }else{
+            fn(false)
+        }
+    });
+}

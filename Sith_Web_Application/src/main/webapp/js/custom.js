@@ -94,19 +94,19 @@ $(document).ready(function () {
     });
 
     // Clear input fields on focus
-    $('input').each(function () {
-        var default_value = this.value;
-        $(this).focus(function () {
-            if (this.value == default_value) {
-                this.value = '';
-            }
-        });
-        $(this).blur(function () {
-            if (this.value == '') {
-                this.value = default_value;
-            }
-        });
-    });
+//    $('input').each(function () {
+//        var default_value = this.value;
+//        $(this).focus(function () {
+//            if (this.value == default_value) {
+//                this.value = '';
+//            }
+//        });
+//        $(this).blur(function () {
+//            if (this.value == '') {
+//                this.value = default_value;
+//            }
+//        });
+//    });
 
     $('.post').wysiwyg({
         controls: {

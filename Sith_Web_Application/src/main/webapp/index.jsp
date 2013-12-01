@@ -1,13 +1,29 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page pageEncoding="UTF-8" %>
+<%@ page import="com.sith.SithAPI" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${not empty param.lang ? param.lang :'english' }" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="i18n.lang" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script type="text/javascript">
+    var user = localStorage["currentUser"];
+    var status = localStorage["notifications"];
     localStorage.clear();
+    if(status=="seen"){
+        $.ajax({
+            url: '<%=SithAPI.SET_ALLNOTIFS_READ%>?userID='+user,
+            type: 'GET',
+            success: function (data) {
+                console.log("successfully mark all current notifs as read");
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
 </script>
 <html lang="">
 <%

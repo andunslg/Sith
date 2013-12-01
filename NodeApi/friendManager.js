@@ -27,7 +27,7 @@ exports.searchFriendsToAdd=function(userID,searchString,fn){
                     //annotate the suggested list
                     for(j=0;j<notifs.length;j++){
                         if(docs[i].userName==notifs[j].sender){
-                            if(notifs[j].status == "pending" && notifs[j].type== "friendRequest"){docs[i].type = "pendingRequest";}
+                            if((notifs[j].status == "pending"||notifs[j].status == "seen") && notifs[j].type== "friendRequest"){docs[i].type = "pendingRequest";}
                             else if((notifs[j].status == "friended" && notifs[j].type== "friendRequest") ||notifs[j].type == "requestAccepted"){docs[i].type = "friend";}
                             else if(notifs[j].type== "friendRequestToOther"){docs[i].type = "requestSent"}
                         }

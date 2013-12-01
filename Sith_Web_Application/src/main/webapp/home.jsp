@@ -21,6 +21,7 @@
     }
     NotificationHandler notifHandler = new NotificationHandler();
     //ArrayList<String> notifs = null;
+    int notifCount =0;
     JSONArray notifs = notifHandler.getAllNotifications(session.getAttribute("user").toString());
 %>
 
@@ -47,7 +48,11 @@
     <script src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            if(!localStorage["currentUser"]){
+              localStorage["currentUser"]= '<%=session.getAttribute("user").toString()%>';
+            }
             if(localStorage["notifications"]=="seen"){
+                $("#notificCount").text(0);
                 $("#notificCount").css("visibility","hidden");
             }
             toastr.options = {
@@ -67,6 +72,7 @@
             });
             //}
             socket.on("friendRequest",function(data){
+                localStorage["notifications"] = "unseen"
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
@@ -92,6 +98,7 @@
                 $("#notifList").prepend('<li><table><tr><td><h1>'+data+'</h1></td></tr></table></li>');
             });
             socket.on("cepNotification",function(data){
+                localStorage["notifications"] = "unseen"
                 var currentCount = parseInt($("#notificCount").text());
                 $("#notificCount").text(currentCount+1);
                 $("#notificCount").css("visibility","visible");
@@ -107,7 +114,7 @@
                 function(){
                     $("#notificCount").text(0);
                     $("#notificCount").css("visibility","hidden");
-                    if(typeof(Storage)!=="undefined") {
+                    if(typeof(Storage)!=="undefined" && (!localStorage["notifications"] || localStorage["notifications"] !="seen")) {
                             localStorage["notifications"] = "seen"
                             console.log("available");
                     } else {
@@ -153,17 +160,16 @@
             <button class="ico-font">&#9206;</button>
 		<span id="notifButton" class="button dropdown">
 			<a href="#"><fmt:message key="sith.dashboard.home.notifications" />
-            <% if(notifs.length()>0){%>
-                <span id="notificCount" class="pip"><%=notifs.length()%></span>
-            <%}else{%>
-                <span id="notificCount" class="pip" style="visibility: hidden">0</span>
-            <%}%>
             </a>
 			<ul id="notifList"class="notice" style="width: 300px">
                 <% if(notifs.length()==0){%>
                 <li><hgroup><h1><fmt:message key="sith.dashboard.home.NoNotificationsMsg" /></h1></hgroup></li>
                 <%}else{
-                    for(int i=0;i<notifs.length();i++){%>
+                    for(int i=0;i<notifs.length();i++){
+                    if(notifs.getJSONObject(i).getString("status").equals("pending")){
+                        notifCount++;
+                    }
+                %>
                 <li style="white-space: nowrap">
                     <table>
                         <tr>
@@ -187,6 +193,14 @@
                 </li>
                 <%}}%>
             </ul>
+            <% if(notifCount>0){%>
+                <script type="text/javascript">
+                    localStorage["notifications"] = "unseen";
+                </script>
+                <span id="notificCount" class="pip"><%=notifCount%></span>
+            <%}else{%>
+                <span id="notificCount" class="pip" style="visibility: hidden">0</span>
+            <%}%>
 		</span>
             <span class="button"><a href="home.jsp"><fmt:message key="sith.dashboard.home.home" /></a></span>
             <span class="button"><a href="http://sithplatform.cse.mrt.ac.lk/"><fmt:message key="sith.dashboard.home.help" /></a></span>

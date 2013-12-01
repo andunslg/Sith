@@ -37,6 +37,7 @@ public class SithAPI{
 	public static String DELETE_USER=NODEAPI+"deleteUser";
     public static String GET_FRIENDS_SUGGESTIONS = NODEAPI+"getFriendsSuggestions";
     public static String GET_NOTIFICATIONS = NODEAPI+"getNotifications";
+    public static String SET_ALLNOTIFS_READ = NODEAPI+"setCurrentNotifsAsRead";
     public static String GET_FRIENDS_LIST = NODEAPI+"getAllfriends";
     public static String REMOVE_FRIEND = NODEAPI+"removeFriend";
     public static String ADD_FRIEND = NODEAPI+"addFriend";

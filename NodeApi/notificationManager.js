@@ -23,7 +23,7 @@ exports.getNotifications = function(type,status,userID,fn){
     }else if(type){
       query = {type:type}
     }
-   notifyMongoAdapter.getDocuments(query,"UserNotifications_"+userID,function(docs){
+   notifyMongoAdapter.getDocuments( {$or: [{status:status},{status:"seen",type:"friendRequest"}]},"UserNotifications_"+userID,function(docs){
        fn(docs);
    });
 }

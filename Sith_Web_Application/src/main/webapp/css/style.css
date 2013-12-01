@@ -144,7 +144,7 @@ input:focus, textarea:focus {
 #map-canvas {
     margin: 0;
     padding: 0;
-    height: 400px;
+    height: 600px;
 }
 header.main {
     background: #208ed3; /* Old browsers */

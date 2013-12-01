@@ -311,7 +311,7 @@
     function initialize() {
         var mapOptions = {
             zoom: 15,
-            center: new google.maps.LatLng(23.4523, 34.3432),
+            center: new google.maps.LatLng(6.796876999999999000, 79.901778100000000000),
             mapTypeId: google.maps.MapTypeId.SATELLITE
         };
 

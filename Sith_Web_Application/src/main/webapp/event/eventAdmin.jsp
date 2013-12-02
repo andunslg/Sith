@@ -201,7 +201,7 @@
                         </td>
                         <td>
                             <div>
-                                <p><%=currentEvent.getEventID()%></p>
+                                <p id="eventID"><%=currentEvent.getEventID()%></p>
                             </div>
                         </td>
                     </tr>
@@ -601,7 +601,7 @@
         });
 
         $("#update").click(function () {
-            var eventID = $('input[id=eventID]').val();
+            var eventID = $('#eventID').text();
             var eventName = $('input[id=eventName]').val();
             var start = $('input[id=start]').val();
             var end = $('input[id=end]').val();

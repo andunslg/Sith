@@ -108,7 +108,7 @@
                     </td>
                     <td>
                         <div>
-                            <p><% if(session.getAttribute("user")!=null){%> <%=session.getAttribute("user").toString()%>  <%} else{ %>Guest <%}%></p>
+                            <p id="userName"><%if(session.getAttribute("user")!=null){%><%=session.getAttribute("user").toString()%><%}else{%>Guest<%}%></p>
                         </div>
                     </td>
                 </tr>
@@ -217,7 +217,7 @@
 
 <script type="text/javascript">
     $("#update").click(function () {
-        var username = $('input[id=username]').val();
+        var username = $("#userName").text();
         var oldPassword = $('input[id=oldPassword]').val();
         var newPassword = $('input[id=newPassword]').val();
         var newPasswordConfirm = $('input[id=newPasswordConfirm]').val();
@@ -256,7 +256,7 @@
 //        var conf = confirm("Are you sure want to unregister from Sith Platform ?");
         apprise('Are you sure want to unregister from Sith Platform ?',{'verify':true},function(r){
             if(r){
-                var username = $('input[id=username]').val();
+                var username = $('#userName').val();
 
                 var datObj = {};
                 datObj['userName'] = username;

@@ -103,6 +103,9 @@ getTimeInterval = function(startTime,endTime){
     var duration = endTime - startTime;
     return Math.floor(duration/100);
 }
+exports.calculate = function (num) {
+    return num * 2;
+};
 
 //return the time analysis data object for the given docs(data)
 analyseTimePercep = function(docs,minTime,interval){

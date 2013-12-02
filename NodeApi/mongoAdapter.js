@@ -9,11 +9,13 @@ var db1;
 //var client = new Db('Sith', new Server('192.248.8.246', 27017, {auto_reconnect: false, poolSize: 4}), {w:0, native_parser: false});
 var mongoClient = new MongoClient(new Server(config.mongodb.host, config.mongodb.port, {auto_reconnect: false, poolSize: 6}));
 
-mongoClient.open(function(err, mongoClient) {
-    db1 = mongoClient.db(config.mongodb.database);
-    console.log('connected to '+ db1.databaseName + ' on ' + mongoClient._db.serverConfig.host);
+exports.openConnection = function(){
+    mongoClient.open(function(err, mongoClient) {
+        db1 = mongoClient.db(config.mongodb.database);
+        console.log('connected to '+ db1.databaseName + ' on ' + mongoClient._db.serverConfig.host);
 
-});
+    });
+}
 //insert a document to the specified collection
 exports.insertDocument = function(collection,doc){
     db1.collection(collection, function(err, collection) {

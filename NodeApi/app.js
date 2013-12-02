@@ -17,8 +17,9 @@ var express = require('express')
   , cacheAccess = require('./routes/cacheAccess')
   , mapRouts=require('./routes/maps.js')
   ,friendRoutes=require('./routes/friend.js')
-  ,notificationManager = require('./routes/notification.js');
-
+  ,notificationManager = require('./routes/notification.js'),
+   mongoAdapter = require('./mongoAdapter.js');;
+mongoAdapter.openConnection();
 var app = express();
 app.engine('html', require('hjs').renderFile);
 app.configure(function(){

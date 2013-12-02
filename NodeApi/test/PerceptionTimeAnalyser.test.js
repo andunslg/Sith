@@ -8,6 +8,7 @@
 perceptionAnalyser = require('../Analytics/PerceptionTimeAnalyser.js');
 
 exports['calculate'] = function (test) {
+    test.expect(1);
     test.equal(perceptionAnalyser.calculate(2), 4);
     test.done();
 };

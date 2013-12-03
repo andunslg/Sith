@@ -19,26 +19,36 @@ portLocations={}
 eventID=""
 started=False
 averagePerception="None"
+threshold=0
+userCount=0
 
 
 def addNewClient():
     addNew=Tk()
-    addNew.geometry("250x175")
+    addNew.geometry("250x250")
     addNew.title("Add new client")
     locationLabel= Label(addNew, text="Location: ")
+    latLabel= Label(addNew, text="Latitude: ")
+    longiLabel= Label(addNew, text="Longitude: ")
     portLabel= Label(addNew, text="Port: ")
     nameLabel= Label(addNew, text="Name:")
     location = Entry(addNew)
+    lat = Entry(addNew)
+    longi = Entry(addNew)
     port = Entry(addNew)
     name = Entry(addNew)
     button1=Button(addNew,
-      text="Add",command=lambda: addNewOkPressed(location,port,name))
+      text="Add",command=lambda: addNewOkPressed(location,port,name,lat,longi))
     nameLabel.pack()
     name.pack()
     portLabel.pack()
     port.pack()
     locationLabel.pack()
     location.pack()
+    latLabel.pack()
+    lat.pack()
+    longiLabel.pack()
+    longi.pack()    
     button1.pack()
 
 def configureEvent():
@@ -47,6 +57,8 @@ def configureEvent():
     configureModes=list()
     buttonLabelEventID=Label(eventConfig,text="EventID:")
     butonEventID=Entry(eventConfig)
+    buttonLabelThreshold=Label(eventConfig,text="User count:")
+    butonThreshold=Entry(eventConfig)
     buttonLabel1=Label(eventConfig,text="Perception 1:")
     butonMode1=Entry(eventConfig)
     configureModes.append(butonMode1)
@@ -64,6 +76,8 @@ def configureEvent():
     configureModes.append(butonMode5)
     buttonLabelEventID.pack()
     butonEventID.pack()
+    buttonLabelThreshold.pack()
+    butonThreshold.pack()
     buttonLabel1.pack()
     butonMode1.pack()
     buttonLabel2.pack()
@@ -75,27 +89,37 @@ def configureEvent():
     buttonLabel5.pack()
     butonMode5.pack()
     button1=Button(eventConfig,
-    text="Ok",command=lambda: configureEventOkPressed(eventConfig,butonEventID,configureModes))
+    text="Ok",command=lambda: configureEventOkPressed(eventConfig,butonEventID, butonThreshold,configureModes))
     button1.pack()
      
      
-def configureEventOkPressed(eventConfig,butoneventID,configureModes):
+def configureEventOkPressed(eventConfig,butoneventID, butonThreshold,configureModes):
     global moods
     global eventID
+    global threshold
     moods[:] = []
     eventID=butoneventID.get()
+    threshold=int(butonThreshold.get())
     for cm in configureModes:
         moods.append(cm.get())
 
 
 
 def sendPerception(userID,perception,location):
-    global eventID   
+    global eventID
+    global threshold
+    global userCount
     url = 'http://192.248.15.232:3000/publishEventPerception'
     s=location.split(",")
+
+    if userCount<=threshold:
+        userCount+=1
+    else:
+        userCount=0
+        
     params = urllib.urlencode({
       'eventID': eventID,
-      'userID':userID,
+      'userID':userID+"_"+str(userCount),
       'perceptionValue':perception,
       'location':s[0],
       'lat': s[1],
@@ -105,22 +129,20 @@ def sendPerception(userID,perception,location):
     
 
 def getAveragePerception():
-    #global eventID
-##    change the URL
-    #url = 'http://192.248.15.232:3000/publishEventPerception'
-    #params = urllib.urlencode({
-    #  'eventID': eventID
-    #})
-    #response = urllib2.urlopen(url, params).read()
-##    perception has to be extracted from json string currently always sends None
-    return "Happy"
+    global eventID
+    url = 'http://192.248.15.232:3000/getHigestPerceptionOfEvent'
+    params = urllib.urlencode({
+      'eventID': eventID
+    })
+    response = urllib2.urlopen(url+'?'+params).read()
+    return response
     
     
 
         
 
-def addNewOkPressed(location,port,name):
-    loc=location.get()
+def addNewOkPressed(location,port,name,lat,longi):
+    loc=location.get()+","+lat.get()+","+longi.get()
     prt=port.get()
     nm=name.get()
     addNewClientT(nm,prt,loc)
@@ -230,7 +252,7 @@ def startClicked():
 def stopClicked():
     global started
     started=False
-    print temp
+
     
 
 menubar = Menu(root)

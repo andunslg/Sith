@@ -255,7 +255,7 @@
         </header>
         <br>
         <div align="center">
-            <iframe src="//player.vimeo.com/video/80770709?title=0&amp;byline=0&amp;portrait=0" width="446" height="249" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe src="//player.vimeo.com/video/80770709?title=0&amp;byline=0&amp;portrait=0" width="695" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
 
         <br>

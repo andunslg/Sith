@@ -49,10 +49,10 @@ app.configure('development', function(){
     console.log('dev');
 });
 
-//process.on('uncaughtException', function(err) {
-//    // handle the error safely
-//    console.log(err);
-//});
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    console.log(err);
+);
 
 //routes for web pages
 app.get('/',routes.index);

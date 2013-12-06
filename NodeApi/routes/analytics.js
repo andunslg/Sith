@@ -195,6 +195,7 @@ exports.getSelfAnalytics= function(req,res){
 }
 
 exports.receiveCEPAnalytics = function(req,res){
+    console.log(req.body.eventID);
     cepConnectorForPatterns.sendNotificationOnPatterns(req.body.eventID,req.body.msg);
     res.writeHead(200, {'Content-Type': 'application/json'});
     var result = JSON.stringify({response: true });

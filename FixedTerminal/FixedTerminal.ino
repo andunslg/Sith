@@ -1,7 +1,9 @@
 #include <U8glib.h>
 
+//initializing the LCD Display
 U8GLIB_ST7920_128X64_1X u8g(13, 11, 10);
 
+//Define input PIN numbers
 const int buttonPin1 = 52;     
 const int buttonPin2 = 50;     
 const int buttonPin3 = 48;     
@@ -11,6 +13,7 @@ const int buttonPin6 = 42;
 const int buttonPin7 = 40; 
 const int buttonPin8 = 38;  
 
+//Define input states
 boolean buttonState1 = 0;    
 boolean buttonState2 = 0;   
 boolean buttonState3 = 0;   
@@ -31,6 +34,7 @@ char *perception4;
 char *perception5;
 
 void setup() {
+  //Setting up the Device
   pinMode(buttonPin1, INPUT_PULLUP);    
   pinMode(buttonPin2, INPUT_PULLUP);  
   pinMode(buttonPin3, INPUT_PULLUP);    
@@ -55,6 +59,7 @@ void setup() {
   }
   u8g.setFont(u8g_font_unifont);
 
+  //Intilize serial communication
   Serial.begin(9600);
 }
 
@@ -62,9 +67,11 @@ void loop(){
 
   if(firstTime){
     showStartupScreen();
-
+    
+    //Requesting intializing values form coordinator
     writeSerial("Expecting Initial String");
 
+    //Receving Initializing data
     context=readFromSerial();
     avgPerception=readFromSerial();
     perception1=readFromSerial();
@@ -73,21 +80,24 @@ void loop(){
     perception4=readFromSerial();
     perception5=readFromSerial();
 
+    //Completing Initializing
     writeSerial("Initializing Completed");
     firstTime=false;
   }
 
+  //Read average perception from serial, if availble
   if(Serial.available() > 0){
     avgPerception=readFromSerial();
   }
 
+  //Show average perception on LCD
   showCurrentPerception(context,avgPerception);
   
+  //Checking for button press events
   checkInputs();
-  if (buttonState8 && buttonState8) {
-    firstTime=true;
-  }
-  else if (buttonState1) {
+
+  //Handling percetion recive
+  if (buttonState1) {
     showPerceptionQuery("");   
     char *selectedPerception; 
     while(true){  
@@ -121,6 +131,7 @@ void loop(){
           showPerceptionQuery("");   
         }
         else{
+          //Send selected perception to coordinator
           writeSerial(selectedPerception);
           break;
         }

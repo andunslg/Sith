@@ -24,7 +24,7 @@
     </cep:tupleMapping>
   </cep:input>
   <cep:query name="Sith_Event_Filter">
-    <cep:expression><![CDATA[from sithPerceptionStream[eventID=='map_test']
+    <cep:expression><![CDATA[from sithPerceptionStream[eventID=='TVTest2']
 insert into map_test_event_stream
 eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
   </cep:query>
@@ -40,8 +40,8 @@ eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:e
     <cep:expression><![CDATA[from map_test_event_stream[perceptionValue=='Awesome']
 insert into map_test_event_Email_Out_Stream
 eventID ,perceptionValue, userID, comment,longitude,location,latitude;]]></cep:expression>
-    <cep:output brokerName="sithBroker" topic="http://localhost:3000/receiveCEPAnalytics">
-      <cep:textMapping>{eventID}:This message is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}. Event Location is {location}. Longitude is {longitude} and Latitude is {latitude}.</cep:textMapping>
+    <cep:output brokerName="sithBroker" topic="http://192.248.15.232:3000/receiveCEPAnalytics">
+      <cep:textMapping>eventID:{eventID} , msg:This message is generated from WSO2 CEP Analyitics of Sith Platform. The user - {userID} is feeling {perceptionValue} about {eventID}. And {userID}'s comment is {comment}. Event Location is {location}. Longitude is {longitude} and Latitude is {latitude}.</cep:textMapping>
     </cep:output>
   </cep:query>
 </cep:bucket>

@@ -6,6 +6,7 @@ import threading
 import time
 import urllib
 import urllib2
+import json
 
 
 root = Tk()
@@ -135,7 +136,9 @@ def getAveragePerception():
       'eventID': eventID
     })
     response = urllib2.urlopen(url+'?'+params).read()
-    return response
+    tmpstring=response.split(":")
+    tmp=tmpstring[2]
+    return tmp[:-1]
     
     
 

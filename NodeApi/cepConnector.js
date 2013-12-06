@@ -83,6 +83,7 @@ exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng
             "metadata":['127.0.0.1']
         }
     ]);
+    console.log(jsonObject);
     var path="sith_Perception_Analytics"+'/1.0.0/' ;
     sendUpdate(jsonObject,path,true);
 }

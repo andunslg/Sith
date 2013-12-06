@@ -13,7 +13,7 @@ exports.insertPerception = function(userID,eventID,perceptionVal,latLng,location
 	mongoAdapter.insertDocument("EventPerceptions_"+eventID, doc);
     mongoAdapter.insertDocument("UserPerceptions_"+userID,doc);
     cepConnector.sendSithPerceptionStreamDef();
-    cepConnector.sendSithPerception(userID,eventID,perceptionVal,'comment',latLng.lat,latLng.lng,'cse');
+    cepConnector.sendSithPerception(userID,eventID,perceptionVal,'',latLng.lat,latLng.lng,'');
     insertInstantPercep(doc);
 
     bamConnector.sendPercept(userID,eventID,perceptionVal,location,latLng.lat,latLng.lng,time,'0.0.0.0');

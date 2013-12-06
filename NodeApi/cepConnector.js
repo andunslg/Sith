@@ -79,7 +79,7 @@ exports.sendSithPerceptionStreamDef=function(){
 exports.sendSithPerception=function(userID,eventID,perceptionVal,comment,lat,lng,location){
     jsonObject = JSON.stringify([
         {
-            "payloadData":[eventID,userID,perceptionVal,comment,lat,lng,location],
+            "payloadData":[eventID,userID,perceptionVal,"myComment",lat,lng,"CSE"],
             "metadata":['127.0.0.1']
         }
     ]);
